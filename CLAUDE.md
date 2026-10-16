@@ -6,11 +6,17 @@ App web installabile (PWA) statica, pubblicata da Netlify a partire dalla cartel
 1. Modifica i sorgenti in `src/`:
    - `app_template.html`: interfaccia e logica (segnaposto `/*FOODS*/`, `/*SPLASHCSS*/`, `<!--SPLASH-->`, `<!--HEAD-->`, `<!--TAIL-->`).
    - `foods*.js`: database alimenti. Formato: `[nome, kcal, proteine, carboidrati, grassi (per 100 g/ml), unità, grammi per unità, sinonimi]`; grammi = -1 significa valori per porzione intera.
-2. Aumenta la versione in `src/VERSION` (serve a rinnovare la cache del service worker).
+2. Aumenta la versione in `src/VERSION` (serve a rinnovare la cache del service worker) e aggiungi le novità in `CHANGELOG`.
 3. Esegui `python3 src/build.py` dalla radice: rigenera `public/index.html` e `public/sw.js`.
 4. Prova la pagina (es. Playwright su `public/index.html`), poi commit e push.
 
 ## Componenti dell'interfaccia
+- Navigazione da app: ogni livello aperto (scheda diversa da Oggi, pagina, foglio, avviso, procedura guidata) si registra con `pushL(chiusura)`; il tasto indietro di Android/`back()` chiude l'ultimo. Per chiudere un livello da codice usare `dropL(f)` o le funzioni dedicate (`closeSheet`, `closeAlert`); `closeAll()` torna alla base.
+- Pagine a scorrimento: `openPage(id, titolo, html, {act})`; le Impostazioni sono costruite da `setHTML()` (aggiornare con `refreshSettings()`). I campi con `data-cfg`, `data-tog`, `data-ntog` si salvano da soli.
+- Centro notifiche: `notify(chiave_unica, {type, icon, bg, title, text, act})` con type tra weigh, backup, goals, tips, news; `act` è una chiave di `ACT`. I controlli giornalieri sono in `checks()`.
+- Traguardi: elenco `ACH` e condizioni in `achCheck()`.
+- Novità: aggiungere una voce in cima a `CHANGELOG` a ogni versione pubblicata (viene mostrata agli utenti dopo l'aggiornamento). `VERSION` viene da `src/VERSION`.
+- `FEEDBACK_EMAIL`: se valorizzato, nelle Impostazioni compare "Invia un suggerimento".
 - `alertBox({icon, bg, title, text, buttons:[{label, fn, danger}], vib})`: avviso a scheda dal basso con icona tonda oscillante (stile dell'app). Il primo pulsante è quello principale (lime con riflesso).
 - `note(testo, errore, {label, fn})`: messaggio breve in basso, con eventuale pulsante (es. Annulla).
 - Classi: `cta` (pulsante lime), `shine` (riflesso animato), `danger` (rosso). Le animazioni rispettano `prefers-reduced-motion`.
