@@ -10,6 +10,11 @@ App web installabile (PWA) statica, pubblicata da Netlify a partire dalla cartel
 3. Esegui `python3 src/build.py` dalla radice: rigenera `public/index.html` e `public/sw.js`.
 4. Prova la pagina (es. Playwright su `public/index.html`), poi commit e push.
 
+## Componenti dell'interfaccia
+- `alertBox({icon, bg, title, text, buttons:[{label, fn, danger}], vib})`: avviso a scheda dal basso con icona tonda oscillante (stile dell'app). Il primo pulsante è quello principale (lime con riflesso).
+- `note(testo, errore, {label, fn})`: messaggio breve in basso, con eventuale pulsante (es. Annulla).
+- Classi: `cta` (pulsante lime), `shine` (riflesso animato), `danger` (rosso). Le animazioni rispettano `prefers-reduced-motion`.
+
 ## Regole importanti
 - Non rinominare il sito né cambiare dominio: i dati degli utenti sono nel localStorage legato all'indirizzo (chiave `tracker_dieta_v1`).
 - Ogni cambio di formato dei dati deve passare da `migrate()` e restare compatibile con i dati esistenti.
