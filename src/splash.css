@@ -1,0 +1,7 @@
+#splash{position:fixed;inset:0;background:#fff;z-index:99;display:grid;place-items:center;font:800 min(15vw,64px)/1 Inter,system-ui,-apple-system,sans-serif;letter-spacing:-.04em;color:#1c3a12;animation:sOut .45s ease 3.3s forwards}
+#splash .wm{display:flex;align-items:center}#splash .ic{width:1.5em;height:1.5em;flex:none;animation:pop .6s cubic-bezier(.2,1.5,.4,1) both}#splash .ic svg{width:100%;height:100%;display:block}
+#splash .lf{transform-origin:38px 35px;animation:grow .7s cubic-bezier(.2,1.4,.4,1) .45s both}
+#splash .x{display:inline-block;overflow:hidden;white-space:nowrap;max-width:0;opacity:0;animation:ex .9s cubic-bezier(.65,0,.25,1) 1.5s forwards}#splash .x i{font-style:normal;padding:0 0 .1em .28em}#splash .x b{color:#4aa11f;font-weight:800}
+@keyframes pop{from{transform:scale(.35);opacity:0}to{transform:scale(1);opacity:1}}@keyframes grow{from{transform:scale(0) rotate(-35deg)}to{transform:scale(1) rotate(0)}}
+@keyframes ex{to{max-width:4.4em;opacity:1}}@keyframes sOut{to{opacity:0;visibility:hidden}}
+@media(prefers-reduced-motion:reduce){#splash .ic,#splash .lf,#splash .x{animation-duration:.01s}#splash .x{animation-delay:0s}#splash{animation-delay:1.2s}}
