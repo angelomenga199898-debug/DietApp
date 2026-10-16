@@ -14,7 +14,7 @@ FOODS_RAW.push(
 ["Panna montata",251,2,9,23,"porzione",15,"spray"],
 ["Sciroppo d'acero",260,0,67,0,"cucchiaio",20,""],
 // ---- Primi e piatti pronti ----
-["Sugo pronto al basilico",48,1.5,7,1.6,"porzione",100,"barilla mutti star cirio pomodoro"],
+["Sugo pronto al basilico",48,1.5,7,1.6,"porzione",100,"barilla mutti star cirio pomodoro arrabbiata"],
 ["Pasta di legumi (cruda)",323,25,50,2.5,"porzione",80,"lenticchie rosse ceci piselli"],
 ["Pasta senza glutine (cruda)",355,7,79,1.5,"porzione",80,"celiaci"],
 ["Riso venere (crudo)",360,7.5,77,2.5,"porzione",80,"nero"],

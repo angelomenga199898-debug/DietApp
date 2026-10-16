@@ -87,7 +87,7 @@ FOODS_RAW.push(
 // ---- Gelati ----
 ["Magnum Classic",320,3.8,29,21,"stecco",75,"algida"],
 ["Cornetto Algida classico",300,4,37,15,"cono",65,"algida"],
-["Ghiacciolo",85,0,21,0,"ghiacciolo",60,""],
+["Ghiacciolo",85,0,21,0,"ghiacciolo",60,"calippo"],
 ["Gelato alla frutta / sorbetto",141,1,32,1,"pallina",50,""],
 // ---- Snack salati ----
 ["Pringles Original",528,4.5,51,34,"porzione",30,""],
@@ -101,7 +101,7 @@ FOODS_RAW.push(
 ["Red Bull",46,0,11,0,"lattina",250,"energy drink"],
 ["Red Bull Sugarfree",3,0,0.5,0,"lattina",250,"energy drink"],
 ["Monster Energy",47,0,12,0,"lattina",500,"energy drink"],
-["Gatorade",24,0,6,0,"bottiglia",500,"sport"],
+["Gatorade",24,0,6,0,"bottiglia",500,"sport powerade"],
 ["Birra analcolica",25,0.3,5.5,0,"bottiglia",330,""],
 ["Spritz",75,0,8,0,"bicchiere",180,"aperol"],
 ["Prosecco / spumante",80,0.1,1.5,0,"flûte",125,""],
@@ -113,7 +113,7 @@ FOODS_RAW.push(
 ["Cioccolata calda",85,3.5,12,2.5,"tazza",200,""],
 ["Tè o tisana senza zucchero",1,0,0.2,0,"tazza",200,"the camomilla"],
 ["Actimel / yogurt da bere",70,2.8,11,1.5,"bottiglietta",100,"danone"],
-["Yogurt alla frutta",96,3.2,14,3,"vasetto",125,"muller yomo danone vipiteno"],
+["Yogurt alla frutta",96,3.2,14,3,"vasetto",125,"muller yomo danone vipiteno activia"],
 // ---- Fast food (valori per porzione intera) ----
 ["Big Mac (McDonald's)",544,26,45,28,"",-1,"mcdonalds panino"],
 ["Cheeseburger (McDonald's)",306,15,31,13,"",-1,"mcdonalds panino"],
