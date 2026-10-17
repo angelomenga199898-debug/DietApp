@@ -139,13 +139,30 @@ input.sw:checked{background:#5cc23a}input.sw:checked::after{transform:translateX
 .exf{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}.exf label{display:flex;align-items:center;gap:6px;margin:0}.exf select{width:auto;padding:8px 10px;border-radius:12px;font-size:14px}
 .k2{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 0;color:var(--tx);font-size:16px;cursor:pointer}.k2 b{display:block;font:700 16px var(--ff);letter-spacing:0}.k2 small{display:block;color:var(--mu);font-size:13px;font-weight:500;margin-top:2px}
 .big{font:800 30px var(--ff)!important;text-align:center}
+/* --- corpo --- */
+.bh{text-align:left}.bhr{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.bhr span{display:block;color:rgba(255,255,255,.75);font-size:13px}
+.bhr b{display:block;font:800 46px/1.05 var(--ff);letter-spacing:-1.5px;color:#fff;margin:4px 0 2px}.bhr b small{font-size:18px;font-weight:700;letter-spacing:0}
+.hc.bh .cta{margin:0;padding:12px 16px;width:auto;flex:none;font-size:15px}.bh .hbar{max-width:none;margin:16px 0 4px}.bh .hbar i{animation:grow 1.1s cubic-bezier(.3,1.25,.4,1) both}@keyframes grow{from{width:0}}
+.bht{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.bht span{background:rgba(255,255,255,.08);border-radius:16px;padding:10px 12px;font-size:12px;color:rgba(255,255,255,.7)}.bht b{display:block;color:#fff;font-size:17px;margin-top:2px}
+.bfc{display:flex;align-items:center;gap:16px}.bfd{position:relative;width:100px;height:100px;flex:none}.bfd svg{width:100%;height:100%;transform:rotate(-90deg)}
+.bfd .t0{fill:none;stroke:#5cc23a;stroke-width:12;opacity:.9}.bfd .t1{fill:none;stroke:#f0a35a;stroke-width:12;stroke-linecap:round;stroke-dasharray:251.3;animation:bfa 1.2s cubic-bezier(.3,1.2,.4,1) both}@keyframes bfa{from{stroke-dashoffset:251.3}}
+.c .bfd b{position:absolute;inset:0;display:grid;place-items:center;font:800 21px var(--ff);letter-spacing:-.5px;margin:0}
+.bft{flex:1;min-width:0}.bft p{font-size:14px;color:var(--mu);margin:8px 0 0}.c .tag{display:inline-block;padding:5px 12px;border-radius:999px;font-size:13px;font-weight:700;color:#10200a}
+.c .bq{display:block;font:800 19px var(--ff);color:var(--tx);margin-bottom:4px;letter-spacing:-.3px}
+.kq{background:var(--ch);border-radius:18px;padding:12px 14px}.kq i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}.c .kq b{display:inline;font:800 20px var(--ff)}.c .kq span{display:block;margin-top:2px}
+.bfx{font-size:14px;margin:12px 0 0;line-height:1.5}.c .bfx b{display:inline;font:700 14px var(--ff);letter-spacing:0}
+.mr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid var(--bd)}.c .mr span{font-size:15px;color:var(--tx);font-weight:600}.c .mr>span:last-child{text-align:right}
+.c .mr b{display:inline;font:800 17px var(--ff);letter-spacing:0}.mr small{display:block;font-size:12px;font-weight:700;color:var(--mu)}.mr small.dn2{color:var(--ok)}.mr small.up2{color:var(--am)}
+.chips.c3{display:grid;grid-template-columns:repeat(3,1fr)}.chips.c3 .chip{padding:8px 4px;font-size:13px}
+.tl{stroke-dasharray:2000;animation:tl 1.4s ease-out both}@keyframes tl{from{stroke-dashoffset:2000}}
+@media(prefers-reduced-motion:reduce){.bh .hbar i,.bfd .t1,.tl{animation:none!important}}
 html.rm *,html.rm *::before,html.rm *::after{animation:none!important;transition:none!important}
 @media(prefers-reduced-motion:reduce){.acs .fi,.tic .t1.an,.wo.new{animation:none!important}}
 /*SPLASHCSS*/
 </style></head><body><!--SPLASH-->
 <div id="wiz" class="wiz" hidden><div class="wz" id="wzc"></div></div>
 <div id="sheet" class="sheet" hidden onclick="if(event.target===this)closeSheet()"><div class="sh-in" role="dialog" aria-modal="true"><div class="grab"></div><div id="shc"></div></div></div>
-<main><header class="tb"><div class="tbl" id="tbl"></div><div class="tbr"><span class="p" id="stk" title="Giorni di fila">🔥 0</span><span class="p" id="wgt" title="Peso attuale"></span><button class="ib" id="bell" onclick="openNotifs()" aria-label="Notifiche">🔔<i id="bdg" style="display:none"></i></button></div></header>
+<main><header class="tb"><div class="tbl" id="tbl"></div><div class="tbr"><span class="p" id="stk" title="Giorni di fila">🔥 0</span><span class="p" id="wgt" title="Peso attuale: apri Corpo" role="button" tabindex="0" style="cursor:pointer" onclick="tab('corpo')"></span><button class="ib" id="bell" onclick="openNotifs()" aria-label="Notifiche">🔔<i id="bdg" style="display:none"></i></button></div></header>
 
 <section id="oggi" class="on"><h1>Oggi</h1>
 <div class="dn"><button class="s" onclick="shift(-1)" aria-label="Giorno precedente">‹</button><input type="date" id="d" aria-label="Data"><button class="s" onclick="shift(1)" aria-label="Giorno successivo">›</button></div>
@@ -164,8 +181,9 @@ html.rm *,html.rm *::before,html.rm *::after{animation:none!important;transition
 <button class="lnk" onclick="del()" style="color:var(--bad);margin-top:6px">Elimina giornata</button></div></section>
 
 <section id="dash"><h1>Andamento</h1><div id="hero"></div><h2>📊 Ultimi 7 giorni</h2><div class="g" id="kp"></div>
-<h2>⚖️ Peso</h2><div class="c" id="wc"></div><div class="g" id="cal"></div><p class="mu" id="calt"></p>
-<h2>📉 Kcal e TDEE</h2><div class="c" id="kc"></div><h2>🎯 Proiezione</h2><div class="g" id="pj"></div></section>
+<h2>📉 Kcal e TDEE</h2><div class="c" id="kc"></div><h2>🎯 Proiezione</h2><div class="g" id="pj"></div><p class="mu" id="calt"></p>
+<button class="s w" onclick="tab('corpo')">⚖️ Peso, misure e massa grassa ›</button></section>
+<section id="corpo"><h1>Corpo</h1><div id="cp"></div></section>
 
 <section id="log"><h1>Giorni</h1><div id="ls"></div></section>
 
@@ -179,7 +197,7 @@ html.rm *,html.rm *::before,html.rm *::after{animation:none!important;transition
 </main>
 <input type="file" id="f" accept=".json,application/json" hidden onchange="imp(this)"><div id="pages"></div>
 <div id="toast" role="status"></div><div id="al" class="al" hidden onclick="if(event.target===this)closeAlert()"><div class="al-c" role="alertdialog" aria-modal="true" aria-labelledby="alt"><div class="al-i" id="ali" aria-hidden="true"></div><h3 id="alt"></h3><p id="alm"></p><div id="alb"></div></div></div>
-<nav><a class="on" data-t="oggi"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg><span>Oggi</span></a><a data-t="dash"><svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 6"/></svg><span>Grafici</span></a><a data-t="log"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg><span>Giorni</span></a><a data-t="ai"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg><span>Assistente</span></a><a data-t="imp"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profilo</span></a></nav>
+<nav><a class="on" data-t="oggi"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg><span>Oggi</span></a><a data-t="dash"><svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 6"/></svg><span>Grafici</span></a><a data-t="corpo"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8.5 10a4.5 4.5 0 0 1 7 0"/><path d="M12 12.5l1.3-2.6"/></svg><span>Corpo</span></a><a data-t="log"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg><span>Giorni</span></a><a data-t="ai"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg><span>Assistente</span></a><a data-t="imp"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profilo</span></a></nav>
 <script>
 /*FOODS*/
 const $=s=>document.getElementById(s),K='tracker_dieta_v1',DAYN=['Dom','Lun','Mar','Mer','Gio','Ven','Sab'];
@@ -197,7 +215,7 @@ const CFA=[['tdee0','TDEE di riserva'],['floor','Soglia “troppo basso” (kcal
 const DEF={cfg:{w0:80,wg:75,start:TODAY(),target:2000,tol:200,floor:1200,pmin:100,waterT:2.5,tdee0:2500,h:175,age:30,sex:'M',base:1.1,kps:0.0004,gymMin:60,metB:3,metI:0.3,metC:6,tef:0.1,wkT:3,stepT:8000,kg:7700,weighDays:[1,4],ok:false},days:{},presets:[],foods:[],recent:[]};
 const DATA=/*DATA*/null;
 function migrate(s){const had=s.cfg&&s.cfg.showInc;s.cfg=Object.assign({},DEF.cfg,s.cfg||{});if(had===undefined)s.cfg.showInc=!!s.cfg.ok;if(!Array.isArray(s.cfg.weighDays))s.cfg.weighDays=[1,4];
-s.days=s.days||{};['presets','foods','recent','offc','inbox','wtpl'].forEach(k=>{if(!Array.isArray(s[k]))s[k]=[]});['ach','nlog'].forEach(k=>{if(!s[k]||typeof s[k]!=='object'||Array.isArray(s[k]))s[k]={}});if(!s.cfg.notif||typeof s.cfg.notif!=='object')s.cfg.notif={};if(!s.cfg.theme)s.cfg.theme='auto';if(s.cfg.name==null)s.cfg.name='';
+s.days=s.days||{};['presets','foods','recent','offc','inbox','wtpl'].forEach(k=>{if(!Array.isArray(s[k]))s[k]=[]});['ach','nlog','body'].forEach(k=>{if(!s[k]||typeof s[k]!=='object'||Array.isArray(s[k]))s[k]={}});if(!s.cfg.notif||typeof s.cfg.notif!=='object')s.cfg.notif={};if(!s.cfg.theme)s.cfg.theme='auto';if(s.cfg.name==null)s.cfg.name='';
 for(const d in s.days){const x=s.days[d];if(!Array.isArray(x.meals)){x.meals=[];if(num(x.k))x.meals.push({t:'',n:'Totale giornata',k:x.k,p:x.p||0,c:x.c||0,g:x.g||0})}delete x.k;delete x.p;delete x.c;delete x.g;
 if(!Array.isArray(x.wo)){x.wo=[];if(x.gym){const w={s:'pesi'};if(x.dur>0)w.min=x.dur;if(x.int>0)w.rpe=x.int;x.wo.push(w)}if(x.card>0)x.wo.push({s:'cardio',min:x.card})}['gym','int','dur','card'].forEach(k=>delete x[k])}return s}
 let S=null;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
@@ -230,6 +248,7 @@ function chips(){calc();const s=stats(),nm=(S.cfg.name||'').trim().split(/\s+/)[
 /* ---------- VERSIONE E NOVITÀ ---------- */
 const VERSION='/*VERSION*/',FEEDBACK_EMAIL='';
 const CHANGELOG=[
+['2.7','17 ottobre 2026',['Nuova sezione Corpo: peso, misure e massa grassa in un posto solo','Stima della massa grassa dalle misure (vita e collo) o dalla tua bilancia smart','Grafici di peso, vita, % di grasso e di ogni misura','Promemoria per prendere le misure ogni 2 settimane','Tocca il tuo peso in alto per aprire Corpo']],
 ['2.6','17 ottobre 2026',['Nuova sezione Attività: passi, sonno e allenamenti a colpo d’occhio','18 sport, ognuno con i suoi campi: vasche per il nuoto, distanza e passo per la corsa, esercizi, serie e kg per la sala pesi…','Calorie bruciate stimate per ogni sport, più precise','Schede di allenamento e record personali in sala pesi','“Incolla dati” ora è dentro “+ Aggiungi alimento”']],
 ['2.5','17 ottobre 2026',['Nuovo Profilo con progressi, serie di giorni e traguardi','Impostazioni organizzate in gruppi','Centro notifiche con promemoria, consigli e traguardi','Tema chiaro, scuro o automatico','Il tasto indietro di Android ora funziona come in un’app','Informativa privacy, condizioni d’uso ed eliminazione dei dati','Scorciatoie tenendo premuta l’icona dell’app']],
 ['2.4','17 ottobre 2026',['Scheda Oggi con anello animato delle calorie','Avvisi a scheda e animazioni in tutta l’app']],
@@ -279,7 +298,7 @@ return L.length?L.map(x=>`<div class="ml"><div><b>${E(x.f.n)}</b><div class="mu"
 function pgFoods(){openPage('foods','I miei alimenti',foodsHTML())}
 function delFood(src,i){const f=S[src].splice(i,1)[0];S.recent=S.recent.filter(r=>r.n!==f.n);persist();openPage('foods','I miei alimenti',foodsHTML());refreshSettings();note('Eliminato',0,{label:'Annulla',fn:()=>{S[src].splice(i,0,f);persist();openPage('foods','I miei alimenti',foodsHTML());refreshSettings()}})}
 function pgWeigh(){openPage('weigh','Giorni di pesata',`<p class="mu">Nei giorni scelti l’app ti ricorda di pesarti. Pesarsi 2–3 volte a settimana, a digiuno, basta per calibrare la stima delle calorie.</p><div class="dws" id="wdw">${[1,2,3,4,5,6,0].map(i=>`<label class="dw"><input type="checkbox" value="${i}" ${S.cfg.weighDays.includes(i)?'checked':''}>${DAYN[i]}</label>`).join('')}</div>`)}
-const NT=[['weigh','⚖️','Promemoria pesata','Nei giorni di pesata'],['backup','💾','Promemoria backup','Una volta a settimana'],['goals','🏅','Traguardi','Quando ne sblocchi uno'],['tips','💡','Consigli','In base alla giornata di ieri'],['news','✨','Novità dell’app','Dopo ogni aggiornamento']];
+const NT=[['weigh','⚖️','Promemoria pesata e misure','Nei giorni di pesata e ogni 2 settimane per le misure'],['backup','💾','Promemoria backup','Una volta a settimana'],['goals','🏅','Traguardi','Quando ne sblocchi uno'],['tips','💡','Consigli','In base alla giornata di ieri'],['news','✨','Novità dell’app','Dopo ogni aggiornamento']];
 function pgNotif(){openPage('ntp','Cosa ricevere',`<div class="sl">${NT.map(([k,ic,l,d])=>tog(ic,`${l}<br><small class="mu" style="font-weight:500">${d}</small>`,`data-ntog="${k}"`,S.cfg.notif[k]!==false)).join('')}</div><p class="mu">Le notifiche compaiono nel centro notifiche dentro l’app (la campanella in alto). Le notifiche sul telefono ad app chiusa arriveranno con una versione futura.</p>`)}
 function pgTheme(){const t=S.cfg.theme||'auto';openPage('theme','Tema',`${OPT(t=='auto',"setTheme('auto')",'Automatico','Segue le impostazioni del telefono')}${OPT(t=='light',"setTheme('light')",'Chiaro')}${OPT(t=='dark',"setTheme('dark')",'Scuro')}`)}
 function setTheme(v){S.cfg.theme=v;persist();applyTheme();pgTheme();refreshSettings()}
@@ -287,7 +306,8 @@ function pgAdv(){openPage('adv','Avanzate',`<div class="c warn"><b>Solo per espe
 const DOC=(h)=>`<div class="doc">${h}</div>`;
 function pgHelp(){openPage('help','Come funziona',DOC(`<h3>Registrare i pasti</h3><p>Tocca “+ Aggiungi alimento”: cerca l’alimento e scrivi i grammi o i pezzi. Se non lo trovi, cercalo online, scansiona il codice a barre o inseriscilo a mano. Tocca un pasto per modificarlo.</p>
 <h3>Pasti rapidi</h3><p>Per quello che mangi spesso: un tocco nella scheda Oggi e il pasto è aggiunto.</p>
-<h3>Attività e allenamenti</h3><p>Nella scheda Oggi tocca i riquadri per segnare passi, sonno e peso, e “+ Aggiungi allenamento” per scegliere lo sport: ognuno ha i suoi campi (durata, distanza, vasche, esercizi e serie…). Tutti sono facoltativi tranne la durata.</p>
+<h3>Attività e allenamenti</h3><p>Nella scheda Oggi tocca i riquadri per segnare passi e sonno, e “+ Aggiungi allenamento” per scegliere lo sport: ognuno ha i suoi campi (durata, distanza, vasche, esercizi e serie…). Tutti sono facoltativi tranne la durata.</p>
+<h3>Corpo</h3><p>Nella scheda Corpo trovi peso, misure e massa grassa. Pesati 2–3 volte a settimana e prendi le misure col metro ogni 2 settimane: con vita e collo (e fianchi per le donne) l’app stima la percentuale di grasso, oppure puoi scrivere quella della tua bilancia smart.</p>
 <h3>Consumo calorico</h3><p>Da passi e allenamenti l’app stima ogni giorno quante calorie consumi e il tuo deficit. Se l’orologio misura le calorie dell’allenamento puoi scriverle e vengono usate al posto della stima. Pesandoti a digiuno nei giorni di pesata, dopo qualche settimana la stima si corregge con i tuoi dati reali.</p>
 <h3>Giornate complete</h3><p>I giorni passati con dei pasti contano da soli nelle medie. Togli la spunta “Giornata completa” se hai dimenticato di segnare qualcosa.</p>
 <h3>Incolla dati</h3><p>Se usi un’AI (ChatGPT, Claude, Gemini…) per contare le calorie, tocca “+ Aggiungi alimento” e poi “Incolla dall’AI”: trovi le istruzioni da copiare e il riquadro dove incollare la risposta.</p>
@@ -296,7 +316,7 @@ function pgHelp(){openPage('help','Come funziona',DOC(`<h3>Registrare i pasti</h
 function pgNews(){openPage('news','Novità',CHANGELOG.map(([v,d,it])=>`<div class="c nv"><b>Versione ${v}</b> <span>${d}</span><ul>${it.map(x=>`<li>${E(x)}</li>`).join('')}</ul></div>`).join(''))}
 function pgPrivacy(){openPage('priv','Informativa privacy',DOC(`<p class="mu">Ultimo aggiornamento: 17 ottobre 2026</p>
 <h3>In breve</h3><p>DietApp non ha account e non ha un server proprio: tutto quello che inserisci resta sul tuo telefono.</p>
-<h3>Quali dati usa l’app</h3><p>I dati che inserisci tu: nome (facoltativo), sesso, età, altezza, peso, obiettivi, pasti, acqua, passi, allenamenti, sonno e note. Peso e alimentazione sono dati relativi alla salute: per questo restano solo sul dispositivo.</p>
+<h3>Quali dati usa l’app</h3><p>I dati che inserisci tu: nome (facoltativo), sesso, età, altezza, peso, misure del corpo e massa grassa, obiettivi, pasti, acqua, passi, allenamenti, sonno e note. Peso e alimentazione sono dati relativi alla salute: per questo restano solo sul dispositivo.</p>
 <h3>Dove sono salvati</h3><p>Nella memoria del browser di questo dispositivo. Non vengono inviati allo sviluppatore né a terzi. Non ci sono pubblicità, profilazione o strumenti di statistica.</p>
 <h3>Servizi esterni</h3><ul><li><b>Open Food Facts</b>: quando cerchi un prodotto online o scansioni un codice a barre, viene inviato solo il testo cercato o il codice, non i tuoi dati.</li><li><b>Netlify</b>, che ospita l’app: come ogni server può registrare dati tecnici di accesso (ad esempio indirizzo IP e tipo di browser) per sicurezza e funzionamento.</li></ul>
 <h3>Fotocamera</h3><p>Serve solo a leggere i codici a barre: le immagini non vengono salvate né inviate.</p>
@@ -325,11 +345,12 @@ function openNotifs(){openPage('ntf','Notifiche',nHTML(),{act:`<button class="ib
 function nRefresh(){const p=$('pg_ntf');if(p)p.querySelector('.pgc').innerHTML=nHTML()}
 function readAll(){S.inbox.forEach(n=>n.read=true);persist();bell();nRefresh();refreshSettings()}
 function nDel(i){S.inbox.splice(i,1);persist();bell();nRefresh();refreshSettings()}
-const ACT={weigh:()=>{closeAll();after(()=>{tab('oggi');$('d').value=TODAY();render();openWeigh(TODAY())})},
+const ACT={weigh:()=>{closeAll();after(()=>{tab('corpo');openWeigh(TODAY())})},meas:()=>{closeAll();after(()=>{tab('corpo');openMeas(TODAY())})},
 backup:()=>exp(),add:()=>{closeAll();after(()=>{tab('oggi');$('d').value=TODAY();render();openAdd()})},dash:()=>{closeAll();after(()=>tab('dash'))},ach:()=>openAch(),news:()=>pgNews()};
 function nGo(i){const n=S.inbox[i];n.read=true;persist();bell();nRefresh();refreshSettings();if(ACT[n.act])ACT[n.act]()}
 function checks(){if(!S.cfg.ok)return;calc();const c=S.cfg,t=TODAY(),x=S.days[t],h=new Date().getHours();
 if(c.weighDays.includes(new Date().getDay())&&!(x&&x.w>0)&&h>=5)notify('weigh-'+t,{type:'weigh',icon:'⚖️',bg:'#fdeea0',title:'Oggi è giorno di pesata',text:'Pesati a digiuno e segna il peso: serve a calibrare la stima delle calorie.',act:'weigh'});
+{const bl=Object.keys(S.body).filter(d=>BM.some(([k])=>S.body[d][k]>0)).sort().pop();if(bl?dd(t,bl)>=14:dd(t,c.start)>=3)notify('meas-'+(bl||'first'),{type:'weigh',icon:'📏',bg:'#e3ecff',title:bl?'È ora di prendere le misure':'Prendi le prime misure',text:bl?'Sono passate 2 settimane: rifai le misure per vedere i progressi oltre la bilancia.':'Vita, fianchi, collo…: mostrano i progressi anche quando la bilancia è ferma, e servono a stimare la massa grassa.',act:'meas'})}
 if(Object.keys(S.days).length>=5&&(!c.lastBk||dd(t,c.lastBk)>=7))notify('backup-'+Math.floor(dd(t,'2024-01-01')/7),{type:'backup',icon:'💾',bg:'#e3ecff',title:'È ora di un backup',text:'I tuoi dati sono solo su questo telefono: salvane una copia.',act:'backup'});
 const y=iso(new Date(Date.now()-864e5)),o=D[y],yx=S.days[y];if(o&&o.cl&&num(o.k)){
 if(o.p<c.pmin*.8)notify('tip-p-'+y,{type:'tips',icon:'🥩',bg:'#ffe3d6',title:'Ieri poche proteine',text:`${f0(o.p)} g su ${f0(c.pmin)}: oggi punta su carne, pesce, uova, legumi o yogurt greco.`,act:'add'});
@@ -341,17 +362,18 @@ const lim=iso(new Date(Date.now()-90*864e5));for(const k in S.nlog)if(S.nlog[k]<
 /* ---------- SERIE E TRAGUARDI ---------- */
 const ACH=[['meal1','🍽️','Primo pasto','Registra il primo pasto'],['weigh1','⚖️','Prima pesata','Scrivi il tuo peso'],['st3','🔥','3 giorni di fila','Registra i pasti per 3 giorni di fila'],['st7','🔥','Una settimana','7 giorni di fila'],['st14','🔥','Due settimane','14 giorni di fila'],['st30','🔥','Un mese','30 giorni di fila'],
 ['tg1','🎯','Centrato!','Prima giornata in target'],['tg10','🎯','Cecchino','10 giornate in target'],['pr7','💪','Proteine ok','7 giornate con proteine sopra il minimo'],['wt','💧','Ben idratato','Raggiungi l’obiettivo di acqua'],
-['wo1','🏃','Primo allenamento','Registra un allenamento'],['wo10','💪','10 allenamenti','Registra 10 allenamenti'],['wo50','🦾','50 allenamenti','Registra 50 allenamenti'],['sp3','🎽','Multisport','Prova 3 sport diversi'],['rec1','🥇','Record personale','Batti un tuo record in sala pesi'],
+['wo1','🏃','Primo allenamento','Registra un allenamento'],['wo10','💪','10 allenamenti','Registra 10 allenamenti'],['wo50','🦾','50 allenamenti','Registra 50 allenamenti'],['sp3','🎽','Multisport','Prova 3 sport diversi'],['rec1','🥇','Record personale','Batti un tuo record in sala pesi'],['meas1','📏','Prime misure','Prendi le misure del corpo'],['cm5','📉','−5 cm di vita','Perdi 5 cm di girovita'],
 ['kg1','🏅','Primo kg','Perdi il primo kg'],['kg3','🏅','−3 kg','Perdi 3 kg'],['kg5','🥈','−5 kg','Perdi 5 kg'],['kg10','🥇','−10 kg','Perdi 10 kg'],['goal','🏆','Obiettivo!','Raggiungi il peso obiettivo']];
 function stats(){calc();const c=S.cfg;let st=0;for(let i=0;i<500;i++){const x=S.days[iso(new Date(Date.now()-i*864e5))];if(x&&x.meals&&x.meals.length)st++;else if(i===0)continue;else break}
 const cl=closedDays();return{st,days:M.ds.filter(d=>S.days[d].meals.length).length,tg:cl.filter(d=>D[d].sg==='In target').length,pr:cl.filter(d=>D[d].p>=c.pmin).length,lost:c.w0-M.lw,
 meals:M.ds.some(d=>S.days[d].meals.length),w:M.ds.some(d=>S.days[d].w>0),wt:M.ds.some(d=>S.days[d].water>=c.waterT),
+meas:Object.keys(S.body).some(d=>BM.some(([k])=>S.body[d][k]>0)),cm:(()=>{const L=Object.keys(S.body).sort().filter(d=>S.body[d].vita>0);return L.length>1?S.body[L[0]].vita-S.body[L[L.length-1]].vita:0})(),
 wo:M.ds.reduce((n,d)=>n+(S.days[d].wo||[]).length,0),sp:new Set(M.ds.flatMap(d=>(S.days[d].wo||[]).map(w=>w.s=='altro'?'altro:'+(w.nm||''):w.s))).size}}
-function achCheck(){if(!S.cfg.ok)return;const s=stats(),c=S.cfg,cond={meal1:s.meals,weigh1:s.w,st3:s.st>=3,st7:s.st>=7,st14:s.st>=14,st30:s.st>=30,tg1:s.tg>=1,tg10:s.tg>=10,pr7:s.pr>=7,wt:s.wt,wo1:s.wo>=1,wo10:s.wo>=10,wo50:s.wo>=50,sp3:s.sp>=3,rec1:(S.recs||0)>=1,kg1:s.lost>=1,kg3:s.lost>=3,kg5:s.lost>=5,kg10:s.lost>=10,goal:c.wg<c.w0&&M.lw<=c.wg};
+function achCheck(){if(!S.cfg.ok)return;const s=stats(),c=S.cfg,cond={meal1:s.meals,weigh1:s.w,st3:s.st>=3,st7:s.st>=7,st14:s.st>=14,st30:s.st>=30,tg1:s.tg>=1,tg10:s.tg>=10,pr7:s.pr>=7,wt:s.wt,wo1:s.wo>=1,wo10:s.wo>=10,wo50:s.wo>=50,sp3:s.sp>=3,rec1:(S.recs||0)>=1,meas1:s.meas,cm5:s.cm>=5,kg1:s.lost>=1,kg3:s.lost>=3,kg5:s.lost>=5,kg10:s.lost>=10,goal:c.wg<c.w0&&M.lw<=c.wg};
 const got=ACH.filter(([k])=>cond[k]&&!S.ach[k]);if(!got.length)return;got.forEach(([k])=>S.ach[k]=TODAY());
 if(!S.achInit){S.achInit=1;persist();notify('ach-init',{type:'goals',icon:'🏅',bg:'#d9f7c2',title:got.length==1?'Hai già un traguardo':'Hai già '+got.length+' traguardi',text:'Li trovi nel tuo Profilo: continua così per sbloccare gli altri.',act:'ach'});return}
 got.forEach(([k,ic,t,d])=>notify('ach-'+k,{type:'goals',icon:ic,bg:'#d9f7c2',title:'Traguardo: '+t,text:d,act:'ach'}));persist();
-const big=got.find(g=>/^(kg|goal|st7|st14|st30|tg10|wo50)/.test(g[0]));if(big&&$('al').hidden)setTimeout(()=>{if($('al').hidden)alertBox({icon:big[1],bg:'#d9f7c2',title:'Traguardo sbloccato!',text:big[2]+' — '+big[3]+'.',buttons:[{label:'Vedi i traguardi',fn:openAch},{label:'Chiudi'}],vib:[30,40,30]})},500);else note('🏅 Traguardo: '+got[0][2])}
+const big=got.find(g=>/^(kg|goal|st7|st14|st30|tg10|wo50|cm5)/.test(g[0]));if(big&&$('al').hidden)setTimeout(()=>{if($('al').hidden)alertBox({icon:big[1],bg:'#d9f7c2',title:'Traguardo sbloccato!',text:big[2]+' — '+big[3]+'.',buttons:[{label:'Vedi i traguardi',fn:openAch},{label:'Chiudi'}],vib:[30,40,30]})},500);else note('🏅 Traguardo: '+got[0][2])}
 function badges(n){const L=[...ACH].sort((a,b)=>(S.ach[b[0]]?1:0)-(S.ach[a[0]]?1:0));return(n?L.slice(0,n):L).map(([k,ic,t,d])=>`<div class="bd${S.ach[k]?'':' lk'}"><i>${ic}</i>${E(t)}${n?'':`<small>${S.ach[k]?'Sbloccato il '+dm(S.ach[k]):E(d)}</small>`}</div>`).join('')}
 function openAch(){const n=ACH.filter(([k])=>S.ach[k]).length;openPage('ach','Traguardi',`<p class="mu">${n} su ${ACH.length} sbloccati</p><div class="bdgs">${badges()}</div>`)}
 
@@ -369,7 +391,7 @@ function setCfg(k,el){const all=[...CFP,...CFG,...CFA,['name','Nome','text']],d=
 if(!t){v=pn(v);if(isNaN(v)||v<0){note('Controlla il campo “'+d[1]+'”',1);el.value=String(S.cfg[k]).replace('.',',');return}}
 if(k=='wg'){const h2=(S.cfg.h/100)**2;if(v/h2<16){const m=Math.ceil(16*h2);v=m;el.value=String(m);note('Peso obiettivo troppo basso: impostato il minimo accettato, '+m+' kg',1)}}
 S.cfg[k]=t=='text'?String(v).trim().slice(0,30):v;persist();bmiBox();render();refreshSettings();if(k!='wg'||v/((S.cfg.h/100)**2)>=16)note('✅ Salvato')}
-function wipe(){alertBox({icon:'🗑️',bg:'#ffd9d2',title:'Eliminare tutti i dati?',text:'Pasti, pesate, impostazioni e traguardi verranno cancellati da questo telefono. Non si può annullare: se vuoi, esporta prima un backup.',buttons:[{label:'Elimina tutto',danger:true,fn:()=>alertBox({icon:'⚠️',bg:'#ffd9d2',title:'Sei sicuro?',text:'Ultima conferma: l’app tornerà come appena installata.',buttons:[{label:'Sì, elimina tutto',danger:true,fn:()=>{try{localStorage.removeItem(K)}catch(e){}location.replace(location.pathname)}},{label:'Annulla'}]})},{label:'Prima esporta un backup',fn:exp},{label:'Annulla'}]})}
+function wipe(){alertBox({icon:'🗑️',bg:'#ffd9d2',title:'Eliminare tutti i dati?',text:'Pasti, allenamenti, pesate, misure, impostazioni e traguardi verranno cancellati da questo telefono. Non si può annullare: se vuoi, esporta prima un backup.',buttons:[{label:'Elimina tutto',danger:true,fn:()=>alertBox({icon:'⚠️',bg:'#ffd9d2',title:'Sei sicuro?',text:'Ultima conferma: l’app tornerà come appena installata.',buttons:[{label:'Sì, elimina tutto',danger:true,fn:()=>{try{localStorage.removeItem(K)}catch(e){}location.replace(location.pathname)}},{label:'Annulla'}]})},{label:'Prima esporta un backup',fn:exp},{label:'Annulla'}]})}
 
 /* ---------- INSTALLAZIONE ---------- */
 addEventListener('beforeinstallprompt',e=>{e.preventDefault();BIP=e;refreshSettings();if($('oggi').classList.contains('on'))render()});
@@ -479,12 +501,11 @@ let ACTV='',WNEW=-1;
 function actR(d,x){const c=S.cfg,o=D[d]||{},lw=o.wu||M.lw,W=x.wo||[],fa=M.fa,wk=woK(x,lw)*fa,has=num(x.steps),sk=has?Math.max(0,x.steps-woSt(x))*lw*c.kps*fa:0,tk=sk+wk,sp=has?Math.min(1,x.steps/c.stepT):0,key=d+'|'+x.steps,an=ACTV!==key;ACTV=key;
 let h=`<div class="acs"><span class="fi" aria-hidden="true">${tk>0?'🔥':'👟'}</span><div><b>${tk>0?'≈ '+f0(tk):'0'} <small>kcal</small></b><span>${tk>0?'bruciate con il movimento oggi':'Segna passi e allenamenti per vedere quanto bruci'}</span>${tk>0?`<div class="acb">${has?`<i>👟 Passi ${f0(sk)}</i>`:''}${W.length?`<i>💪 Allenamenti ${f0(wk)}</i>`:''}</div>`:''}</div></div>`;
 const T=[`<button class="tile" onclick="openSteps()"><span class="tic" style="background:#d9f7c2"><svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="21" class="t0"/><circle cx="27" cy="27" r="21" class="t1${an?' an':''}" style="stroke-dashoffset:${(132*(1-sp)).toFixed(1)}"/></svg>👟</span><b>${has?f0(x.steps):'–'}</b><span>${has&&x.steps>=c.stepT?'obiettivo raggiunto ✓':'passi su '+f0(c.stepT)}</span></button>`,
-`<button class="tile" onclick="openSleep()"><span class="tic" style="background:#efe3ff">🌙</span><b>${x.sleep>0?fv(x.sleep)+' h':'–'}</b><span>sonno</span></button>`,
-`<button class="tile" onclick="openWeigh()"><span class="tic" style="background:#fdeea0">⚖️</span><b>${x.w>0?f1(x.w):'–'}</b><span>peso a digiuno</span></button>`];
+`<button class="tile" onclick="openSleep()"><span class="tic" style="background:#efe3ff">🌙</span><b>${x.sleep>0?fv(x.sleep)+' h':'–'}</b><span>sonno</span></button>`];
 h+=`<div class="tiles" style="grid-template-columns:repeat(${T.length},1fr)">${T.join('')}</div>`;
 h+=W.map((w,i)=>`<div class="wo${i===WNEW?' new':''}" onclick="woOpen(${i})"><span class="tic" style="background:${spOf(w)[2]}">${spOf(w)[1]}</span><div class="wot"><b>${E(woName(w))}</b><span class="mu">${E(woSub(w,lw))}</span></div><button class="xb" onclick="event.stopPropagation();woDel(${i})" aria-label="Elimina allenamento">✕</button></div>`).join('');
 $('act').innerHTML=h;WNEW=-1}
-function refresh(){const t=document.querySelector('section.on');if(!t||t.id=='oggi'){render();return}chips();if(t.id=='dash')dash();if(t.id=='log')list();if(t.id=='imp')prof();if(t.id=='corpo'&&typeof corpo=='function')corpo()}
+function refresh(){const t=document.querySelector('section.on');if(!t||t.id=='oggi'){render();return}chips();if(t.id=='dash')dash();if(t.id=='log')list();if(t.id=='imp')prof();if(t.id=='corpo')corpo()}
 
 /* passi, sonno, peso */
 function openSteps(){const x=S.days[cur()]||{};sheet(`<div class="woh"><span class="tic" style="background:#d9f7c2">👟</span><h3>Passi</h3></div><p class="mu">Scrivi i passi totali della giornata: li trovi nel contapassi del telefono o dell’orologio.</p><input id="stp" class="big" inputmode="numeric" aria-label="Passi" value="${num(x.steps)?x.steps:''}" placeholder="0" oninput="stpLive()"><div class="chips" style="justify-content:center;margin-top:12px">${[500,1000,2000,5000].map(v=>`<button class="chip" onclick="stpAdd(${v})">+${f0(v)}</button>`).join('')}</div><div class="bar" style="margin-top:18px"><i id="stb" style="width:0;transition:width .5s"></i></div><p class="mu" id="stt"></p><button class="w cta shine" onclick="stpOk()">Salva</button>${num(x.steps)?'<button class="s w" onclick="stpOk(1)">Cancella i passi</button>':''}`);stpLive()}
@@ -657,7 +678,7 @@ catch(e){if($('scm'))$('scm').textContent='';if(e.nf)alertBox({icon:'🔍',bg:'#
 
 /* ---------- ANDAMENTO ---------- */
 const KP=(l,v)=>`<div class="c"><b>${v}</b><span>${l}</span></div>`;
-function dash(){calc();const c=S.cfg,cl=closedDays();cal();wchart();
+function dash(){calc();const c=S.cfg,cl=closedDays();calT();
 if(!cl.length){$('kp').innerHTML='<div class="c" style="grid-column:1/-1"><span>Qui vedrai le medie quando avrai almeno una giornata completa.</span></div>';$('pj').innerHTML='';$('kc').innerHTML='<p class="mu" style="margin:0">Il grafico compare dopo la prima giornata completa.</p>';$('hero').innerHTML='';return}
 const last=cl[cl.length-1],X=cl.filter(d=>dd(last,d)<=6).map(d=>({...S.days[d],...D[d]})),n=X.length,ak=avg(X.map(x=>x.k)),
 sd=n>1?Math.sqrt(X.reduce((s,x)=>s+(x.k-ak)**2,0)/(n-1)):null,
@@ -669,7 +690,7 @@ $('kp').innerHTML=KP('Kcal medie',f0(ak))+KP('Consumo medio (TDEE)',f0(att))+KP(
 const alld=cl.map(d=>D[d].df).filter(num),dmn=alld.length?avg(alld):null,th=dmn!=null?dmn*7/c.kg:null,re=M.dl.length>=2?-avg(M.dl):null,rt=re!=null?re:th,left=M.lw-c.wg,wk=rt>0&&left>0?left/rt:null;
 const pr=c.w0>c.wg?Math.max(0,Math.min(1,(c.w0-M.lw)/(c.w0-c.wg))):0;
 $('hero').innerHTML=`<div class="hero"><div class="hb"><span>Peso attuale</span><b>${f1(M.lw)} kg</b></div><div class="hb2"><div class="tg"><i>🎯</i>Obiettivo</div><h3>Verso i ${f0(c.wg)} kg</h3><div class="bar"><i style="width:${pr*100}%"></i></div><span class="cp">🗓 ${num(wk)?Math.round(wk)+' settimane stimate':left<=0?'obiettivo raggiunto':'stima dopo le prime pesate'}</span></div></div>`;
-$('pj').innerHTML=KP('Kg da perdere',f1(Math.max(0,left)))+KP('Ritmo teorico (kg/sett)',f1(th,2))+KP('Ritmo reale (kg/sett)',f1(re,2))+KP('Settimane stimate',num(wk)?Math.round(wk):'–')+KP('Data stimata',num(wk)?new Date(new Date(last+'T00:00').getTime()+wk*6048e5).toLocaleDateString('it-IT'):'–')+KP('Fattore calibrazione',f1(M.fa,2));
+$('pj').innerHTML=KP('Kg da perdere',f1(Math.max(0,left)))+KP('Ritmo teorico (kg/sett)',f1(th,2))+KP('Ritmo reale (kg/sett)',f1(re,2))+KP('Settimane stimate',num(wk)?Math.round(wk):'–')+KP('Data stimata',num(wk)?new Date(new Date(last+'T00:00').getTime()+wk*6048e5).toLocaleDateString('it-IT'):'–')+KP('Calibrazione',M.nr>=2?'attiva · '+f1(M.fa,2):'in attesa');
 kchart(cl.slice(-14))}
 function hover(svg,pts,xf,tip,line){svg.onpointermove=svg.onpointerdown=e=>{const r=svg.getBoundingClientRect(),vx=(e.clientX-r.left)/r.width*340;let b=pts[0];pts.forEach(p=>{if(Math.abs(xf(p)-vx)<Math.abs(xf(b)-vx))b=p});line.setAttribute('x1',xf(b));line.setAttribute('x2',xf(b));line.setAttribute('opacity',1);tip.textContent=b.tip}}
 function kchart(Z){const c=S.cfg,mx=Math.max(...Z.map(d=>Math.max(D[d].k,D[d].t||0)),c.target)*1.1,bw=290/Z.length,y=v=>150-v/mx*135,cx=d=>40+Z.indexOf(d)*bw+bw/2;let s='';
@@ -678,21 +699,88 @@ Z.forEach(d=>{const h=Math.max(4,D[d].k/mx*135),x=cx(d)-bw/2+2,w=Math.max(2,bw-4
 s+=`<polyline fill="none" stroke="var(--am)" stroke-width="2" stroke-linejoin="round" points="${Z.filter(d=>D[d].t).map(d=>cx(d)+','+y(D[d].t)).join(' ')}"/><line x1="40" x2="330" y1="${y(c.target)}" y2="${y(c.target)}" stroke="var(--bad)" stroke-dasharray="4 3"/><line id="kx" x1="0" x2="0" y1="15" y2="150" stroke="var(--mu)" stroke-dasharray="3 3" opacity="0"/>`;
 $('kc').innerHTML=`<svg class="ch2" id="ksvg" viewBox="0 0 340 170" role="img" aria-label="Kcal mangiate e consumo stimato per giorno">${s}</svg><div class="lg"><span><i class="bx"></i>Kcal mangiate</span><span><i class="ln2"></i>Consumo stimato</span><span><i class="ln2" style="background:var(--bad)"></i>Target</span></div><p class="mu" id="ktip">Tocca il grafico per i valori del giorno.</p>`;
 hover($('ksvg'),Z.map(d=>({d,tip:`${dm(d)} · ${f0(D[d].k)} kcal · consumo ${f0(D[d].t)} · deficit ${f0(D[d].df)}`})),p=>cx(p.d),$('ktip'),$('kx'))}
-function wchart(){const ws=M.ds.filter(d=>S.days[d].w>0),box=$('wc');
-if(ws.length<2){box.innerHTML=`<p class="mu" style="margin:0">${ws.length?'Una sola pesata finora: dalla seconda vedrai la tendenza.':'Nessuna pesata ancora. Pesati a digiuno nei giorni di pesata e segna il peso dal riquadro ⚖️ nella scheda Oggi.'}</p>`;return}
-const last=ws[ws.length-1],P=ws.filter(d=>dd(last,d)<=90).map(d=>{const w=S.days[d].w,a=avg(ws.filter(e=>dd(d,e)>=0&&dd(d,e)<=6).map(e=>S.days[e].w));return{d,w,a,tip:`${dm(d)} · ${f1(w)} kg · media 7 gg ${f1(a)} kg`}});
-const lo=Math.min(...P.map(p=>Math.min(p.w,p.a))),hi=Math.max(...P.map(p=>Math.max(p.w,p.a))),pad=Math.max(.5,(hi-lo)*.15),y0=lo-pad,y1=hi+pad,span=Math.max(1,dd(last,P[0].d)),
-X=p=>40+dd(p.d,P[0].d)/span*285,Y=v=>150-(v-y0)/(y1-y0)*135;let s='';
+function tchart(box,P,o){if(P.length<2){box.innerHTML=`<p class="mu" style="margin:0">${P.length?'Un solo valore finora: dal secondo vedrai la tendenza.':'Ancora nessun dato.'}</p>`;return}
+const last=P[P.length-1].d,lo=Math.min(...P.map(p=>Math.min(p.v,p.a??p.v))),hi=Math.max(...P.map(p=>Math.max(p.v,p.a??p.v))),pad=Math.max(o.pad||.5,(hi-lo)*.15),y0=lo-pad,y1=hi+pad,span=Math.max(1,dd(last,P[0].d)),
+X=p=>40+dd(p.d,P[0].d)/span*285,Y=v=>150-(v-y0)/(y1-y0)*135,id='t'+Math.random().toString(36).slice(2,7);let s='';
 [y0,(y0+y1)/2,y1].forEach(v=>s+=`<line x1="40" x2="330" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--bd)"/><text x="34" y="${Y(v)+3}" font-size="9" text-anchor="end" fill="var(--mu)">${f1(v)}</text>`);
-s+=`<polyline fill="none" stroke="var(--ac)" stroke-width="2" stroke-linejoin="round" points="${P.map(p=>X(p)+','+Y(p.a)).join(' ')}"/>`;
-P.forEach(p=>s+=`<circle cx="${X(p)}" cy="${Y(p.w)}" r="4" fill="var(--mu)" stroke="var(--cd)" stroke-width="2"/>`);
-s+=`<text x="${X(P[0])}" y="166" font-size="9" fill="var(--mu)">${dm(P[0].d)}</text><text x="${X(P[P.length-1])}" y="166" font-size="9" text-anchor="end" fill="var(--mu)">${dm(last)}</text><line id="wx" x1="0" x2="0" y1="15" y2="150" stroke="var(--mu)" stroke-dasharray="3 3" opacity="0"/>`;
-box.innerHTML=`<svg class="ch2" id="wsvg" viewBox="0 0 340 170" role="img" aria-label="Andamento del peso">${s}</svg><div class="lg"><span><i class="dot"></i>Pesata</span><span><i class="ln"></i>Media 7 giorni</span></div><p class="mu" id="wtip">Tocca il grafico per i valori.</p>`;
-hover($('wsvg'),P,X,$('wtip'),$('wx'))}
-function cal(){const c=S.cfg,today=TODAY(),lw=M.ds.filter(d=>S.days[d].w>0&&d<=today).pop(),ago=lw?dd(today,lw):null;let nx=null;
+const line=P.map(p=>X(p)+','+Y(p.a??p.v)).join(' ');s+=`<polygon points="${X(P[0])},150 ${line} ${X(P[P.length-1])},150" fill="var(--li)" opacity=".18"/><polyline class="tl" fill="none" stroke="var(--ac)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="${line}"/>`;
+P.forEach(p=>s+=`<circle cx="${X(p)}" cy="${Y(p.v)}" r="${o.avg?3.5:4.5}" fill="${o.avg?'var(--mu)':'var(--ac)'}" stroke="var(--cd)" stroke-width="2"/>`);
+s+=`<text x="${X(P[0])}" y="166" font-size="9" fill="var(--mu)">${dm(P[0].d)}</text><text x="${X(P[P.length-1])}" y="166" font-size="9" text-anchor="end" fill="var(--mu)">${dm(last)}</text><line id="${id}x" x1="0" x2="0" y1="15" y2="150" stroke="var(--mu)" stroke-dasharray="3 3" opacity="0"/>`;
+box.innerHTML=`<svg class="ch2" id="${id}" viewBox="0 0 340 170" role="img" aria-label="${E(o.label)}">${s}</svg>${o.avg?'<div class="lg"><span><i class="dot"></i>Pesata</span><span><i class="ln"></i>Media 7 giorni</span></div>':''}<p class="mu" id="${id}t">Tocca il grafico per i valori.</p>`;
+hover($(id),P,X,$(id+'t'),$(id+'x'))}
+function nextW(){const c=S.cfg,today=TODAY(),lw=M.ds.filter(d=>S.days[d].w>0&&d<=today).pop(),ago=lw?dd(today,lw):null;let nx=null;
 for(let i=0;i<8&&c.weighDays.length;i++){const t=new Date(today+'T12:00');t.setDate(t.getDate()+i);if(c.weighDays.includes(t.getDay())&&!(i==0&&S.days[today]&&S.days[today].w>0)){nx=i==0?'oggi':i==1?'domani':DAYN[t.getDay()]+' '+dm(iso(t));break}}
-$('cal').innerHTML=KP('Ultima pesata',lw?(ago<=0?'oggi':ago==1?'ieri':ago+' gg fa'):'mai')+KP('Prossima pesata',nx||'–')+KP('Calibrazione',M.nr>=2?'attiva':'in attesa')+KP('Confronti validi',Math.min(M.nr,2)+' / 2');
-$('calt').textContent=M.nr>=2?'Il consumo stimato è corretto con le tue pesate reali (fattore '+f1(M.fa,2)+').':'La calibrazione parte quando ci sono 2 confronti tra settimane consecutive, ognuna con almeno 5 giornate complete e almeno una pesata.'}
+return{last:lw?(ago<=0?'oggi':ago==1?'ieri':ago+' gg fa'):'mai',next:nx||'–'}}
+function calT(){$('calt').textContent=M.nr>=2?'Il consumo stimato è corretto con le tue pesate reali (fattore '+f1(M.fa,2)+').':'La calibrazione con le tue pesate parte quando ci sono 2 confronti tra settimane consecutive, ognuna con almeno 5 giornate complete e almeno una pesata ('+Math.min(M.nr,2)+'/2).'}
+
+/* ---------- CORPO ---------- */
+const BM=[['vita','Vita'],['fia','Fianchi'],['pet','Petto'],['bra','Braccio'],['cos','Coscia'],['col','Collo']],BS=[['bf','Massa grassa','%',2,70],['mm','Massa muscolare','kg',10,150],['acq','Acqua','%',20,80],['vis','Grasso viscerale','',1,60]];
+const BHOW={vita:'gli uomini all’altezza dell’ombelico, le donne nel punto più stretto',fia:'nel punto più largo dei glutei',pet:'all’altezza dei capezzoli',bra:'a metà tra spalla e gomito, col braccio rilassato',cos:'a metà tra anca e ginocchio',col:'appena sotto il pomo d’Adamo'};
+const sg=v=>(v>0?'+':v<0?'−':'')+f1(Math.abs(v));
+function wAt(d){let r=null,nx=null;for(const k of M.ds){const w=S.days[k].w;if(!(w>0))continue;if(k<=d)r=w;else{nx=w;break}}return r??nx??S.cfg.w0}
+// massa grassa con la formula della US Navy (circonferenze in cm)
+function navy(b,c){const v=b.vita,n=b.col,h=c.h;if(!(v>0&&n>0&&h>0))return null;let r;
+if(c.sex=='F'){if(!(b.fia>0)||v+b.fia-n<=0)return null;r=495/(1.29579-.35004*Math.log10(v+b.fia-n)+.221*Math.log10(h))-450}else{if(v-n<=0)return null;r=495/(1.0324-.19077*Math.log10(v-n)+.15456*Math.log10(h))-450}
+return r>=3&&r<=60?r:null}
+function bfSeries(){const c=S.cfg,out=[];let col=null,fia=null;for(const d of Object.keys(S.body).sort()){const b=S.body[d];if(b.col>0)col=b.col;if(b.fia>0)fia=b.fia;
+const nv=b.vita>0?navy({vita:b.vita,col,fia},c):null,bf=b.bf>0?b.bf:nv;if(bf!=null)out.push({d,bf,src:b.bf>0?'man':'navy',nv,w:wAt(d)})}return out}
+function bfCat(v,sex){const t=sex=='F'?[14,21,25,32]:[6,14,18,25];return v<t[0]?['Molto bassa','#ffd9d2']:v<t[1]?['Atletica','#d9f7c2']:v<t[2]?['In forma','#d9f7c2']:v<t[3]?['Nella media','#fdeea0']:['Alta','#ffe3d6']}
+function bseries(k){if(k=='w')return M.ds.filter(d=>S.days[d].w>0).map(d=>({d,v:S.days[d].w}));if(k=='bf')return bfSeries().map(x=>({d:x.d,v:x.bf}));return Object.keys(S.body).sort().filter(d=>S.body[d][k]>0).map(d=>({d,v:S.body[d][k]}))}
+let BCS='w',BCR=90,BHN=10;
+function corpo(){calc();const c=S.cfg,today=TODAY(),ws=M.ds.filter(d=>S.days[d].w>0),last=ws[ws.length-1],lw=last?S.days[last].w:c.w0,
+a7=last?avg(ws.filter(d=>dd(last,d)<=6).map(d=>S.days[d].w)):null,pw=last?ws.filter(d=>dd(last,d)>=7&&dd(last,d)<=13).map(d=>S.days[d].w):[],tr=pw.length?a7-avg(pw):null,
+lose=c.w0>c.wg,pr=lose?clp((c.w0-lw)/(c.w0-c.wg),0,1):1,nw=nextW(),B=bfSeries(),lb=B[B.length-1],bd=Object.keys(S.body).sort();
+let h=`<div class="hc bh"><div class="bhr"><div><span>Peso attuale</span><b>${f1(lw)} <small>kg</small></b><span>${ws.length>1?'media 7 giorni '+f1(a7)+' kg':'pesati 2–3 volte a settimana'}${tr!=null&&Math.abs(tr)>=.05?` · ${tr<0?'▼':'▲'} ${f1(Math.abs(tr))} kg in una settimana`:''}</span></div><button class="cta shine" onclick="openWeigh()">⚖️ Pesati</button></div>
+<div class="hbar"><i style="width:${pr*100}%"></i></div><p>${lose?(c.w0-lw>0?'−'+f1(c.w0-lw)+' kg da quando hai iniziato · ':'')+'obiettivo '+f1(c.wg)+' kg':'Obiettivo: mantenere il peso'}</p>
+<div class="bht"><span>Ultima pesata<b>${nw.last}</b></span><span>Prossima<b>${nw.next}</b></span><span>BMI<b>${f1(lw/((c.h/100)**2))}</b></span></div></div>`;
+h+=`<h2>🧬 Composizione</h2><div class="c">`;
+if(lb){const fm=lb.w*lb.bf/100,cat=bfCat(lb.bf,c.sex),sm=bd.slice().reverse().find(d=>S.body[d].mm||S.body[d].acq||S.body[d].vis);
+h+=`<div class="bfc"><div class="bfd"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="40" class="t0"/><circle cx="50" cy="50" r="40" class="t1" style="stroke-dashoffset:${(251.3*(1-lb.bf/100)).toFixed(1)}"/></svg><b>${f1(lb.bf)}%</b></div><div class="bft"><span class="tag" style="background:${cat[1]}">${cat[0]}</span><p>Massa grassa del ${dm(lb.d)}, ${lb.src=='man'?'dalla bilancia':'stimata dalle misure'}.${lb.src=='man'&&lb.nv?' Dalle misure: '+f1(lb.nv)+'%.':''}</p></div></div>
+<div class="g" style="margin-top:12px"><div class="kq"><i style="background:#f0a35a"></i><b>${f1(fm)} kg</b><span>massa grassa</span></div><div class="kq"><i style="background:#5cc23a"></i><b>${f1(lb.w-fm)} kg</b><span>massa magra</span></div></div>`;
+const pk=a=>a.length>1&&a[0].d!==a[a.length-1].d?[a[0],a[a.length-1]]:null,dm1=pk(B.filter(z=>z.src=='man').map(z=>({d:z.d,w:z.w,v:z.bf}))),dn1=pk(B.filter(z=>z.nv!=null).map(z=>({d:z.d,w:z.w,v:z.nv}))),dr=lb.src=='man'?dm1||dn1:dn1||dm1;
+if(dr){const [a,z]=dr,dfm=z.w*z.v/100-a.w*a.v/100,dw=z.w-a.w;h+=`<p class="bfx">Dal ${dm(a.d)} al ${dm(z.d)}: <b>${sg(dw)} kg</b> di peso, di cui <b>${sg(dfm)} kg</b> di grasso e <b>${sg(dw-dfm)} kg</b> di massa magra${dr===dn1&&B.some(x=>x.src=='man')?' (calcolato dalle misure)':''}.</p>`}
+if(sm){const b=S.body[sm];h+=`<p class="mu" style="margin:12px 0 0">Bilancia smart, ${dm(sm)}: ${[b.mm?'muscoli '+fv(b.mm)+' kg':'',b.acq?'acqua '+fv(b.acq)+'%':'',b.vis?'grasso viscerale '+fv(b.vis):''].filter(Boolean).join(' · ')}</p>`}
+h+=`<p class="mu" style="margin:10px 0 0">Stima indicativa: la formula dalle misure ha un margine di circa ±3–4 punti. Conta soprattutto come cambia nel tempo.</p>`}
+else h+=`<div class="bfc"><div class="bfd"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="40" class="t0"/></svg><b>?</b></div><div class="bft"><p style="margin:0"><b class="bq">Quanto grasso hai?</b>Con vita e collo${c.sex=='F'?' e fianchi':''} l’app stima la tua massa grassa. Se hai una bilancia smart puoi scrivere il suo valore.</p></div></div><button class="w cta shine" onclick="openMeas()">Inserisci le misure</button>`;
+h+=`</div><h2>📏 Misure</h2><div class="c">`;
+const hasM=bd.some(d=>BM.some(([k])=>S.body[d][k]>0));
+if(hasM){h+=BM.map(([k,l])=>{const L=bd.filter(d=>S.body[d][k]>0);if(!L.length)return'';const v=S.body[L[L.length-1]][k],df=v-S.body[L[0]][k],cl=['vita','fia','cos','col'].includes(k)?(df<0?'dn2':'up2'):'';
+return`<div class="mr"><span>${l}</span><span><b>${fv(v)} cm</b>${L.length>1&&Math.abs(df)>=.1?`<small class="${cl}">${sg(df)} dal ${dm(L[0])}</small>`:''}</span></div>`}).join('');
+const lm=bd.filter(d=>BM.some(([k])=>S.body[d][k]>0)).pop();h+=`<p class="mu" style="margin:8px 0 0">Ultime misure: ${dm(lm)}${dd(today,lm)>=14?' · è ora di rifarle':''}</p>`}
+else h+=`<p class="mu" style="margin:0">Il metro racconta quello che la bilancia non vede: se perdi grasso e metti muscolo il peso può restare fermo, mentre la vita scende.</p>`;
+h+=`<button class="w ${hasM?'s':'cta shine'}" onclick="openMeas()">+ Nuove misure</button><button class="lnk" onclick="pgHowMeas()">Come prendere le misure</button></div>`;
+const SER=[['w','Peso','kg'],['bf','% grasso','%'],...BM.map(([k,l])=>[k,l,'cm']),['mm','Muscoli','kg']].filter(([k])=>k=='w'||bseries(k).length>=2);if(!SER.some(s=>s[0]==BCS))BCS='w';
+h+=`<h2>📈 Andamento</h2>${SER.length>1?`<div class="chips" style="margin-bottom:10px">${SER.map(([k,l])=>`<button class="chip${BCS==k?' on':''}" onclick="BCS='${k}';corpo()">${l}</button>`).join('')}</div>`:''}<div class="c"><div id="bch"></div><div class="chips c3" style="margin-top:10px">${[[30,'1 mese'],[90,'3 mesi'],[0,'Tutto']].map(([v,l])=>`<button class="chip${BCR==v?' on':''}" onclick="BCR=${v};corpo()">${l}</button>`).join('')}</div></div>`;
+const HD=[...new Set([...ws,...bd])].sort().reverse();
+h+=`<h2>🗓 Storico</h2>`+(HD.length?HD.slice(0,BHN).map(d=>{const b=S.body[d]||{},x=S.days[d]||{},bv=B.find(z=>z.d==d),n=BM.filter(([k])=>b[k]>0).length,it=[x.w>0?f1(x.w)+' kg':'',b.vita>0?'vita '+fv(b.vita)+' cm':'',bv?'grasso '+f1(bv.bf)+'%':'',n>1?n+' misure':''].filter(Boolean);
+return`<div class="r" onclick="openMeas('${d}')"><div><b>${DAYN[new Date(d+'T12:00').getDay()]} ${dm(d)}</b><div class="mu">${it.join(' · ')}</div></div><span class="chev">›</span></div>`}).join('')+(HD.length>BHN?`<button class="s w" onclick="BHN+=30;corpo()">Mostra altri</button>`:''):'<p class="mu">Ancora nessuna pesata o misura.</p>');
+$('cp').innerHTML=h;
+const [k,l,u]=SER.find(s=>s[0]==BCS);let P=bseries(k);if(k=='w')P=P.map(p=>({...p,a:avg(P.filter(e=>dd(p.d,e.d)>=0&&dd(p.d,e.d)<=6).map(e=>e.v))}));
+if(BCR&&P.length){const ld=P[P.length-1].d,F=P.filter(p=>dd(ld,p.d)<=BCR);P=F.length>=2?F:P.slice(-2)}
+P=P.map(p=>({...p,tip:`${dm(p.d)} · ${f1(p.v)} ${u}${p.a!=null?' · media 7 gg '+f1(p.a)+' '+u:''}`}));
+tchart($('bch'),P,{avg:k=='w',label:'Andamento: '+l,pad:k=='w'?.5:.3})}
+function howMeas(){return`<ul class="mu" style="padding-left:18px;margin:8px 0 0;font-size:14px">${BM.map(([k,l])=>`<li><b style="color:var(--tx)">${l}</b>: ${BHOW[k]}.</li>`).join('')}<li>Al mattino, a digiuno, con il metro aderente ma senza stringere, sempre nello stesso punto.</li></ul>`}
+function pgHowMeas(){openPage('howm','Come prendere le misure',DOC(`<p>Ti serve un metro da sarta. Prendi le misure ogni 2 settimane, al mattino a digiuno, in piedi e rilassato. Il metro deve essere aderente alla pelle senza stringere.</p><h3>Dove misurare</h3><ul>${BM.map(([k,l])=>`<li><b>${l}</b>: ${BHOW[k]}.</li>`).join('')}</ul>
+<h3>Perché servono</h3><p>Se perdi grasso e metti muscolo il peso può restare fermo mentre la vita si stringe: le misure lo mostrano. Con vita e collo (e fianchi per le donne) l’app stima anche la percentuale di massa grassa con la formula della US Navy.</p>
+<h3>Quanto è precisa la stima</h3><p>È indicativa, con un margine di circa ±3–4 punti. Più che il numero esatto conta come cambia nel tempo, misurando sempre allo stesso modo. Se hai una bilancia smart puoi scrivere anche il suo valore.</p>`))}
+function openMeas(d){d=d||TODAY();const b=S.body[d]||{},x=S.days[d]||{},prev=k=>{const L=Object.keys(S.body).filter(z=>z<d&&S.body[z][k]>0).sort();return L.length?S.body[L.pop()][k]:null};
+sheet(`<div class="woh"><span class="tic" style="background:#e3ecff">📏</span><h3>Misure</h3></div><div class="g"><div><label for="bmd">Giorno</label><input type="date" id="bmd" value="${d}" max="${TODAY()}" onchange="if(this.value)openMeas(this.value)"></div><div><label for="b_w">Peso (kg)</label><input id="b_w" inputmode="decimal" value="${x.w>0?wv(x.w):''}" placeholder="${lastW(d)?'ultimo: '+wv(lastW(d)):''}"></div></div>
+<p class="sub">Circonferenze <small class="mu" style="font-weight:600">in cm</small></p><div class="g">${BM.map(([k,l])=>`<div><label for="b_${k}">${l}</label><input id="b_${k}" data-b="${k}" inputmode="decimal" value="${wv(b[k])}" placeholder="${prev(k)?'ultima: '+wv(prev(k)):''}"></div>`).join('')}</div>
+<details style="margin-top:12px"><summary>Come prendere le misure</summary>${howMeas()}</details>
+<p class="sub">Dalla bilancia smart <small class="mu" style="font-weight:600">facoltativo</small></p><div class="g">${BS.map(([k,l,u])=>`<div><label for="b_${k}">${l}${u?' ('+u+')':''}</label><input id="b_${k}" data-b="${k}" inputmode="decimal" value="${wv(b[k])}"></div>`).join('')}</div>
+<div class="woe"><span style="text-align:left">Massa grassa<br>stimata dalle misure</span><b id="bmp">–</b></div><p class="mu" id="bmh" style="margin:6px 0 0"></p>
+<button class="w cta shine" onclick="bmOk()">Salva</button>${S.body[d]?'<button class="s w" onclick="bmDel()">Elimina queste misure</button>':''}`);bmLive()}
+function bmLive(){const e=$('bmp');if(!e)return;const d=$('bmd').value,c=S.cfg,g=k=>{const v=pn($('b_'+k).value);if(v>0)return v;if(k=='vita')return null;const L=Object.keys(S.body).filter(z=>z<d&&S.body[z][k]>0).sort();return L.length?S.body[L.pop()][k]:null},nv=navy({vita:g('vita'),col:g('col'),fia:g('fia')},c);
+e.textContent=nv!=null?f1(nv)+' %':'–';$('bmh').textContent=nv!=null?'':'Per la stima servono vita e collo'+(c.sex=='F'?' e fianchi':'')+'.'}
+$('shc').addEventListener('input',e=>{if(e.target.dataset.b)bmLive()});
+function prune(d){const x=S.days[d];if(x&&!x.meals.length&&!(x.wo&&x.wo.length)&&!['w','steps','water','sleep','note','closed'].some(k=>x[k]!=null))delete S.days[d]}
+function bmOk(){const d=$('bmd').value||TODAY(),o={},bad=[];
+for(const [k,l] of BM){const v=pn($('b_'+k).value);if(isNaN(v))continue;if(v<15||v>250){bad.push(l);continue}o[k]=v}
+for(const [k,l,u,a,z] of BS){const v=pn($('b_'+k).value);if(isNaN(v))continue;if(v<a||v>z){bad.push(l);continue}o[k]=v}
+const w=pn($('b_w').value);if(!isNaN(w)&&!(w>=30&&w<=350))bad.push('Peso');if(bad.length){note('Controlla: '+bad.join(', '),1);return}
+const x=day(d,1),had=!!S.body[d];if(!isNaN(w))x.w=Math.round(w*100)/100;else delete x.w;if(Object.keys(o).length)S.body[d]=o;else delete S.body[d];prune(d);
+persist();closeSheet();refresh();note(Object.keys(o).length||had?'✅ Misure salvate':'✅ Salvato')}
+function bmDel(){const d=$('bmd').value,b=S.body[d];if(!b)return;delete S.body[d];persist();closeSheet();refresh();note('Misure eliminate',0,{label:'Annulla',fn:()=>{S.body[d]=b;persist();refresh()}})}
 
 /* ---------- GIORNI ---------- */
 function list(){calc();$('ls').innerHTML=M.ds.slice().reverse().map(d=>{const x=S.days[d],o=D[d],ex=[x.water>0?'💧 '+fv(x.water)+' L':'',x.w>0?'⚖️ '+f1(x.w)+' kg':'',(x.wo||[]).map(w=>spOf(w)[1]).join('')].filter(Boolean).join(' · ');
@@ -702,7 +790,7 @@ return`<div class="r" onclick="openDay('${d}')"><div><b>${DAYN[new Date(d+'T12:0
 const AIP=`Ti scrivo cosa ho mangiato. Stima calorie e macronutrienti con valori realistici, tenendo conto di quantità, cottura e condimenti.
 Alla fine rispondimi con UNA riga per ogni giorno, esattamente in questo formato, con i totali della giornata:
 GG/MM/AAAA | kcal 0 | prot 0 | carbo 0 | grassi 0
-Solo se te li indico, aggiungi in fondo alla riga anche: | passi 0 | peso 0 | acqua 0 | sonno 0 | palestra sì | durata 0 | intensità 0
+Solo se te li indico, aggiungi in fondo alla riga anche: | passi 0 | peso 0 | vita 0 | acqua 0 | sonno 0 | palestra sì | durata 0 | intensità 0
 Per gli altri sport aggiungi | sport nome minuti, uno per sport (es. | sport nuoto 45 | sport corsa 30).
 Se ti dico che la giornata è finita, aggiungi: | chiusa
 Scrivi i numeri senza punti delle migliaia (es. 1850, non 1.850).
@@ -728,6 +816,7 @@ const ps=l.match(/pass\w*\D{0,3}([\d.]+)/i),x=day(d,1),k=g(/kcal\D{0,3}(\d+[.,]?
 if(k!==undefined)x.meals=[{t:'',n:'Totale da AI',k,p:g(/prot\w*\D{0,3}(\d+[.,]?\d*)/i)||0,c:g(/carb\w*\D{0,3}(\d+[.,]?\d*)/i)||0,g:g(/grass\w*\D{0,3}(\d+[.,]?\d*)/i)||0}];
 const v={steps:ps?parseInt(ps[1].replace(/\./g,'')):undefined,w:g(/peso\D{0,3}(\d+[.,]?\d*)/i),water:g(/acqua\D{0,3}(\d+[.,]?\d*)/i),sleep:g(/sonno\D{0,3}(\d+[.,]?\d*)/i)};
 for(const a in v)if(v[a]!==undefined&&!isNaN(v[a]))x[a]=v[a];
+const vt=g(/vita\D{0,3}(\d+[.,]?\d*)/i);if(vt>=15&&vt<=250)S.body[d]=Object.assign(S.body[d]||{},{vita:vt});
 woLegacy(x,{gym:/palestra/i.test(l)?/palestra\W{0,3}(s[iì]|1)/i.test(l):undefined,int:g(/intens\w*\D{0,3}(\d+[.,]?\d*)/i),dur:g(/durat\w*\D{0,3}(\d+[.,]?\d*)/i),card:g(/cardio\D{0,3}(\d+[.,]?\d*)/i)},'p');
 for(const z of l.matchAll(/sport\W{0,3}([^|\d]+?)\W{0,3}(\d+(?:[.,]\d+)?)/gi)){const nm=z[1].trim(),sk=spKey(nm);if(sk)woTag(x,sk,parseFloat(z[2].replace(',','.')),'p',sk=='altro'?nm.slice(0,40):undefined)}
 if(/non\s+chius|parzial/i.test(l))x.closed=false;else if(/chius/i.test(l))x.closed=true;
@@ -757,8 +846,8 @@ async function save(fn,data,type){try{if(HAS_AI){const dl=await claude.use('down
 async function exp(){if(await save('dietapp_backup_'+TODAY()+'.json',JSON.stringify(S),'application/json')){S.cfg.lastBk=TODAY();persist();render();refreshSettings();note('✅ Backup esportato')}}
 function imp(i){const r=new FileReader();r.onload=()=>{try{const s=JSON.parse(r.result);if(!s||!s.days)throw 0;S=migrate(s);S.cfg.ok=true;persist();closeAll();after(()=>{navSet();applyTheme();$('wiz').hidden=true;tab('oggi');note('✅ Backup importato')})}catch(e){alertBox({icon:'⚠️',title:'File non valido',text:'Il file scelto non è un backup di DietApp. Scegli il file .json creato con “Esporta backup”.',buttons:[{label:'Ok'}]})}};r.readAsText(i.files[0]);i.value=''}
 function csv(){calc();const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"',n=v=>num(v)?String(Math.round(v*100)/100).replace('.',','):'';
-const rows=[['Data','Cibo / riepilogo','Kcal','Proteine (g)','Carbo (g)','Grassi (g)','Allenamenti','Kcal allenamenti (stima)','Passi','Peso (kg)','Sonno (h)','Acqua (L)','Stato','Note']];
-M.ds.forEach(d=>{const x=S.days[d],o=D[d],W=x.wo||[];rows.push([dm(d)+'/'+d.slice(0,4),x.meals.map(m=>(m.t?m.t+' ':'')+m.n).join('; '),n(o.k),n(o.p),n(o.c),n(o.g),W.map(w=>woName(w)+(w.min>0?' '+w.min+' min':'')+(woInfo(w,1).length?' ('+woInfo(w,1).join(', ')+')':'')).join('; '),W.length?n(woK(x,o.wu)*M.fa):'',n(x.steps),n(x.w),n(x.sleep),n(x.water),o.cl?'CHIUSA':'PARZIALE',x.note||''])});
+const rows=[['Data','Cibo / riepilogo','Kcal','Proteine (g)','Carbo (g)','Grassi (g)','Allenamenti','Kcal allenamenti (stima)','Passi','Peso (kg)','Vita (cm)','Massa grassa (%)','Sonno (h)','Acqua (L)','Stato','Note']];
+const BF=bfSeries();M.ds.forEach(d=>{const x=S.days[d],o=D[d],W=x.wo||[],bv=BF.find(z=>z.d==d);rows.push([dm(d)+'/'+d.slice(0,4),x.meals.map(m=>(m.t?m.t+' ':'')+m.n).join('; '),n(o.k),n(o.p),n(o.c),n(o.g),W.map(w=>woName(w)+(w.min>0?' '+w.min+' min':'')+(woInfo(w,1).length?' ('+woInfo(w,1).join(', ')+')':'')).join('; '),W.length?n(woK(x,o.wu)*M.fa):'',n(x.steps),n(x.w),n((S.body[d]||{}).vita),bv?n(bv.bf):'',n(x.sleep),n(x.water),o.cl?'CHIUSA':'PARZIALE',x.note||''])});
 save('dietapp_log_'+TODAY()+'.csv','﻿'+rows.map(r=>r.map(q).join(';')).join('\r\n'),'text/csv')}
 
 /* ---------- PROCEDURA GUIDATA ---------- */
@@ -792,7 +881,7 @@ if(!z.again){c.w0=z.w;c.start=today}const x=day(today,1);if(!(x.w>0))x.w=z.w;per
 function navSet(){const show={ai:HAS_AI};for(const k in show){const a=document.querySelector(`nav a[data-t="${k}"]`);if(a)a.style.display=show[k]?'':'none'}}
 let TABL=null;
 function tab(t,fromPop){if(!document.getElementById(t))t='oggi';if(!fromPop){if(t==='oggi'&&TABL&&UI[UI.length-1]===TABL){back();return}if(t!=='oggi'&&!TABL){TABL=()=>{TABL=null;tab('oggi',true)};pushL(TABL)}}
-document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id==t));document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.t==t));if(t=='oggi')render();else chips();if(t=='dash')dash();if(t=='log')list();if(t=='imp')prof();scrollTo(0,0)}
+document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id==t));document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.t==t));if(t=='oggi')render();else chips();if(t=='dash')dash();if(t=='corpo')corpo();if(t=='log')list();if(t=='imp')prof();scrollTo(0,0)}
 document.querySelectorAll('nav a').forEach(a=>a.onclick=()=>tab(a.dataset.t));
 if(!HAS_AI)$('ai').remove();else $('ad').value=TODAY();
 history.replaceState({l:0},'');applyTheme();navSet();$('d').value=TODAY();$('d').onchange=render;render();
