@@ -1,10 +1,12 @@
 // /api/ai: assistente di DietApp. Il modello si raggiunge con Netlify AI Gateway (si paga con i crediti
 // Netlify, nessuna chiave da gestire: Netlify imposta GEMINI_API_KEY e GOOGLE_GEMINI_BASE_URL).
 // Modalità: parse (testo -> pasti), photo (foto del piatto -> pasti), chat (coach), week (commento della settimana).
-// Limiti: AI_MAX_DAY richieste al giorno per utente (predefinito 20) e AI_MAX_MONTH in tutto al mese
-// (predefinito 1500), contati in ai/{uid} e ai/_mese. Modelli: AI_MODEL (predefinito gemini-3.1-flash-lite)
+// Limiti: per piano (vedi lib/limiti.mjs: Prova e Pro AI_MAX_DAY = 20 al giorno, Free AI_FREE_DAY = 0) e AI_MAX_MONTH
+// in tutto al mese (predefinito 1500), contati in ai/{uid} e ai/_mese. Modelli: AI_MODEL (predefinito gemini-3.1-flash-lite)
 // e AI_MODEL_PHOTO (predefinito come AI_MODEL).
-import { json, serviceAccount, verifyUser, getDoc, updateDoc, LINGUE } from "../lib/google.mjs";
+import { json, serviceAccount, verifyToken, getDoc, updateDoc, LINGUE } from "../lib/google.mjs";
+import { planOf } from "../lib/piani.mjs";
+import { aiLimit } from "../lib/limiti.mjs";
 
 export const config = { path: "/api/ai" };
 
@@ -133,19 +135,21 @@ export default async (req) => {
   if (req.method !== "POST") return json({ err: "method" }, 405);
   const sa = serviceAccount();
   if (!sa || !process.env.GEMINI_API_KEY) return json({ err: "config" }, 503);
-  let uid;
-  try { uid = await verifyUser(req, sa.project_id); } catch { return json({ err: "auth" }, 503); }
-  if (!uid) return json({ err: "auth" }, 401);
+  let tok;
+  try { tok = await verifyToken(req, sa.project_id); } catch { return json({ err: "auth" }, 503); }
+  if (!tok) return json({ err: "auth" }, 401);
+  const uid = tok.sub;
   let b;
   try { b = await req.json(); } catch { return json({ err: "body" }, 400); }
   const o = input(b);
   if (o.err) return json({ err: o.err }, 400);
 
-  const MAXD = +process.env.AI_MAX_DAY || 20, MAXM = +process.env.AI_MAX_MONTH || 1500;
+  const MAXM = +process.env.AI_MAX_MONTH || 1500;
   const day = new Date().toISOString().slice(0, 10), mon = day.slice(0, 7);
   try {
-    const [u, g] = await Promise.all([getDoc("ai/" + uid), getDoc("ai/_mese")]);
-    const used = u && u.d === day ? u.n || 0 : 0, gm = g && g.m === mon ? g.n || 0 : 0;
+    const [p, u, g] = await Promise.all([planOf(uid, tok), getDoc("ai/" + uid), getDoc("ai/_mese")]);
+    const used = u && u.d === day ? u.n || 0 : 0, gm = g && g.m === mon ? g.n || 0 : 0, MAXD = aiLimit(p.plan);
+    if (MAXD <= 0) return json({ err: "plan", plan: p.plan, used, max: 0 }, 403);
     if (used >= MAXD) return json({ err: "limit", used, max: MAXD }, 429);
     if (gm >= MAXM) return json({ err: "cap", used, max: MAXD }, 429);
     const model = (o.mode === "photo" && process.env.AI_MODEL_PHOTO) || process.env.AI_MODEL || "gemini-3.1-flash-lite";

@@ -5,7 +5,7 @@
 //   sw / se (data dell'ultimo promemoria di pesata / della sera), u.
 // Operazioni (POST, con "Authorization: Bearer <ID token>"):
 //   {op:"on", tok, tz, lg, on, m, e, wd, st}  registra o aggiorna   {op:"off", tok}  toglie il telefono
-//   {op:"test", tok}  manda una notifica di prova                     {op:"forget"}   cancella tutto (eliminazione account)
+//   {op:"test", tok}  manda una notifica di prova                     {op:"forget"}   cancella push, contatori AI e piano (eliminazione account)
 import { json, serviceAccount, verifyUser, getDoc, updateDoc, deleteDoc, sendPush, validTz, hm, LINGUE } from "../lib/google.mjs";
 import { tx } from "../lib/testi.mjs";
 import { VERSION } from "../lib/versione.mjs";
@@ -39,7 +39,7 @@ export default async (req) => {
   const path = "push/" + uid;
   try {
     if (b.op === "forget") {
-      await deleteDoc(path); await deleteDoc("ai/" + uid);
+      await deleteDoc(path); await deleteDoc("ai/" + uid); await deleteDoc("piani/" + uid);
       return json({ ok: true });
     }
     if (!okTok(b.tok)) return json({ err: "tok" }, 400);

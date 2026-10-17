@@ -56,6 +56,11 @@ async function certs() {
 
 // Restituisce l'uid se il token è valido per questo progetto, altrimenti null.
 export async function verifyUser(req, projectId) {
+  const p = await verifyToken(req, projectId);
+  return p ? p.sub : null;
+}
+// Come verifyUser, ma restituisce tutto il contenuto del token (sub, email, email_verified…).
+export async function verifyToken(req, projectId) {
   const h = req.headers.get("authorization") || "";
   const tok = h.startsWith("Bearer ") ? h.slice(7).trim() : "";
   const parts = tok.split(".");
@@ -74,7 +79,7 @@ export async function verifyUser(req, projectId) {
   if (pay.aud !== projectId || pay.iss !== "https://securetoken.google.com/" + projectId) return null;
   if (!(pay.exp > now) || !(pay.iat <= now + 300) || (pay.auth_time && pay.auth_time > now + 300)) return null;
   if (typeof pay.sub !== "string" || !pay.sub || pay.sub.length > 128) return null;
-  return pay.sub;
+  return pay;
 }
 
 // ---------- Firestore (REST) ----------
@@ -124,6 +129,25 @@ export async function updateDoc(path, obj) {
   return fs("PATCH", path, { fields: fieldsOf(obj) }, q);
 }
 export async function deleteDoc(path) { return fs("DELETE", path); }
+// Lettura con l'ora dell'ultima modifica, per scrivere solo se nel frattempo nessuno l'ha cambiato.
+export async function getDocT(path) {
+  const d = await fs("GET", path);
+  return d ? { data: decFields(d.fields || {}), t: d.updateTime } : null;
+}
+// Scrive i campi indicati solo se il documento è ancora quello letto (t) o, con t = null, se non esiste.
+// Restituisce false se qualcun altro l'ha modificato nel frattempo.
+export async function updateDocIf(path, obj, t) {
+  const sa = serviceAccount(), tk = await accessToken(sa);
+  const q = "?" + Object.keys(obj).map(k => "updateMask.fieldPaths=" + encodeURIComponent(k)).join("&") +
+    (t ? "&currentDocument.updateTime=" + encodeURIComponent(t) : "&currentDocument.exists=false");
+  const r = await fetch(`${FSB}${root(sa)}/${path}${q}`, {
+    method: "PATCH", headers: { authorization: "Bearer " + tk, "content-type": "application/json" },
+    body: JSON.stringify({ fields: fieldsOf(obj) }),
+  });
+  if (r.status === 400 || r.status === 409 || r.status === 412 || r.status === 404) return false;
+  if (!r.ok) throw new Error("firestore PATCH " + r.status);
+  return true;
+}
 // Elenca tutti i documenti di una raccolta: [{id, data}]
 export async function listDocs(col) {
   const out = []; let page = "";
