@@ -2,6 +2,10 @@
   publish = "public"
   command = ""
 
+# Funzioni sul server (es. richiesta di eliminazione dati da Facebook): /api/...
+[functions]
+  directory = "netlify/functions"
+
 [[headers]]
   for = "/sw.js"
   [headers.values]

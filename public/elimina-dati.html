@@ -42,6 +42,9 @@ footer a{color:var(--mu)}
 <p>Ultimo aggiornamento: 17 ottobre 2026</p>
 </div></header>
 <main>
+<section class="c hl" id="esito" hidden><h2>✅ Eliminazione completata</h2>
+<p>Codice di conferma: <b id="cod"></b>. L’account DietApp collegato al tuo profilo Facebook e tutti i suoi dati sono stati cancellati.</p></section>
+<script>(()=>{const c=new URLSearchParams(location.search).get('codice');if(c&&/^[A-Z0-9]{4,20}$/.test(c)){document.getElementById('cod').textContent=c;document.getElementById('esito').hidden=false}})()</script>
 <section class="c hl"><h2>Dall’app, in un minuto</h2>
 <ol>
 <li>Apri DietApp e accedi.</li>
@@ -56,7 +59,8 @@ footer a{color:var(--mu)}
 
 <section class="c"><h2>Scollegare DietApp da Facebook</h2>
 <p>Su Facebook vai in <span class="path">Impostazioni e privacy → Impostazioni → App e siti web</span>, scegli DietApp e tocca <span class="path">Rimuovi</span>.</p>
-<p class="mu">Così DietApp non può più usare il tuo profilo Facebook per l’accesso. I tuoi dati di DietApp, però, restano nell’account finché non lo elimini in uno dei modi qui sopra.</p></section>
+<p>Se in quella schermata chiedi anche di <b>eliminare i dati</b>, Facebook ci invia la richiesta e cancelliamo automaticamente l’account DietApp collegato e tutti i suoi dati. Riceverai un codice di conferma.</p>
+<p class="mu">Se rimuovi l’app senza chiedere l’eliminazione, DietApp non può più usare il tuo profilo Facebook per l’accesso, ma i tuoi dati restano nell’account finché non lo elimini in uno dei modi qui sopra.</p></section>
 
 <section class="c"><h2>Se usi DietApp senza account</h2>
 <p>I dati sono solo sul tuo telefono. Puoi cancellarli da <span class="path">Profilo → ⚙️ Impostazioni → Elimina tutti i dati</span>, oppure disinstallando l’app o cancellando i dati del sito dal browser.</p></section>
