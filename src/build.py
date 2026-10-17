@@ -31,10 +31,10 @@ _m=re.search(r"CONTACT_EMAIL='([^']*)'",t)
 (R/"netlify"/"lib"/"versione.mjs").write_text(f"// Generato da src/build.py\nexport const VERSION = {json.dumps(VERSION)};\nexport const ADMIN_EMAIL = {json.dumps(_m.group(1) if _m else '')};\nexport const PROJECT_ID = {json.dumps(FB['config'].get('projectId','') if FB else '')};\n")
 (P/"index.html").write_text(t.replace("<!--HEAD-->",head).replace("<!--TAIL-->",tail))
 FBU=[f"https://www.gstatic.com/firebasejs/{FBV}/firebase-{m}.js" for m in ("app","auth","firestore")] if FB else []
-(P/"sw.js").write_text(f"""const C='dietapp-{VERSION}',F=['./','./index.html','./manifest.webmanifest','./icon-180.png','./icon-192.png','./icon-512.png','./icon-maskable-512.png',{json.dumps(["./lang/"+l+".js" for l in manc])[1:-1]}],FB={json.dumps(FBU)};
+(P/"sw.js").write_text(f"""const C='dietapp-{VERSION}',F=['./','./index.html','./manifest.webmanifest','./icon-180.png','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./badge-96.png',{json.dumps(["./lang/"+l+".js" for l in manc])[1:-1]}],FB={json.dumps(FBU)};
 self.addEventListener('install',e=>{{e.waitUntil(caches.open(C).then(c=>c.addAll(F).then(()=>Promise.all(FB.map(u=>c.add(new Request(u,{{mode:'cors'}})).catch(()=>{{}}))))));self.skipWaiting()}});
 self.addEventListener('push',e=>{{let p={{}};try{{p=e.data?e.data.json():{{}}}}catch(x){{p={{body:e.data?e.data.text():''}}}}const d=p.data||p.notification||p;
-e.waitUntil(self.registration.showNotification(d.title||'DietApp',{{body:d.body||'',tag:d.tag||'dietapp',renotify:!!d.tag,icon:'icon-192.png',data:{{act:d.act||''}}}}))}});
+e.waitUntil(self.registration.showNotification(d.title||'DietApp',{{body:d.body||'',tag:d.tag||'dietapp',renotify:!!d.tag,icon:'icon-192.png',badge:'badge-96.png',data:{{act:d.act||''}}}}))}});
 self.addEventListener('notificationclick',e=>{{e.notification.close();const a=(e.notification.data||{{}}).act||'';
 e.waitUntil(clients.matchAll({{type:'window',includeUncontrolled:true}}).then(cs=>{{const c=cs.find(x=>new URL(x.url).origin===location.origin);if(c){{c.postMessage({{act:a}});return c.focus()}}return clients.openWindow('./'+(a?'?a='+a:''))}}))}});
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
