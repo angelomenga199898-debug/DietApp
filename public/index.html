@@ -1,4 +1,4 @@
-<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>DietApp</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#ffffff"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-180.png"><meta name="apple-mobile-web-app-title" content="DietApp"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>DietApp</title><link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#10260a"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-180.png"><meta name="apple-mobile-web-app-title" content="DietApp"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
 <style>
 :root{--bg:#fff;--cd:#fff;--tx:#111;--mu:#6e6e6e;--ac:#1c3a12;--on:#fff;--li:#9be564;--ch:#ececec;--am:#b86e00;--ok:#1d8a4e;--bad:#c0392b;--bd:#e2e2e2;--g1:#ebf9df;--g2:#d3f1bb;--gt:#10200a;--gm:#45603a;--gp:rgba(255,255,255,.65);--ff:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
 :root[data-theme=dark]{--bg:#0e130d;--cd:#171e15;--tx:#f1f4ef;--mu:#9aa595;--ac:#9be564;--on:#10200a;--ch:#252e22;--am:#f0b35a;--ok:#5ad08e;--bad:#ff8174;--bd:#2a3427;--g1:#1f3417;--g2:#15240e;--gt:#f1f4ef;--gm:#a9bf9f;--gp:rgba(255,255,255,.1)}@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0e130d;--cd:#171e15;--tx:#f1f4ef;--mu:#9aa595;--ac:#9be564;--on:#10200a;--ch:#252e22;--am:#f0b35a;--ok:#5ad08e;--bad:#ff8174;--bd:#2a3427;--g1:#1f3417;--g2:#15240e;--gt:#f1f4ef;--gm:#a9bf9f;--gp:rgba(255,255,255,.1)}}
@@ -175,14 +175,40 @@ input.sw:checked{background:#5cc23a}input.sw:checked::after{transform:translateX
 @media(prefers-reduced-motion:reduce){.bh .hbar i,.bfd .t1,.tl{animation:none!important}}
 html.rm *,html.rm *::before,html.rm *::after{animation:none!important;transition:none!important}
 @media(prefers-reduced-motion:reduce){.acs .fi,.tic .t1.an,.wo.new{animation:none!important}}
-#splash{position:fixed;inset:0;background:#fff;z-index:99;display:grid;place-items:center;font:800 min(15vw,64px)/1 Inter,system-ui,-apple-system,sans-serif;letter-spacing:-.04em;color:#1c3a12;animation:sOut .45s ease 3.3s forwards}
-#splash .wm{display:flex;align-items:center}#splash .ic{width:1.5em;height:1.5em;flex:none;animation:pop .6s cubic-bezier(.2,1.5,.4,1) both}#splash .ic svg{width:100%;height:100%;display:block}
-#splash .lf{transform-origin:38px 35px;animation:grow .7s cubic-bezier(.2,1.4,.4,1) .45s both}
-#splash .x{display:inline-block;overflow:hidden;white-space:nowrap;max-width:0;opacity:0;animation:ex .9s cubic-bezier(.65,0,.25,1) 1.5s forwards}#splash .x i{font-style:normal;padding:0 0 .1em .28em}#splash .x b{color:#4aa11f;font-weight:800}
-@keyframes pop{from{transform:scale(.35);opacity:0}to{transform:scale(1);opacity:1}}@keyframes grow{from{transform:scale(0) rotate(-35deg)}to{transform:scale(1) rotate(0)}}
-@keyframes ex{to{max-width:4.4em;opacity:1}}@keyframes sOut{to{opacity:0;visibility:hidden}}
-@media(prefers-reduced-motion:reduce){#splash .ic,#splash .lf,#splash .x{animation-duration:.01s}#splash .x{animation-delay:0s}#splash{animation-delay:1.2s}}
-</style></head><body><div id="splash" onclick="this.remove()"><div class="wm"><span class="ic"><svg viewBox="0 0 100 100"><rect width="100" height="100" rx="30" fill="#1c3a12"/><path fill="#9be564" d="M28 34H46A24 24 0 0 1 46 82H28Z"/><path fill="#1c3a12" d="M44 48H46A10 10 0 0 1 46 68H44Z"/><path class="lf" fill="#f4ffe6" d="M38 35C36 22 48 16 62 18C62 32 52 40 38 35Z"/></svg></span><span class="x"><i>Diet<b>App</b></i></span></div></div>
+/* --- splash: succo che sale, goccia che rimbalza ed esplode nel nome, sipario che si alza --- */
+#splash{position:fixed;inset:0;z-index:99;overflow:hidden;background:#10260a;display:grid;place-items:center;font:900 min(16vw,70px)/1 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:-.045em;color:#10260a;transition:transform .62s cubic-bezier(.7,0,.25,1),border-radius .62s ease;cursor:pointer;-webkit-user-select:none;user-select:none}
+#splash.out{transform:translateY(-104%);border-radius:0 0 50% 50%/0 0 12vh 12vh;pointer-events:none}
+#splash .lq{position:absolute;left:0;right:0;top:100%;height:calc(100% + 70px);transform:translateY(-100%);animation:sLq .78s cubic-bezier(.5,0,.2,1) .38s both}
+#splash .wv{position:absolute;left:0;top:0;width:200%;height:70px;animation:sWv 1.15s linear infinite}#splash .wv path{fill:#9be564}
+#splash .w2{top:-16px;animation-duration:1.7s;animation-direction:reverse}#splash .w2 path{fill:#c9f5a8}
+#splash .lqb{position:absolute;left:0;right:0;top:69px;bottom:0;background:#9be564}
+#splash .drop{position:absolute;inset:0;display:grid;place-items:center;opacity:0;animation:sLive 1.42s linear both,sHop .42s cubic-bezier(.3,0,.35,1) 1.02s forwards}
+#splash .ic{display:block;width:128px;height:128px;border-radius:30%;overflow:hidden;transform:scale(.13);animation:sIn .5s cubic-bezier(.2,1.5,.4,1) both,sShrink .36s cubic-bezier(.6,0,.3,1) .68s forwards}
+#splash .ic svg{display:block;width:100%;height:100%}#splash .ic .dd,#splash .ic .lf{animation:sFade .22s ease .7s both}
+#splash .wm{position:relative;display:flex;align-items:baseline;animation:sJig .5s ease 1.95s both}
+#splash .l{display:inline-block;animation:sBurst .6s cubic-bezier(.2,1.4,.35,1) both;animation-delay:calc(1.4s + var(--d))}
+#splash .app{color:#2c6a15}
+#splash .li{position:relative}#splash .lfx{position:absolute;left:.01em;top:-.12em;width:.4em;height:.36em;fill:#10260a;transform-origin:10% 85%;animation:sLeaf .55s cubic-bezier(.2,1.6,.4,1) 1.78s both}
+@keyframes sLq{from{transform:translateY(0)}}
+@keyframes sWv{to{transform:translateX(-50%)}}
+@keyframes sLive{0%,99%{opacity:1}100%{opacity:0}}
+@keyframes sIn{from{transform:scale(.45);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes sShrink{from{transform:scale(1);border-radius:30%}to{transform:scale(.13);border-radius:50%}}
+@keyframes sFade{to{opacity:0}}
+@keyframes sHop{0%{transform:translateY(0)}45%{transform:translateY(-46px) scale(.9,1.1)}82%{transform:translateY(6px) scale(1.5,.62)}100%{transform:translateY(8px) scale(2.6,.25)}}
+@keyframes sBurst{from{transform:translate(var(--dx),.12em) scale(.08) rotate(var(--r));opacity:0}35%{opacity:1}}
+@keyframes sLeaf{from{transform:scale(0) rotate(-55deg)}}
+@keyframes sJig{0%,100%{transform:none}35%{transform:scale(1.05,.95)}65%{transform:scale(.98,1.03)}}
+/* la Home entra a cascata mentre il sipario si alza */
+#splash~main>.tb,#splash~main>section.on>*{opacity:0}
+#splash.out~main>.tb,#splash.out~main>section.on>*{opacity:1;animation:sRise .7s cubic-bezier(.2,1.1,.3,1) both;animation-delay:calc(.2s + var(--i,0)*.06s)}
+#splash~nav{transform:translateY(150%)}#splash.out~nav{transform:none;transition:transform .7s cubic-bezier(.2,1.25,.35,1) .38s}
+@keyframes sRise{from{opacity:0;transform:translateY(30px)}}
+html.rm #splash .drop{display:none}
+@media(prefers-reduced-motion:reduce){#splash,#splash *{animation:none!important;transition:none!important}#splash .drop{display:none}#splash.out~main>*,#splash.out~main>section.on>*,#splash.out~nav{animation:none!important;transition:none!important}}
+
+</style></head><body><div id="splash" aria-label="DietApp"><div class="lq" aria-hidden="true"><svg class="wv w2" viewBox="0 0 1200 70" preserveAspectRatio="none"><path d="M0 35C100 5 200 5 300 35S500 65 600 35 800 5 900 35 1100 65 1200 35V70H0Z"/></svg><svg class="wv w1" viewBox="0 0 1200 70" preserveAspectRatio="none"><path d="M0 35C100 5 200 5 300 35S500 65 600 35 800 5 900 35 1100 65 1200 35V70H0Z"/></svg><div class="lqb"></div></div><div class="drop" aria-hidden="true"><span class="ic"><svg viewBox="0 0 100 100"><rect width="100" height="100" rx="30" fill="#1c3a12"/><path class="dd" fill="#9be564" d="M28 34H46A24 24 0 0 1 46 82H28Z"/><path class="dd" fill="#1c3a12" d="M44 48H46A10 10 0 0 1 46 68H44Z"/><path class="lf" fill="#f4ffe6" d="M38 35C36 22 48 16 62 18C62 32 52 40 38 35Z"/></svg></span></div><div class="wm" aria-hidden="true"><span class="l" style="--dx:1.6em;--r:-24deg;--d:.12s">D</span><span class="l li" style="--dx:1.15em;--r:18deg;--d:.08s">ı<svg class="lfx" viewBox="35 15 28 24"><path d="M38 35C36 22 48 16 62 18C62 32 52 40 38 35Z"/></svg></span><span class="l" style="--dx:.7em;--r:-14deg;--d:.04s">e</span><span class="l" style="--dx:.15em;--r:10deg;--d:0s">t</span><span class="l app" style="--dx:-.35em;--r:-10deg;--d:.04s">A</span><span class="l app" style="--dx:-.95em;--r:16deg;--d:.08s">p</span><span class="l app" style="--dx:-1.55em;--r:-20deg;--d:.12s">p</span></div></div>
+
 <div id="wiz" class="wiz" hidden><div class="wz" id="wzc"></div></div>
 <div id="sheet" class="sheet" hidden onclick="if(event.target===this)closeSheet()"><div class="sh-in" role="dialog" aria-modal="true"><div class="grab"></div><div id="shc"></div></div></div>
 <main><header class="tb"><div class="tbl" id="tbl"></div><div class="tbr"><span class="p" id="stk" title="Giorni di fila">🔥 0</span><span class="p" id="wgt" title="Peso attuale: apri Corpo" role="button" tabindex="0" style="cursor:pointer" onclick="tab('corpo')"></span><button class="ib" id="bell" onclick="openNotifs()" aria-label="Notifiche">🔔<i id="bdg" style="display:none"></i></button></div></header>
@@ -987,7 +1013,7 @@ function chips(){calc();const s=stats(),nm=(S.cfg.name||'').trim().split(/\s+/)[
 /* ---------- VERSIONE E NOVITÀ ---------- */
 const VERSION='2.7.1',FEEDBACK_EMAIL='';
 const CHANGELOG=[
-['2.7.1','17 ottobre 2026',['Composizione e misure unite in un’unica sezione “Composizione corporea”','Chiudi fogli e avvisi trascinandoli verso il basso','Nuova barra della data con la settimana: tocca un giorno o scorri per cambiare settimana','Indicatori in alto più compatti']],
+['2.7.1','17 ottobre 2026',['Composizione e misure unite in un’unica sezione “Composizione corporea”','Chiudi fogli e avvisi trascinandoli verso il basso','Nuova barra della data con la settimana: tocca un giorno o scorri per cambiare settimana','Indicatori in alto più compatti','Nuova animazione di apertura']],
 ['2.7','17 ottobre 2026',['Nuova sezione Corpo: peso, misure e massa grassa in un posto solo','Stima della massa grassa dalle misure (vita e collo) o dalla tua bilancia smart','Grafici di peso, vita, % di grasso e di ogni misura','Promemoria per prendere le misure ogni 2 settimane','Tocca il tuo peso in alto per aprire Corpo']],
 ['2.6','17 ottobre 2026',['Nuova sezione Attività: passi, sonno e allenamenti a colpo d’occhio','18 sport, ognuno con i suoi campi: vasche per il nuoto, distanza e passo per la corsa, esercizi, serie e kg per la sala pesi…','Calorie bruciate stimate per ogni sport, più precise','Schede di allenamento e record personali in sala pesi','“Incolla dati” ora è dentro “+ Aggiungi alimento”']],
 ['2.5','17 ottobre 2026',['Nuovo Profilo con progressi, serie di giorni e traguardi','Impostazioni organizzate in gruppi','Centro notifiche con promemoria, consigli e traguardi','Tema chiaro, scuro o automatico','Il tasto indietro di Android ora funziona come in un’app','Informativa privacy, condizioni d’uso ed eliminazione dei dati','Scorciatoie tenendo premuta l’icona dell’app']],
@@ -1663,4 +1689,4 @@ if(S.seenVer!==VERSION){const nw=CHANGELOG[0];notify('news-'+VERSION,{type:'news
 if(!qa)setTimeout(()=>{if($('al').hidden&&$('sheet').hidden)alertBox({icon:'✨',bg:'#fdeea0',title:'Novità di DietApp '+VERSION,text:nw[2].map(x=>'• '+x).join('\n'),buttons:[{label:'Fantastico!'},{label:'Tutte le novità',fn:pgNews}]})},4200);S.seenVer=VERSION;persist()}
 checks()}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&S.cfg.ok){checks();if($('oggi').classList.contains('on'))render()}});
-</script><script>setTimeout(()=>{const x=document.getElementById('splash');x&&x.remove()},3800)</script><script>if('serviceWorker' in navigator&&location.protocol!=='file:'){const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.register('sw.js').then(r=>{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')r.update().catch(()=>{})})}).catch(()=>{});navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had)note('🔄 È disponibile una nuova versione',0,{label:'Aggiorna',fn:()=>location.reload()})})}</script></body></html>
+</script><script>(()=>{const x=document.getElementById('splash');if(!x)return;const rm=matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('rm'),m=document.querySelector('meta[name=theme-color]');document.querySelectorAll('main>section.on>*').forEach((e,i)=>e.style.setProperty('--i',Math.min(i,7)));if(m&&!rm){m.content='#10260a';setTimeout(()=>{if(!done)m.content='#9be564'},950)}let done=false;const go=()=>{if(done)return;done=true;x.classList.add('out');if(typeof applyTheme=='function')applyTheme();setTimeout(()=>x.remove(),rm?0:1700)};x.addEventListener('click',go);setTimeout(go,rm?900:2300)})()</script><script>if('serviceWorker' in navigator&&location.protocol!=='file:'){const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.register('sw.js').then(r=>{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')r.update().catch(()=>{})})}).catch(()=>{});navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had)note('🔄 È disponibile una nuova versione',0,{label:'Aggiorna',fn:()=>location.reload()})})}</script></body></html>
