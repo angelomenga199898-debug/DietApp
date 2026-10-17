@@ -166,6 +166,20 @@ input.sw:checked{background:#5cc23a}input.sw:checked::after{transform:translateX
 .dcb em{position:absolute;left:80%;top:-3px;width:2px;height:12px;border-radius:1px;background:var(--tx);opacity:.3}
 .dc .mu b{font-weight:700}.dfp{color:var(--ok)}.dfn{color:var(--am)}
 .dce{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}.dce span{font-size:12px;background:var(--ch);border-radius:999px;padding:3px 9px;color:var(--tx)}
+/* --- accesso --- */
+.au{position:fixed;inset:0;z-index:35;overflow:auto;background:radial-gradient(130% 70% at 50% 0%,#2b5a1c 0%,#14300c 45%,#0a1806 100%);color:#fff}.au[hidden]{display:none}
+.auc{max-width:440px;margin:0 auto;padding:calc(36px + env(safe-area-inset-top)) 24px calc(30px + env(safe-area-inset-bottom));min-height:100%;display:flex;flex-direction:column;justify-content:center}
+.aui{width:84px;height:84px;margin:0 auto 18px;animation:pop .6s cubic-bezier(.2,1.5,.4,1) both}.aui svg{width:100%;height:100%;display:block;border-radius:26px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.au h1{font:900 34px/1.08 var(--ff);letter-spacing:-1px;text-align:center;margin:0 0 10px;color:#fff}.aup{text-align:center;color:rgba(255,255,255,.78);font-size:15px;margin:0 0 22px;line-height:1.45}
+.aub{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;margin:0 0 10px;padding:15px 18px;background:#fff;color:#1a1a1a;font:700 16px var(--ff);border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.25)}.aub svg{width:22px;height:22px;flex:none}.aub.fb{background:#1877f2;color:#fff}
+.aus{display:flex;align-items:center;gap:10px;margin:14px 0;color:rgba(255,255,255,.6);font-size:13px;font-weight:600}.aus::before,.aus::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.2)}
+.au input:not([type=checkbox]){background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:#fff;margin-bottom:10px}.au input::placeholder{color:rgba(255,255,255,.55)}
+.aupw{position:relative}.aupw input{padding-right:52px}.aueye{position:absolute;right:6px;top:6px;width:40px;height:40px;margin:0;padding:0;border-radius:50%;background:none;color:#fff;font-size:17px}
+.au .cta{margin:6px 0 0}.aum{min-height:20px;margin:4px 0 6px;font-size:14px;font-weight:600;color:#c9f5a8;text-align:center}.aum.bad{color:#ffb3a6}
+.aul2{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 14px;margin-top:10px;font-size:14px;color:rgba(255,255,255,.75)}.au .lnk{color:#c9f5a8;font-weight:700;margin:0;padding:8px 0}.aul{display:block;margin:6px auto 0!important}
+.aut{text-align:center;font-size:12px;color:rgba(255,255,255,.6);margin:22px 0 0;line-height:1.5}.au a{color:#c9f5a8}
+.auk{display:flex;align-items:flex-start;gap:12px;margin:0 0 14px;padding:14px;border-radius:18px;background:rgba(255,255,255,.08);color:#fff;font-size:15px;font-weight:600;line-height:1.4;cursor:pointer}.auk input{margin:1px 0 0;accent-color:#9be564}
+.auw{display:flex;justify-content:center;gap:8px;margin-top:6px}.auw i{width:10px;height:10px;border-radius:50%;background:#9be564;animation:bob .9s ease-in-out infinite}.auw i:nth-child(2){animation-delay:.15s}.auw i:nth-child(3){animation-delay:.3s}
 /* --- storie --- */
 .sts{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 2px;margin:2px -2px -6px;scrollbar-width:none}.sts::-webkit-scrollbar{display:none}
 .st{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;margin:0;padding:0;color:var(--tx);font:600 12px var(--ff);flex:none;width:70px}
@@ -296,7 +310,7 @@ html.rm #splash .drop{display:none}
 
 <section id="imp"><div id="pf"></div></section>
 </main>
-<input type="file" id="f" accept=".json,application/json" hidden onchange="imp(this)"><div id="pages"></div><div id="story" class="sv" hidden role="dialog" aria-modal="true" aria-label="Storia"><div class="svc" id="svc"><div class="svh"><div class="svp" id="svp"></div><div class="svt"><span class="sva" id="sva"></span><b id="svn"></b><button class="svx" onclick="storyClose()" aria-label="Chiudi la storia">✕</button></div></div><div class="svb" id="svb"></div></div></div>
+<input type="file" id="f" accept=".json,application/json" hidden onchange="imp(this)"><div id="pages"></div><div id="auth" class="au" hidden><div class="auc" id="auc"></div></div><div id="story" class="sv" hidden role="dialog" aria-modal="true" aria-label="Storia"><div class="svc" id="svc"><div class="svh"><div class="svp" id="svp"></div><div class="svt"><span class="sva" id="sva"></span><b id="svn"></b><button class="svx" onclick="storyClose()" aria-label="Chiudi la storia">✕</button></div></div><div class="svb" id="svb"></div></div></div>
 <div id="toast" role="status"></div><div id="al" class="al" hidden onclick="if(event.target===this)closeAlert()"><div class="al-c" role="alertdialog" aria-modal="true" aria-labelledby="alt"><div class="al-i" id="ali" aria-hidden="true"></div><h3 id="alt"></h3><p id="alm"></p><div id="alb"></div></div></div>
 <nav><a class="on" data-t="oggi"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg><span>Oggi</span></a><a data-t="dash"><svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 6"/></svg><span>Grafici</span></a><a data-t="corpo"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8.5 10a4.5 4.5 0 0 1 7 0"/><path d="M12 12.5l1.3-2.6"/></svg><span>Corpo</span></a><a data-t="log"><svg viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/></svg><span>Giorni</span></a><a data-t="ai"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg><span>Assistente</span></a><a data-t="imp"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profilo</span></a></nav>
 <script>
@@ -1028,9 +1042,9 @@ const CFP=[['sex','Sesso','sex'],['age','Età'],['h','Altezza (cm)'],['w0','Peso
 const CFG=[['target','Kcal al giorno'],['pmin','Proteine minime (g)'],['waterT','Acqua (L)'],['stepT','Passi al giorno'],['wkT','Allenamenti a settimana'],['tol','Tolleranza kcal ±']];
 const CFA=[['tdee0','TDEE di riserva'],['floor','Soglia “troppo basso” (kcal)'],['base','Fattore attività base'],['kps','kcal/kg per passo'],['gymMin','Durata allenamento standard (min)'],['metB','MET sala pesi base'],['metI','MET sala pesi per punto di fatica'],['metC','MET cardio generico'],['tef','Effetto termico (0-1)'],['kg','kcal per kg']];
 const DEF={cfg:{w0:80,wg:75,start:TODAY(),target:2000,tol:200,floor:1200,pmin:100,waterT:2.5,tdee0:2500,h:175,age:30,sex:'M',base:1.1,kps:0.0004,gymMin:60,metB:3,metI:0.3,metC:6,tef:0.1,wkT:3,stepT:8000,kg:7700,weighDays:[1,4],ok:false},days:{},presets:[],foods:[],recent:[]};
-const DATA=/*DATA*/null;
+const DATA=/*DATA*/null,FBCFG={"config": {"apiKey": "AIzaSyAcyHifIK25qRJ_0DX2D1VuYESetwzHIVU", "authDomain": "silly-speculoos-c6bcdb.netlify.app", "projectId": "dietapp-68913", "storageBucket": "dietapp-68913.firebasestorage.app", "messagingSenderId": "1037395489236", "appId": "1:1037395489236:web:bad8da7b802e5f31002641"}, "providers": ["google", "password"], "required": false};
 function migrate(s){const had=s.cfg&&s.cfg.showInc;s.cfg=Object.assign({},DEF.cfg,s.cfg||{});if(had===undefined)s.cfg.showInc=!!s.cfg.ok;if(!Array.isArray(s.cfg.weighDays))s.cfg.weighDays=[1,4];
-s.days=s.days||{};['presets','foods','recent','offc','inbox','wtpl'].forEach(k=>{if(!Array.isArray(s[k]))s[k]=[]});['ach','nlog','body','sts'].forEach(k=>{if(!s[k]||typeof s[k]!=='object'||Array.isArray(s[k]))s[k]={}});if(!s.cfg.notif||typeof s.cfg.notif!=='object')s.cfg.notif={};if(!s.cfg.theme)s.cfg.theme='auto';if(s.cfg.name==null)s.cfg.name='';
+s.days=s.days||{};['presets','foods','recent','offc','inbox','wtpl'].forEach(k=>{if(!Array.isArray(s[k]))s[k]=[]});['ach','nlog','body','sts'].forEach(k=>{if(!s[k]||typeof s[k]!=='object'||Array.isArray(s[k]))s[k]={}});if(!s.cfg.notif||typeof s.cfg.notif!=='object')s.cfg.notif={};if(!s.cfg.theme)s.cfg.theme='auto';if(s.cfg.name==null)s.cfg.name='';if(s.consent===undefined)s.consent=null;
 for(const d in s.days){const x=s.days[d];if(!Array.isArray(x.meals)){x.meals=[];if(num(x.k))x.meals.push({t:'',n:'Totale giornata',k:x.k,p:x.p||0,c:x.c||0,g:x.g||0})}delete x.k;delete x.p;delete x.c;delete x.g;
 if(!Array.isArray(x.wo)){x.wo=[];if(x.gym){const w={s:'pesi'};if(x.dur>0)w.min=x.dur;if(x.int>0)w.rpe=x.int;x.wo.push(w)}if(x.card>0)x.wo.push({s:'cardio',min:x.card})}['gym','int','dur','card'].forEach(k=>delete x[k])}return s}
 let S=null;try{S=JSON.parse(localStorage.getItem(K))}catch(e){}
@@ -1038,7 +1052,7 @@ if(S)S=migrate(S);
 if(DATA){if(!S)S=clone(DATA);else{for(const d in DATA.days){const a=DATA.days[d],b=S.days[d];if(!b||(a.u||0)>(b.u||0))S.days[d]=clone(a)}
 if((DATA.cfgU||0)>(S.cfgU||0)){S.cfg=Object.assign({},S.cfg,DATA.cfg);S.cfgU=DATA.cfgU}if((DATA.presetsU||0)>(S.presetsU||0)){S.presets=clone(DATA.presets);S.presetsU=DATA.presetsU}}}
 S=migrate(S||clone(DEF));
-function persist(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}persist();
+function persist(ns){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}if(ns!==0&&window.__syncOn)syncSoon()}persist(0);
 let nt;function note(m,bad,act){const e=$('toast');e.innerHTML='';const sp=document.createElement('span');sp.textContent=m;e.appendChild(sp);e.classList.toggle('act',!!act);
 if(act){const b=document.createElement('button');b.textContent=act.label;b.onclick=()=>{act.fn();e.style.opacity=0;e.classList.remove('act')};e.appendChild(b)}
 const up=!$('sheet').hidden;e.style.top=up?'calc(16px + env(safe-area-inset-top))':'';e.style.bottom=up?'auto':'';e.style.background=bad?'var(--bad)':'var(--ac)';e.style.opacity=1;clearTimeout(nt);nt=setTimeout(()=>{e.style.opacity=0;e.classList.remove('act')},act?5000:2400)}
@@ -1061,7 +1075,7 @@ const closedDays=()=>M.ds.filter(d=>D[d].cl&&num(D[d].k));
 function chips(){calc();const s=stats(),nm=(S.cfg.name||'').trim().split(/\s+/)[0];$('tbl').textContent=nm?'Ciao, '+nm+' 👋':'';$('stk').textContent='🔥 '+s.st;$('wgt').textContent=f1(M.lw)+' ⚖️';bell();achCheck()}
 
 /* ---------- VERSIONE E NOVITÀ ---------- */
-const VERSION='2.7.2',FEEDBACK_EMAIL='';
+const VERSION='2.7.2',FEEDBACK_EMAIL='',CONTACT_EMAIL='';
 const CHANGELOG=[
 ['2.7.2','17 ottobre 2026',['Storie in alto nella Home, come su Instagram','Guida a storie: come funzionano tutte le sezioni','Il riepilogo della tua settimana, le novità e i consigli in formato storia']],
 ['2.7.1','17 ottobre 2026',['Composizione e misure unite in un’unica sezione “Composizione corporea”','Chiudi fogli e avvisi trascinandoli verso il basso','Nuova barra della data con la settimana: tocca un giorno o scorri per cambiare settimana','Indicatori in alto più compatti','Nuova animazione di apertura','Pasti in un riquadro con icone per momento della giornata','Giorni rinnovata: calendario del mese colorato e storico per settimana']],
@@ -1097,14 +1111,16 @@ const tog=(ic,l,attr,on)=>`<label class="si"><span class="sic">${ic}</span><span
 const STANDALONE=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true,IOS=/iphone|ipad|ipod/i.test(navigator.userAgent);let BIP=null;
 const canInstall=()=>!STANDALONE&&!HAS_AI&&(BIP||IOS);
 function setHTML(){const c=S.cfg,u=unread();return`
-<div class="sl"><p class="slh">Profilo</p>${row('👤','Dati personali',c.name||'','pgMe()')}${row('🎯','Obiettivi',f0(c.target)+' kcal','pgGoals()')}${row('🧭','Ricalcola il piano','','openWiz(true)')}</div>
+${FBCFG&&(FBCFG.required||BETA()||sMeta().uid)?`<div class="sl"><p class="slh">Account</p>${FU||sMeta().uid?row('☁️','Account e sincronizzazione',(FU&&FU.email)||'','pgAccount()'):row('☁️','Accedi o crea un account','','closeAll();after(()=>authShow(\'login\'))')}</div>`:''}<div class="sl"><p class="slh">Profilo</p>${row('👤','Dati personali',c.name||'','pgMe()')}${row('🎯','Obiettivi',f0(c.target)+' kcal','pgGoals()')}${row('🧭','Ricalcola il piano','','openWiz(true)')}</div>
 <div class="sl"><p class="slh">Diario</p>${row('⚡','Pasti rapidi',String(S.presets.length),'pgPresets()')}${row('🥫','I miei alimenti',String(S.foods.length+S.offc.length),'pgFoods()')}${row('⚖️','Giorni di pesata',c.weighDays.length?[1,2,3,4,5,6,0].filter(i=>c.weighDays.includes(i)).map(i=>DAYN[i]).join(', '):'nessuno','pgWeigh()')}${row('🏋️','Schede di allenamento',String(S.wtpl.length),'pgTpl()')}</div>
 <div class="sl"><p class="slh">Notifiche</p>${row('🔔','Centro notifiche',u?u+' nuove':'','openNotifs()')}${row('🎚️','Cosa ricevere','','pgNotif()')}</div>
 <div class="sl"><p class="slh">Aspetto</p>${row('🌓','Tema',{auto:'Automatico',light:'Chiaro',dark:'Scuro'}[c.theme||'auto'],'pgTheme()')}${tog('🐢','Riduci le animazioni','data-tog="rm"',c.rm)}</div>
-<div class="sl"><p class="slh">Dati e privacy</p>${row('💾','Esporta backup',c.lastBk?'ultimo '+dm(c.lastBk):'mai','exp()')}${row('📥','Importa backup','',"$('f').click()")}${row('📊','Esporta CSV per Excel','','csv()')}${row('🔒','Informativa privacy','','pgPrivacy()')}${row('🗑️','Elimina tutti i dati','','wipe()',1)}</div>
+<div class="sl"><p class="slh">Dati e privacy</p>${row('💾','Esporta backup',c.lastBk?'ultimo '+dm(c.lastBk):'mai','exp()')}${row('📥','Importa backup','',"$('f').click()")}${row('📊','Esporta CSV per Excel','','csv()')}${row('🔒','Informativa privacy','','pgPrivacy()')}${FBCFG&&(FBCFG.required||sMeta().uid)?'':row('🗑️','Elimina tutti i dati','','wipe()',1)}</div>
 <div class="sl"><p class="slh">Avanzate</p>${row('🧪','Modello del consumo calorico','','pgAdv()')}</div>
 <div class="sl"><p class="slh">Info</p>${canInstall()?row('📲','Installa l’app','','install()'):''}${row('❓','Come funziona','','pgHelp()')}${row('✨','Novità','versione '+VERSION,'pgNews()')}${row('📜','Condizioni d’uso','','pgTerms()')}${row('🥗','Crediti e licenze','','pgCredits()')}${FEEDBACK_EMAIL?row('✉️','Invia un suggerimento','',"location.href='mailto:'+FEEDBACK_EMAIL+'?subject=DietApp%20'+VERSION"):''}</div>
-<p class="mu" style="text-align:center">DietApp ${VERSION}</p>`}
+<p class="mu" style="text-align:center" onclick="betaTap()">DietApp ${VERSION}${BETA()?' · funzioni in prova':''}</p>`}
+const BETA=()=>{try{return localStorage.getItem('dietapp_beta')=='1'}catch(e){return false}};let BTN=0,BTT=0;
+function betaTap(){const t=Date.now();BTN=t-BTT<800?BTN+1:1;BTT=t;if(BTN>=5){BTN=0;const on=!BETA();try{on?localStorage.setItem('dietapp_beta','1'):localStorage.removeItem('dietapp_beta')}catch(e){}refreshSettings();note(on?'🧪 Funzioni in prova attivate':'Funzioni in prova disattivate')}}
 function openSettings(){openPage('set','Impostazioni',setHTML())}
 function refreshSettings(){const p=$('pg_set');if(p)p.querySelector('.pgc').innerHTML=setHTML()}
 function pgMe(){openPage('me','Dati personali',`<div class="g">${fin(['name','Nome','text'])}${CFP.map(fin).join('')}</div><div id="bmiw"></div><p class="mu">Le modifiche si salvano da sole.</p>`);bmiBox()}
@@ -1131,22 +1147,26 @@ function pgHelp(){openPage('help','Come funziona',`<button class="cta w shine" s
 <h3>I tuoi dati</h3><p>Restano solo su questo telefono. Fai un backup ogni tanto da Impostazioni → Esporta backup.</p>
 <h3>Valori nutrizionali</h3><p>Sono medi e indicativi. Per i prodotti confezionati vale sempre l’etichetta.</p>`))}
 function pgNews(){openPage('news','Novità',CHANGELOG.map(([v,d,it])=>`<div class="c nv"><b>Versione ${v}</b> <span>${d}</span><ul>${it.map(x=>`<li>${E(x)}</li>`).join('')}</ul></div>`).join(''))}
-function pgPrivacy(){openPage('priv','Informativa privacy',DOC(`<p class="mu">Ultimo aggiornamento: 17 ottobre 2026</p>
-<h3>In breve</h3><p>DietApp non ha account e non ha un server proprio: tutto quello che inserisci resta sul tuo telefono.</p>
-<h3>Quali dati usa l’app</h3><p>I dati che inserisci tu: nome (facoltativo), sesso, età, altezza, peso, misure del corpo e massa grassa, obiettivi, pasti, acqua, passi, allenamenti, sonno e note. Peso e alimentazione sono dati relativi alla salute: per questo restano solo sul dispositivo.</p>
-<h3>Dove sono salvati</h3><p>Nella memoria del browser di questo dispositivo. Non vengono inviati allo sviluppatore né a terzi. Non ci sono pubblicità, profilazione o strumenti di statistica.</p>
-<h3>Servizi esterni</h3><ul><li><b>Open Food Facts</b>: quando cerchi un prodotto online o scansioni un codice a barre, viene inviato solo il testo cercato o il codice, non i tuoi dati.</li><li><b>Netlify</b>, che ospita l’app: come ogni server può registrare dati tecnici di accesso (ad esempio indirizzo IP e tipo di browser) per sicurezza e funzionamento.</li></ul>
+const ACC_ON=()=>!!FBCFG&&(!!FBCFG.required||!!sMeta().uid||!$('auth').hidden);
+function pgPrivacy(){const A=ACC_ON();openPage('priv','Informativa privacy',DOC(`<p class="mu">Ultimo aggiornamento: ${A?'17 ottobre 2026 (account)':'17 ottobre 2026'}</p>
+<h3>In breve</h3><p>${A?'DietApp salva i tuoi dati sul telefono e nel tuo account, per ritrovarli su ogni dispositivo. Non vendiamo i tuoi dati, non c’è pubblicità e non c’è profilazione.':'DietApp non ha account e non ha un server proprio: tutto quello che inserisci resta sul tuo telefono.'}</p>
+<h3>Titolare del trattamento</h3><p>${CONTACT_EMAIL?`Lo sviluppatore di DietApp, contattabile all’indirizzo <a href="mailto:${CONTACT_EMAIL}">${CONTACT_EMAIL}</a>.`:'Lo sviluppatore di DietApp. I recapiti per le richieste sulla privacy saranno indicati qui.'}</p>
+<h3>Quali dati usa l’app</h3><ul>${A?'<li><b>Account</b>: email e, se accedi con Google o Facebook, il nome del profilo.</li>':''}<li><b>Dati che inserisci tu</b>: nome (facoltativo), sesso, età, altezza, peso, misure del corpo e massa grassa, obiettivi, pasti, acqua, passi, allenamenti, sonno e note.</li></ul><p>Peso, alimentazione, misure e allenamenti sono <b>dati relativi alla salute</b>${A?': li trattiamo solo con il tuo consenso esplicito, che ci dai al primo accesso.':' e restano solo sul dispositivo.'}</p>
+<h3>Perché li usiamo</h3><p>Solo per far funzionare l’app: calcolare calorie, consumo, progressi e grafici${A?', e salvare i tuoi dati nel tuo account':''}. Non li usiamo per pubblicità e non li cediamo a nessuno.</p>
+${A?`<h3>Base giuridica</h3><p>Per i dati sulla salute il tuo consenso esplicito (art. 9, par. 2, lett. a del GDPR); per i dati dell’account l’esecuzione del servizio che hai richiesto (art. 6, par. 1, lett. b).</p>`:''}
+<h3>Dove sono salvati</h3>${A?`<p>Sul tuo telefono e su <b>Google Firebase</b> (Google Ireland Limited), che li conserva per conto nostro come responsabile del trattamento. Il database con i tuoi dati si trova in Europa (Milano). Il servizio di accesso di Google può trattare i dati dell’account anche fuori dall’Unione europea, con le garanzie previste dal GDPR.</p><p>Ogni account può leggere solo i propri dati.</p>`:`<p>Nella memoria del browser di questo dispositivo. Non vengono inviati allo sviluppatore né a terzi. Non ci sono pubblicità, profilazione o strumenti di statistica.</p>`}
+<h3>Altri servizi</h3><ul><li><b>Open Food Facts</b>: quando cerchi un prodotto online o scansioni un codice a barre, viene inviato solo il testo cercato o il codice, non i tuoi dati.</li><li><b>Netlify</b>, che ospita l’app: come ogni server può registrare dati tecnici di accesso (ad esempio indirizzo IP e tipo di browser) per sicurezza e funzionamento.</li>${A?'<li><b>Google</b> o <b>Facebook</b>, se scegli di accedere con loro: ricevono la richiesta di accesso, non i tuoi dati di DietApp.</li>':''}</ul>
 <h3>Fotocamera</h3><p>Serve solo a leggere i codici a barre: le immagini non vengono salvate né inviate.</p>
-<h3>Backup</h3><p>Il file di backup lo crei e lo conservi tu: trattalo come un documento personale.</p>
-<h3>Cancellazione</h3><p>Puoi cancellare tutto in qualsiasi momento da Impostazioni → Elimina tutti i dati, oppure cancellando i dati del browser o disinstallando l’app.</p>
-<h3>Minori</h3><p>DietApp è pensata per persone maggiorenni.</p>
+<h3>Per quanto tempo</h3><p>${A?'Finché hai l’account. Se lo elimini, i tuoi dati online vengono cancellati subito.':'Finché non li cancelli tu.'}</p>
+<h3>I tuoi diritti</h3><p>Puoi vedere e correggere i tuoi dati nell’app, scaricarne una copia (Impostazioni → Esporta backup), ${A?'revocare il consenso e cancellare tutto (Impostazioni → Account → Elimina account e dati)':'cancellarli (Impostazioni → Elimina tutti i dati)'}. Hai anche diritto di fare reclamo al Garante per la protezione dei dati personali.</p>
+<h3>Minori</h3><p>DietApp è riservata a persone maggiorenni.</p>
 <h3>Modifiche</h3><p>Eventuali cambiamenti a questa informativa saranno indicati nelle Novità dell’app.</p>`))}
 function pgTerms(){openPage('terms','Condizioni d’uso',DOC(`<p class="mu">Ultimo aggiornamento: 17 ottobre 2026</p>
 <h3>Scopo</h3><p>DietApp è uno strumento di diario alimentare con finalità informative. Non è un dispositivo medico e non sostituisce il parere di un medico, di un dietologo o di un nutrizionista.</p>
 <h3>Quando chiedere a un professionista</h3><p>Prima di iniziare una dieta, e in particolare in caso di malattie, gravidanza, allattamento, farmaci, o disturbi del comportamento alimentare, rivolgiti a un medico. L’app è pensata per persone maggiorenni.</p>
 <h3>Stime</h3><p>Calorie consumate, deficit, proiezioni e valori nutrizionali sono stime indicative e possono differire dalla realtà. Per i prodotti confezionati fa fede l’etichetta.</p>
 <h3>Dati di terzi</h3><p>I prodotti cercati online provengono da Open Food Facts, un database collaborativo: possono contenere errori.</p>
-<h3>Responsabilità</h3><p>L’app è fornita gratuitamente “così com’è”, senza garanzie di funzionamento continuo o di esattezza dei dati, nei limiti consentiti dalla legge.</p>`))}
+${ACC_ON()?'<h3>Account</h3><p>Per usare DietApp serve un account personale. Sei responsabile della riservatezza delle tue credenziali. Puoi eliminare l’account e tutti i dati in qualsiasi momento dalle Impostazioni.</p>':''}<h3>Responsabilità</h3><p>L’app è fornita gratuitamente “così com’è”, senza garanzie di funzionamento continuo o di esattezza dei dati, nei limiti consentiti dalla legge.</p>`))}
 function pgCredits(){openPage('cred','Crediti e licenze',DOC(`<h3>Open Food Facts</h3><p>La ricerca online e i codici a barre usano i dati di <a href="https://world.openfoodfacts.org" target="_blank" rel="noopener">Open Food Facts</a>, disponibili con licenza Open Database License (ODbL). I contenuti del database sono sotto licenza Database Contents License.</p>
 <h3>Database interno</h3><p>Valori medi indicativi, compilati da tabelle pubbliche di composizione degli alimenti e da etichette di prodotti comuni.</p>
 <h3>Icone</h3><p>Le icone degli avvisi sono emoji di sistema del tuo telefono.</p>`))}
@@ -1813,6 +1833,99 @@ swipeClose(c,{can:()=>!!SV,top:()=>true,begin:()=>{SV.drag=true;SV.paused=true;c
 close:()=>storyClose(),back:()=>{c.style.transition='transform .3s cubic-bezier(.2,1.2,.35,1)';c.style.transform='';if(SV){SV.drag=false;SV.paused=false}}})}
 document.addEventListener('keydown',e=>{if(!SV)return;if(e.key==='ArrowRight')svNext();if(e.key==='ArrowLeft')svPrev()});
 
+/* ---------- ACCOUNT E SINCRONIZZAZIONE (Firebase) ----------
+   Il telefono resta la copia principale (localStorage); il cloud è users/{uid} (profilo) + users/{uid}/days/{data}.
+   Le modifiche si inviano poco dopo ogni salvataggio, si ricevono all'apertura e al ritorno online. */
+const SYK='dietapp_sync',MAINK=['cfg','presets','foods','offc','wtpl','ach','sts','recs','achInit','body','consent'];
+let FX=null,FA=null,FD=null,FU=null,AUTH_ST='off',SYT=null,SYBUSY=false,SYERR='',APPSTARTED=false;
+const sMeta=()=>{try{return JSON.parse(localStorage.getItem(SYK))||{}}catch(e){return{}}},sSave=m=>{try{localStorage.setItem(SYK,JSON.stringify(m))}catch(e){}};
+const hsh=o=>{const s=JSON.stringify(o)||'';let h=5381;for(let i=0;i<s.length;i++)h=(h*33^s.charCodeAt(i))>>>0;return h.toString(36)+s.length.toString(36)};
+const sPick=()=>{const o={};MAINK.forEach(k=>{if(S[k]!==undefined)o[k]=S[k]});return JSON.parse(JSON.stringify(o))};
+const AERR={'auth/invalid-email':'Indirizzo email non valido.','auth/user-not-found':'Email o password non corretti.','auth/wrong-password':'Email o password non corretti.','auth/invalid-credential':'Email o password non corretti.','auth/invalid-login-credentials':'Email o password non corretti.','auth/email-already-in-use':'Esiste già un account con questa email: accedi.','auth/weak-password':'La password deve avere almeno 6 caratteri.','auth/too-many-requests':'Troppi tentativi: riprova tra qualche minuto.','auth/network-request-failed':'Serve internet per accedere: controlla la connessione.','auth/account-exists-with-different-credential':'Hai già un account con questa email creato in un altro modo: accedi con quello.','auth/user-disabled':'Questo account è stato disattivato.','auth/missing-password':'Scrivi la password.','auth/operation-not-allowed':'Questo metodo di accesso non è ancora attivo.','auth/unauthorized-domain':'Accesso non autorizzato da questo indirizzo.'};
+const aerr=e=>AERR[e&&e.code]||('Qualcosa non ha funzionato. Riprova.'+(e&&e.code?' ('+e.code+')':''));
+/* --- caricamento della libreria (modulo da gstatic, vedi build.py) --- */
+function fbReady(){return new Promise(r=>{if(window.FBX!==undefined)return r(window.FBX);addEventListener('fbload',()=>r(window.FBX),{once:true});setTimeout(()=>r(window.FBX||null),12000)})}
+async function fbInit(){if(FA)return true;const X=await fbReady();if(!X)return false;FX=X;const{A,U,F}=X;
+const app=A.initializeApp(FBCFG.config);FA=U.initializeAuth(app,{persistence:[U.indexedDBLocalPersistence,U.browserLocalPersistence],popupRedirectResolver:U.browserPopupRedirectResolver});FA.languageCode='it';FD=F.getFirestore(app);return true}
+/* --- avvio --- */
+async function authBoot(){const m=sMeta();
+if(m.uid||!FBCFG.required)appStart();else authShow('wait');
+const ok=await fbInit();if(!ok){if(!m.uid)authShow('offline');return}
+try{await FX.U.getRedirectResult(FA)}catch(e){if(e.code&&e.code!='auth/no-auth-event')authMsg(aerr(e),1)}
+FX.U.onAuthStateChanged(FA,u=>{FU=u;if(u)onUser(u);else if(FBCFG.required)authShow('login');else{const b=$('auth');if(b.dataset.v=='wait')b.hidden=true}})}
+async function onUser(u){let m=sMeta();window.__syncOn=true;
+if(APPSTARTED&&m.uid===u.uid){if(!$('auth').hidden&&$('auth').dataset.v!='consent')$('auth').hidden=true;syncPull().then(()=>{if(S.consent)return syncPush();authShow('consent')}).catch(e=>{SYERR=e.code||'errore'});if(S.consent)delCheck();return}
+if(m.uid&&m.uid!==u.uid){S=migrate(clone(DEF));persist(0);m={}}
+if(!m.uid){m={uid:u.uid,h:{days:{}},pull:0};sSave(m)}
+if(!S.cfg.name&&u.displayName){S.cfg.name=u.displayName.split(/\s+/)[0].slice(0,30)}
+authShow('wait');try{await syncPull(true)}catch(e){SYERR=e.code||'errore'}
+if(!S.consent){authShow('consent');return}
+syncPush().catch(e=>{SYERR=e.code||'errore'});authDone()}
+function authDone(){const b=$('auth');b.hidden=true;b.dataset.v='';if(!APPSTARTED)appStart();else{if(!$('wiz').hidden&&S.cfg.ok)$('wiz').hidden=true;if(!S.cfg.ok&&$('wiz').hidden)openWiz(false);render();refresh();refreshSettings()}delCheck()}
+function delCheck(){if(sessionStorage.getItem('delPending')&&FU){sessionStorage.removeItem('delPending');setTimeout(()=>alertBox({icon:'🗑️',bg:'#ffd9d2',title:'Eliminare definitivamente?',text:'Hai confermato la tua identità. Ora l’account e tutti i dati verranno cancellati per sempre.',buttons:[{label:'Elimina definitivamente',danger:true,fn:accWipe},{label:'Annulla'}]}),600)}}
+/* --- schermata di accesso --- */
+const GIC='<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>';
+const FIC='<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.7V4.4c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.2v2.3H7.5V14h2.7v8h3.3z"/></svg>';
+let AUM='in';
+function authShow(v){const b=$('auth');b.dataset.v=v;b.hidden=false;const P=FBCFG.providers||[];let h=`<div class="aui">${ICON}</div>`;
+if(v=='wait')h+=`<h1>DietApp</h1><p class="aup">Sto preparando i tuoi dati…</p><div class="auw"><i></i><i></i><i></i></div>`;
+else if(v=='offline')h+=`<h1>Serve internet</h1><p class="aup">Per il primo accesso serve una connessione. Poi DietApp funziona anche offline.</p><button class="cta w shine" onclick="location.reload()">Riprova</button>`;
+else if(v=='consent')h+=`<h1>Prima di iniziare</h1><p class="aup">DietApp salva nel tuo account peso, pasti, misure e allenamenti: sono dati sulla salute, per questo ci serve il tuo consenso esplicito.</p>
+<label class="auk"><input type="checkbox" id="ck1"><span>Ho almeno 18 anni</span></label><label class="auk"><input type="checkbox" id="ck2"><span>Accetto le <a href="#" onclick="event.preventDefault();pgTerms()">condizioni d’uso</a> e ho letto l’<a href="#" onclick="event.preventDefault();pgPrivacy()">informativa privacy</a></span></label><label class="auk"><input type="checkbox" id="ck3"><span>Acconsento al trattamento dei miei dati sulla salute per far funzionare l’app (puoi revocarlo eliminando l’account)</span></label>
+<p class="aum" id="aum"></p><button class="cta w shine" onclick="authConsent()">Continua</button><button class="lnk aul" onclick="authDecline()">Non ora, esci</button>`;
+else{h+=`<h1>${AUM=='up'?'Crea il tuo account':'Benvenuto in DietApp'}</h1><p class="aup">${AUM=='up'?'Un account per salvare i tuoi progressi e ritrovarli su ogni telefono.':'Accedi per salvare i tuoi progressi e ritrovarli su ogni telefono.'}</p>
+${P.includes('google')?`<button class="aub" onclick="authProv('google')">${GIC}<span>Continua con Google</span></button>`:''}${P.includes('facebook')?`<button class="aub fb" onclick="authProv('facebook')">${FIC}<span>Continua con Facebook</span></button>`:''}
+${P.includes('password')?`<div class="aus"><span>oppure con la tua email</span></div><form onsubmit="authEmail(event)" novalidate><input id="aue" type="email" autocomplete="email" inputmode="email" placeholder="Email" required><div class="aupw"><input id="aupw" type="password" autocomplete="${AUM=='up'?'new-password':'current-password'}" placeholder="${AUM=='up'?'Password (almeno 6 caratteri)':'Password'}" required><button type="button" class="aueye" onclick="const i=$('aupw');i.type=i.type=='password'?'text':'password'" aria-label="Mostra la password">👁</button></div>
+<p class="aum" id="aum"></p><button class="cta w shine" type="submit">${AUM=='up'?'Crea account':'Accedi'}</button></form>
+<div class="aul2">${AUM=='up'?'Hai già un account? <button class="lnk" onclick="AUM=\'in\';authShow(\'login\')">Accedi</button>':'Non hai un account? <button class="lnk" onclick="AUM=\'up\';authShow(\'login\')">Registrati</button>'}${AUM=='in'?'<button class="lnk" onclick="authReset()">Password dimenticata?</button>':''}</div>`:'<p class="aum" id="aum"></p>'}
+${FBCFG.required?'':'<button class="lnk aul" onclick="authClose()">Non ora</button>'}<p class="aut">Continuando accetti le <a href="#" onclick="event.preventDefault();pgTerms()">condizioni d’uso</a> e l’<a href="#" onclick="event.preventDefault();pgPrivacy()">informativa privacy</a>.</p>`}
+$('auc').innerHTML=h}
+function authMsg(t,bad){const e=$('aum');if(e){e.textContent=t;e.classList.toggle('bad',!!bad)}else if(t)note(t,bad)}
+async function authProv(p){if(!(await fbInit()))return authShow('offline');authMsg('Ti porto alla pagina di accesso…');try{const pr=p=='google'?new FX.U.GoogleAuthProvider():new FX.U.FacebookAuthProvider();if(p=='google')pr.setCustomParameters({prompt:'select_account'});await FX.U.signInWithRedirect(FA,pr)}catch(e){authMsg(aerr(e),1)}}
+async function authEmail(ev){ev.preventDefault();const em=$('aue').value.trim(),pw=$('aupw').value;if(!em||!pw)return authMsg('Scrivi email e password.',1);if(!(await fbInit()))return authShow('offline');
+authMsg(AUM=='up'?'Creo l’account…':'Accedo…');try{if(AUM=='up'){const r=await FX.U.createUserWithEmailAndPassword(FA,em,pw);FX.U.sendEmailVerification(r.user).catch(()=>{})}else await FX.U.signInWithEmailAndPassword(FA,em,pw)}catch(e){authMsg(aerr(e),1)}}
+async function authReset(){const em=($('aue')||{}).value||'';if(!em.trim())return authMsg('Scrivi la tua email qui sopra, poi tocca di nuovo “Password dimenticata?”.',1);if(!(await fbInit()))return authShow('offline');
+try{await FX.U.sendPasswordResetEmail(FA,em.trim());authMsg('Ti abbiamo mandato un’email per scegliere una nuova password.')}catch(e){authMsg(aerr(e),1)}}
+function authConsent(){if(!['ck1','ck2','ck3'].every(i=>$(i).checked))return authMsg('Per usare DietApp servono tutte e tre le conferme.',1);S.consent={at:new Date().toISOString(),v:1};persist(0);syncPush().catch(e=>{SYERR=e.code||'errore'});authDone()}
+/* --- sincronizzazione --- */
+function syncSoon(){if(!FBCFG||!window.__syncOn||!sMeta().uid)return;clearTimeout(SYT);SYT=setTimeout(()=>syncPush().catch(()=>{}),2500)}
+async function syncPull(first){const m=sMeta();if(!m.uid||!FU||!(await fbInit()))return false;const F=FX.F,uid=m.uid;let ch=false;
+const ms=await F.getDoc(F.doc(FD,'users',uid));if(ms.exists()){const r=ms.data(),ru=r._u||0;if(ru>(m.mainU||0)){const dirty=m.h.main!==hsh(sPick());if(!dirty||!m.mainU){MAINK.forEach(k=>{if(r[k]!==undefined)S[k]=r[k]});S=migrate(S);ch=true}m.mainU=ru}}
+const qs=await F.getDocs(F.query(F.collection(FD,'users',uid,'days'),F.where('_u','>',m.pull||0)));
+qs.forEach(d=>{const r=d.data(),id=d.id,u=r._u||0;delete r._u;const loc=S.days[id],dirty=loc?m.h.days[id]!==hsh(loc):m.h.days[id]!=null;
+if(!dirty){if(r._del){if(loc){delete S.days[id];ch=true}delete m.h.days[id]}else{S.days[id]=r;m.h.days[id]=hsh(r);ch=true}}if(u>(m.pull||0))m.pull=u});
+m.last=Date.now();sSave(m);if(ch){S=migrate(S);persist(0);if(APPSTARTED){render();refresh()}}SYERR='';return ch}
+async function syncPush(){const m=sMeta();if(!m.uid||!FU||!S.consent||SYBUSY||navigator.onLine===false||!(await fbInit()))return;SYBUSY=true;const F=FX.F,uid=m.uid,now=Date.now();
+try{const W=[];for(const d in S.days){const h=hsh(S.days[d]);if(m.h.days[d]!==h)W.push([d,S.days[d],h])}for(const d in m.h.days)if(!S.days[d])W.push([d,null,null]);
+for(let i=0;i<W.length;i+=400){const b=F.writeBatch(FD);W.slice(i,i+400).forEach(([d,x])=>b.set(F.doc(FD,'users',uid,'days',d),x?{...JSON.parse(JSON.stringify(x)),_u:now}:{_del:true,_u:now}));await b.commit();W.slice(i,i+400).forEach(([d,x,h])=>{if(h)m.h.days[d]=h;else delete m.h.days[d]});if(now>(m.pull||0))m.pull=now}
+const mh=hsh(sPick());if(m.h.main!==mh){await F.setDoc(F.doc(FD,'users',uid),{...sPick(),_u:now});m.h.main=mh;m.mainU=now}
+m.last=Date.now();sSave(m);SYERR=''}catch(e){SYERR=e.code||'errore';throw e}finally{SYBUSY=false;const p=$('pg_acc');if(p)pgAccount()}}
+const pending=()=>{const m=sMeta();if(!m.uid)return 0;let n=0;for(const d in S.days)if(m.h.days[d]!==hsh(S.days[d]))n++;for(const d in m.h.days)if(!S.days[d])n++;if(m.h.main!==hsh(sPick()))n++;return n};
+addEventListener('online',()=>{if(FBCFG&&FU)syncPull().then(()=>syncPush()).catch(()=>{})});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&FBCFG&&FU)syncPull().then(()=>syncPush()).catch(()=>{})});
+/* --- pagina Account --- */
+function pgAccount(){const u=FU,m=sMeta(),pv=u&&u.providerData&&u.providerData[0]?u.providerData[0].providerId:'',pn={'google.com':'Google','facebook.com':'Facebook','password':'Email e password'}[pv]||'',p=pending(),em=u?u.email||'':m.email||'';
+const st=!u?'⏳ In attesa di collegamento':navigator.onLine===false?'📴 Offline: i dati si salveranno online appena torni connesso':SYERR?'⚠️ Ultimo tentativo non riuscito':p?'⏳ '+p+(p==1?' modifica da salvare':' modifiche da salvare'):'✅ Tutto salvato online'+(m.last?' · '+new Date(m.last).toLocaleTimeString('it-IT',{hour:'2-digit',minute:'2-digit'}):'');
+openPage('acc','Account',`<div class="phd"><div class="av">${E((S.cfg.name||em||'?').slice(0,1).toUpperCase())}</div><div class="phn"><h1 style="font-size:22px">${E(S.cfg.name||'Il tuo account')}</h1><p class="mu">${E(em)}${pn?' · '+pn:''}</p></div></div>
+<div class="c"><b style="font-size:17px">Sincronizzazione</b><span style="display:block;margin-top:4px;font-size:14px">${st}</span><button class="s w" onclick="syncNow()">☁️ Sincronizza ora</button></div>
+${u&&pv=='password'&&!u.emailVerified?`<div class="c warn"><b>📧 Verifica la tua email</b><span>Ti abbiamo mandato un link a ${E(em)}: aprilo per confermare l’indirizzo.</span><div class="row"><button onclick="FX.U.sendEmailVerification(FU).then(()=>note('📧 Email inviata')).catch(e=>note(aerr(e),1))">Invia di nuovo</button></div></div>`:''}
+<p class="mu">I tuoi dati sono salvati sul telefono e nel tuo account, su server in Europa. Funziona anche offline: le modifiche si salvano online appena c’è internet.</p>
+<button class="s w" onclick="authOut()">Esci dall’account</button><button class="w danger" onclick="accDelete()">Elimina account e dati</button>`)}
+async function syncNow(){if(navigator.onLine===false)return note('Sei offline: riprova quando c’è internet',1);note('☁️ Sincronizzo…');try{await syncPull();await syncPush();note('✅ Tutto salvato online')}catch(e){note('Sincronizzazione non riuscita: riprova',1)}if($('pg_acc'))pgAccount()}
+async function authDecline(){try{if(FA)await FX.U.signOut(FA)}catch(e){}try{localStorage.removeItem(SYK)}catch(e){}location.replace(location.pathname)}
+function authClose(){const b=$('auth');b.hidden=true;b.dataset.v=''}
+function authOut(skip){const go=async()=>{try{if(FU)await syncPush()}catch(e){}const p=pending();if(p&&!skip)return alertBox({icon:'⚠️',bg:'#ffd9d2',title:'Modifiche non salvate',text:'Ci sono '+p+' modifiche non ancora salvate online (serve internet). Se esci ora le perdi.',buttons:[{label:'Esci comunque',danger:true,fn:()=>authOut(1)},{label:'Annulla'}]});
+try{if(FA)await FX.U.signOut(FA)}catch(e){}try{localStorage.removeItem(K);localStorage.removeItem(SYK)}catch(e){}location.replace(location.pathname)};
+if(skip)return go();alertBox({icon:'👋',bg:'#e3ecff',title:'Uscire dall’account?',text:'I tuoi dati restano salvati nel tuo account. Da questo telefono verranno tolti finché non accedi di nuovo.',buttons:[{label:'Esci',danger:true,fn:go},{label:'Annulla'}]})}
+function accDelete(){alertBox({icon:'🗑️',bg:'#ffd9d2',title:'Eliminare l’account?',text:'Verranno cancellati per sempre l’account e tutti i dati: pasti, allenamenti, pesate, misure e traguardi, online e su questo telefono. Non si può annullare.',buttons:[{label:'Elimina tutto',danger:true,fn:()=>alertBox({icon:'⚠️',bg:'#ffd9d2',title:'Sei sicuro?',text:'Ultima conferma: l’account non si potrà recuperare.',buttons:[{label:'Sì, elimina account',danger:true,fn:accDelGo},{label:'Annulla'}]})},{label:'Prima esporta un backup',fn:exp},{label:'Annulla'}]})}
+async function accDelGo(){if(navigator.onLine===false||!FU)return note('Serve internet per eliminare l’account',1);const u=FU,pv=u.providerData[0]?u.providerData[0].providerId:'',age=Date.now()-new Date(u.metadata.lastSignInTime).getTime();
+if(age>4*60e3){if(pv=='password')return sheet(`<h3>Conferma la password</h3><p class="mu">Per sicurezza, scrivi la password del tuo account.</p><input id="rpw" type="password" autocomplete="current-password" placeholder="Password"><button class="w danger" onclick="accReauth()">Elimina definitivamente</button><button class="lnk" onclick="closeSheet()">Annulla</button>`);
+try{sessionStorage.setItem('delPending','1');await FX.U.reauthenticateWithRedirect(u,pv=='facebook.com'?new FX.U.FacebookAuthProvider():new FX.U.GoogleAuthProvider())}catch(e){sessionStorage.removeItem('delPending');note(aerr(e),1)}return}
+await accWipe()}
+async function accReauth(){try{await FX.U.reauthenticateWithCredential(FU,FX.U.EmailAuthProvider.credential(FU.email,$('rpw').value));closeSheet();await accWipe()}catch(e){note(aerr(e),1)}}
+async function accWipe(){note('🗑️ Elimino l’account…');const F=FX.F,uid=FU.uid;try{const qs=await F.getDocs(F.collection(FD,'users',uid,'days'));let b=F.writeBatch(FD),n=0;for(const d of qs.docs){b.delete(d.ref);if(++n%400==0){await b.commit();b=F.writeBatch(FD)}}await b.commit();await F.deleteDoc(F.doc(FD,'users',uid));await FX.U.deleteUser(FU)}
+catch(e){return alertBox({icon:'⚠️',title:'Non è stato possibile completare',text:aerr(e)+' Riprova tra poco.',buttons:[{label:'Ok'}]})}try{localStorage.removeItem(K);localStorage.removeItem(SYK)}catch(e){}location.replace(location.pathname)}
+
 /* ---------- AVVIO ---------- */
 function navSet(){const show={ai:HAS_AI};for(const k in show){const a=document.querySelector(`nav a[data-t="${k}"]`);if(a)a.style.display=show[k]?'':'none'}}
 let TABL=null;
@@ -1823,10 +1936,12 @@ if(!HAS_AI)$('ai').remove();else $('ad').value=TODAY();
 history.replaceState({l:0},'');applyTheme();navSet();$('d').value=TODAY();$('d').onchange=render;render();
 $('pages').addEventListener('change',e=>{const el=e.target;if(el.dataset.cfg)return setCfg(el.dataset.cfg,el);if(el.dataset.tog){S.cfg[el.dataset.tog]=el.checked;persist();navSet();applyTheme();note('✅ Salvato');return}if(el.dataset.ntog){S.cfg.notif[el.dataset.ntog]=el.checked;persist();note('✅ Salvato');return}if(el.closest('#prl')){rdPre();persist();render();refreshSettings();note('✅ Salvato');return}if(el.closest('#wdw')){S.cfg.weighDays=[...document.querySelectorAll('#wdw input:checked')].map(x=>+x.value);persist();render();refreshSettings();note('✅ Salvato')}});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')back()});
+function appStart(){if(APPSTARTED)return;APPSTARTED=true;render();
 if(!S.cfg.ok){S.seenVer=VERSION;openWiz(false)}else{
 const qa=new URLSearchParams(location.search).get('a');if(qa){history.replaceState({l:0},'',location.pathname);if(qa=='add')after(openAdd);if(qa=='weigh')ACT.weigh()}
 if(S.seenVer!==VERSION){const nw=CHANGELOG[0];notify('news-'+VERSION,{type:'news',icon:'✨',bg:'#fdeea0',title:'Novità della versione '+VERSION,text:nw[2].slice(0,3).join(' · '),act:'news'});
 if(!qa)setTimeout(()=>{if($('al').hidden&&$('sheet').hidden)alertBox({icon:'✨',bg:'#fdeea0',title:'Novità di DietApp '+VERSION,text:nw[2].map(x=>'• '+x).join('\n'),buttons:[{label:'Fantastico!'},{label:'Tutte le novità',fn:pgNews}]})},4200);S.seenVer=VERSION;persist()}
-checks()}
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&S.cfg.ok){checks();if($('oggi').classList.contains('on'))render()}});
-</script><script>(()=>{const x=document.getElementById('splash');if(!x)return;const rm=matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('rm'),m=document.querySelector('meta[name=theme-color]');document.querySelectorAll('main>section.on>*').forEach((e,i)=>e.style.setProperty('--i',Math.min(i,7)));if(m&&!rm){m.content='#10260a';setTimeout(()=>{if(!done)m.content='#9be564'},950)}let done=false;const go=()=>{if(done)return;done=true;x.classList.add('out');if(typeof applyTheme=='function')applyTheme();setTimeout(()=>x.remove(),rm?0:1700)};x.addEventListener('click',go);setTimeout(go,rm?900:2300)})()</script><script>if('serviceWorker' in navigator&&location.protocol!=='file:'){const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.register('sw.js').then(r=>{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')r.update().catch(()=>{})})}).catch(()=>{});navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had)note('🔄 È disponibile una nuova versione',0,{label:'Aggiorna',fn:()=>location.reload()})})}</script></body></html>
+checks()}}
+if(FBCFG)authBoot();else appStart();
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&S.cfg.ok&&APPSTARTED){checks();if($('oggi').classList.contains('on'))render()}});
+</script><script type="module">const B='https://www.gstatic.com/firebasejs/10.14.1/';try{const[A,U,F]=await Promise.all([import(B+'firebase-app.js'),import(B+'firebase-auth.js'),import(B+'firebase-firestore.js')]);window.FBX={A,U,F}}catch(e){window.FBX=null}dispatchEvent(new Event('fbload'))</script><script>(()=>{const x=document.getElementById('splash');if(!x)return;const rm=matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('rm'),m=document.querySelector('meta[name=theme-color]');document.querySelectorAll('main>section.on>*').forEach((e,i)=>e.style.setProperty('--i',Math.min(i,7)));if(m&&!rm){m.content='#10260a';setTimeout(()=>{if(!done)m.content='#9be564'},950)}let done=false;const go=()=>{if(done)return;done=true;x.classList.add('out');if(typeof applyTheme=='function')applyTheme();setTimeout(()=>x.remove(),rm?0:1700)};x.addEventListener('click',go);setTimeout(go,rm?900:2300)})()</script><script>if('serviceWorker' in navigator&&location.protocol!=='file:'){const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.register('sw.js').then(r=>{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')r.update().catch(()=>{})})}).catch(()=>{});navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had)note('🔄 È disponibile una nuova versione',0,{label:'Aggiorna',fn:()=>location.reload()})})}</script></body></html>
