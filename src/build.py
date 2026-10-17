@@ -29,6 +29,10 @@ self.addEventListener('fetch',e=>{{const u=new URL(e.request.url);if(e.request.m
 if(u.origin==='https://www.gstatic.com'&&u.pathname.startsWith('/firebasejs/')){{e.respondWith(caches.match(e.request).then(m=>m||fetch(e.request).then(r=>{{const cp=r.clone();caches.open(C).then(c=>c.put(e.request,cp));return r}})));return}}
 if(u.origin!==location.origin||u.pathname.startsWith('/__/'))return;e.respondWith(fetch(e.request).then(r=>{{const cp=r.clone();caches.open(C).then(c=>c.put(e.request,cp));return r}}).catch(()=>caches.match(e.request,{{ignoreSearch:true}}).then(m=>m||caches.match('./index.html'))))}});
 """)
+# Pagine pubbliche (privacy, eliminazione dati): src/pagine/*.html -> public/, con stile e contatto dal template
+m=re.search(r"CONTACT_EMAIL='([^']*)'",t);CONTACT=m.group(1) if m else ""
+css=(S/"pagine"/"stile.css").read_text()
+for f in sorted((S/"pagine").glob("*.html")):(P/f.name).write_text(f.read_text().replace("/*STYLE*/",css).replace("/*CONTACT*/",CONTACT or "lo sviluppatore"))
 rd=P/"_redirects"
 if FB:rd.write_text("".join(f"/__/{x}/*  https://{FB['config']['projectId']}.firebaseapp.com/__/{x}/:splat  200!\n" for x in ("auth","firebase")))
 elif rd.exists():rd.unlink()

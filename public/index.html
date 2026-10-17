@@ -1075,8 +1075,9 @@ const closedDays=()=>M.ds.filter(d=>D[d].cl&&num(D[d].k));
 function chips(){calc();const s=stats(),nm=(S.cfg.name||'').trim().split(/\s+/)[0];$('tbl').textContent=nm?'Ciao, '+nm+' 👋':'';$('stk').textContent='🔥 '+s.st;$('wgt').textContent=f1(M.lw)+' ⚖️';bell();achCheck()}
 
 /* ---------- VERSIONE E NOVITÀ ---------- */
-const VERSION='2.7.2',FEEDBACK_EMAIL='',CONTACT_EMAIL='';
+const VERSION='2.7.3',FEEDBACK_EMAIL='',CONTACT_EMAIL='angelomenga199898@gmail.com';
 const CHANGELOG=[
+['2.7.3','17 ottobre 2026',['Informativa privacy con i recapiti per le tue richieste','Nuove pagine pubbliche sulla privacy e su come eliminare i tuoi dati']],
 ['2.7.2','17 ottobre 2026',['Storie in alto nella Home, come su Instagram','Guida a storie: come funzionano tutte le sezioni','Il riepilogo della tua settimana, le novità e i consigli in formato storia']],
 ['2.7.1','17 ottobre 2026',['Composizione e misure unite in un’unica sezione “Composizione corporea”','Chiudi fogli e avvisi trascinandoli verso il basso','Nuova barra della data con la settimana: tocca un giorno o scorri per cambiare settimana','Indicatori in alto più compatti','Nuova animazione di apertura','Pasti in un riquadro con icone per momento della giornata','Giorni rinnovata: calendario del mese colorato e storico per settimana']],
 ['2.7','17 ottobre 2026',['Nuova sezione Corpo: peso, misure e massa grassa in un posto solo','Stima della massa grassa dalle misure (vita e collo) o dalla tua bilancia smart','Grafici di peso, vita, % di grasso e di ogni misura','Promemoria per prendere le misure ogni 2 settimane','Tocca il tuo peso in alto per aprire Corpo']],
@@ -1159,6 +1160,7 @@ ${A?`<h3>Base giuridica</h3><p>Per i dati sulla salute il tuo consenso esplicito
 <h3>Fotocamera</h3><p>Serve solo a leggere i codici a barre: le immagini non vengono salvate né inviate.</p>
 <h3>Per quanto tempo</h3><p>${A?'Finché hai l’account. Se lo elimini, i tuoi dati online vengono cancellati subito.':'Finché non li cancelli tu.'}</p>
 <h3>I tuoi diritti</h3><p>Puoi vedere e correggere i tuoi dati nell’app, scaricarne una copia (Impostazioni → Esporta backup), ${A?'revocare il consenso e cancellare tutto (Impostazioni → Account → Elimina account e dati)':'cancellarli (Impostazioni → Elimina tutti i dati)'}. Hai anche diritto di fare reclamo al Garante per la protezione dei dati personali.</p>
+<p>Versione pubblica: <a href="privacy.html" target="_blank" rel="noopener">informativa</a> · <a href="elimina-dati.html" target="_blank" rel="noopener">eliminazione dei dati</a>.</p>
 <h3>Minori</h3><p>DietApp è riservata a persone maggiorenni.</p>
 <h3>Modifiche</h3><p>Eventuali cambiamenti a questa informativa saranno indicati nelle Novità dell’app.</p>`))}
 function pgTerms(){openPage('terms','Condizioni d’uso',DOC(`<p class="mu">Ultimo aggiornamento: 17 ottobre 2026</p>
