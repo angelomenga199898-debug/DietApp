@@ -1107,8 +1107,9 @@ const closedDays=()=>M.ds.filter(d=>D[d].cl&&num(D[d].k));
 function chips(){calc();const s=stats(),nm=(S.cfg.name||'').trim().split(/\s+/)[0];$('tbl').textContent=nm?T('Ciao, {n} 👋',{n:nm}):'';$('stk').textContent='🔥 '+s.st;$('wgt').textContent=f1(M.lw)+' ⚖️';bell();achCheck()}
 
 /* ---------- VERSIONE E NOVITÀ ---------- */
-const VERSION='3.0',FEEDBACK_EMAIL='',CONTACT_EMAIL='angelomenga199898@gmail.com';
+const VERSION='3.0.1',FEEDBACK_EMAIL='',CONTACT_EMAIL='angelomenga199898@gmail.com';
 const CHANGELOG=[
+['3.0.1','2026-10-17',[T('Messaggi più chiari quando il server non risponde')]],
 ['3.0','2026-10-17',[T('Nuove lingue: inglese, francese, spagnolo e tedesco, anche per gli alimenti'),T('Assistente AI: scrivi o fotografa cosa mangi e calcola kcal e macro'),T('Coach AI che risponde usando i tuoi dati, e commento della settimana'),T('Notifiche sul telefono: pesata, giornata da chiudere e novità'),T('7 giorni di prova con tutte le funzioni AI, poi i piani Free e Pro'),T('Codici regalo per attivare DietApp Pro')]],
 ['2.8','2026-10-17',[T('Il tuo account DietApp: accedi con Google oppure con email e password'),T('I tuoi dati sono salvati online e li ritrovi su ogni telefono'),T('Funziona anche senza internet: i dati si sincronizzano appena torni online'),T('Puoi eliminare l’account e tutti i dati quando vuoi, dalle Impostazioni')]],
 ['2.7.3','2026-10-17',[T('Informativa privacy con i recapiti per le tue richieste'),T('Nuove pagine pubbliche sulla privacy e su come eliminare i tuoi dati')]],
@@ -1797,7 +1798,7 @@ async function api(path,body){if(navigator.onLine===false)throw{code:'offline'};
 try{r=await fetch(path,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+tk},body:JSON.stringify(body)})}catch(e){throw{code:'offline'}}
 let j={};try{j=await r.json()}catch(e){}if(!r.ok||j.err)throw{code:j.err||'http'+r.status,j};return j}
 function aiErr(e){const c=e&&e.code,j=(e&&e.j)||{};if(j.used!=null)AIU={used:j.used,max:j.max};
-return c=='plan'?T('L’assistente AI fa parte di DietApp Pro: attivalo con un codice regalo.'):c=='limit'?T('Hai usato tutte le {n} richieste di oggi: riprova domani.',{n:j.max||20}):c=='cap'?T('L’assistente ha raggiunto il limite di questo mese: riprova più avanti.'):c=='offline'?T('Serve internet per usare l’assistente.'):c=='auth'?T('Accedi al tuo account per usare l’assistente.'):c=='config'?T('L’assistente non è ancora attivo sul server.'):c=='img'?T('Questa foto non va bene: prova con un’altra.'):c=='rate_limited'?T('Troppe richieste ravvicinate: riprova tra poco.'):(e&&e.message&&!c)?e.message:T('L’assistente non ha risposto. Riprova tra poco.')}
+return c=='plan'?T('L’assistente AI fa parte di DietApp Pro: attivalo con un codice regalo.'):c=='limit'?T('Hai usato tutte le {n} richieste di oggi: riprova domani.',{n:j.max||20}):c=='cap'?T('L’assistente ha raggiunto il limite di questo mese: riprova più avanti.'):c=='offline'?T('Serve internet per usare l’assistente.'):c=='auth'?T('Accedi al tuo account per usare l’assistente.'):c=='config'?T('L’assistente non è ancora attivo sul server.')+' ('+T('manca la chiave dell’account di servizio')+')':c=='gateway'?T('L’assistente non è ancora attivo sul server.')+' ('+T('l’AI Gateway di Netlify non è attivo')+')':c=='img'?T('Questa foto non va bene: prova con un’altra.'):c=='rate_limited'?T('Troppe richieste ravvicinate: riprova tra poco.'):(e&&e.message&&!c)?e.message:T('L’assistente non ha risposto. Riprova tra poco.')}
 function aiConsent(fn){if(S.aiok||HAS_AI)return fn();alertBox({icon:'🤖',bg:'#e3ecff',title:T('Prima di iniziare'),text:T('Per rispondere, quello che scrivi o fotografi e, per il coach e il commento della settimana, un riepilogo dei tuoi dati (obiettivi, pasti, peso, allenamenti) vengono inviati a Google Gemini tramite Netlify. Non vengono usati per addestrare i modelli. Le risposte sono stime, non consigli medici.'),buttons:[{label:T('Accetto'),fn:()=>{S.aiok=new Date().toISOString();persist();fn()}},{label:T('Annulla')}]})}
 const AIMODES=()=>[['parse','📝',T('Scrivi')],['photo','📷',T('Foto')],['chat','💬',T('Coach')],['week','📊',T('Settimana')]];
 const AISUG=()=>[T('Come sta andando questa settimana?'),T('Perché il peso non scende?'),T('Cosa mangio stasera per arrivare alle proteine?'),T('Idee per uno spuntino proteico')];
@@ -1976,7 +1977,10 @@ function tipPages(){const c=S.cfg;return[
 {t:T('Fame'),ts:'🥦',items:[{h:T('Verdure e cibi ricchi di <b>fibre</b> riempiono con poche calorie.'),s:'🥗'},{h:T('Bevi durante il giorno: il tuo obiettivo è <b>{n} L</b>.',{n:fv(c.waterT)}),s:'💧'},{h:T('Dormire <b>7–9 ore</b> aiuta a tenere sotto controllo l’appetito.'),s:'😴'}]},
 {t:T('Costanza'),ts:'📆',items:[{h:T('Una giornata sopra non rovina niente: conta la <b>media della settimana</b>.'),s:'🧘'},{h:T('Il peso oscilla di 1–2 kg per acqua e sale: guarda la <b>media di 7 giorni</b>.'),s:'⚖️'},{h:T('Meglio <b>piano e costante</b> che veloce e faticoso.'),s:'🐢'}]},
 {t:T('Con giudizio'),ts:'❤️',items:[{h:T('Non scendere sotto le <b>{n} kcal</b> al giorno.',{n:f0(c.floor)}),s:'⚠️'},{h:T('Le calorie dell’app sono <b>stime</b>: per i prodotti confezionati vale l’etichetta.'),s:'🏷️'},{h:T('In caso di dubbi, malattie o farmaci, chiedi al <b>medico</b>.'),s:'🩺'}]}]}
-function newsPages(){const [v,,it]=CHANGELOG[0],st=['✨','🚀','🎉','💚','⭐','🆕'],P=[];for(let i=0;i<it.length;i+=3)P.push({t:i?T('E poi…'):T('Novità'),ts:i?'🎁':'✨',items:it.slice(i,i+3).map((h,j)=>({h:E(h),s:st[(i+j)%st.length]}))});P[0].sub=T('Versione {v}',{v});return P}
+// Novità da mostrare: dalle versioni uscite dopo `since` (l'ultima vista) oppure, senza since, dalle versioni con lo stesso x.y di quella attuale (es. 3.0 e 3.0.1). Gruppi x.y dal più nuovo; dentro il gruppo prima le voci della versione principale. Massimo 8.
+const verKey=v=>String(v).split('.').slice(0,2).join('.');
+function newsItems(since){const L=[];for(const c of CHANGELOG){if(since?c[0]===since:verKey(c[0])!==verKey(VERSION))break;L.push(c)}const G=[];for(const c of L){const k=verKey(c[0]);let g=G.find(x=>x.k===k);if(!g)G.push(g={k,e:[]});g.e.unshift(c[2])}const out=G.flatMap(g=>g.e.flat());return(out.length?out:CHANGELOG[0][2]).slice(0,8)}
+function newsPages(){const v=VERSION,it=newsItems(),st=['✨','🚀','🎉','💚','⭐','🆕'],P=[];for(let i=0;i<it.length;i+=3)P.push({t:i?T('E poi…'):T('Novità'),ts:i?'🎁':'✨',items:it.slice(i,i+3).map((h,j)=>({h:E(h),s:st[(i+j)%st.length]}))});P[0].sub=T('Versione {v}',{v});return P}
 function weekPages(){calc();const c=S.cfg,L=[];for(let i=1;i<=7;i++)L.push(iso(new Date(Date.now()-i*864e5)));
 const cl=L.filter(d=>D[d]&&D[d].cl&&num(D[d].k));
 if(cl.length<2)return[{t:T('La tua settimana'),ts:'📊',items:[{h:T('Qui trovi il riepilogo dei tuoi <b>ultimi 7 giorni</b>.'),s:'🗓️'},{h:cl.length==1?T('Per ora c’è <b>1 giornata completa</b>: ne servono almeno 2.'):T('Per ora non ci sono <b>giornate complete</b>: ne servono almeno 2.'),s:'⏳'},{h:T('Registra i pasti ogni giorno e torna a vederlo!'),s:'💪'}]}];
@@ -2133,8 +2137,8 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')back()});
 function appStart(){if(APPSTARTED)return;APPSTARTED=true;render();
 if(!S.cfg.ok){S.seenVer=VERSION;openWiz(false)}else{
 const qa=new URLSearchParams(location.search).get('a');if(qa){history.replaceState({l:0},'',location.pathname);if(qa=='add')after(openAdd);else if(ACT[qa])ACT[qa]()}
-if(S.seenVer!==VERSION){const nw=CHANGELOG[0];notify('news-'+VERSION,{type:'news',icon:'✨',bg:'#fdeea0',title:T('Novità della versione {v}',{v:VERSION}),text:nw[2].slice(0,3).join(' · '),act:'news'});
-if(!qa)setTimeout(()=>{if($('al').hidden&&$('sheet').hidden)alertBox({icon:'✨',bg:'#fdeea0',title:T('Novità di DietApp {v}',{v:VERSION}),text:nw[2].map(x=>'• '+x).join('\n'),buttons:[{label:T('Fantastico!')},{label:T('Tutte le novità'),fn:pgNews}]})},4200);S.seenVer=VERSION;persist()}
+if(S.seenVer!==VERSION){const ni=newsItems(S.seenVer);notify('news-'+VERSION,{type:'news',icon:'✨',bg:'#fdeea0',title:T('Novità della versione {v}',{v:VERSION}),text:ni.slice(0,3).join(' · '),act:'news'});
+if(!qa)setTimeout(()=>{if($('al').hidden&&$('sheet').hidden)alertBox({icon:'✨',bg:'#fdeea0',title:T('Novità di DietApp {v}',{v:VERSION}),text:ni.map(x=>'• '+x).join('\n'),buttons:[{label:T('Fantastico!')},{label:T('Tutte le novità'),fn:pgNews}]})},4200);S.seenVer=VERSION;persist()}
 checks()}}
 if(FBCFG)authBoot();else appStart();
 if('serviceWorker' in navigator)navigator.serviceWorker.addEventListener('message',e=>{const a=e.data&&e.data.act;if(a&&APPSTARTED&&S.cfg.ok&&ACT[a])ACT[a]()});

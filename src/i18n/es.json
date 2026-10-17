@@ -1253,5 +1253,8 @@
 "L’accesso al tuo account non è ancora pronto: esci e rientra, poi riprova.": "El acceso a tu cuenta aún no está listo: cierra sesión, vuelve a entrar y reinténtalo.",
 "Il server non è configurato: manca la chiave dell’account di servizio su Netlify.": "El servidor no está configurado: falta la clave de la cuenta de servicio en Netlify.",
 "Il server non trova la funzione del piano: controlla che l’ultima pubblicazione su Netlify sia andata a buon fine.": "El servidor no encuentra la función del plan: comprueba que la última publicación en Netlify haya funcionado.",
-"Il server ha risposto con un errore: guarda i log della funzione “piano” su Netlify.": "El servidor ha devuelto un error: revisa los registros de la función “piano” en Netlify."
+"Il server ha risposto con un errore: guarda i log della funzione “piano” su Netlify.": "El servidor ha devuelto un error: revisa los registros de la función “piano” en Netlify.",
+"manca la chiave dell’account di servizio": "falta la clave de la cuenta de servicio",
+"l’AI Gateway di Netlify non è attivo": "el AI Gateway de Netlify no está activo",
+"Messaggi più chiari quando il server non risponde": "Mensajes más claros cuando el servidor no responde"
 }

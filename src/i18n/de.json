@@ -1253,5 +1253,8 @@
 "L’accesso al tuo account non è ancora pronto: esci e rientra, poi riprova.": "Die Anmeldung ist noch nicht bereit: Melde dich ab und wieder an und versuch es dann erneut.",
 "Il server non è configurato: manca la chiave dell’account di servizio su Netlify.": "Der Server ist nicht eingerichtet: Der Dienstkontoschlüssel fehlt bei Netlify.",
 "Il server non trova la funzione del piano: controlla che l’ultima pubblicazione su Netlify sia andata a buon fine.": "Der Server findet die Abo-Funktion nicht: Prüfe, ob die letzte Veröffentlichung bei Netlify erfolgreich war.",
-"Il server ha risposto con un errore: guarda i log della funzione “piano” su Netlify.": "Der Server hat einen Fehler gemeldet: Sieh dir die Logs der Funktion „piano“ bei Netlify an."
+"Il server ha risposto con un errore: guarda i log della funzione “piano” su Netlify.": "Der Server hat einen Fehler gemeldet: Sieh dir die Logs der Funktion „piano“ bei Netlify an.",
+"manca la chiave dell’account di servizio": "der Dienstkontoschlüssel fehlt",
+"l’AI Gateway di Netlify non è attivo": "das AI Gateway von Netlify ist nicht aktiv",
+"Messaggi più chiari quando il server non risponde": "Klarere Meldungen, wenn der Server nicht antwortet"
 }

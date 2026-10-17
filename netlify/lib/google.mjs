@@ -13,12 +13,29 @@ export const json = (o, status = 200) => new Response(JSON.stringify(o), {
 
 let SA = null, SAWARN = false;
 const saWarn = m => { if (!SAWARN) { SAWARN = true; console.error("FIREBASE_SERVICE_ACCOUNT: " + m); } };
+// Accetta il contenuto del file JSON anche se incollato tra virgolette, con spazi o codificato in base64.
+export function parseServiceAccount(raw) {
+  let s = String(raw || "").trim().replace(/^\uFEFF/, "");
+  const tryParse = x => { try { let v = JSON.parse(x); if (typeof v === "string") v = JSON.parse(v); return v && typeof v === "object" ? v : null; } catch { return null; } };
+  // a capo veri dentro le stringhe (succede copiando la chiave privata): diventano \n
+  const fixNl = x => x.replace(/"((?:[^"\\]|\\.)*)"/gs, (m, g) => '"' + g.replace(/\r?\n/g, "\\n") + '"');
+  let o = tryParse(s);
+  if (!o && /^(["'`]).*\1$/s.test(s)) o = tryParse(s.slice(1, -1).trim());
+  if (!o && !s.startsWith("{")) { try { const d = Buffer.from(s, "base64").toString("utf8").trim(); if (d.startsWith("{")) o = tryParse(d) || tryParse(fixNl(d)); } catch { } }
+  if (!o) o = tryParse(fixNl(s));
+  if (!o) return { err: "json", len: s.length, start: s.slice(0, 1) };
+  if (o && typeof o.private_key === "string" && !o.private_key.includes("\n") && o.private_key.includes("\\n")) o.private_key = o.private_key.replace(/\\n/g, "\n");
+  if (!o || !o.client_email || !o.private_key || !o.project_id) return { err: "campi", keys: Object.keys(o || {}).slice(0, 12).join(",") };
+  return { sa: o };
+}
 export function serviceAccount() {
   if (SA) return SA;
   const raw = process.env.FIREBASE_SERVICE_ACCOUNT;
-  if (!raw) { saWarn("variabile mancante (controlla che valga anche per le Functions)"); return null; }
-  try { SA = JSON.parse(raw); } catch { saWarn("non è un JSON valido: incolla tutto il contenuto del file, dalla prima { all'ultima }"); return null; }
-  if (!SA.client_email || !SA.private_key || !SA.project_id) { saWarn("mancano client_email, private_key o project_id"); SA = null; return null; }
+  if (!raw) { saWarn("variabile mancante (controlla che valga per le Functions e per il contesto Production)"); return null; }
+  const r = parseServiceAccount(raw);
+  if (r.err === "json") { saWarn(`non è un JSON valido (lunghezza ${r.len}, primo carattere "${r.start || ""}"): incolla tutto il contenuto del file, dalla prima { all'ultima }`); return null; }
+  if (r.err) { saWarn(`mancano client_email, private_key o project_id (campi trovati: ${r.keys})`); return null; }
+  SA = r.sa;
   if (PROJECT_ID && SA.project_id !== PROJECT_ID) saWarn(`la chiave è del progetto "${SA.project_id}", l'app usa "${PROJECT_ID}"`);
   return SA;
 }
