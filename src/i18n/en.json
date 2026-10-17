@@ -1246,5 +1246,12 @@
 "Coach AI che risponde usando i tuoi dati, e commento della settimana": "AI coach that answers using your data, plus a weekly comment",
 "Notifiche sul telefono: pesata, giornata da chiudere e novità": "Phone notifications: weigh-in, closing your day and what’s new",
 "7 giorni di prova con tutte le funzioni AI, poi i piani Free e Pro": "7-day trial with all AI features, then the Free and Pro plans",
-"Codici regalo per attivare DietApp Pro": "Gift codes to activate DietApp Pro"
+"Codici regalo per attivare DietApp Pro": "Gift codes to activate DietApp Pro",
+"Non riesco a caricare il tuo piano": "I can’t load your plan",
+"Codice: {c}": "Code: {c}",
+"Serve internet per caricare il piano.": "You need internet to load your plan.",
+"L’accesso al tuo account non è ancora pronto: esci e rientra, poi riprova.": "Your account sign-in isn’t ready yet: sign out and back in, then try again.",
+"Il server non è configurato: manca la chiave dell’account di servizio su Netlify.": "The server isn’t set up: the service account key is missing on Netlify.",
+"Il server non trova la funzione del piano: controlla che l’ultima pubblicazione su Netlify sia andata a buon fine.": "The server can’t find the plan function: check that the latest Netlify deploy succeeded.",
+"Il server ha risposto con un errore: guarda i log della funzione “piano” su Netlify.": "The server returned an error: check the logs of the “piano” function on Netlify."
 }
