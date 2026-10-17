@@ -1240,5 +1240,11 @@
 "Utilizzi = quante persone diverse possono usarlo; 0 = senza limite. Richieste AI: da 1 a 200 al giorno. Lettere, numeri e trattini, da 4 a 24 caratteri.": "Utilisations = combien de personnes différentes peuvent l’utiliser ; 0 = sans limite. Demandes IA : de 1 à 200 par jour. Lettres, chiffres et tirets, de 4 à 24 caractères.",
 "{n} richieste AI al giorno": "{n} demandes IA par jour",
 "Scrivi quante richieste AI al giorno (da 1 a 200).": "Indique combien de demandes IA par jour (de 1 à 200).",
-"Hai {n} giorni di DietApp Pro con {m} richieste AI al giorno: l’assistente è sbloccato fino al {d}.": "Tu as {n} jours de DietApp Pro avec {m} demandes IA par jour : l’assistant est débloqué jusqu’au {d}."
+"Hai {n} giorni di DietApp Pro con {m} richieste AI al giorno: l’assistente è sbloccato fino al {d}.": "Tu as {n} jours de DietApp Pro avec {m} demandes IA par jour : l’assistant est débloqué jusqu’au {d}.",
+"Nuove lingue: inglese, francese, spagnolo e tedesco, anche per gli alimenti": "Nouvelles langues : anglais, français, espagnol et allemand, aliments compris",
+"Assistente AI: scrivi o fotografa cosa mangi e calcola kcal e macro": "Assistant IA : écris ou photographie ce que tu manges et il calcule kcal et macros",
+"Coach AI che risponde usando i tuoi dati, e commento della settimana": "Coach IA qui répond avec tes données, et commentaire de la semaine",
+"Notifiche sul telefono: pesata, giornata da chiudere e novità": "Notifications sur le téléphone : pesée, journée à clôturer et nouveautés",
+"7 giorni di prova con tutte le funzioni AI, poi i piani Free e Pro": "7 jours d’essai avec toutes les fonctions IA, puis les abonnements Free et Pro",
+"Codici regalo per attivare DietApp Pro": "Codes cadeaux pour activer DietApp Pro"
 }

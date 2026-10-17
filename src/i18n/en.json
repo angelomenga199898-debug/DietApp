@@ -1240,5 +1240,11 @@
 "Utilizzi = quante persone diverse possono usarlo; 0 = senza limite. Richieste AI: da 1 a 200 al giorno. Lettere, numeri e trattini, da 4 a 24 caratteri.": "Uses = how many different people can use it; 0 = no limit. AI requests: 1 to 200 a day. Letters, numbers and hyphens, 4 to 24 characters.",
 "{n} richieste AI al giorno": "{n} AI requests a day",
 "Scrivi quante richieste AI al giorno (da 1 a 200).": "Enter how many AI requests a day (1 to 200).",
-"Hai {n} giorni di DietApp Pro con {m} richieste AI al giorno: l’assistente è sbloccato fino al {d}.": "You have {n} days of DietApp Pro with {m} AI requests a day: the assistant is unlocked until {d}."
+"Hai {n} giorni di DietApp Pro con {m} richieste AI al giorno: l’assistente è sbloccato fino al {d}.": "You have {n} days of DietApp Pro with {m} AI requests a day: the assistant is unlocked until {d}.",
+"Nuove lingue: inglese, francese, spagnolo e tedesco, anche per gli alimenti": "New languages: English, French, Spanish and German, foods included",
+"Assistente AI: scrivi o fotografa cosa mangi e calcola kcal e macro": "AI assistant: write or photograph what you eat and it works out kcal and macros",
+"Coach AI che risponde usando i tuoi dati, e commento della settimana": "AI coach that answers using your data, plus a weekly comment",
+"Notifiche sul telefono: pesata, giornata da chiudere e novità": "Phone notifications: weigh-in, closing your day and what’s new",
+"7 giorni di prova con tutte le funzioni AI, poi i piani Free e Pro": "7-day trial with all AI features, then the Free and Pro plans",
+"Codici regalo per attivare DietApp Pro": "Gift codes to activate DietApp Pro"
 }
