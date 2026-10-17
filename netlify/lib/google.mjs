@@ -5,20 +5,25 @@
 // Variabile d'ambiente su Netlify (mai nel repository):
 //   FIREBASE_SERVICE_ACCOUNT  contenuto del file JSON della chiave dell'account di servizio Firebase
 import crypto from "node:crypto";
+import { PROJECT_ID } from "./versione.mjs";
 
 export const json = (o, status = 200) => new Response(JSON.stringify(o), {
   status, headers: { "content-type": "application/json", "cache-control": "no-store" },
 });
 
-let SA = null;
+let SA = null, SAWARN = false;
+const saWarn = m => { if (!SAWARN) { SAWARN = true; console.error("FIREBASE_SERVICE_ACCOUNT: " + m); } };
 export function serviceAccount() {
   if (SA) return SA;
   const raw = process.env.FIREBASE_SERVICE_ACCOUNT;
-  if (!raw) return null;
-  try { SA = JSON.parse(raw); } catch { return null; }
-  if (!SA.client_email || !SA.private_key || !SA.project_id) SA = null;
+  if (!raw) { saWarn("variabile mancante (controlla che valga anche per le Functions)"); return null; }
+  try { SA = JSON.parse(raw); } catch { saWarn("non è un JSON valido: incolla tutto il contenuto del file, dalla prima { all'ultima }"); return null; }
+  if (!SA.client_email || !SA.private_key || !SA.project_id) { saWarn("mancano client_email, private_key o project_id"); SA = null; return null; }
+  if (PROJECT_ID && SA.project_id !== PROJECT_ID) saWarn(`la chiave è del progetto "${SA.project_id}", l'app usa "${PROJECT_ID}"`);
   return SA;
 }
+// Progetto Firebase dell'app (da src/firebase.json): i token degli utenti si controllano su questo.
+export const appProject = () => PROJECT_ID || (serviceAccount() || {}).project_id;
 
 // ---------- token OAuth dell'account di servizio (valido 1 ora, tenuto in memoria) ----------
 let TK = null;
@@ -55,30 +60,31 @@ async function certs() {
 }
 
 // Restituisce l'uid se il token è valido per questo progetto, altrimenti null.
-export async function verifyUser(req, projectId) {
+export async function verifyUser(req, projectId = appProject()) {
   const p = await verifyToken(req, projectId);
   return p ? p.sub : null;
 }
 // Come verifyUser, ma restituisce tutto il contenuto del token (sub, email, email_verified…).
-export async function verifyToken(req, projectId) {
+export async function verifyToken(req, projectId = appProject()) {
+  const no = why => { console.log("accesso rifiutato: " + why); return null; };
   const h = req.headers.get("authorization") || "";
   const tok = h.startsWith("Bearer ") ? h.slice(7).trim() : "";
   const parts = tok.split(".");
-  if (parts.length !== 3) return null;
+  if (parts.length !== 3) return no("token mancante");
   let head, pay;
   try {
     head = JSON.parse(Buffer.from(parts[0], "base64url").toString("utf8"));
     pay = JSON.parse(Buffer.from(parts[1], "base64url").toString("utf8"));
-  } catch { return null; }
-  if (head.alg !== "RS256" || !head.kid) return null;
+  } catch { return no("token illeggibile"); }
+  if (head.alg !== "RS256" || !head.kid) return no("token di tipo sbagliato");
   const pem = (await certs())[head.kid];
-  if (!pem) return null;
+  if (!pem) return no("chiave del token sconosciuta");
   const ok = crypto.createVerify("RSA-SHA256").update(parts[0] + "." + parts[1]).verify(pem, Buffer.from(parts[2], "base64url"));
-  if (!ok) return null;
+  if (!ok) return no("firma non valida");
   const now = Math.floor(Date.now() / 1000);
-  if (pay.aud !== projectId || pay.iss !== "https://securetoken.google.com/" + projectId) return null;
-  if (!(pay.exp > now) || !(pay.iat <= now + 300) || (pay.auth_time && pay.auth_time > now + 300)) return null;
-  if (typeof pay.sub !== "string" || !pay.sub || pay.sub.length > 128) return null;
+  if (pay.aud !== projectId || pay.iss !== "https://securetoken.google.com/" + projectId) return no(`token del progetto "${pay.aud}", atteso "${projectId}"`);
+  if (!(pay.exp > now) || !(pay.iat <= now + 300) || (pay.auth_time && pay.auth_time > now + 300)) return no("token scaduto");
+  if (typeof pay.sub !== "string" || !pay.sub || pay.sub.length > 128) return no("utente mancante");
   return pay;
 }
 

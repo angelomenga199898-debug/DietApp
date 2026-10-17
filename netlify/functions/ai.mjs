@@ -136,7 +136,7 @@ export default async (req) => {
   const sa = serviceAccount();
   if (!sa || !process.env.GEMINI_API_KEY) return json({ err: "config" }, 503);
   let tok;
-  try { tok = await verifyToken(req, sa.project_id); } catch { return json({ err: "auth" }, 503); }
+  try { tok = await verifyToken(req); } catch { return json({ err: "auth" }, 503); }
   if (!tok) return json({ err: "auth" }, 401);
   const uid = tok.sub;
   let b;

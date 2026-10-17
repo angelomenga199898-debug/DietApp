@@ -28,7 +28,7 @@ tail=(fbmod+"<script>(()=>{const x=document.getElementById('splash');if(!x)retur
 manc=i18n.genera(i18n.testo(),P)
 # Per le funzioni Netlify: versione (notifica delle novità) e amministratore (codici regalo) = CONTACT_EMAIL del template
 _m=re.search(r"CONTACT_EMAIL='([^']*)'",t)
-(R/"netlify"/"lib"/"versione.mjs").write_text(f"// Generato da src/build.py\nexport const VERSION = {json.dumps(VERSION)};\nexport const ADMIN_EMAIL = {json.dumps(_m.group(1) if _m else '')};\n")
+(R/"netlify"/"lib"/"versione.mjs").write_text(f"// Generato da src/build.py\nexport const VERSION = {json.dumps(VERSION)};\nexport const ADMIN_EMAIL = {json.dumps(_m.group(1) if _m else '')};\nexport const PROJECT_ID = {json.dumps(FB['config'].get('projectId','') if FB else '')};\n")
 (P/"index.html").write_text(t.replace("<!--HEAD-->",head).replace("<!--TAIL-->",tail))
 FBU=[f"https://www.gstatic.com/firebasejs/{FBV}/firebase-{m}.js" for m in ("app","auth","firestore")] if FB else []
 (P/"sw.js").write_text(f"""const C='dietapp-{VERSION}',F=['./','./index.html','./manifest.webmanifest','./icon-180.png','./icon-192.png','./icon-512.png','./icon-maskable-512.png',{json.dumps(["./lang/"+l+".js" for l in manc])[1:-1]}],FB={json.dumps(FBU)};
