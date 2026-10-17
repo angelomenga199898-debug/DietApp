@@ -134,9 +134,10 @@ export function tidy(mode, text, o) {
 export default async (req) => {
   if (req.method !== "POST") return json({ err: "method" }, 405);
   const sa = serviceAccount();
-  if (!sa || !process.env.GEMINI_API_KEY) return json({ err: "config" }, 503);
+  if (!sa) return json({ err: "config" }, 503);
+  if (!process.env.GEMINI_API_KEY) { console.error("AI Gateway non attivo: manca GEMINI_API_KEY (controlla che le funzioni AI siano abilitate nel team Netlify)"); return json({ err: "gateway" }, 503); }
   let tok;
-  try { tok = await verifyToken(req, sa.project_id); } catch { return json({ err: "auth" }, 503); }
+  try { tok = await verifyToken(req); } catch { return json({ err: "auth" }, 503); }
   if (!tok) return json({ err: "auth" }, 401);
   const uid = tok.sub;
   let b;

@@ -32,7 +32,7 @@ export default async (req) => {
   const sa = serviceAccount();
   if (!sa) return json({ err: "config" }, 503);
   let uid;
-  try { uid = await verifyUser(req, sa.project_id); } catch { return json({ err: "auth" }, 503); }
+  try { uid = await verifyUser(req); } catch { return json({ err: "auth" }, 503); }
   if (!uid) return json({ err: "auth" }, 401);
   let b;
   try { b = await req.json(); } catch { return json({ err: "body" }, 400); }
