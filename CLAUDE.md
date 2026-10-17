@@ -3,12 +3,14 @@
 App web installabile (PWA) statica, pubblicata da Netlify a partire dalla cartella `public/` (vedi `netlify.toml`). Ogni push su `main` viene pubblicato automaticamente; gli utenti ricevono la nuova versione alla prossima apertura con internet.
 
 ## Come si modifica
+**Rilasci solo su richiesta di Angelo.** Le modifiche si accumulano sul ramo `sviluppo`: push libero, non pubblica nulla e non costa crediti. Prima di ogni rilascio mostrare l'elenco delle modifiche accumulate e chiedere conferma. Solo quando Angelo dice di rilasciare: versione in `src/VERSION`, voce in `CHANGELOG`, build, prove, poi unione di `sviluppo` in `main` e push di `main`, che pubblica.
+
 1. Modifica i sorgenti in `src/`:
    - `app_template.html`: interfaccia e logica (segnaposto `/*FOODS*/`, `/*SPLASHCSS*/`, `<!--SPLASH-->`, `<!--HEAD-->`, `<!--TAIL-->`).
    - `foods*.js`: database alimenti. Formato: `[nome, kcal, proteine, carboidrati, grassi (per 100 g/ml), unità, grammi per unità, sinonimi]`; grammi = -1 significa valori per porzione intera.
 2. Aumenta la versione in `src/VERSION` (serve a rinnovare la cache del service worker) e aggiungi le novità in `CHANGELOG`.
 3. Esegui `python3 src/build.py` dalla radice: rigenera `public/index.html` e `public/sw.js`.
-4. Prova la pagina (es. Playwright su `public/index.html`), poi commit e push.
+4. Prova la pagina (es. Playwright su `public/index.html`), poi commit e push su `sviluppo` (su `main` solo al rilascio, vedi sopra).
 
 ## Componenti dell'interfaccia
 - Navigazione da app: ogni livello aperto (scheda diversa da Oggi, pagina, foglio, avviso, procedura guidata) si registra con `pushL(chiusura)`; il tasto indietro di Android/`back()` chiude l'ultimo. Per chiudere un livello da codice usare `dropL(f)` o le funzioni dedicate (`closeSheet`, `closeAlert`); `closeAll()` torna alla base.
