@@ -1,5 +1,9 @@
 const C='dietapp-2.8',F=['./','./index.html','./manifest.webmanifest','./icon-180.png','./icon-192.png','./icon-512.png','./icon-maskable-512.png',"./lang/en.js", "./lang/fr.js", "./lang/es.js", "./lang/de.js"],FB=["https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js", "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js", "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js"];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(F).then(()=>Promise.all(FB.map(u=>c.add(new Request(u,{mode:'cors'})).catch(()=>{}))))));self.skipWaiting()});
+self.addEventListener('push',e=>{let p={};try{p=e.data?e.data.json():{}}catch(x){p={body:e.data?e.data.text():''}}const d=p.data||p.notification||p;
+e.waitUntil(self.registration.showNotification(d.title||'DietApp',{body:d.body||'',tag:d.tag||'dietapp',renotify:!!d.tag,icon:'icon-192.png',data:{act:d.act||''}}))});
+self.addEventListener('notificationclick',e=>{e.notification.close();const a=(e.notification.data||{}).act||'';
+e.waitUntil(clients.matchAll({type:'window',includeUncontrolled:true}).then(cs=>{const c=cs.find(x=>new URL(x.url).origin===location.origin);if(c){c.postMessage({act:a});return c.focus()}return clients.openWindow('./'+(a?'?a='+a:''))}))});
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(e.request.method!=='GET')return;
 if(u.origin==='https://www.gstatic.com'&&u.pathname.startsWith('/firebasejs/')){e.respondWith(caches.match(e.request).then(m=>m||fetch(e.request).then(r=>{const cp=r.clone();caches.open(C).then(c=>c.put(e.request,cp));return r})));return}
