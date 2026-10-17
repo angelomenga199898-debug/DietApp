@@ -3,7 +3,8 @@
 Le chiavi sono i testi italiani: nel codice si scrive T('testo', {segnaposto}),
 nell'HTML statico basta il testo (lo traduce l'avvio dell'app).
 I dizionari sono in src/i18n/<lingua>.json ({"testo italiano": "traduzione"});
-gli alimenti in src/i18n/foods_<lingua>.json ({"nome italiano": ["nome", "unità", "sinonimi"]}).
+gli alimenti in src/i18n/foods_<lingua>.json ({"names": {"nome italiano": "nome"}, "units": {"unità": "traduzione"}});
+nell'app il nome italiano resta tra i sinonimi, così la ricerca lo trova in tutte e due le lingue.
 
 Uso: python3 src/i18n.py            -> elenca le chiavi mancanti per ogni lingua
      python3 src/i18n.py --chiavi   -> scrive src/i18n/_chiavi.json con tutte le chiavi
@@ -37,7 +38,7 @@ class _Static(HTMLParser):
     def handle_starttag(self, tag, attrs):
         if tag in ("script", "style", "svg"): self.skip += 1
         for a, v in attrs:
-            if a in ("placeholder", "aria-label", "title") and v and re.search(r"[A-Za-zÀ-ÿ]", v):
+            if a in ("placeholder", "aria-label", "title", "data-i18n") and v and re.search(r"[A-Za-zÀ-ÿ]", v):
                 self.keys.append(v.strip())
 
     def handle_endtag(self, tag):
@@ -63,6 +64,11 @@ def chiavi(template):
     return out
 
 
+def testo():
+    """Sorgenti da cui prendere le chiavi: il modello dell'app e build.py (avviso di aggiornamento)."""
+    return (S / "app_template.html").read_text() + (S / "build.py").read_text()
+
+
 def carica(l):
     f = S / "i18n" / f"{l}.json"
     return json.loads(f.read_text()) if f.exists() else {}
@@ -86,7 +92,7 @@ def genera(template, pub):
 
 
 if __name__ == "__main__":
-    t = (S / "app_template.html").read_text(); ks = chiavi(t)
+    ks = chiavi(testo())
     if "--chiavi" in sys.argv:
         (S / "i18n").mkdir(exist_ok=True)
         (S / "i18n" / "_chiavi.json").write_text(json.dumps(ks, ensure_ascii=False, indent=0))

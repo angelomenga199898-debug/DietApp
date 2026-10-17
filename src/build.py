@@ -23,11 +23,11 @@ tail=(fbmod+"<script>(()=>{const x=document.getElementById('splash');if(!x)retur
  "x.addEventListener('click',go);setTimeout(go,rm?900:2300)})()</script>"
  "<script>if('serviceWorker' in navigator&&location.protocol!=='file:'){const had=!!navigator.serviceWorker.controller;"
  "navigator.serviceWorker.register('sw.js').then(r=>{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')r.update().catch(()=>{})})}).catch(()=>{});"
- "navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had)note('🔄 È disponibile una nuova versione',0,{label:'Aggiorna',fn:()=>location.reload()})})}</script>")
-manc=i18n.genera(t,P)
+ "navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had)note(T('🔄 È disponibile una nuova versione'),0,{label:T('Aggiorna'),fn:()=>location.reload()})})}</script>")
+manc=i18n.genera(i18n.testo(),P)
 (P/"index.html").write_text(t.replace("<!--HEAD-->",head).replace("<!--TAIL-->",tail))
 FBU=[f"https://www.gstatic.com/firebasejs/{FBV}/firebase-{m}.js" for m in ("app","auth","firestore")] if FB else []
-(P/"sw.js").write_text(f"""const C='dietapp-{VERSION}',F=['./','./index.html','./manifest.webmanifest','./icon-180.png','./icon-192.png','./icon-512.png','./icon-maskable-512.png'],FB={json.dumps(FBU)};
+(P/"sw.js").write_text(f"""const C='dietapp-{VERSION}',F=['./','./index.html','./manifest.webmanifest','./icon-180.png','./icon-192.png','./icon-512.png','./icon-maskable-512.png',{json.dumps(["./lang/"+l+".js" for l in manc])[1:-1]}],FB={json.dumps(FBU)};
 self.addEventListener('install',e=>{{e.waitUntil(caches.open(C).then(c=>c.addAll(F).then(()=>Promise.all(FB.map(u=>c.add(new Request(u,{{mode:'cors'}})).catch(()=>{{}}))))));self.skipWaiting()}});
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',e=>{{const u=new URL(e.request.url);if(e.request.method!=='GET')return;
