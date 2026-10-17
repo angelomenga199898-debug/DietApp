@@ -2,7 +2,7 @@
 // POST con "Authorization: Bearer <ID token>":
 //   {op:"stato"}                 -> {plan, fino, giorni, admin, ai: {used, max}}
 //   {op:"codice", codice}        -> usa un codice regalo
-//   {op:"crea", codice, giorni, usi, scade, nota}  {op:"lista"}  {op:"attiva", codice, on}   (solo amministratore)
+//   {op:"crea", codice, giorni, ai, usi, scade, nota}  {op:"lista"}  {op:"attiva", codice, on}   (solo amministratore)
 import { json, serviceAccount, verifyToken, getDoc } from "../lib/google.mjs";
 import { planOf, redeem, isAdmin, createCode, listCodes, setActive } from "../lib/piani.mjs";
 import { aiLimit } from "../lib/limiti.mjs";
@@ -23,11 +23,11 @@ export default async (req) => {
     if (b.op === "stato") {
       const p = await planOf(uid, tok), u = await getDoc("ai/" + uid), day = new Date().toISOString().slice(0, 10);
       const { doc, ...st } = p;
-      return json({ ok: true, ...st, ai: { used: u && u.d === day ? u.n || 0 : 0, max: aiLimit(st.plan) } });
+      return json({ ok: true, ...st, ai: { used: u && u.d === day ? u.n || 0 : 0, max: aiLimit(st.plan, st.admin ? null : doc) } });
     }
     if (b.op === "codice") {
       const r = await redeem(uid, tok, b.codice);
-      return r.err ? json({ err: r.err }, r.err === "server" ? 502 : 400) : json({ ok: true, giorni: r.giorni, ...r.stato, ai: { max: aiLimit(r.stato.plan) } });
+      return r.err ? json({ err: r.err }, r.err === "server" ? 502 : 400) : json({ ok: true, giorni: r.giorni, ...r.stato, ai: { max: aiLimit(r.stato.plan, r.stato.admin ? null : r.doc) } });
     }
     if (["crea", "lista", "attiva"].includes(b.op)) {
       if (!isAdmin(tok)) return json({ err: "admin" }, 403);

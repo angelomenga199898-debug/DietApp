@@ -148,7 +148,7 @@ export default async (req) => {
   const day = new Date().toISOString().slice(0, 10), mon = day.slice(0, 7);
   try {
     const [p, u, g] = await Promise.all([planOf(uid, tok), getDoc("ai/" + uid), getDoc("ai/_mese")]);
-    const used = u && u.d === day ? u.n || 0 : 0, gm = g && g.m === mon ? g.n || 0 : 0, MAXD = aiLimit(p.plan);
+    const used = u && u.d === day ? u.n || 0 : 0, gm = g && g.m === mon ? g.n || 0 : 0, MAXD = aiLimit(p.plan, p.admin ? null : p.doc);
     if (MAXD <= 0) return json({ err: "plan", plan: p.plan, used, max: 0 }, 403);
     if (used >= MAXD) return json({ err: "limit", used, max: MAXD }, 429);
     if (gm >= MAXM) return json({ err: "cap", used, max: MAXD }, 429);

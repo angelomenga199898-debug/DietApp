@@ -1235,5 +1235,10 @@
 "Codice riattivato": "Code reaktiviert",
 "Codice disattivato": "Code deaktiviert",
 "Ti regalo {n} giorni di DietApp Pro! Apri {u}, vai in Profilo → Impostazioni → Il tuo piano e usa il codice {c}": "Ich schenke dir {n} Tage DietApp Pro! Öffne {u}, geh zu Profil → Einstellungen → Dein Abo und löse den Code {c} ein",
-"Messaggio copiato: incollalo dove vuoi": "Nachricht kopiert: Füge sie ein, wo du willst"
+"Messaggio copiato: incollalo dove vuoi": "Nachricht kopiert: Füge sie ein, wo du willst",
+"Richieste AI al giorno per chi lo usa": "KI-Anfragen pro Tag für alle, die ihn einlösen",
+"Utilizzi = quante persone diverse possono usarlo; 0 = senza limite. Richieste AI: da 1 a 200 al giorno. Lettere, numeri e trattini, da 4 a 24 caratteri.": "Einlösungen = wie viele verschiedene Personen ihn nutzen können; 0 = unbegrenzt. KI-Anfragen: 1 bis 200 pro Tag. Buchstaben, Zahlen und Bindestriche, 4 bis 24 Zeichen.",
+"{n} richieste AI al giorno": "{n} KI-Anfragen pro Tag",
+"Scrivi quante richieste AI al giorno (da 1 a 200).": "Gib die Anzahl der KI-Anfragen pro Tag ein (1 bis 200).",
+"Hai {n} giorni di DietApp Pro con {m} richieste AI al giorno: l’assistente è sbloccato fino al {d}.": "Du hast {n} Tage DietApp Pro mit {m} KI-Anfragen pro Tag: Der Assistent ist bis {d} freigeschaltet."
 }

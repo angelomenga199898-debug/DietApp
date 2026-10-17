@@ -13,6 +13,6 @@
   ],
   "required": true,
   "vapidKey": "BAawz9_oUqY2GnSsnXa13QZa2e6xMaDOGYRR3u7bXjtFxo_7_tGiIjd4b99D0kBN3ArmkIYL48vGDOud6SkRHWU",
-  "push": "beta",
-  "ai": "beta"
+  "push": "all",
+  "ai": "all"
 }

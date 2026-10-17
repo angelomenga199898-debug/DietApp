@@ -1235,5 +1235,10 @@
 "Codice riattivato": "Código reactivado",
 "Codice disattivato": "Código desactivado",
 "Ti regalo {n} giorni di DietApp Pro! Apri {u}, vai in Profilo → Impostazioni → Il tuo piano e usa il codice {c}": "¡Te regalo {n} días de DietApp Pro! Abre {u}, ve a Perfil → Ajustes → Tu plan y usa el código {c}",
-"Messaggio copiato: incollalo dove vuoi": "Mensaje copiado: pégalo donde quieras"
+"Messaggio copiato: incollalo dove vuoi": "Mensaje copiado: pégalo donde quieras",
+"Richieste AI al giorno per chi lo usa": "Solicitudes de IA al día para quien lo use",
+"Utilizzi = quante persone diverse possono usarlo; 0 = senza limite. Richieste AI: da 1 a 200 al giorno. Lettere, numeri e trattini, da 4 a 24 caratteri.": "Usos = cuántas personas distintas pueden usarlo; 0 = sin límite. Solicitudes de IA: de 1 a 200 al día. Letras, números y guiones, de 4 a 24 caracteres.",
+"{n} richieste AI al giorno": "{n} solicitudes de IA al día",
+"Scrivi quante richieste AI al giorno (da 1 a 200).": "Escribe cuántas solicitudes de IA al día (de 1 a 200).",
+"Hai {n} giorni di DietApp Pro con {m} richieste AI al giorno: l’assistente è sbloccato fino al {d}.": "Tienes {n} días de DietApp Pro con {m} solicitudes de IA al día: el asistente está desbloqueado hasta el {d}."
 }
