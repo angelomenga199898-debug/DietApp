@@ -20,6 +20,7 @@ App web installabile (PWA) statica, pubblicata da Netlify a partire dalla cartel
 - Attività: allenamenti in `days[data].wo` = `[{s: sport, min, rpe, st: sottotipo, km, lap, lv, dp, ex: [{n, sets: [{r, kg}], rec}], kw: kcal orologio, nt}]`. Sport in `SP` (nome, icona, colore, MET, tipo); stima calorie in `woMET`/`woKcal`; i passi fatti durante corsa e camminata si tolgono con `woSteps` per non contarli due volte. Le righe incollate segnano gli allenamenti con `p:1`, l'assistente con `ai:1`. Schede in `S.wtpl`.
 - Corpo: il peso resta in `days[data].w` (serve al calcolo del consumo); misure e bilancia smart in `S.body[data]` = `{vita, fia, pet, bra, cos, col, bf, mm, acq, vis}`. Massa grassa con la formula US Navy in `navy()`, serie in `bfSeries()`, pagina disegnata da `corpo()`.
 - `alertBox({icon, bg, title, text, buttons:[{label, fn, danger}], vib})`: avviso a scheda dal basso con icona tonda oscillante (stile dell'app). Il primo pulsante è quello principale (lime con riflesso).
+- Fogli dal basso (`sheet`) e avvisi (`alertBox`) si chiudono anche trascinandoli in giù: `swipeClose()`; gli stili temporanei si azzerano con `swReset()`/`alReset()`.
 - `note(testo, errore, {label, fn})`: messaggio breve in basso, con eventuale pulsante (es. Annulla).
 - Classi: `cta` (pulsante lime), `shine` (riflesso animato), `danger` (rosso). Le animazioni rispettano `prefers-reduced-motion`.
 
