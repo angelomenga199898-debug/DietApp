@@ -140,6 +140,20 @@ input.sw:checked{background:#5cc23a}input.sw:checked::after{transform:translateX
 .exf{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}.exf label{display:flex;align-items:center;gap:6px;margin:0}.exf select{width:auto;padding:8px 10px;border-radius:12px;font-size:14px}
 .k2{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 0;color:var(--tx);font-size:16px;cursor:pointer}.k2 b{display:block;font:700 16px var(--ff);letter-spacing:0}.k2 small{display:block;color:var(--mu);font-size:13px;font-weight:500;margin-top:2px}
 .big{font:800 30px var(--ff)!important;text-align:center}
+/* --- barra della data --- */
+.oh{display:flex;align-items:center;justify-content:space-between;gap:10px}.oh span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.oh .chip{font-size:13px;letter-spacing:0;flex:none;animation:pop .35s cubic-bezier(.2,1.6,.4,1)}.oh .chip[hidden]{display:none}
+.dbar{background:var(--cd);border:1px solid var(--bd);border-radius:28px;padding:10px 10px 8px;box-shadow:0 4px 18px rgba(0,0,0,.05)}
+.dtop{display:flex;align-items:center;gap:8px}
+.dnav{width:40px;height:40px;border-radius:50%;padding:0;margin:0;background:var(--ch);color:var(--tx);display:grid;place-items:center;flex:none}.dnav svg,.dlab svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.dlab{position:relative;flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:8px;margin:0;height:40px;border-radius:20px;color:var(--tx);font:700 16px var(--ff);cursor:pointer}.dlab svg{color:var(--mu);flex:none}
+.dlab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dlab input{position:absolute;inset:0;width:100%;height:100%;opacity:0;padding:0;border:0;margin:0;cursor:pointer;-webkit-appearance:none;appearance:none}.dlab input::-webkit-calendar-picker-indicator{position:absolute;inset:0;width:auto;height:auto;opacity:0;cursor:pointer}
+.dwk{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:8px;touch-action:pan-y}.dwk.in{animation:sec .3s ease both}
+.dwk button{display:flex;flex-direction:column;align-items:center;gap:3px;margin:0;padding:7px 0 6px;border-radius:18px;background:none;color:var(--tx);font:600 11px var(--ff);transition:background .25s,color .25s,transform .14s cubic-bezier(.3,1.4,.5,1)}
+.dwk button span{color:var(--mu);text-transform:uppercase;letter-spacing:.3px}.dwk button b{font:800 16px/1.15 var(--ff)}.dwk button i{width:6px;height:6px;border-radius:50%;background:transparent}
+.dwk button.td b{color:var(--ok)}.dwk button.td span{color:var(--ok)}.dwk button.fu{opacity:.45}
+.dwk button.on{background:var(--li);color:#10200a;box-shadow:0 4px 12px rgba(92,194,58,.35)}.dwk button.on span,.dwk button.on b{color:#10200a}
+.dwk i.g1{background:#5cc23a}.dwk i.g2{background:#f0a35a}.dwk i.g3{background:var(--bad)}.dwk i.g0{background:var(--mu);opacity:.5}.dwk button.on i{box-shadow:0 0 0 2px rgba(255,255,255,.7)}
 /* --- corpo --- */
 .bh{text-align:left}.bhr{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.bhr span{display:block;color:rgba(255,255,255,.75);font-size:13px}
 .bhr b{display:block;font:800 46px/1.05 var(--ff);letter-spacing:-1.5px;color:#fff;margin:4px 0 2px}.bhr b small{font-size:18px;font-weight:700;letter-spacing:0}
@@ -173,8 +187,10 @@ html.rm *,html.rm *::before,html.rm *::after{animation:none!important;transition
 <div id="sheet" class="sheet" hidden onclick="if(event.target===this)closeSheet()"><div class="sh-in" role="dialog" aria-modal="true"><div class="grab"></div><div id="shc"></div></div></div>
 <main><header class="tb"><div class="tbl" id="tbl"></div><div class="tbr"><span class="p" id="stk" title="Giorni di fila">🔥 0</span><span class="p" id="wgt" title="Peso attuale: apri Corpo" role="button" tabindex="0" style="cursor:pointer" onclick="tab('corpo')"></span><button class="ib" id="bell" onclick="openNotifs()" aria-label="Notifiche">🔔<i id="bdg" style="display:none"></i></button></div></header>
 
-<section id="oggi" class="on"><h1>Oggi</h1>
-<div class="dn"><button class="s" onclick="shift(-1)" aria-label="Giorno precedente">‹</button><input type="date" id="d" aria-label="Data"><button class="s" onclick="shift(1)" aria-label="Giorno successivo">›</button></div>
+<section id="oggi" class="on"><h1 class="oh"><span id="ohd">Oggi</span><button class="chip" id="otd" onclick="pickDay(TODAY())" hidden>↺ Torna a oggi</button></h1>
+<div class="dbar"><div class="dtop"><button class="dnav" onclick="shift(-1)" aria-label="Giorno precedente"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+<label class="dlab"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><span id="dlt"></span><input type="date" id="d" aria-label="Scegli la data" onclick="try{this.showPicker()}catch(e){}"></label>
+<button class="dnav" onclick="shift(1)" aria-label="Giorno successivo"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div><div class="dwk" id="dwk"></div></div>
 <div id="bn" style="margin-top:12px"></div>
 <div class="hc" id="hc" style="margin-top:12px"><svg class="path" viewBox="0 0 340 160" preserveAspectRatio="none" aria-hidden="true"><path d="M8 40 C 60 40, 70 95, 110 92" fill="none" stroke="#9be564" stroke-width="2" stroke-dasharray="5 7" stroke-linecap="round"/><path d="M230 92 C 270 95, 290 50, 332 52" fill="none" stroke="#9be564" stroke-width="2" stroke-dasharray="5 7" stroke-linecap="round" opacity=".5"/></svg>
 <div class="ring"><svg viewBox="0 0 120 120" aria-hidden="true"><g class="spin"><circle cx="60" cy="60" r="57" class="arc"/></g><circle cx="60" cy="60" r="47" class="trk"/><circle cx="60" cy="60" r="47" class="prg" id="rp"/></svg><div class="rin"><b id="hk">0</b><span id="ht">kcal</span></div></div>
@@ -971,7 +987,7 @@ function chips(){calc();const s=stats(),nm=(S.cfg.name||'').trim().split(/\s+/)[
 /* ---------- VERSIONE E NOVITÀ ---------- */
 const VERSION='2.7.1',FEEDBACK_EMAIL='';
 const CHANGELOG=[
-['2.7.1','17 ottobre 2026',['Composizione e misure unite in un’unica sezione “Composizione corporea”','Chiudi fogli e avvisi trascinandoli verso il basso','Indicatori in alto più compatti']],
+['2.7.1','17 ottobre 2026',['Composizione e misure unite in un’unica sezione “Composizione corporea”','Chiudi fogli e avvisi trascinandoli verso il basso','Nuova barra della data con la settimana: tocca un giorno o scorri per cambiare settimana','Indicatori in alto più compatti']],
 ['2.7','17 ottobre 2026',['Nuova sezione Corpo: peso, misure e massa grassa in un posto solo','Stima della massa grassa dalle misure (vita e collo) o dalla tua bilancia smart','Grafici di peso, vita, % di grasso e di ogni misura','Promemoria per prendere le misure ogni 2 settimane','Tocca il tuo peso in alto per aprire Corpo']],
 ['2.6','17 ottobre 2026',['Nuova sezione Attività: passi, sonno e allenamenti a colpo d’occhio','18 sport, ognuno con i suoi campi: vasche per il nuoto, distanza e passo per la corsa, esercizi, serie e kg per la sala pesi…','Calorie bruciate stimate per ogni sport, più precise','Schede di allenamento e record personali in sala pesi','“Incolla dati” ora è dentro “+ Aggiungi alimento”']],
 ['2.5','17 ottobre 2026',['Nuovo Profilo con progressi, serie di giorni e traguardi','Impostazioni organizzate in gruppi','Centro notifiche con promemoria, consigli e traguardi','Tema chiaro, scuro o automatico','Il tasto indietro di Android ora funziona come in un’app','Informativa privacy, condizioni d’uso ed eliminazione dei dati','Scorciatoie tenendo premuta l’icona dell’app']],
@@ -1134,7 +1150,7 @@ const cur=()=>$('d').value;
 function day(d,create){let x=S.days[d];if(!x&&create)x=S.days[d]={meals:[]};return x}
 function hhmm(){const t=new Date();return String(t.getHours()).padStart(2,'0')+':'+String(t.getMinutes()).padStart(2,'0')}
 function sortMeals(x){x.meals.sort((a,b)=>(a.t||'99').localeCompare(b.t||'99'))}
-function render(){chips();const d=cur(),x=S.days[d]||{meals:[]},o=D[d]||{},c=S.cfg,T=tot(x)||{k:0,p:0,c:0,g:0},today=TODAY();
+function render(){chips();const d=cur(),x=S.days[d]||{meals:[]},o=D[d]||{},c=S.cfg,T=tot(x)||{k:0,p:0,c:0,g:0},today=TODAY();dbar(d,today);
 const wd=new Date(d+'T00:00').getDay();let bn='';
 if(c.weighDays.includes(wd)&&!(x.w>0)&&d<=today)bn+=`<div class="c warn"><b>⚖️ Giorno di pesata</b><span>Pesati a digiuno: serve a calibrare la stima delle calorie.</span><div class="row"><button class="cta shine" onclick="openWeigh()">Pesati ora</button></div></div>`;
 const nd=Object.keys(S.days).length;if(nd>=5&&(!c.lastBk||dd(today,c.lastBk)>=7)&&!(c.bkSn&&dd(today,c.bkSn)<3))bn+=`<div class="c warn"><b>💾 Fai un backup</b><span>I tuoi dati sono solo su questo dispositivo. Salvane una copia ogni settimana.</span><div class="row"><button onclick="exp()">Esporta backup</button><button class="s" onclick="S.cfg.bkSn=TODAY();persist();render()">Più tardi</button></div></div>`;
@@ -1163,6 +1179,16 @@ $('nt').addEventListener('change',()=>{const x=day(cur(),1),v=$('nt').value.trim
 $('closed').addEventListener('change',()=>{const d=cur(),x=day(d,1);x.closed=$('closed').checked;persist();render();const o=D[d]||{};if(x.closed&&num(o.k)&&Math.abs(o.k-S.cfg.target)<=S.cfg.tol&&o.p>=S.cfg.pmin)alertBox({icon:'🎯',bg:'#d9f7c2',title:'Giornata in target!',text:'Calorie nel tuo obiettivo e proteine sopra il minimo. Continua così.',buttons:[{label:'Grande!'}],vib:[30,40,30]});else note(x.closed?'✅ Giornata completa':'Giornata segnata come incompleta')});
 function del(){const d=cur(),x=S.days[d];if(!x)return;alertBox({icon:'🗑️',bg:'#ffd9d2',title:'Eliminare la giornata?',text:'Verranno cancellati pasti, acqua, attività e peso del '+dm(d)+'.',buttons:[{label:'Elimina',danger:true,fn:()=>delOk(d,x)},{label:'Annulla'}]})}
 function delOk(d,x){delete S.days[d];persist();render();note('Giornata eliminata',0,{label:'Annulla',fn:()=>{S.days[d]=x;persist();render()}})}
+let DWK='';
+function dbar(d,today){const t=new Date(d+'T12:00'),diff=dd(d,today),rel=diff==0?'Oggi':diff==-1?'Ieri':diff==1?'Domani':'';
+$('ohd').textContent=rel||t.toLocaleDateString('it-IT',{weekday:'long'}).replace(/^./,c=>c.toUpperCase());$('otd').hidden=diff==0;
+$('dlt').textContent=t.toLocaleDateString('it-IT',{weekday:rel?'long':undefined,day:'numeric',month:'long',year:t.getFullYear()!=new Date().getFullYear()?'numeric':undefined}).replace(/^./,c=>c.toUpperCase());
+const m=new Date(t);m.setDate(m.getDate()-((t.getDay()+6)%7));const wk=iso(m);let h='';
+for(let i=0;i<7;i++){const z=new Date(m);z.setDate(m.getDate()+i);const k=iso(z),x=S.days[k],o=D[k]||{},g=x&&x.meals&&x.meals.length?(o.sg=='In target'?'g1':o.sg=='Troppo basso'||o.sg=='Sopra TDEE'?'g3':o.sg?'g2':'g0'):'';
+h+=`<button class="${k==d?'on ':''}${k==today?'td ':''}${k>today?'fu':''}" onclick="pickDay('${k}')" aria-label="${z.toLocaleDateString('it-IT',{weekday:'long',day:'numeric',month:'long'})}"${k==d?' aria-current="date"':''}><span>${'LMMGVSD'[i]}</span><b>${z.getDate()}</b><i class="${g}"></i></button>`}
+const w=$('dwk');w.innerHTML=h;if(DWK&&DWK!==wk){w.classList.remove('in');w.offsetWidth;w.classList.add('in')}DWK=wk}
+function pickDay(k){if(k===cur())return;$('d').value=k;render()}
+{let sx=0,sy=0;const w=$('dwk');w.addEventListener('touchstart',e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});w.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5)shift(dx<0?7:-7)})}
 function shift(n){const t=new Date(cur()+'T12:00');t.setDate(t.getDate()+n);$('d').value=iso(t);render()}
 function openDay(d){$('d').value=d;tab('oggi')}
 /* ---------- ATTIVITÀ E ALLENAMENTI ---------- */
