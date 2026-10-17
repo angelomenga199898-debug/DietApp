@@ -17,6 +17,7 @@ App web installabile (PWA) statica, pubblicata da Netlify a partire dalla cartel
 - Traguardi: elenco `ACH` e condizioni in `achCheck()`.
 - Novità: aggiungere una voce in cima a `CHANGELOG` a ogni versione pubblicata (viene mostrata agli utenti dopo l'aggiornamento). `VERSION` viene da `src/VERSION`.
 - `FEEDBACK_EMAIL`: se valorizzato, nelle Impostazioni compare "Invia un suggerimento".
+- Attività: allenamenti in `days[data].wo` = `[{s: sport, min, rpe, st: sottotipo, km, lap, lv, dp, ex: [{n, sets: [{r, kg}], rec}], kw: kcal orologio, nt}]`. Sport in `SP` (nome, icona, colore, MET, tipo); stima calorie in `woMET`/`woKcal`; i passi fatti durante corsa e camminata si tolgono con `woSteps` per non contarli due volte. Le righe incollate segnano gli allenamenti con `p:1`, l'assistente con `ai:1`. Schede in `S.wtpl`.
 - `alertBox({icon, bg, title, text, buttons:[{label, fn, danger}], vib})`: avviso a scheda dal basso con icona tonda oscillante (stile dell'app). Il primo pulsante è quello principale (lime con riflesso).
 - `note(testo, errore, {label, fn})`: messaggio breve in basso, con eventuale pulsante (es. Annulla).
 - Classi: `cta` (pulsante lime), `shine` (riflesso animato), `danger` (rosso). Le animazioni rispettano `prefers-reduced-motion`.
