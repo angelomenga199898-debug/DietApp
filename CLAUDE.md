@@ -29,6 +29,8 @@ App web installabile (PWA) statica, pubblicata da Netlify a partire dalla cartel
 - Classi: `cta` (pulsante lime), `shine` (riflesso animato), `danger` (rosso). Le animazioni rispettano `prefers-reduced-motion`.
 
 ## Regole importanti
+- Netlify (piano gratuito a crediti): ogni pubblicazione su `main` costa 15 crediti su 300 al mese (circa 20 pubblicazioni). Raggruppare le modifiche e fare push su `main` solo quando una versione è pronta; finiti i crediti le pubblicazioni si bloccano e poi il sito va in pausa fino al mese successivo.
+- Il service worker non deve mai salvare né mostrare risposte di errore del server (`r.ok`): se il sito non risponde, l'app installata si apre dalla copia salvata.
 - Non rinominare il sito né cambiare dominio: i dati degli utenti sono nel localStorage legato all'indirizzo (chiave `tracker_dieta_v1`).
 - Ogni cambio di formato dei dati deve passare da `migrate()` e restare compatibile con i dati esistenti.
 - Nessun dato personale nel repository (è pubblico).
