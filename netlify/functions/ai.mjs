@@ -18,7 +18,8 @@ const MIMES = ["image/jpeg", "image/png", "image/webp", "image/heic", "image/hei
 const isDate = s => typeof s === "string" && /^\d{4}-\d\d-\d\d$/.test(s);
 const str = (s, n) => (typeof s === "string" ? s.slice(0, n) : "");
 
-const ITEM = { type: "OBJECT", properties: { t: { type: "STRING" }, n: { type: "STRING" }, k: { type: "NUMBER" }, p: { type: "NUMBER" }, c: { type: "NUMBER" }, g: { type: "NUMBER" } }, required: ["n", "k", "p", "c", "g"] };
+const ITEM = { type: "OBJECT", properties: { t: { type: "STRING" }, n: { type: "STRING" }, nm: { type: "STRING" }, q: { type: "NUMBER" }, u: { type: "STRING", format: "enum", enum: ["g", "ml", "pz"] }, k: { type: "NUMBER" }, p: { type: "NUMBER" }, c: { type: "NUMBER" }, g: { type: "NUMBER" } }, required: ["n", "nm", "q", "u", "k", "p", "c", "g"] };
+const UNITS = ["g", "ml", "pz"];
 const NUMN = { type: "NUMBER", nullable: true };
 export const SCHEMA = {
   parse: {
@@ -44,19 +45,19 @@ ${b.ref.map(r => "- " + r).join("\n")}` : "";
 export function prompt(mode, b) {
   const L = LN[b.lg] || LN.it;
   if (mode === "parse") return `Sei l’assistente di DietApp, un diario alimentare. Oggi è ${b.today}. Data di default: ${b.date}. Dal messaggio dell’utente estrai pasti, allenamenti e altri dati della giornata e rispondi solo con JSON secondo lo schema.
-- items: un elemento per alimento o piatto. n = nome con quantità (es. "Pasta al pomodoro, 120 g"); t = ora HH:MM se indicata, altrimenti vuoto; k = kcal; p, c, g = grammi di proteine, carboidrati e grassi. Dai una stima centrale realistica in base a quantità, cottura e condimenti; se manca la quantità usa una porzione normale e scrivilo in note.
+- items: un elemento per alimento o piatto. n = nome con quantità (es. "Pasta al pomodoro, 120 g"); nm = solo il nome, senza quantità; q e u = la quantità come numero e unità (u = "g" per i cibi, "ml" per le bevande, "pz" per quello che si conta a pezzi come uova, fette o biscotti); k, p e c, g valgono per tutta la quantità q. t = ora HH:MM se indicata, altrimenti vuoto; k = kcal; p, c, g = grammi di proteine, carboidrati e grassi. Dai una stima centrale realistica in base a quantità, cottura e condimenti; se manca la quantità usa una porzione normale e scrivilo in note.
 - wo: allenamenti. s = uno di questi codici: ${SPORT}; altrimenti il nome dello sport (la sala pesi è pesi). min, km e rpe (fatica da 1 a 10) se indicati, altrimenti null. Vuoto se il testo non parla di allenamenti.
 - steps (passi), w (peso in kg), water (litri), sleep (ore): solo se nominati, altrimenti null.
 - date: AAAA-MM-GG del giorno di cui parla il testo (ieri, lunedì…), altrimenti la data di default.
 - closed: true solo se il testo dice che la giornata è finita o chiusa.
 - note: ipotesi e incertezze, brevissime.
-Scrivi n e note in ${L}. Non dare consigli medici.${refs(b)}`;
+Scrivi n, nm e note in ${L}. Non dare consigli medici.${refs(b)}`;
   if (mode === "photo") return `Sei l’assistente di DietApp, un diario alimentare. Guardi la foto di un pasto e stimi cosa contiene. Rispondi solo con JSON secondo lo schema.
 - food: false se nella foto non ci sono cibi o bevande; allora items è vuoto e in note spieghi che serve la foto di un pasto.
-- items: un elemento per alimento visibile. n = nome con quantità stimata (es. "Riso basmati, ~150 g"); k = kcal; p, c, g = grammi di proteine, carboidrati e grassi; t vuoto. Stima centrale realistica, contando i condimenti visibili o probabili (olio, burro, salse).
+- items: un elemento per alimento visibile. n = nome con quantità stimata (es. "Riso basmati, ~150 g"); nm = solo il nome, senza quantità; q e u = la quantità stimata come numero e unità (u = "g" per i cibi, "ml" per le bevande, "pz" per quello che si conta a pezzi come uova, fette o biscotti); k, p e c, g valgono per tutta la quantità q. k = kcal; p, c, g = grammi di proteine, carboidrati e grassi; t vuoto. Stima centrale realistica, contando i condimenti visibili o probabili (olio, burro, salse).
 - Se l’utente ha scritto dei dettagli, hanno la precedenza su quello che vedi.
 - note: le incertezze principali (es. olio non visibile), brevissime.
-Scrivi n e note in ${L}. Non dare consigli medici.${refs(b)}`;
+Scrivi n, nm e note in ${L}. Non dare consigli medici.${refs(b)}`;
   if (mode === "chat") return `Sei il coach di DietApp, un diario alimentare per adulti che vogliono dimagrire o mantenere il peso. Rispondi in ${L}, in modo amichevole, concreto e breve (al massimo 120 parole), usando i dati dell’utente qui sotto quando servono. Puoi usare elenchi con "- " e **grassetto**, nient’altro.
 - Calorie consumate e deficit sono stime dell’app: trattali come indicativi.
 - ${SAFE}
@@ -141,7 +142,9 @@ export async function gemini(model, body, src = aiSource()) {
 
 const n0 = v => (Number.isFinite(+v) && +v >= 0 ? Math.round(+v * 10) / 10 : 0);
 const nn = v => (v == null || !Number.isFinite(+v) ? null : +v);
-const items = a => (Array.isArray(a) ? a : []).slice(0, 30).map(i => ({ t: /^\d\d:\d\d$/.test(i && i.t) ? i.t : "", n: str(i && i.n, 120), k: Math.round(n0(i && i.k)), p: n0(i && i.p), c: n0(i && i.c), g: n0(i && i.g) })).filter(i => i.n);
+// quantità modificabile in app: nm (nome senza quantità), q e u (g, ml o pz) solo se validi
+const qty = i => { const q = n0(i && i.q), u = i && i.u, nm = str(i && i.nm, 100).trim(); return q > 0 && q <= 10000 && UNITS.includes(u) && nm ? { nm, q: Math.round(q * 100) / 100, u } : {}; };
+const items = a => (Array.isArray(a) ? a : []).slice(0, 30).map(i => ({ t: /^\d\d:\d\d$/.test(i && i.t) ? i.t : "", n: str(i && i.n, 120), ...qty(i), k: Math.round(n0(i && i.k)), p: n0(i && i.p), c: n0(i && i.c), g: n0(i && i.g) })).filter(i => i.n);
 
 // Toglie dal risultato del modello tutto ciò che non serve all'app.
 export function tidy(mode, text, o) {
