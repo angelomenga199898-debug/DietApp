@@ -14,6 +14,7 @@ import { aiSource, cost, budget, month, monthPath } from "../lib/spesa.mjs";
 export const config = { path: "/api/ai" };
 
 const LN = { it: "italiano", en: "English", fr: "français", es: "español", de: "Deutsch" };
+const MIMES = ["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif"];
 const isDate = s => typeof s === "string" && /^\d{4}-\d\d-\d\d$/.test(s);
 const str = (s, n) => (typeof s === "string" ? s.slice(0, n) : "");
 
@@ -86,8 +87,10 @@ export function input(b, today = new Date().toISOString().slice(0, 10)) {
     o.ref = b.ref.slice(0, 20).map(r => str(r, 200).replace(/\s+/g, " ").trim()).filter(Boolean);
   }
   if (mode === "photo") {
-    if (typeof b.img !== "string" || b.img.length < 100 || b.img.length > 1_600_000 || !/^[A-Za-z0-9+/=]+$/.test(b.img)) return { err: "img" };
+    // JPEG ridotto dall'app (di solito) o, se il telefono non sa aprire la foto (es. HEIC), il file originale fino a ~4 MB.
+    if (typeof b.img !== "string" || b.img.length < 100 || b.img.length > 5_600_000 || !/^[A-Za-z0-9+/=]+$/.test(b.img)) return { err: "img" };
     o.img = b.img;
+    o.mime = MIMES.includes(b.mime) ? b.mime : "image/jpeg";
   }
   if (mode === "chat" || mode === "week") {
     o.ctx = str(b.ctx, 9000);
@@ -118,7 +121,7 @@ export function request(o, model = "gemini-3.1-flash-lite") {
   if (SCHEMA[o.mode]) { gen.responseMimeType = "application/json"; gen.responseSchema = SCHEMA[o.mode]; }
   let contents;
   if (o.mode === "chat") contents = o.msgs.map(m => ({ role: m.r === "a" ? "model" : "user", parts: [{ text: m.t }] }));
-  else if (o.mode === "photo") contents = [{ role: "user", parts: [{ inlineData: { mimeType: "image/jpeg", data: o.img } }, { text: o.text ? "Dettagli dell’utente: " + o.text : "Nessun dettaglio dall’utente." }] }];
+  else if (o.mode === "photo") contents = [{ role: "user", parts: [{ inlineData: { mimeType: o.mime || "image/jpeg", data: o.img } }, { text: o.text ? "Dettagli dell’utente: " + o.text : "Nessun dettaglio dall’utente." }] }];
   else if (o.mode === "week") contents = [{ role: "user", parts: [{ text: "Commenta la mia settimana." }] }];
   else contents = [{ role: "user", parts: [{ text: o.text }] }];
   return { systemInstruction: { parts: [{ text: prompt(o.mode, o) }] }, contents, generationConfig: gen };

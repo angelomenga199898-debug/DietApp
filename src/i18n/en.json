@@ -1465,5 +1465,10 @@
 "Scrivi i litri (es. 1,5)": "Enter the litres (e.g. 1.5)",
 "Acqua azzerata": "Water reset",
 "💧 Acqua salvata: {n} L": "💧 Water saved: {n} L",
-"Tocca il numero per scriverne uno qualsiasi, anche con la virgola (es. 1,3 o 2,7).": "Tap the number to type any amount, decimals included (e.g. 1.3 or 2.7)."
+"Tocca il numero per scriverne uno qualsiasi, anche con la virgola (es. 1,3 o 2,7).": "Tap the number to type any amount, decimals included (e.g. 1.3 or 2.7).",
+"Foto pronta": "Photo ready",
+"Fotografa il piatto o scegli una foto": "Snap your plate or pick a photo",
+"Scatta": "Take photo",
+"Galleria": "Gallery",
+"Non riesco a leggere questa foto. Se è solo su Google Foto, scaricala sul telefono oppure scattala con 📷.": "I can’t read this photo. If it’s only in Google Photos, download it to your phone or take it with 📷."
 }
