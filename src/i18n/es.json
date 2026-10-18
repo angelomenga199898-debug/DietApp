@@ -1470,5 +1470,16 @@
 "Fotografa il piatto o scegli una foto": "Fotografía tu plato o elige una foto",
 "Scatta": "Hacer foto",
 "Galleria": "Galería",
-"Non riesco a leggere questa foto. Se è solo su Google Foto, scaricala sul telefono oppure scattala con 📷.": "No puedo leer esta foto. Si solo está en Google Fotos, descárgala en el móvil o hazla con 📷."
+"Non riesco a leggere questa foto. Se è solo su Google Foto, scaricala sul telefono oppure scattala con 📷.": "No puedo leer esta foto. Si solo está en Google Fotos, descárgala en el móvil o hazla con 📷.",
+"<li><b>Errori dell’app</b>: se qualcosa va storto, l’app invia in forma anonima il messaggio d’errore tecnico, la versione, la lingua e il tipo di telefono e browser, per poterlo correggere. Non contiene i tuoi dati né il tuo account e si cancella dopo 30 giorni.</li>": "<li><b>Errores de la app</b>: si algo falla, la app envía de forma anónima el mensaje de error técnico, la versión, el idioma y el tipo de móvil y navegador, para poder corregirlo. No contiene tus datos ni tu cuenta y se borra a los 30 días.</li>",
+"1 errore segnalato oggi": "1 error notificado hoy",
+"{n} errori segnalati oggi": "{n} errores notificados hoy",
+"Guarda cosa è successo e su quali telefoni.": "Mira qué ha pasado y en qué móviles.",
+"Errori dell’app": "Errores de la app",
+"Oggi: {n}": "Hoy: {n}",
+"Errori segnalati in forma anonima dai telefoni degli utenti negli ultimi 7 giorni, raggruppati per tipo. Si cancellano da soli dopo 30 giorni.": "Errores notificados de forma anónima por los móviles de los usuarios en los últimos 7 días, agrupados por tipo. Se borran solos a los 30 días.",
+"app installata": "app instalada",
+"browser": "navegador",
+"Dove nel codice": "Dónde en el código",
+"Nessun errore negli ultimi 7 giorni.": "Ningún error en los últimos 7 días."
 }

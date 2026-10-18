@@ -3,8 +3,10 @@
 //   {op:"stato"}                 -> {plan, fino, giorni, admin, ai: {used, max}} (+ spesa dell'AI del mese per l'amministratore)
 //   {op:"codice", codice}        -> usa un codice regalo
 //   {op:"crea", codice, giorni, ai, usi, scade, nota}  {op:"lista"}  {op:"attiva", codice, on}   (solo amministratore)
-import { json, serviceAccount, verifyToken, getDoc } from "../lib/google.mjs";
-import { planOf, redeem, isAdmin, createCode, listCodes, setActive } from "../lib/piani.mjs";
+//   {op:"errori"}                -> errori segnalati dall'app negli ultimi 7 giorni (solo amministratore; cancella quelli
+//                                   più vecchi di 30 giorni)
+import { json, serviceAccount, verifyToken, getDoc, listDocs, deleteDoc } from "../lib/google.mjs";
+import { planOf, redeem, isAdmin, createCode, listCodes, setActive, addDays } from "../lib/piani.mjs";
 import { aiLimit } from "../lib/limiti.mjs";
 import { aiSource, budget, month, monthPath } from "../lib/spesa.mjs";
 
@@ -28,12 +30,22 @@ export default async (req) => {
       if (st.admin) {
         const src = aiSource(), m = month(await getDoc(monthPath()));
         out.spesa = { ...m, usd: Math.round(m.usd * 1e4) / 1e4, budget: budget(src && src.src), src: src ? src.src : null, mese: new Date().toISOString().slice(0, 7) };
+        const eg = await getDoc("errori/_g" + day);
+        out.errori = (eg && eg.n) || 0;
       }
       return json(out);
     }
     if (b.op === "codice") {
       const r = await redeem(uid, tok, b.codice);
       return r.err ? json({ err: r.err }, r.err === "server" ? 502 : 400) : json({ ok: true, giorni: r.giorni, ...r.stato, ai: { max: aiLimit(r.stato.plan, r.stato.admin ? null : r.doc) } });
+    }
+    if (b.op === "errori") {
+      if (!isAdmin(tok)) return json({ err: "admin" }, 403);
+      const today = new Date().toISOString().slice(0, 10), from = addDays(today, -6), old = addDays(today, -30), all = await listDocs("errori");
+      const errori = all.filter(x => !x.id.startsWith("_g") && (x.data.d || "") >= from).map(x => ({ id: x.id, ...x.data }))
+        .sort((a, b) => String(b.ultimo || "").localeCompare(String(a.ultimo || ""))).slice(0, 100);
+      await Promise.all(all.filter(x => (x.data.d || "") < old).map(x => deleteDoc("errori/" + x.id))).catch(() => {});
+      return json({ ok: true, errori });
     }
     if (["crea", "lista", "attiva"].includes(b.op)) {
       if (!isAdmin(tok)) return json({ err: "admin" }, 403);
