@@ -3226,10 +3226,12 @@ const micKey=s=>norm(s).replace(/[^a-z0-9]+/g,' ').trim();
 function micText(rs){let out='';for(let i=0;i<rs.length;i++){const t=String(rs[i]&&rs[i][0]&&rs[i][0].transcript||'').trim();if(!t)continue;const o=micKey(out),k=micKey(t);if(!o||k===o||k.startsWith(o+' '))out=t;else if(k&&o!==k&&!o.endsWith(' '+k))out+=' '+t}return out}
 function aiMic(){if(MIC)return micStop();const a=$('at');if(!SR||!a)return;let r;try{r=new SR()}catch(e){return note(T('La dettatura non è disponibile su questo browser.'),1)}
 const base=a.value.replace(/\s+$/,''),pre=base?base+' ':'';r.lang=LOC;r.interimResults=true;r.continuous=true;r.maxAlternatives=1;
-r.onresult=e=>{const f=$('at');if(f){f.value=(pre+micText(e.results)).replace(/\s{2,}/g,' ');AITXT[AIM]=f.value;if(AIM=='chat')aiGrow(f)}};
-r.onerror=e=>{const c=e&&e.error;if(c=='aborted')return;note(c=='not-allowed'||c=='service-not-allowed'?T('Consenti l’uso del microfono per dettare.'):c=='no-speech'?T('Non ho sentito niente: riprova.'):c=='network'?T('La dettatura richiede internet.'):T('La dettatura si è interrotta: riprova.'),1);if(!['no-speech','not-allowed','network','audio-capture'].includes(c))errReport('dettatura: '+c,'','aiMic')};
+r.onresult=e=>{r._got=1;const f=$('at');if(f){f.value=(pre+micText(e.results)).replace(/\s{2,}/g,' ');AITXT[AIM]=f.value;if(AIM=='chat')aiGrow(f)}};
+r.onerror=e=>{const c=e&&e.error;if(c=='aborted')return;note(c=='not-allowed'||c=='service-not-allowed'?T('Consenti l’uso del microfono per dettare.'):c=='no-speech'?T('Non ho sentito niente. Riprova, oppure usa il microfono della tastiera.'):c=='network'?T('La dettatura richiede internet.'):T('La dettatura si è interrotta: riprova.'),1);if(!['no-speech','not-allowed','network','audio-capture'].includes(c))errReport('dettatura: '+c,'','aiMic')};
 r.onend=()=>{if(MIC===r){MIC=null;micUi()}};
-try{r.start();MIC=r;micUi();if(navigator.vibrate)navigator.vibrate(20)}catch(e){note(T('La dettatura si è interrotta: riprova.'),1)}}
+try{r.start();MIC=r;micUi();if(navigator.vibrate)navigator.vibrate(20);
+// se il browser non manda niente (succede per esempio su iPhone con l'app nella schermata Home) dopo 10 secondi si ferma e suggerisce la tastiera
+setTimeout(()=>{if(MIC===r&&!r._got){micStop();note(T('Non ho sentito niente. Riprova, oppure usa il microfono della tastiera.'),1)}},10000)}catch(e){note(T('La dettatura si è interrotta: riprova.'),1)}}
 function aiKeep(){const a=$('at');if(a)AITXT[AIM]=a.value;const d=$('ad');if(d)AIDATE=d.value}
 // tappe del rendering: riquadro scuro (modalità, titolo, campo, pulsante, richieste rimaste) e sotto risultato / conversazione / commento
 const aiDL=d=>d==TODAY()?T('Oggi'):d==iso(new Date(Date.now()-864e5))?T('Ieri'):fmtD(d,{day:'numeric',month:'short'});
