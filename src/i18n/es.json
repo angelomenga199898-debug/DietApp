@@ -925,7 +925,7 @@
 "Usi un’AI per contare le calorie? Usa <b>Incolla dall’AI</b>.": "¿Usas una IA para contar calorías? Usa <b>Pegar desde la IA</b>.",
 "Prova ad aggiungere un pasto": "Prueba a añadir una comida",
 "Muoviti": "Muévete",
-"Segna l’<b>acqua</b> con i pulsanti +0,25 e +0,5.": "Anota el <b>agua</b> con los botones +0,25 y +0,5.",
+"Segna l’<b>acqua</b> con i pulsanti +0,25 e +0,5, oppure tocca ✏️ e scrivi i litri.": "Anota el <b>agua</b> con los botones +0,25 y +0,5, o toca ✏️ y escribe los litros.",
 "Tocca <b>Passi</b> e <b>Sonno</b> per inserirli: servono a stimare quanto consumi.": "Toca <b>Pasos</b> y <b>Sueño</b> para introducirlos: sirven para estimar cuánto gastas.",
 "Con <b>+ Aggiungi allenamento</b> scegli tra 18 sport, ognuno con i suoi campi.": "Con <b>+ Añadir entrenamiento</b> elige entre 18 deportes, cada uno con sus campos.",
 "Pesati <b>2–3 volte a settimana</b>, al mattino a digiuno.": "Pésate <b>2–3 veces por semana</b>, por la mañana en ayunas.",
@@ -1455,5 +1455,15 @@
 "In crediti Netlify": "En créditos de Netlify",
 "L’assistente è pagato direttamente a Google: la spesa non tocca i crediti Netlify che tengono acceso il sito.": "El asistente se paga directamente a Google: el gasto no toca los créditos de Netlify que mantienen el sitio en línea.",
 "L’assistente è pagato con i crediti Netlify (1 $ = 180 crediti), gli stessi che tengono acceso il sito: per questo il budget è basso.": "El asistente se paga con los créditos de Netlify (1 $ = 180 créditos), los mismos que mantienen el sitio en línea: por eso el presupuesto es bajo.",
-"Raggiunto il budget, l’assistente si ferma fino al mese dopo e il sito resta acceso. Il budget si cambia su Netlify con la variabile AI_BUDGET_USD.": "Al llegar al presupuesto, el asistente se detiene hasta el mes siguiente y el sitio sigue en línea. El presupuesto se cambia en Netlify con la variable AI_BUDGET_USD."
+"Raggiunto il budget, l’assistente si ferma fino al mese dopo e il sito resta acceso. Il budget si cambia su Netlify con la variabile AI_BUDGET_USD.": "Al llegar al presupuesto, el asistente se detiene hasta el mes siguiente y el sitio sigue en línea. El presupuesto se cambia en Netlify con la variable AI_BUDGET_USD.",
+"Scrivi i litri": "Escribir litros",
+"Litri bevuti oggi": "Litros bebidos hoy",
+"Litri bevuti il {d}": "Litros bebidos el {d}",
+"Scrivi il totale della giornata, per esempio 1,8. Se scrivi un numero sopra 20 lo considero in millilitri (330 = 0,33 L).": "Escribe el total del día, por ejemplo 1,8. Si escribes un número mayor que 20 lo tomo en mililitros (330 = 0,33 L).",
+"Obiettivo: {n} L.": "Objetivo: {n} L.",
+"Azzera l’acqua": "Poner el agua a cero",
+"Scrivi i litri (es. 1,5)": "Escribe los litros (p. ej., 1,5)",
+"Acqua azzerata": "Agua puesta a cero",
+"💧 Acqua salvata: {n} L": "💧 Agua guardada: {n} L",
+"Tocca il numero per scriverne uno qualsiasi, anche con la virgola (es. 1,3 o 2,7).": "Toca el número para escribir cualquier cantidad, también con decimales (p. ej., 1,3 o 2,7)."
 }

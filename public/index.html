@@ -15,7 +15,7 @@ button.pc{background:var(--ch);color:var(--tx);padding:10px 14px;margin:0 6px 8p
 .xb{background:var(--ch);color:var(--tx);width:36px;height:36px;padding:0;margin:0;flex:none;font-size:14px}
 .dn{display:flex;gap:8px;align-items:center}.dn button{margin:0;padding:12px 16px}.dn input{flex:1}
 .ml{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid var(--bd);cursor:pointer}.ml b{font-weight:700}
-.wa{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.wa b{font:800 30px var(--ff);flex-basis:100%;margin-bottom:4px}.wa b small{font-size:16px;color:var(--mu)}.wa button{margin:0;padding:10px 14px}
+.wa{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.wa b{font:800 30px var(--ff);flex-basis:100%;margin-bottom:4px;cursor:pointer}.wa b small{font-size:16px;color:var(--mu)}.wa button{margin:0;padding:10px 14px}.wa .wae{padding:10px 13px;font-size:16px;line-height:1}
 details{border:1px solid var(--bd);border-radius:24px;padding:4px 16px 16px;margin-top:12px}summary{font-weight:700;padding:12px 0;cursor:pointer}
 nav{position:fixed;left:12px;right:12px;bottom:calc(10px + env(safe-area-inset-bottom));max-width:616px;margin:0 auto;display:flex;gap:4px;background:#f3f3f1;border-radius:40px;padding:8px;box-shadow:0 6px 24px rgba(0,0,0,.14);z-index:20}
 [data-theme=dark] nav{background:#1d261b}@media(prefers-color-scheme:dark){:root:not([data-theme=light]) nav{background:#1d261b}}
@@ -412,8 +412,10 @@ label.aiph small{position:absolute;bottom:10px;left:50%;transform:translateX(-50
 .qst{display:flex;align-items:center;gap:6px;padding:6px;border:1.5px solid var(--bd);border-radius:999px;background:var(--cd)}
 .qst:focus-within{border-color:var(--ac)}
 .qst .qb{width:46px;height:46px;margin:0;padding:0;border-radius:50%;background:var(--ch);color:var(--tx);font:600 24px/1 var(--ff);flex:none}
+.qch{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:10px 0 0}.qch button{margin:0;padding:8px 13px;min-width:44px;border-radius:999px;background:var(--ch);color:var(--tx);font:700 14px var(--ff)}.qch button.on{background:var(--li);color:#10200a}.qhint{text-align:center;margin:8px 0 0;font-size:13px}
 label.qin{flex:1;display:flex;align-items:baseline;justify-content:center;gap:6px;margin:0;color:var(--tx);cursor:text;min-width:0}
 .qin input{width:3ch;min-width:1.5ch;max-width:6ch;padding:0;border:0;border-radius:0;background:none;text-align:right;font:800 26px var(--ff);letter-spacing:-.5px;outline:none}
+.qin input{border-bottom:2px dashed var(--bd);padding-bottom:1px}.qin input:focus{border-bottom-color:var(--li)}
 .qin .qu{font:700 15px var(--ff);color:var(--mu);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 label.tgr{display:flex;align-items:center;gap:12px;margin:12px 0 0;padding:12px 14px;border:1px solid var(--bd);border-radius:20px;background:var(--cd);color:var(--tx);font:600 15px/1.3 var(--ff);cursor:pointer}
 label.tgr span{flex:1}
@@ -480,7 +482,7 @@ label.tgr span{flex:1}
 <button class="cta w shine" onclick="openAdd()">+ Aggiungi alimento</button></div>
 <h2>🍽 Pasti</h2><div class="c mc"><div id="pre"></div><div id="ml"></div><div id="cpy"></div>
 <button class="add s" onclick="openAdd()">+ Aggiungi alimento</button></div>
-<h2>💧 Acqua</h2><div class="c wa"><b id="wv">0 L</b><button class="s" onclick="water(-.25)">−0,25</button><button onclick="water(.25)">+0,25</button><button onclick="water(.5)">+0,5</button></div>
+<h2>💧 Acqua</h2><div class="c wa"><b id="wv" role="button" tabindex="0" onclick="openWater()" onkeydown="if(event.key==='Enter')openWater()">0 L</b><button class="s" onclick="water(-.25)">−0,25</button><button onclick="water(.25)">+0,25</button><button onclick="water(.5)">+0,5</button><button class="s wae" onclick="openWater()" aria-label="Scrivi i litri" title="Scrivi i litri">✏️</button></div>
 <h2>🏃 Attività</h2><div id="act"></div>
 <button class="add s" onclick="openWo()">+ Aggiungi allenamento</button>
 <h2>📝 Giornata</h2><div class="c"><label for="nt" style="margin-top:0">Note</label><textarea id="nt" rows="2" placeholder="Com’è andata oggi? (facoltativo)"></textarea>
@@ -2543,7 +2545,7 @@ $('pre').innerHTML=S.presets.length?`<p class="mlh">⚡ ${T('Pasti rapidi')}</p>
 $('ml').innerHTML=x.meals.length?x.meals.map((m,i)=>{const[ic,bg]=mIco(m);return`<div class="ml" onclick="editMeal(${i})"><span class="mic" style="background:${bg}">${ic}</span><div class="mlt"><b>${E(T(m.n))}</b><span>${m.t?E(m.t)+' · ':''}${T('P')} ${fv(m.p)} · ${T('C')} ${fv(m.c)} · ${T('G')} ${fv(m.g)}</span></div><div class="mlk"><b>${f0(m.k)}</b><span>kcal</span></div><button class="xb" onclick="event.stopPropagation();rmMeal(${i})" aria-label="${T('Elimina {n}',{n:E(m.n)})}">✕</button></div>`}).join(''):`<div class="mle"><span>🍽️</span><p>${T('Nessun pasto ancora: aggiungi il primo.')}</p></div>`;
 const y=iso(new Date(new Date(d+'T12:00').getTime()-864e5)),yx=S.days[y],yt=tot(yx);
 $('cpy').innerHTML=!x.meals.length&&yt?`<button class="s w" style="margin-top:10px" onclick="copyDay('${y}')">↺ ${T('Copia i pasti di ieri ({n}, {k} kcal)',{n:yx.meals.length,k:f0(yt.k)})}</button>`:'';
-$('wv').innerHTML=fv(x.water||0)+` L <small>/ ${fv(c.waterT)} L</small>`;
+$('wv').innerHTML=fq2(x.water||0)+` L <small>/ ${fv(c.waterT)} L</small>`;
 actR(d,x);if(document.activeElement!==$('nt'))$('nt').value=x.note||'';
 $('closed').checked=isC(d);$('clh').textContent=isC(d)?T('Conta nelle medie e nei grafici'):x.closed===false?T('Segnata come incompleta: non conta nelle medie'):d<today?T('Nessun pasto: non conta nelle medie'):T('Attivala a fine giornata, o da domani conta da sola')}
 const mIco=m=>{if(!m.t)return/^(Totale|Total|Gesamt)/i.test(m.n)?['📋','#e3ecff']:['🍽️','var(--ch)'];const h=+m.t.slice(0,2);return h<5?['🌙','#e3ecff']:h<11?['☕','#fdeea0']:h<15?['🥗','#d9f7c2']:h<18?['🍎','#ffe3d6']:['🍽️','#efe3ff']};
@@ -2552,6 +2554,13 @@ function addPre(i){const p=S.presets[i];addMeal({t:hhmm(),n:p.n,k:p.k,p:p.p,c:p.
 function rmMeal(i){const d=cur(),x=day(d);if(!x)return;const m=x.meals.splice(i,1)[0];persist();render();note(T('Eliminato'),0,{label:T('Annulla#undo'),fn:()=>{day(d,1).meals.splice(i,0,m);persist();render()}})}
 function copyDay(y){const x=day(cur(),1),src=S.days[y].meals.map(m=>clone(m));x.meals.push(...src);sortMeals(x);persist();render();const d=cur();note(T('✅ Copiati {n} pasti',{n:src.length}),0,{label:T('Annulla#undo'),fn:()=>{S.days[d].meals=S.days[d].meals.filter(m=>!src.includes(m));persist();render()}})}
 function water(q){const x=day(cur(),1);x.water=Math.max(0,Math.round(((x.water||0)+q)*100)/100);persist();render()}
+// Acqua scritta a mano: il totale della giornata in litri (sopra 20 si intende in millilitri, es. 330).
+function openWater(){const d=cur(),x=S.days[d]||{},g=S.cfg.waterT||2,L=[.5,1,1.5,2].filter(v=>v!==g).concat(g).sort((a,b)=>a-b);
+sheet(`<div class="woh"><span class="tic" style="background:#e3ecff">💧</span><h3>${T('Acqua')}</h3></div><label for="wtv">${d==TODAY()?T('Litri bevuti oggi'):T('Litri bevuti il {d}',{d:fmtD(d,{day:'numeric',month:'long'})})}</label><input id="wtv" class="big" inputmode="decimal" value="${x.water>0?String(x.water).replace('.',','):''}" placeholder="0" onkeydown="if(event.key==='Enter')wtOk()">
+<div class="qch">${L.map(v=>`<button type="button" onclick="$('wtv').value='${String(v).replace('.',',')}'">${fq2(v)} L${v===g?' 🎯':''}</button>`).join('')}</div>
+<p class="mu">${T('Scrivi il totale della giornata, per esempio 1,8. Se scrivi un numero sopra 20 lo considero in millilitri (330 = 0,33 L).')}${g?' '+T('Obiettivo: {n} L.',{n:fq2(g)}):''}</p><button class="w cta shine" onclick="wtOk()">${T('Salva')}</button>${x.water>0?`<button class="s w" onclick="wtOk(1)">${T('Azzera l’acqua')}</button>`:''}`);setTimeout(()=>{const i=$('wtv');if(i){i.focus();i.select()}},80)}
+function wtOk(clr){let v=clr?0:pn($('wtv').value);if(!clr&&v>20)v/=1000;if(!clr&&!(v>=0&&v<=15)){note(T('Scrivi i litri (es. 1,5)'),1);return}
+const x=day(cur(),1);x.water=Math.round(v*100)/100;persist();closeSheet();render();note(clr?T('Acqua azzerata'):T('💧 Acqua salvata: {n} L',{n:fq2(x.water)}))}
 function bmiBox(){const b=$('bmiw');if(b)b.innerHTML=S.cfg.wg/((S.cfg.h/100)**2)<18.5?bmiWarn(S.cfg.wg,S.cfg.h):''}
 $('nt').addEventListener('change',()=>{const x=day(cur(),1),v=$('nt').value.trim();if(v)x.note=v;else delete x.note;persist();note(T('✅ Nota salvata'))});
 $('closed').addEventListener('change',()=>{const d=cur(),x=day(d,1);x.closed=$('closed').checked;persist();render();const o=D[d]||{};if(x.closed&&num(o.k)&&Math.abs(o.k-S.cfg.target)<=S.cfg.tol&&o.p>=S.cfg.pmin)alertBox({icon:'🎯',bg:'#d9f7c2',title:T('Giornata in target!'),text:T('Calorie nel tuo obiettivo e proteine sopra il minimo. Continua così.'),buttons:[{label:T('Grande!')}],vib:[30,40,30]});else note(x.closed?T('✅ Giornata completa'):T('Giornata segnata come incompleta'))});
@@ -2819,18 +2828,24 @@ function openFood(f,m){PK=f;const u=f.b&&f.un&&f.ug;const q=m?m.q:(f.b?(u?1:100)
 sheet(`<h3>${E(f.n)}</h3><p class="mu">${f0(f.k)} kcal · ${T('P')} ${fv(f.p)} · ${T('C')} ${fv(f.c)} · ${T('G')} ${fv(f.g)} ${f.b?T('per 100 g'):T('per porzione')}${f.my?'':f.src=='off'?' · '+T('dati Open Food Facts, controlla l’etichetta'):' · '+T('valori medi indicativi')}</p>
 <label for="fq">${T('Quantità')}</label>${u?`<div class="seg">${[['u',`${E(f.un)} (${f.ug} g)`],['g',T('grammi')]].map(([k,l])=>`<button type="button" data-u="${k}" class="${mode==k?'on':''}" aria-pressed="${mode==k}" onclick="unitTo('${k}')">${l}</button>`).join('')}</div>`:''}<input type="hidden" id="fu" value="${f.b?mode:'p'}">
 <div class="qst"><button type="button" class="qb" onclick="qStep(-1)" aria-label="${T('Meno')}">−</button><label class="qin"><input id="fq" inputmode="decimal" value="${String(q).replace('.',',')}" oninput="pv()" onfocus="this.select()"><span class="qu" id="fqu"></span></label><button type="button" class="qb" onclick="qStep(1)" aria-label="${T('Più')}">+</button></div>
+<div id="qfr"><div class="qch">${[.25,.5,.75,1,1.5,2].map(v=>`<button type="button" data-q="${v}" onclick="qSet(${v})">${QFR[v]||fq2(v)}</button>`).join('')}</div><p class="mu qhint">${T('Tocca il numero per scriverne uno qualsiasi, anche con la virgola (es. 1,3 o 2,7).')}</p></div>
 <div id="pvv"></div><label for="tpb_ft">${T('Ora')}</label>${tpick('ft',m?m.t:hhmm())}
 ${m?'':`<label class="tgr"><span>${T('Salva tra i rapidi con questa quantità')}</span><input type="checkbox" class="sw" id="fpre"></label>`}
 <button class="w cta shine" onclick="foodOk()">${m?T('Salva modifiche'):T('Aggiungi')}</button>${m?`<button class="s w" onclick="rmMeal(EI);closeSheet()">${T('Elimina')}</button>`:`<button class="lnk" onclick="openAdd()">‹ ${T('Torna alla ricerca')}</button>`}`);pv()}
 function unitTo(k){if($('fu').value==k)return;$('fu').value=k;document.querySelectorAll('.seg [data-u]').forEach(b=>{b.classList.toggle('on',b.dataset.u==k);b.setAttribute('aria-pressed',b.dataset.u==k)});unitSw()}
+// Porzioni e unità: − / + a mezze, scelte rapide da ¼ a 2 e qualsiasi numero con la virgola scritto a mano.
+const QFR={.25:'¼',.5:'½',.75:'¾',1.5:'1½'};
+const fq2=v=>(Math.round((+v||0)*100)/100).toLocaleString(LOC,{maximumFractionDigits:2});
 function qStep(d){const md=PK.b?$('fu').value:'p',q=pn($('fq').value),c=isNaN(q)?0:q;let n;
-if(md=='g'){const s=c<50?5:10;n=d>0?Math.floor(c/s)*s+s:Math.ceil(c/s)*s-s;if(n<5)n=5}else{n=d>0?Math.floor(c*2)/2+(c<1?.5:1):Math.ceil(c*2)/2-(c<=1?.5:1);if(n<.5)n=.5}
-$('fq').value=String(r1(n)).replace('.',',');pv()}
+if(md=='g'){const s=c<50?5:10;n=d>0?Math.floor(c/s)*s+s:Math.ceil(c/s)*s-s;if(n<5)n=5}else{n=d>0?Math.floor(c*2+1e-9)/2+.5:(c<=.5?.25:Math.ceil(c*2-1e-9)/2-.5);if(n<.25)n=.25}
+$('fq').value=String(Math.round(n*100)/100).replace('.',',');pv()}
+function qSet(v){$('fq').value=String(v).replace('.',',');pv()}
 function unitSw(){const f=PK,q=pn($('fq').value);if(!isNaN(q)&&f.ug){$('fq').value=String($('fu').value=='u'?r1(q/f.ug):Math.round(q*f.ug)).replace('.',',')}pv()}
 function foodMeal(){const f=PK,q=pn($('fq').value);if(!(q>0))return null;const mode=f.b?$('fu').value:'p',grams=mode=='u'?q*f.ug:q,fac=f.b?grams/f.b:q;
-const lab=f.b?(mode=='u'?`${f.n}, ${Math.round(grams)} g (${fv(q)}× ${f.un})`:`${f.n}, ${Math.round(grams)} g`):(q==1?f.n:`${f.n} ×${fv(q)}`);
+const lab=f.b?(mode=='u'?`${f.n}, ${Math.round(grams)} g (${fq2(q)}× ${f.un})`:`${f.n}, ${Math.round(grams)} g`):(q==1?f.n:`${f.n} ×${fq2(q)}`);
 return{t:$('ft').value,n:lab,k:Math.round(f.k*fac),p:r1(f.p*fac),c:r1(f.c*fac),g:r1(f.g*fac),fd:{n:f.n,it:f.it,k:f.k,p:f.p,c:f.c,g:f.g,b:f.b,un:f.un,ug:f.ug,my:f.my,src:f.src,code:f.code,al:f.al},q,qm:mode}}
 function pv(){const m=foodMeal(),f=PK,md=f.b?$('fu').value:'p',fq=$('fq'),q=pn(fq.value);fq.style.width=(Math.max(1,fq.value.length)+.6)+'ch';$('fqu').textContent=md=='u'?'× '+f.ug+' g':md=='g'?'g':q==1?T('porzione'):T('porzioni');
+const fr=$('qfr');if(fr){fr.hidden=md=='g';fr.querySelectorAll('[data-q]').forEach(b=>b.classList.toggle('on',+b.dataset.q===q))}
 const x=S.days[cur()],old=EI>=0&&x&&x.meals[EI]?+x.meals[EI].k||0:0;$('pvv').innerHTML=m?mxBox(m.k,m.p,m.c,m.g,cur(),old):`<p class="mu" style="margin:14px 0 0">${T('Scrivi una quantità.')}</p>`}
 /* ---------- SELETTORE DELL'ORARIO (stile app, al posto dell'orologio del telefono) ---------- */
 // tpick(id, "HH:MM") crea un campo nascosto #id con il valore, la riga con icona del momento del giorno e, aperta, scorciatoie e due rotelle (ore e minuti)
@@ -3016,7 +3031,7 @@ if(MD.length)h+=`<div class="cals"><div><b>${MD.length}</b><span>${T('giornate c
 return h+'</div>'}
 function calMv(n){const m=CALM||TODAY().slice(0,7),d=new Date(+m.slice(0,4),+m.slice(5,7)-1+n,1,12);CALM=iso(d).slice(0,7);list();const g=document.querySelector('#ls .calg');if(g){g.classList.remove('in');g.offsetWidth;g.classList.add('in')}}
 function dayCard(d){const x=S.days[d],o=D[d],c=S.cfg,t=new Date(d+'T12:00'),s=dSt(d),k=o.k,has=num(k)&&x.meals.length,pct=has?Math.min(1.25,k/c.target)/1.25*100:0,
-ex=[x.water>0?'💧 '+fv(x.water)+' L':'',x.steps>0?'👟 '+f0(x.steps):'',x.w>0?'⚖️ '+f1(x.w)+' kg':'',(x.wo||[]).map(w=>spOf(w)[1]).join('')].filter(Boolean);
+ex=[x.water>0?'💧 '+fq2(x.water)+' L':'',x.steps>0?'👟 '+f0(x.steps):'',x.w>0?'⚖️ '+f1(x.w)+' kg':'',(x.wo||[]).map(w=>spOf(w)[1]).join('')].filter(Boolean);
 return`<div class="dc" onclick="openDay('${d}')"><div class="dcd ${s?s[0]:''}"><span>${DAYN[t.getDay()]}</span><b>${t.getDate()}</b></div><div class="dcm"><div class="dct"><b>${has?f0(k):'–'} <small>${has?'/ '+f0(c.target)+' kcal':T('nessun pasto')}</small></b>${s?`<span class="tg2 ${s[0]}">${s[1]}</span>`:''}</div>
 ${has?`<div class="dcb"><i class="${s?s[0]:''}" style="width:${pct.toFixed(1)}%"></i><em></em></div>`:''}${num(o.t)?`<div class="mu">${T('Consumo {n} kcal',{n:f0(o.t)})}${num(o.df)?` · <b class="${o.df>=0?'dfp':'dfn'}">${o.df>=0?T('deficit'):T('surplus')} ${f0(Math.abs(o.df))}</b>`:''}</div>`:''}${ex.length?`<div class="dce">${ex.map(e=>`<span>${e}</span>`).join('')}</div>`:''}</div></div>`}
 function list(){calc();const today=TODAY(),ds=M.ds.slice().reverse(),box=$('ls');
@@ -3376,7 +3391,7 @@ function guidePages(){const ai=AI_ON()&&!HAS_AI,P=[
 {t:T('I pasti'),ts:'🍝',items:[{h:T('Tocca <b>+ Aggiungi alimento</b>, cerca il cibo e scegli <b>quantità</b> e <b>orario</b>: vedi subito quante kcal ti restano.'),s:'🔎'},{h:T('Non lo trovi? <b>Cercalo online</b>, scansiona il <b>codice a barre</b> o scrivi le kcal a mano.'),s:'📷'},{h:T('Quello che mangi spesso salvalo tra i <b>pasti rapidi</b>: lo aggiungi con un tocco.'),s:'⚡'}],act:[T('Prova ad aggiungere un pasto'),'openAdd']},
 {t:T('Tipo di dieta'),ts:'🥗',items:[{h:T('Scegli il tuo <b>tipo di dieta</b>: mediterranea, low carb, chetogenica, digiuno 16:8 e altre.'),s:'🥑'},{h:T('Gli obiettivi di <b>proteine, carboidrati e grassi</b> si adattano: li vedi nella scheda Oggi.'),s:'📊'},{h:T('Con la <b>finestra dei pasti</b> Oggi ti dice quando puoi mangiare e quando sei a digiuno.'),s:'⏱️'}],act:[T('Scegli la tua dieta'),'pgDiet()']}];
 if(ai)P.push({t:T('Assistente AI'),ts:'✨',items:[{h:T('Nella scheda <b>AI</b> scrivi cosa hai mangiato o <b>fotografa il piatto</b>: stima kcal e macro.'),s:'📷'},{h:T('Il <b>Coach</b> risponde con i tuoi dati, <b>Settimana</b> commenta gli ultimi 7 giorni.'),s:'💬'},{h:T('Prima di salvare controlli il risultato. In alto vedi le <b>richieste</b> rimaste oggi.'),s:'✅'}],act:[T('Prova l’assistente'),"tab('ai')"]});
-P.push({t:T('Muoviti'),ts:'🏃',items:[{h:T('Segna l’<b>acqua</b> con i pulsanti +0,25 e +0,5.'),s:'💧'},{h:T('Tocca <b>Passi</b> e <b>Sonno</b> per inserirli: servono a stimare quanto consumi.'),s:'👟'},{h:T('Con <b>+ Aggiungi allenamento</b> scegli tra 18 sport, ognuno con i suoi campi.'),s:'🏋️'}]},
+P.push({t:T('Muoviti'),ts:'🏃',items:[{h:T('Segna l’<b>acqua</b> con i pulsanti +0,25 e +0,5, oppure tocca ✏️ e scrivi i litri.'),s:'💧'},{h:T('Tocca <b>Passi</b> e <b>Sonno</b> per inserirli: servono a stimare quanto consumi.'),s:'👟'},{h:T('Con <b>+ Aggiungi allenamento</b> scegli tra 18 sport, ognuno con i suoi campi.'),s:'🏋️'}]},
 {t:T('Corpo'),ts:'⚖️',items:[{h:T('Pesati <b>2–3 volte a settimana</b>, al mattino a digiuno.'),s:'🌅'},{h:T('Con le pesate la stima del consumo si <b>corregge da sola</b> sui tuoi dati.'),s:'🎯'},{h:T('Prendi le <b>misure</b> ogni 2 settimane: con vita e collo l’app stima la <b>massa grassa</b>.'),s:'📏'}]},
 {t:T('Grafici e giorni'),ts:'📈',items:[{h:T('In <b>Grafici</b> trovi le medie della settimana e quando raggiungerai l’obiettivo.'),s:'🏁'},{h:T('In <b>Giorni</b> c’è il calendario del mese e lo storico settimana per settimana.'),s:'🗓️'},{h:T('Una giornata conta nelle medie quando è <b>completa</b>.'),s:'✅'}]});
 if(ai)P.push({t:T('Il tuo piano#abb'),ts:'🎁',items:[{h:T('Con un nuovo account hai <b>7 giorni di prova</b> con l’assistente AI.'),s:'🎉'},{h:T('Poi passi al piano <b>Free</b>, gratis, con tutto il resto dell’app. L’assistente fa parte del <b>Pro</b>.'),s:'⭐'},{h:T('Hai un <b>codice regalo</b>? Inseriscilo in Impostazioni → Il tuo piano.'),s:'🎁'}],act:[T('Vedi il tuo piano'),'pgPlan()']});
