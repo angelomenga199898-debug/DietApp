@@ -1,12 +1,15 @@
-// /api/ai: assistente di DietApp. Il modello si raggiunge con Netlify AI Gateway (si paga con i crediti
-// Netlify, nessuna chiave da gestire: Netlify imposta GEMINI_API_KEY e GOOGLE_GEMINI_BASE_URL).
+// /api/ai: assistente di DietApp con Google Gemini. Chi paga lo decide lib/spesa.mjs: con GOOGLE_AI_KEY si chiama
+// Google direttamente (fatturazione Google), altrimenti Netlify AI Gateway (crediti Netlify).
 // Modalità: parse (testo -> pasti), photo (foto del piatto -> pasti), chat (coach), week (commento della settimana).
-// Limiti: per piano (vedi lib/limiti.mjs: Prova e Pro AI_MAX_DAY = 20 al giorno, Free AI_FREE_DAY = 0) e AI_MAX_MONTH
-// in tutto al mese (predefinito 1500), contati in ai/{uid} e ai/_mese. Modelli: AI_MODEL (predefinito gemini-3.1-flash-lite)
-// e AI_MODEL_PHOTO (predefinito come AI_MODEL).
-import { json, serviceAccount, verifyToken, getDoc, updateDoc, LINGUE } from "../lib/google.mjs";
+// Limiti: per piano (vedi lib/limiti.mjs: Prova e Pro AI_MAX_DAY = 20 al giorno, Free AI_FREE_DAY = 0), contati in ai/{uid},
+// e budget del mese in dollari (AI_BUDGET_USD, vedi lib/spesa.mjs) calcolato dai token reali in ai/_m<AAAA-MM>; AI_MAX_MONTH,
+// se impostato, limita anche il numero di richieste del mese. Modelli: AI_MODEL (predefinito gemini-3.1-flash-lite) e
+// AI_MODEL_PHOTO (predefinito come AI_MODEL). Ragionamento per modalità (solo modelli Gemini 3): AI_THINK_PARSE,
+// AI_THINK_PHOTO, AI_THINK_CHAT, AI_THINK_WEEK = minimal, low, medium o high (vedi THINK).
+import { json, serviceAccount, verifyToken, getDoc, updateDoc, incDoc, LINGUE } from "../lib/google.mjs";
 import { planOf } from "../lib/piani.mjs";
 import { aiLimit } from "../lib/limiti.mjs";
+import { aiSource, cost, budget, month, monthPath } from "../lib/spesa.mjs";
 
 export const config = { path: "/api/ai" };
 
@@ -31,6 +34,12 @@ export const SCHEMA = {
 const SPORT = "pesi, corsa, camminata, bici, nuoto, calcio, padel, tennis, basket, pallavolo, hiit, boxe, yoga, cardio, vogatore, trekking, danza";
 const SAFE = "Non fare diagnosi e non dare consigli medici, sui farmaci o sugli integratori. Per malattie, sintomi, gravidanza, allattamento, o se l’utente descrive un rapporto difficile con il cibo, consiglia con gentilezza di parlarne con un medico o un professionista. Non suggerire mai di mangiare meno del minimo di kcal indicato nei dati (o di 1200 kcal se manca) né di perdere più dell’1% del peso a settimana.";
 
+// Alimenti del database di DietApp che corrispondono alle parole dell'utente (li sceglie l'app): valori di etichette e
+// tabelle ufficiali, così le stime restano coerenti con il resto dell'app.
+const refs = b => b.ref && b.ref.length ? `
+Valori di riferimento dal database di DietApp, che corrispondono a parole dell’utente. Usali quando l’alimento è chiaramente lo stesso, adattandoli alla quantità e alla cottura; ignorali se non c’entrano:
+${b.ref.map(r => "- " + r).join("\n")}` : "";
+
 export function prompt(mode, b) {
   const L = LN[b.lg] || LN.it;
   if (mode === "parse") return `Sei l’assistente di DietApp, un diario alimentare. Oggi è ${b.today}. Data di default: ${b.date}. Dal messaggio dell’utente estrai pasti, allenamenti e altri dati della giornata e rispondi solo con JSON secondo lo schema.
@@ -40,13 +49,13 @@ export function prompt(mode, b) {
 - date: AAAA-MM-GG del giorno di cui parla il testo (ieri, lunedì…), altrimenti la data di default.
 - closed: true solo se il testo dice che la giornata è finita o chiusa.
 - note: ipotesi e incertezze, brevissime.
-Scrivi n e note in ${L}. Non dare consigli medici.`;
+Scrivi n e note in ${L}. Non dare consigli medici.${refs(b)}`;
   if (mode === "photo") return `Sei l’assistente di DietApp, un diario alimentare. Guardi la foto di un pasto e stimi cosa contiene. Rispondi solo con JSON secondo lo schema.
 - food: false se nella foto non ci sono cibi o bevande; allora items è vuoto e in note spieghi che serve la foto di un pasto.
 - items: un elemento per alimento visibile. n = nome con quantità stimata (es. "Riso basmati, ~150 g"); k = kcal; p, c, g = grammi di proteine, carboidrati e grassi; t vuoto. Stima centrale realistica, contando i condimenti visibili o probabili (olio, burro, salse).
 - Se l’utente ha scritto dei dettagli, hanno la precedenza su quello che vedi.
 - note: le incertezze principali (es. olio non visibile), brevissime.
-Scrivi n e note in ${L}. Non dare consigli medici.`;
+Scrivi n e note in ${L}. Non dare consigli medici.${refs(b)}`;
   if (mode === "chat") return `Sei il coach di DietApp, un diario alimentare per adulti che vogliono dimagrire o mantenere il peso. Rispondi in ${L}, in modo amichevole, concreto e breve (al massimo 120 parole), usando i dati dell’utente qui sotto quando servono. Puoi usare elenchi con "- " e **grassetto**, nient’altro.
 - Calorie consumate e deficit sono stime dell’app: trattali come indicativi.
 - ${SAFE}
@@ -73,6 +82,9 @@ export function input(b, today = new Date().toISOString().slice(0, 10)) {
   o.date = isDate(b.date) ? b.date : o.today;
   o.text = str(b.text, 2000).trim();
   if (mode === "parse" && !o.text) return { err: "text" };
+  if ((mode === "parse" || mode === "photo") && Array.isArray(b.ref)) {
+    o.ref = b.ref.slice(0, 20).map(r => str(r, 200).replace(/\s+/g, " ").trim()).filter(Boolean);
+  }
   if (mode === "photo") {
     if (typeof b.img !== "string" || b.img.length < 100 || b.img.length > 1_600_000 || !/^[A-Za-z0-9+/=]+$/.test(b.img)) return { err: "img" };
     o.img = b.img;
@@ -89,8 +101,20 @@ export function input(b, today = new Date().toISOString().slice(0, 10)) {
   return o;
 }
 
-export function request(o) {
-  const gen = { temperature: o.mode === "chat" ? 0.5 : 0.2, maxOutputTokens: { parse: 2048, photo: 1536, chat: 700, week: 900 }[o.mode] };
+// Ragionamento: più alto dove serve precisione (stima di kcal e macro da testo e foto). I token di ragionamento si
+// pagano come risposta e contano in maxOutputTokens, che quindi lascia spazio anche a loro.
+export const THINK = { parse: "medium", photo: "medium", chat: "low", week: "low" };
+const LEVELS = ["minimal", "low", "medium", "high"];
+export function thinkLevel(mode, model) {
+  if (!/^(models\/)?gemini-3/.test(model || "")) return null;
+  const e = process.env["AI_THINK_" + mode.toUpperCase()];
+  return LEVELS.includes(e) ? e : THINK[mode];
+}
+
+export function request(o, model = "gemini-3.1-flash-lite") {
+  const gen = { temperature: o.mode === "chat" ? 0.5 : 0.2, maxOutputTokens: { parse: 6144, photo: 6144, chat: 3072, week: 3072 }[o.mode] };
+  const th = thinkLevel(o.mode, model);
+  if (th) gen.thinkingConfig = { thinkingLevel: th };
   if (SCHEMA[o.mode]) { gen.responseMimeType = "application/json"; gen.responseSchema = SCHEMA[o.mode]; }
   let contents;
   if (o.mode === "chat") contents = o.msgs.map(m => ({ role: m.r === "a" ? "model" : "user", parts: [{ text: m.t }] }));
@@ -100,17 +124,16 @@ export function request(o) {
   return { systemInstruction: { parts: [{ text: prompt(o.mode, o) }] }, contents, generationConfig: gen };
 }
 
-export async function gemini(model, body) {
-  const key = process.env.GEMINI_API_KEY;
-  const base = (process.env.GOOGLE_GEMINI_BASE_URL || "https://generativelanguage.googleapis.com").replace(/\/+$/, "");
-  const r = await fetch(`${base}/v1beta/models/${model}:generateContent`, {
-    method: "POST", headers: { "x-goog-api-key": key, "content-type": "application/json" }, body: JSON.stringify(body),
+// Restituisce {text, usage}; con testo vuoto lancia un errore che porta comunque usage (i token si pagano lo stesso).
+export async function gemini(model, body, src = aiSource()) {
+  const r = await fetch(`${src.base}/v1beta/models/${model}:generateContent`, {
+    method: "POST", headers: { "x-goog-api-key": src.key, "content-type": "application/json" }, body: JSON.stringify(body),
   });
   if (!r.ok) { const t = await r.text().catch(() => ""); throw new Error(`gemini ${r.status} ${t.slice(0, 300)}`); }
-  const d = await r.json(), c = (d.candidates || [])[0];
+  const d = await r.json(), c = (d.candidates || [])[0], usage = d.usageMetadata || null;
   const text = ((c && c.content && c.content.parts) || []).map(p => (p.thought ? "" : p.text || "")).join("").trim();
-  if (!text) throw new Error("gemini vuoto " + ((c && c.finishReason) || (d.promptFeedback && d.promptFeedback.blockReason) || ""));
-  return text;
+  if (!text) throw Object.assign(new Error("gemini vuoto " + ((c && c.finishReason) || (d.promptFeedback && d.promptFeedback.blockReason) || "")), { usage });
+  return { text, usage };
 }
 
 const n0 = v => (Number.isFinite(+v) && +v >= 0 ? Math.round(+v * 10) / 10 : 0);
@@ -135,7 +158,8 @@ export default async (req) => {
   if (req.method !== "POST") return json({ err: "method" }, 405);
   const sa = serviceAccount();
   if (!sa) return json({ err: "config" }, 503);
-  if (!process.env.GEMINI_API_KEY) { console.error("AI Gateway non attivo: manca GEMINI_API_KEY (controlla che le funzioni AI siano abilitate nel team Netlify)"); return json({ err: "gateway" }, 503); }
+  const src = aiSource();
+  if (!src) { console.error("AI non configurata: manca GOOGLE_AI_KEY (Google diretto) e l'AI Gateway di Netlify non ha impostato GEMINI_API_KEY"); return json({ err: "gateway" }, 503); }
   let tok;
   try { tok = await verifyToken(req); } catch { return json({ err: "auth" }, 503); }
   if (!tok) return json({ err: "auth" }, 401);
@@ -145,19 +169,27 @@ export default async (req) => {
   const o = input(b);
   if (o.err) return json({ err: o.err }, 400);
 
-  const MAXM = +process.env.AI_MAX_MONTH || 1500;
+  const MAXM = +process.env.AI_MAX_MONTH || 0;
   const day = new Date().toISOString().slice(0, 10), mon = day.slice(0, 7);
   try {
-    const [p, u, g] = await Promise.all([planOf(uid, tok), getDoc("ai/" + uid), getDoc("ai/_mese")]);
-    const used = u && u.d === day ? u.n || 0 : 0, gm = g && g.m === mon ? g.n || 0 : 0, MAXD = aiLimit(p.plan, p.admin ? null : p.doc);
+    const [p, u, g] = await Promise.all([planOf(uid, tok), getDoc("ai/" + uid), getDoc(monthPath(mon))]);
+    const used = u && u.d === day ? u.n || 0 : 0, gm = month(g), MAXD = aiLimit(p.plan, p.admin ? null : p.doc);
     if (MAXD <= 0) return json({ err: "plan", plan: p.plan, used, max: 0 }, 403);
     if (used >= MAXD) return json({ err: "limit", used, max: MAXD }, 429);
-    if (gm >= MAXM) return json({ err: "cap", used, max: MAXD }, 429);
+    if (gm.usd >= budget(src.src) || (MAXM && gm.n >= MAXM)) return json({ err: "cap", used, max: MAXD }, 429);
     const model = (o.mode === "photo" && process.env.AI_MODEL_PHOTO) || process.env.AI_MODEL || "gemini-3.1-flash-lite";
-    let out;
-    try { out = tidy(o.mode, await gemini(model, request(o)), o); }
+    // Ogni risposta (anche se poi non va bene) si somma alla spesa del mese.
+    const spend = usage => {
+      const c = cost(model, usage);
+      return incDoc(monthPath(mon), { n: 1, uu: c.usd * 1e6, tin: c.tin, tout: c.tout }, { src: src.src, model });
+    };
+    let res, out;
+    try { res = await gemini(model, request(o, model), src); }
+    catch (e) { if (e.usage) await spend(e.usage).catch(() => {}); console.error("ai", o.mode, e.message); return json({ err: "ai", used, max: MAXD }, 502); }
+    await spend(res.usage).catch(e => console.error("ai spesa", e.message));
+    try { out = tidy(o.mode, res.text, o); }
     catch (e) { console.error("ai", o.mode, e.message); return json({ err: "ai", used, max: MAXD }, 502); }
-    await Promise.all([updateDoc("ai/" + uid, { d: day, n: used + 1 }), updateDoc("ai/_mese", { m: mon, n: gm + 1 })]);
+    await updateDoc("ai/" + uid, { d: day, n: used + 1 });
     return json({ ok: true, data: out, used: used + 1, max: MAXD });
   } catch (e) {
     console.error("ai", e.message);

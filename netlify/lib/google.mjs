@@ -152,6 +152,19 @@ export async function updateDoc(path, obj) {
   return fs("PATCH", path, { fields: fieldsOf(obj) }, q);
 }
 export async function deleteDoc(path) { return fs("DELETE", path); }
+// Somma i valori di `inc` ai campi (in modo atomico, anche con richieste contemporanee) e scrive i campi di `set`;
+// crea il documento se manca. Usare numeri interi in `inc`.
+export async function incDoc(path, inc, set = {}) {
+  const sa = serviceAccount(), tk = await accessToken(sa);
+  const write = {
+    update: { name: `${root(sa)}/${path}`, fields: fieldsOf(set) }, updateMask: { fieldPaths: Object.keys(set) },
+    updateTransforms: Object.entries(inc).map(([k, x]) => ({ fieldPath: k, increment: enc(Math.round(x)) })),
+  };
+  const r = await fetch(`${FSB}${root(sa)}:commit`, {
+    method: "POST", headers: { authorization: "Bearer " + tk, "content-type": "application/json" }, body: JSON.stringify({ writes: [write] }),
+  });
+  if (!r.ok) throw new Error(`firestore commit ${r.status}`);
+}
 // Lettura con l'ora dell'ultima modifica, per scrivere solo se nel frattempo nessuno l'ha cambiato.
 export async function getDocT(path) {
   const d = await fs("GET", path);

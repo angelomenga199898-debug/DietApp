@@ -1,11 +1,12 @@
 // /api/piano: piano dell'utente (prova / free / pro), codici regalo e, per l'amministratore, gestione dei codici.
 // POST con "Authorization: Bearer <ID token>":
-//   {op:"stato"}                 -> {plan, fino, giorni, admin, ai: {used, max}}
+//   {op:"stato"}                 -> {plan, fino, giorni, admin, ai: {used, max}} (+ spesa dell'AI del mese per l'amministratore)
 //   {op:"codice", codice}        -> usa un codice regalo
 //   {op:"crea", codice, giorni, ai, usi, scade, nota}  {op:"lista"}  {op:"attiva", codice, on}   (solo amministratore)
 import { json, serviceAccount, verifyToken, getDoc } from "../lib/google.mjs";
 import { planOf, redeem, isAdmin, createCode, listCodes, setActive } from "../lib/piani.mjs";
 import { aiLimit } from "../lib/limiti.mjs";
+import { aiSource, budget, month, monthPath } from "../lib/spesa.mjs";
 
 export const config = { path: "/api/piano" };
 
@@ -23,7 +24,12 @@ export default async (req) => {
     if (b.op === "stato") {
       const p = await planOf(uid, tok), u = await getDoc("ai/" + uid), day = new Date().toISOString().slice(0, 10);
       const { doc, ...st } = p;
-      return json({ ok: true, ...st, ai: { used: u && u.d === day ? u.n || 0 : 0, max: aiLimit(st.plan, st.admin ? null : doc) } });
+      const out = { ok: true, ...st, ai: { used: u && u.d === day ? u.n || 0 : 0, max: aiLimit(st.plan, st.admin ? null : doc) } };
+      if (st.admin) {
+        const src = aiSource(), m = month(await getDoc(monthPath()));
+        out.spesa = { ...m, usd: Math.round(m.usd * 1e4) / 1e4, budget: budget(src && src.src), src: src ? src.src : null, mese: new Date().toISOString().slice(0, 7) };
+      }
+      return json(out);
     }
     if (b.op === "codice") {
       const r = await redeem(uid, tok, b.codice);
