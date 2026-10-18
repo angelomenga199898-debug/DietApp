@@ -3220,9 +3220,13 @@ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;let MIC=null;
 const micBtn=c=>SR?`<button type="button" id="mic" class="aimic${c?' '+c:''}${MIC?' on':''}" onclick="aiMic()" aria-pressed="${!!MIC}" aria-label="${T('Detta')}" title="${T('Detta')}">🎤</button>`:'';
 function micUi(){const b=$('mic');if(b){b.classList.toggle('on',!!MIC);b.setAttribute('aria-pressed',!!MIC);b.setAttribute('aria-label',MIC?T('Ferma la dettatura'):T('Detta'))}}
 function micStop(){if(MIC){const r=MIC;MIC=null;try{r.stop()}catch(e){}micUi()}}
+// Testo dettato, ricostruito a ogni evento da tutti i risultati della sessione. Su Android Chrome ogni risultato ripete quelli prima
+// ("un", "un caffè", "un caffè con zucchero"): se comincia con il testo già raccolto lo sostituisce, se lo ripete uguale si salta, altrimenti si aggiunge.
+const micKey=s=>norm(s).replace(/[^a-z0-9]+/g,' ').trim();
+function micText(rs){let out='';for(let i=0;i<rs.length;i++){const t=String(rs[i]&&rs[i][0]&&rs[i][0].transcript||'').trim();if(!t)continue;const o=micKey(out),k=micKey(t);if(!o||k===o||k.startsWith(o+' '))out=t;else if(k&&o!==k&&!o.endsWith(' '+k))out+=' '+t}return out}
 function aiMic(){if(MIC)return micStop();const a=$('at');if(!SR||!a)return;let r;try{r=new SR()}catch(e){return note(T('La dettatura non è disponibile su questo browser.'),1)}
-const base=a.value.replace(/\s+$/,''),pre=base?base+' ':'';let fin='';r.lang=LOC;r.interimResults=true;r.continuous=true;r.maxAlternatives=1;
-r.onresult=e=>{let tmp='';for(let i=e.resultIndex;i<e.results.length;i++){const x=e.results[i];if(x.isFinal)fin+=x[0].transcript;else tmp+=x[0].transcript}const f=$('at');if(f){f.value=(pre+fin+tmp).replace(/\s{2,}/g,' ');AITXT[AIM]=f.value;if(AIM=='chat')aiGrow(f)}};
+const base=a.value.replace(/\s+$/,''),pre=base?base+' ':'';r.lang=LOC;r.interimResults=true;r.continuous=true;r.maxAlternatives=1;
+r.onresult=e=>{const f=$('at');if(f){f.value=(pre+micText(e.results)).replace(/\s{2,}/g,' ');AITXT[AIM]=f.value;if(AIM=='chat')aiGrow(f)}};
 r.onerror=e=>{const c=e&&e.error;if(c=='aborted')return;note(c=='not-allowed'||c=='service-not-allowed'?T('Consenti l’uso del microfono per dettare.'):c=='no-speech'?T('Non ho sentito niente: riprova.'):c=='network'?T('La dettatura richiede internet.'):T('La dettatura si è interrotta: riprova.'),1);if(!['no-speech','not-allowed','network','audio-capture'].includes(c))errReport('dettatura: '+c,'','aiMic')};
 r.onend=()=>{if(MIC===r){MIC=null;micUi()}};
 try{r.start();MIC=r;micUi();if(navigator.vibrate)navigator.vibrate(20)}catch(e){note(T('La dettatura si è interrotta: riprova.'),1)}}
