@@ -9,7 +9,7 @@ App web installabile (PWA) statica, pubblicata da Netlify a partire dalla cartel
    - `app_template.html`: interfaccia e logica (segnaposto `/*FOODS*/`, `/*SPLASHCSS*/`, `<!--SPLASH-->`, `<!--HEAD-->`, `<!--TAIL-->`).
    - `foods*.js`: database alimenti. Formato: `[nome, kcal, proteine, carboidrati, grassi (per 100 g/ml), unità, grammi per unità, sinonimi]`; grammi = -1 significa valori per porzione intera.
      `foods6.js` (dalla 3.3, circa 1000 alimenti generici) viene dalle tabelle pubbliche Ciqual 2020 (ANSES, Licence Ouverte) e USDA FoodData Central SR Legacy (dominio pubblico), con carboidrati senza fibra: l'attribuzione è in `pgCredits` e va mantenuta. I nomi tradotti sono in `src/i18n/foods_<lingua>.json` come gli altri.
-2. Aumenta la versione in `src/VERSION` (serve a rinnovare la cache del service worker) e aggiungi le novità in `CHANGELOG`.
+2. Aumenta la versione in `src/VERSION` (serve a rinnovare la cache del service worker) e aggiungi le novità in `CHANGELOG`. Per una correzione da pubblicare senza avviso agli utenti (se lo chiede Angelo) si lascia la stessa versione e niente voce nuova in `CHANGELOG`: il service worker prende comunque dalla rete la pagina nuova (prima la rete, poi la copia salvata), ma non compaiono né l'avviso Novità né la notifica della nuova versione.
 3. Esegui `python3 src/build.py` dalla radice: rigenera `public/index.html` e `public/sw.js`.
 4. Prova la pagina (es. Playwright su `public/index.html`), poi commit e push su `sviluppo` (su `main` solo al rilascio, vedi sopra).
 
