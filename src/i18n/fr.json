@@ -1700,5 +1700,15 @@
 "Esercizio eliminato": "Exercice supprimé",
 "Le schede compaiono quando aggiungi gli esercizi a un allenamento.": "Les programmes apparaissent quand tu ajoutes des exercices à une séance.",
 "Quando aggiungi gli esercizi a un allenamento, usa “Salva come scheda” per ritrovarli uguali la volta dopo.": "Quand tu ajoutes des exercices à une séance, utilise « Enregistrer comme programme » pour les retrouver la fois suivante.",
-"Con <b>+ Aggiungi allenamento</b> scegli tra 18 sport o <b>crea il tuo</b>; in ogni sport puoi segnare gli <b>esercizi</b>, anche tuoi, con le note.": "Avec <b>+ Ajouter une séance</b> choisis parmi 18 sports ou <b>crée le tien</b> ; dans chaque sport tu peux noter des <b>exercices</b>, même les tiens, avec des notes."
+"Con <b>+ Aggiungi allenamento</b> scegli tra 18 sport o <b>crea il tuo</b>; in ogni sport puoi segnare gli <b>esercizi</b>, anche tuoi, con le note.": "Avec <b>+ Ajouter une séance</b> choisis parmi 18 sports ou <b>crée le tien</b> ; dans chaque sport tu peux noter des <b>exercices</b>, même les tiens, avec des notes.",
+"Dati della bilancia smart": "Données de la balance connectée",
+"Se la tua bilancia li misura, scrivili qui: li ritrovi nella scheda Corpo. Le misure col metro restano in Corpo → Composizione corporea.": "Si ta balance les mesure, écris-les ici : tu les retrouves dans l’onglet Corps. Les mesures au mètre restent dans Corps → Composition corporelle.",
+"✅ Peso e dati della bilancia salvati": "✅ Poids et données de la balance enregistrés",
+"Massa ossea": "Masse osseuse",
+"Metabolismo basale": "Métabolisme de base",
+"Età metabolica": "Âge métabolique",
+"ossa {n} kg": "os {n} kg",
+"metabolismo basale {n} kcal": "métabolisme de base {n} kcal",
+"età metabolica {n}": "âge métabolique {n}",
+"<h3>Corpo</h3><p>Nella scheda Corpo trovi peso, misure e massa grassa. Pesati 2–3 volte a settimana e prendi le misure col metro ogni 2 settimane: con vita e collo (e fianchi per le donne) l’app stima la percentuale di grasso. Se hai una bilancia smart, quando ti pesi apri “Dati della bilancia smart” e scrivi massa grassa, muscoli, acqua e gli altri valori: l’app calcola i kg di massa grassa e magra.</p>": "<h3>Corps</h3><p>Dans l’onglet Corps tu trouves le poids, les mensurations et la masse grasse. Pèse-toi 2 à 3 fois par semaine et prends tes mensurations au mètre toutes les 2 semaines : avec la taille et le cou (et les hanches pour les femmes), l’app estime ton pourcentage de graisse. Si tu as une balance connectée, quand tu te pèses ouvre « Données de la balance connectée » et écris la masse grasse, les muscles, l’eau et les autres valeurs : l’app calcule les kg de masse grasse et de masse maigre.</p>"
 }

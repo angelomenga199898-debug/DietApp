@@ -1700,5 +1700,15 @@
 "Esercizio eliminato": "Übung gelöscht",
 "Le schede compaiono quando aggiungi gli esercizi a un allenamento.": "Die Pläne erscheinen, wenn du einem Training Übungen hinzufügst.",
 "Quando aggiungi gli esercizi a un allenamento, usa “Salva come scheda” per ritrovarli uguali la volta dopo.": "Wenn du einem Training Übungen hinzufügst, nutze „Als Plan speichern“, um sie beim nächsten Mal wiederzufinden.",
-"Con <b>+ Aggiungi allenamento</b> scegli tra 18 sport o <b>crea il tuo</b>; in ogni sport puoi segnare gli <b>esercizi</b>, anche tuoi, con le note.": "Mit <b>+ Training hinzufügen</b> wählst du aus 18 Sportarten oder <b>erstellst deine eigene</b>; bei jeder Sportart kannst du <b>Übungen</b> eintragen, auch eigene, mit Notizen."
+"Con <b>+ Aggiungi allenamento</b> scegli tra 18 sport o <b>crea il tuo</b>; in ogni sport puoi segnare gli <b>esercizi</b>, anche tuoi, con le note.": "Mit <b>+ Training hinzufügen</b> wählst du aus 18 Sportarten oder <b>erstellst deine eigene</b>; bei jeder Sportart kannst du <b>Übungen</b> eintragen, auch eigene, mit Notizen.",
+"Dati della bilancia smart": "Daten der smarten Waage",
+"Se la tua bilancia li misura, scrivili qui: li ritrovi nella scheda Corpo. Le misure col metro restano in Corpo → Composizione corporea.": "Wenn deine Waage sie misst, trag sie hier ein: Du findest sie im Tab Körper. Die Maße mit dem Maßband bleiben unter Körper → Körperzusammensetzung.",
+"✅ Peso e dati della bilancia salvati": "✅ Gewicht und Waagendaten gespeichert",
+"Massa ossea": "Knochenmasse",
+"Metabolismo basale": "Grundumsatz",
+"Età metabolica": "Stoffwechselalter",
+"ossa {n} kg": "Knochen {n} kg",
+"metabolismo basale {n} kcal": "Grundumsatz {n} kcal",
+"età metabolica {n}": "Stoffwechselalter {n}",
+"<h3>Corpo</h3><p>Nella scheda Corpo trovi peso, misure e massa grassa. Pesati 2–3 volte a settimana e prendi le misure col metro ogni 2 settimane: con vita e collo (e fianchi per le donne) l’app stima la percentuale di grasso. Se hai una bilancia smart, quando ti pesi apri “Dati della bilancia smart” e scrivi massa grassa, muscoli, acqua e gli altri valori: l’app calcola i kg di massa grassa e magra.</p>": "<h3>Körper</h3><p>Im Tab Körper findest du Gewicht, Maße und Körperfett. Wiege dich 2–3 Mal pro Woche und miss alle 2 Wochen mit dem Maßband: Mit Taille und Hals (und Hüfte bei Frauen) schätzt die App deinen Körperfettanteil. Wenn du eine smarte Waage hast, öffne beim Wiegen „Daten der smarten Waage“ und trag Körperfett, Muskeln, Wasser und die anderen Werte ein: Die App berechnet die kg Fett- und Magermasse.</p>"
 }

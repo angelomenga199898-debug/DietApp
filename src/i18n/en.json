@@ -1700,5 +1700,15 @@
 "Esercizio eliminato": "Exercise deleted",
 "Le schede compaiono quando aggiungi gli esercizi a un allenamento.": "Templates appear when you add exercises to a workout.",
 "Quando aggiungi gli esercizi a un allenamento, usa “Salva come scheda” per ritrovarli uguali la volta dopo.": "When you add exercises to a workout, use “Save as template” to find them again next time.",
-"Con <b>+ Aggiungi allenamento</b> scegli tra 18 sport o <b>crea il tuo</b>; in ogni sport puoi segnare gli <b>esercizi</b>, anche tuoi, con le note.": "With <b>+ Add workout</b> pick from 18 sports or <b>create your own</b>; in every sport you can log <b>exercises</b>, including your own, with notes."
+"Con <b>+ Aggiungi allenamento</b> scegli tra 18 sport o <b>crea il tuo</b>; in ogni sport puoi segnare gli <b>esercizi</b>, anche tuoi, con le note.": "With <b>+ Add workout</b> pick from 18 sports or <b>create your own</b>; in every sport you can log <b>exercises</b>, including your own, with notes.",
+"Dati della bilancia smart": "Smart scale data",
+"Se la tua bilancia li misura, scrivili qui: li ritrovi nella scheda Corpo. Le misure col metro restano in Corpo → Composizione corporea.": "If your scale measures them, enter them here: you’ll find them in the Body tab. Tape measurements stay in Body → Body composition.",
+"✅ Peso e dati della bilancia salvati": "✅ Weight and scale data saved",
+"Massa ossea": "Bone mass",
+"Metabolismo basale": "Basal metabolic rate",
+"Età metabolica": "Metabolic age",
+"ossa {n} kg": "bones {n} kg",
+"metabolismo basale {n} kcal": "basal metabolic rate {n} kcal",
+"età metabolica {n}": "metabolic age {n}",
+"<h3>Corpo</h3><p>Nella scheda Corpo trovi peso, misure e massa grassa. Pesati 2–3 volte a settimana e prendi le misure col metro ogni 2 settimane: con vita e collo (e fianchi per le donne) l’app stima la percentuale di grasso. Se hai una bilancia smart, quando ti pesi apri “Dati della bilancia smart” e scrivi massa grassa, muscoli, acqua e gli altri valori: l’app calcola i kg di massa grassa e magra.</p>": "<h3>Body</h3><p>In the Body tab you’ll find weight, measurements and body fat. Weigh yourself 2–3 times a week and take tape measurements every 2 weeks: with waist and neck (and hips for women) the app estimates your body fat percentage. If you have a smart scale, when you weigh in open “Smart scale data” and enter body fat, muscle, water and the other values: the app works out the kg of fat mass and lean mass.</p>"
 }

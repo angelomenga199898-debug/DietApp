@@ -1700,5 +1700,15 @@
 "Esercizio eliminato": "Ejercicio eliminado",
 "Le schede compaiono quando aggiungi gli esercizi a un allenamento.": "Las rutinas aparecen cuando añades ejercicios a un entrenamiento.",
 "Quando aggiungi gli esercizi a un allenamento, usa “Salva come scheda” per ritrovarli uguali la volta dopo.": "Cuando añadas ejercicios a un entrenamiento, usa «Guardar como rutina» para encontrarlos igual la próxima vez.",
-"Con <b>+ Aggiungi allenamento</b> scegli tra 18 sport o <b>crea il tuo</b>; in ogni sport puoi segnare gli <b>esercizi</b>, anche tuoi, con le note.": "Con <b>+ Añadir entrenamiento</b> elige entre 18 deportes o <b>crea el tuyo</b>; en cada deporte puedes registrar <b>ejercicios</b>, también los tuyos, con notas."
+"Con <b>+ Aggiungi allenamento</b> scegli tra 18 sport o <b>crea il tuo</b>; in ogni sport puoi segnare gli <b>esercizi</b>, anche tuoi, con le note.": "Con <b>+ Añadir entrenamiento</b> elige entre 18 deportes o <b>crea el tuyo</b>; en cada deporte puedes registrar <b>ejercicios</b>, también los tuyos, con notas.",
+"Dati della bilancia smart": "Datos de la báscula inteligente",
+"Se la tua bilancia li misura, scrivili qui: li ritrovi nella scheda Corpo. Le misure col metro restano in Corpo → Composizione corporea.": "Si tu báscula los mide, escríbelos aquí: los encontrarás en la pestaña Cuerpo. Las medidas con cinta siguen en Cuerpo → Composición corporal.",
+"✅ Peso e dati della bilancia salvati": "✅ Peso y datos de la báscula guardados",
+"Massa ossea": "Masa ósea",
+"Metabolismo basale": "Metabolismo basal",
+"Età metabolica": "Edad metabólica",
+"ossa {n} kg": "huesos {n} kg",
+"metabolismo basale {n} kcal": "metabolismo basal {n} kcal",
+"età metabolica {n}": "edad metabólica {n}",
+"<h3>Corpo</h3><p>Nella scheda Corpo trovi peso, misure e massa grassa. Pesati 2–3 volte a settimana e prendi le misure col metro ogni 2 settimane: con vita e collo (e fianchi per le donne) l’app stima la percentuale di grasso. Se hai una bilancia smart, quando ti pesi apri “Dati della bilancia smart” e scrivi massa grassa, muscoli, acqua e gli altri valori: l’app calcola i kg di massa grassa e magra.</p>": "<h3>Cuerpo</h3><p>En la pestaña Cuerpo encuentras peso, medidas y grasa corporal. Pésate 2–3 veces por semana y toma las medidas con cinta cada 2 semanas: con cintura y cuello (y caderas para las mujeres) la app estima tu porcentaje de grasa. Si tienes una báscula inteligente, cuando te peses abre «Datos de la báscula inteligente» y escribe grasa, músculo, agua y los demás valores: la app calcula los kg de masa grasa y magra.</p>"
 }
