@@ -5,10 +5,13 @@
 //   {op:"crea", codice, giorni, ai, usi, scade, nota}  {op:"lista"}  {op:"attiva", codice, on}   (solo amministratore)
 //   {op:"errori"}                -> errori segnalati dall'app negli ultimi 7 giorni (solo amministratore; cancella quelli
 //                                   più vecchi di 30 giorni)
+//   {op:"statistiche"}           -> numeri complessivi sull'uso dell'app (solo amministratore, vedi lib/stats.mjs)
+// Con "stato" l'app manda anche v (versione), lg (lingua), dm (app o web): una volta al giorno l'account viene segnato attivo.
 import { json, serviceAccount, verifyToken, getDoc, listDocs, deleteDoc } from "../lib/google.mjs";
 import { planOf, redeem, isAdmin, createCode, listCodes, setActive, addDays } from "../lib/piani.mjs";
 import { aiLimit } from "../lib/limiti.mjs";
 import { aiSource, budget, month, monthPath } from "../lib/spesa.mjs";
+import { markActive, summary } from "../lib/stats.mjs";
 
 export const config = { path: "/api/piano" };
 
@@ -26,12 +29,14 @@ export default async (req) => {
     if (b.op === "stato") {
       const p = await planOf(uid, tok), u = await getDoc("ai/" + uid), day = new Date().toISOString().slice(0, 10);
       const { doc, ...st } = p;
+      try { await markActive(uid, doc, b, req.headers.get("user-agent"), st.admin, day); } catch (e) { console.error("attivi", e.message); }
       const out = { ok: true, ...st, ai: { used: u && u.d === day ? u.n || 0 : 0, max: aiLimit(st.plan, st.admin ? null : doc) } };
       if (st.admin) {
         const src = aiSource(), m = month(await getDoc(monthPath()));
         out.spesa = { ...m, usd: Math.round(m.usd * 1e4) / 1e4, budget: budget(src && src.src), src: src ? src.src : null, mese: new Date().toISOString().slice(0, 7) };
-        const eg = await getDoc("errori/_g" + day);
+        const eg = await getDoc("errori/_g" + day), sd = await getDoc("stats/_d" + day);
         out.errori = (eg && eg.n) || 0;
+        out.attivi = sd ? (sd.acc || 0) + (sd.osp || 0) : 0;
       }
       return json(out);
     }
@@ -46,6 +51,10 @@ export default async (req) => {
         .sort((a, b) => String(b.ultimo || "").localeCompare(String(a.ultimo || ""))).slice(0, 100);
       await Promise.all(all.filter(x => (x.data.d || "") < old).map(x => deleteDoc("errori/" + x.id))).catch(() => {});
       return json({ ok: true, errori });
+    }
+    if (b.op === "statistiche") {
+      if (!isAdmin(tok)) return json({ err: "admin" }, 403);
+      return json({ ok: true, ...(await summary(uid)) });
     }
     if (["crea", "lista", "attiva"].includes(b.op)) {
       if (!isAdmin(tok)) return json({ err: "admin" }, 403);
