@@ -5,6 +5,11 @@ V = pathlib.Path('/home/claude/fooddata/v2'); W = pathlib.Path('/home/claude/foo
 exec(open(V / 'recipes.py').read())
 EX = json.load(open(V / 'existing.json'))
 cand = {x['id']: x for x in json.load(open(W / 'ciq_cand.json'))}
+# Ciqual 2025 ha la precedenza sulla 2020 per gli stessi codici (e per i codici nuovi)
+C25 = pathlib.Path('/home/claude/fooddata/c25/ciq25.json')
+if C25.exists():
+    for x in json.load(open(C25)):
+        if None not in (x['p'], x['c'], x['g']): cand[x['id']] = x
 alls = {x['id']: x for x in json.load(open(W / 'ciq_all.json'))}
 usda = {x['id']: x for x in json.load(open(W / 'usda_all.json'))}
 def norm(s): return re.sub(r'\s+', ' ', re.sub(r'[^a-z0-9 ]', ' ', unicodedata.normalize('NFD', s.lower()).encode('ascii', 'ignore').decode())).strip()
@@ -56,7 +61,7 @@ for i, names, u, gr, syn, (k, p, c, g) in rows:
 for p_ in probs: print(' !', p_)
 if '--write' in sys.argv:
     if probs and '--force' not in sys.argv: sys.exit('problemi: niente scritto')
-    js = ('// Ampliamento 6 (v3.6): valori per 100 g/ml. Fonti: Ciqual 2020 (ANSES, Licence Ouverte / Etalab), USDA FoodData Central\n'
+    js = ('// Ampliamento 6 (v3.6): valori per 100 g/ml. Fonti: Ciqual 2025 (ANSES, Licence Ouverte / Etalab), USDA FoodData Central\n'
           '// SR Legacy (dominio pubblico), valori pubblicati su etichette di prodotti tipici e integratori, e piatti italiani calcolati\n'
           '// dalle ricette (dosi per una porzione e peso del piatto finito in fooddata/v2/recipes.py) con i valori degli ingredienti.\n'
           'FOODS_RAW.push(\n' + ',\n'.join(json.dumps(o, ensure_ascii=False) for o in out) + '\n);\n')

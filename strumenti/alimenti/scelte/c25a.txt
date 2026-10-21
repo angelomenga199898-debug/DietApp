@@ -1,0 +1,24 @@
+c18348|Bevanda isotonica (sport drink)|Sports drink|Boisson pour sportifs|Bebida isotónica|Sportgetränk (isotonisch)|bottiglietta|500|integratore sali minerali powerade
+c18899|Bevanda di avena senza zucchero|Unsweetened oat drink|Boisson à l'avoine sans sucre|Bebida de avena sin azúcar|Haferdrink ungesüßt|bicchiere|200|latte di avena
+c18306|Bevanda all'aloe vera|Aloe vera drink|Boisson à l'aloe vera|Bebida de aloe vera|Aloe-Vera-Getränk|bottiglietta|500|
+c18316|Kefir d'acqua|Water kefir|Kéfir de fruits|Kéfir de agua|Wasserkefir|bicchiere|200|tibicos
+c25243|Noodles istantanei (cotti)|Instant noodles (cooked)|Nouilles instantanées (cuites)|Fideos instantáneos (cocidos)|Instantnudeln (gekocht)|porzione|250|ramen istantaneo cup noodles
+c25647|Wrap pollo e verdure|Chicken and vegetable wrap|Wrap poulet et crudités|Wrap de pollo y verduras|Wrap mit Hähnchen und Gemüse|pezzo|200|piadina wrap pollo
+c25646|Wrap vegetariano|Vegetarian wrap|Wrap végétarien|Wrap vegetariano|Vegetarischer Wrap|pezzo|200|
+c15059|Frutta secca mista tostata e salata|Mixed nuts, roasted and salted|Mélange de fruits à coque grillés salés|Frutos secos mixtos tostados y salados|Nussmischung geröstet und gesalzen|manciata|30|noci miste aperitivo
+c38414|Grissini al sesamo|Sesame breadsticks|Gressins au sésame|Picos de pan con sésamo|Grissini mit Sesam|grissino|5|
+c7347|Crackers ai semi|Seeded crackers|Crackers aux graines|Crackers con semillas|Saaten-Cracker|pacchetto|30|cracker ai cereali e semi
+c9685|Cous cous integrale (cotto)|Wholewheat couscous (cooked)|Couscous complet (cuit)|Cuscús integral (cocido)|Vollkorn-Couscous (gekocht)|porzione|180|
+c19432|Panna da cucina light 5%|Light cooking cream 5% fat|Crème légère 5% MG à cuisiner|Nata ligera para cocinar 5%|Leichte Kochsahne 5 %|cucchiaio|15|panna leggera
+c12775|Formaggio grattugiato (misto, in busta)|Grated cheese mix (bag)|Mélange de fromages râpés (sachet)|Mezcla de quesos rallados (bolsa)|Geriebene Käsemischung (Beutel)|cucchiaio grattugiato|7|formaggio grattugiato
+c19709|Quark aromatizzato 0% (con dolcificanti)|Flavoured quark 0% (sweeteners)|Fromage blanc aromatisé 0% (édulcorants)|Quark aromatizado 0% (edulcorantes)|Magerquark aromatisiert 0 % (Süßstoff)|vasetto|150|skyr aromatizzato light
+c24013|Biscotti senza zuccheri aggiunti (con dolcificanti)|No-added-sugar biscuits (sweeteners)|Biscuits sans sucres ajoutés (édulcorants)|Galletas sin azúcares añadidos (edulcorantes)|Kekse ohne Zuckerzusatz (Süßstoff)|biscotto|8|biscotti dietetici
+c24657|Bastoncini di biscotto ricoperti di cioccolato|Chocolate-coated biscuit sticks|Bâtonnets de biscuit enrobés de chocolat|Palitos de galleta con chocolate|Schokoladenüberzogene Keksstäbchen|pacchetto|40|mikado pocky
+c7355|Gallette di riso ricoperte di cioccolato|Chocolate-coated rice cakes|Galettes de riz enrobées de chocolat|Tortitas de arroz con chocolate|Reiswaffeln mit Schokolade|galletta|15|gallette al cioccolato
+c31128|Caramelle dure senza zucchero|Sugar-free hard candies|Bonbons durs sans sucre|Caramelos duros sin azúcar|Zuckerfreie Bonbons|caramella|4|caramelle light
+c31125|Mentine senza zucchero|Sugar-free mints|Pastilles à la menthe sans sucre|Pastillas de menta sin azúcar|Zuckerfreie Pfefferminzbonbons|pastiglia|1|caramelle alla menta
+c31127|Torrone morbido|Soft nougat|Nougat tendre|Turrón blando|Weicher Nougat|pezzo|25|
+c30994|Confettura di fichi|Fig jam|Confiture de figues|Mermelada de higos|Feigenmarmelade|cucchiaino|10|marmellata di fichi
+c30314|Salame light (meno grassi)|Reduced-fat salami|Saucisson sec allégé|Salami light (bajo en grasa)|Salami fettreduziert|fetta|10|salame magro
+c26998|Trota salmonata in padella|Pan-cooked salmon trout|Truite saumonée poêlée|Trucha asalmonada a la plancha|Lachsforelle gebraten|filetto|150|
+c26695|Salmone selvatico affumicato|Smoked wild salmon|Saumon sauvage fumé|Salmón salvaje ahumado|Geräucherter Wildlachs|fetta|20|
