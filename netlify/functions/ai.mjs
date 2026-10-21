@@ -3,9 +3,9 @@
 // Modalità: parse (testo -> pasti), photo (foto del piatto -> pasti), chat (coach), week (commento della settimana).
 // Limiti: per piano (vedi lib/limiti.mjs: Prova e Pro AI_MAX_DAY = 20 al giorno, Free AI_FREE_DAY = 0), contati in ai/{uid},
 // e budget del mese in dollari (AI_BUDGET_USD, vedi lib/spesa.mjs) calcolato dai token reali in ai/_m<AAAA-MM>; AI_MAX_MONTH,
-// se impostato, limita anche il numero di richieste del mese. Modelli (vedi modelOf): per i pasti (parse e photo, dove conta
-// la precisione) AI_MODEL_FOOD, predefinito gemini-3.8-flash, e per la sola foto AI_MODEL_PHOTO se impostato; per coach e
-// settimana AI_MODEL, predefinito gemini-3.1-flash-lite. Ragionamento per modalità (modelli Gemini 3 e successivi):
+// se impostato, limita anche il numero di richieste del mese. Modelli (vedi modelOf): per la foto, dove serve riconoscere
+// piatti e porzioni, AI_MODEL_PHOTO, predefinito gemini-3.8-flash; per il resto AI_MODEL, predefinito gemini-3.1-flash-lite
+// (nel testo la precisione viene soprattutto dai valori del database). Ragionamento per modalità (Gemini 3 e successivi):
 // AI_THINK_PARSE, AI_THINK_PHOTO, AI_THINK_CHAT, AI_THINK_WEEK = minimal, low, medium o high (vedi THINK).
 import { json, serviceAccount, verifyToken, getDoc, updateDoc, incDoc, LINGUE } from "../lib/google.mjs";
 import { planOf } from "../lib/piani.mjs";
@@ -116,20 +116,15 @@ export function input(b, today = new Date().toISOString().slice(0, 10)) {
   return o;
 }
 
-// Ragionamento: al massimo dove serve precisione (stima di kcal e macro da testo e foto). I token di ragionamento si
-// pagano come risposta e contano in maxOutputTokens, che quindi lascia spazio anche a loro.
-export const THINK = { parse: "high", photo: "high", chat: "low", week: "low" };
+// Ragionamento: alto per il testo (modello economico), medio per la foto (modello più forte, che costa di più per token).
+// I token di ragionamento si pagano come risposta e contano in maxOutputTokens, che quindi lascia spazio anche a loro.
+export const THINK = { parse: "high", photo: "medium", chat: "low", week: "low" };
 const LEVELS = ["minimal", "low", "medium", "high"];
 // Gemini 3 e successivi: livelli di ragionamento e niente temperature (Google consiglia di lasciarla al valore predefinito,
 // dalla 3.6 viene ignorata e in futuro darà errore).
 const NEW = m => /^(models\/)?gemini-([3-9]|\d\d)/.test(m || "");
-export const FOOD_MODEL = "gemini-3.8-flash", CHAT_MODEL = "gemini-3.1-flash-lite";
-export function modelOf(mode) {
-  const e = process.env;
-  if (mode === "photo" && e.AI_MODEL_PHOTO) return e.AI_MODEL_PHOTO;
-  if (mode === "photo" || mode === "parse") return e.AI_MODEL_FOOD || FOOD_MODEL;
-  return e.AI_MODEL || CHAT_MODEL;
-}
+export const PHOTO_MODEL = "gemini-3.8-flash", BASE_MODEL = "gemini-3.1-flash-lite";
+export const modelOf = mode => (mode === "photo" ? process.env.AI_MODEL_PHOTO || PHOTO_MODEL : process.env.AI_MODEL || BASE_MODEL);
 export function thinkLevel(mode, model) {
   if (!NEW(model)) return null;
   const e = process.env["AI_THINK_" + mode.toUpperCase()];
