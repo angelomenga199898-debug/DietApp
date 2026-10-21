@@ -1674,14 +1674,15 @@ aiConsent(()=>aiRun(m,txt))}
 // e indica in r quello che ha usato, così aiItem ricalcola la voce con i valori del database (AIREF = alimenti inviati, nello stesso ordine).
 // Si cerca sul nome nella lingua dell'app e su quello italiano. Entra un alimento se la sua prima parola (in inglese e tedesco anche l'ultima) è tra quelle scritte (tutte le varianti: "tonno" → al naturale, sott'olio, fresco…),
 // se lo è il 60% delle sue parole, o se è un ingrediente di base (crudo, cotto…) con un sinonimo scritto ("spaghetti" → pasta).
-// Prima i nomi completi, poi gli ingredienti di base e poi i piatti; al massimo 8 per parola e 30 in tutto.
+// Prima i nomi completi, poi gli ingredienti di base e poi i piatti; al massimo 8 per parola (gli ingredienti trovati per sinonimo
+// hanno posti a parte, così i piatti con quella parola nel nome non li tolgono) e 30 in tutto.
 // C'è sempre l'olio extravergine, che l'assistente aggiunge come voce a parte per le cotture (anche nelle foto senza testo).
 let AIREF=[];
 const aiWs=s=>norm(s).replace(/\(.*?\)/g,' ').replace(/[^a-z0-9]+/g,' ').split(' ').filter(w=>w.length>2&&!STOPW.includes(w)&&!/^\d/.test(w)),aiKey=w=>w.length>3?w.slice(0,-1):w;
 function aiRefs(txt){const K=new Set(aiWs(txt||'').map(aiKey)),R=[],F=allFoods(),evo=F.find(f=>(f.it||f.n)=="Olio extravergine d'oliva");if(!K.size)return evo?[evo]:[];
 const two=LG=='en'||LG=='de',m=(nm,last)=>{const tk=aiWs(nm);if(!tk.length)return null;const h=tk.filter(w=>K.has(aiKey(w))).length,f0=aiKey(tk[0]),l0=aiKey(tk[tk.length-1]);return{tk,h,hd:K.has(f0)?f0:last&&K.has(l0)?l0:''}};
 F.forEach((f,ix)=>{let b=m(f.n,two);if(f.it&&f.it!=f.n){const c=m(f.it,false);if(c&&(!b||c.h>b.h||(c.h==b.h&&c.hd&&!b.hd)))b=c}if(!b)return;const base=/\((crud|cott|secc|sgocciol|lessat|fresc|surgel)/.test(norm(f.it||f.n));let g=b.hd;
-if(!b.h){if(!base)return;const a=aiWs(f.al||'').find(w=>K.has(aiKey(w)));if(!a)return;g=aiKey(a)}else if(!b.hd&&b.h/b.tk.length<.6)return;
+if(!b.h){if(!base)return;const a=aiWs(f.al||'').find(w=>K.has(aiKey(w)));if(!a)return;g='~'+aiKey(a)}else if(!b.hd&&b.h/b.tk.length<.6)return;
 R.push({f,h:b.h,ix,base,g:g||'~',all:b.h==b.tk.length,x:b.tk.length-b.h})});
 R.sort((a,b)=>b.all-a.all||(b.f.my||0)-(a.f.my||0)||b.h-a.h||b.base-a.base||(a.f.src=='off')-(b.f.src=='off')||a.x-b.x||a.ix-b.ix);
 const seen=new Set(),per={},out=[];for(const x of R){const k=norm(x.f.n);if(seen.has(k))continue;if((per[x.g]=(per[x.g]||0)+1)>8)continue;seen.add(k);out.push(x.f);if(out.length>=29)break}
