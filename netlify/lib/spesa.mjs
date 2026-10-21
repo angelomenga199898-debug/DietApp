@@ -16,14 +16,20 @@ export function aiSource() {
 
 // Dollari per milione di token: [entrata, uscita]. I token di ragionamento si pagano come uscita.
 // Per un modello non in elenco si usa un prezzo alto (prudente) o AI_PRICE_IN / AI_PRICE_OUT.
+// Prezzi del livello a pagamento (ai.google.dev/gemini-api/docs/pricing, ottobre 2026); le Flash 3.6–3.8 hanno un prezzo
+// di lancio fino al 31/12/2026, poi raddoppia.
+const LANCIO = d => (d < "2027-01-01" ? [0.75, 3.75] : [1.5, 7.5]);
 const PRICES = {
   "gemini-3.1-flash-lite": [0.25, 1.5], "gemini-flash-lite-latest": [0.25, 1.5],
   "gemini-2.5-flash-lite": [0.1, 0.4], "gemini-3.5-flash-lite": [0.3, 2.5],
+  "gemini-3-flash": [0.5, 3], "gemini-2.5-flash": [0.3, 2.5], "gemini-3.5-flash": [1.5, 9],
+  "gemini-3.6-flash": LANCIO, "gemini-3.7-flash": LANCIO, "gemini-3.8-flash": LANCIO,
 };
-export function price(model) {
+export function price(model, day = new Date().toISOString().slice(0, 10)) {
   const i = +process.env.AI_PRICE_IN, o = +process.env.AI_PRICE_OUT;
   if (i > 0 && o > 0) return [i, o];
-  return PRICES[String(model).replace(/^models\//, "").replace(/-preview.*$/, "")] || [2, 12];
+  const p = PRICES[String(model).replace(/^models\//, "").replace(/-preview.*$/, "")];
+  return typeof p === "function" ? p(day) : p || [2, 12];
 }
 
 // Token e costo di una risposta di Gemini.

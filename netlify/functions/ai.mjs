@@ -3,9 +3,10 @@
 // Modalità: parse (testo -> pasti), photo (foto del piatto -> pasti), chat (coach), week (commento della settimana).
 // Limiti: per piano (vedi lib/limiti.mjs: Prova e Pro AI_MAX_DAY = 20 al giorno, Free AI_FREE_DAY = 0), contati in ai/{uid},
 // e budget del mese in dollari (AI_BUDGET_USD, vedi lib/spesa.mjs) calcolato dai token reali in ai/_m<AAAA-MM>; AI_MAX_MONTH,
-// se impostato, limita anche il numero di richieste del mese. Modelli: AI_MODEL (predefinito gemini-3.1-flash-lite) e
-// AI_MODEL_PHOTO (predefinito come AI_MODEL). Ragionamento per modalità (solo modelli Gemini 3): AI_THINK_PARSE,
-// AI_THINK_PHOTO, AI_THINK_CHAT, AI_THINK_WEEK = minimal, low, medium o high (vedi THINK).
+// se impostato, limita anche il numero di richieste del mese. Modelli (vedi modelOf): per i pasti (parse e photo, dove conta
+// la precisione) AI_MODEL_FOOD, predefinito gemini-3.8-flash, e per la sola foto AI_MODEL_PHOTO se impostato; per coach e
+// settimana AI_MODEL, predefinito gemini-3.1-flash-lite. Ragionamento per modalità (modelli Gemini 3 e successivi):
+// AI_THINK_PARSE, AI_THINK_PHOTO, AI_THINK_CHAT, AI_THINK_WEEK = minimal, low, medium o high (vedi THINK).
 import { json, serviceAccount, verifyToken, getDoc, updateDoc, incDoc, LINGUE } from "../lib/google.mjs";
 import { planOf } from "../lib/piani.mjs";
 import { aiLimit } from "../lib/limiti.mjs";
@@ -18,7 +19,7 @@ const MIMES = ["image/jpeg", "image/png", "image/webp", "image/heic", "image/hei
 const isDate = s => typeof s === "string" && /^\d{4}-\d\d-\d\d$/.test(s);
 const str = (s, n) => (typeof s === "string" ? s.slice(0, n) : "");
 
-const ITEM = { type: "OBJECT", properties: { t: { type: "STRING" }, n: { type: "STRING" }, nm: { type: "STRING" }, q: { type: "NUMBER" }, u: { type: "STRING", format: "enum", enum: ["g", "ml", "pz"] }, k: { type: "NUMBER" }, p: { type: "NUMBER" }, c: { type: "NUMBER" }, g: { type: "NUMBER" } }, required: ["n", "nm", "q", "u", "k", "p", "c", "g"] };
+const ITEM = { type: "OBJECT", properties: { t: { type: "STRING" }, n: { type: "STRING" }, nm: { type: "STRING" }, r: { type: "INTEGER", nullable: true }, q: { type: "NUMBER" }, u: { type: "STRING", format: "enum", enum: ["g", "ml", "pz"] }, k: { type: "NUMBER" }, p: { type: "NUMBER" }, c: { type: "NUMBER" }, g: { type: "NUMBER" } }, required: ["n", "nm", "q", "u", "k", "p", "c", "g"] };
 const UNITS = ["g", "ml", "pz"];
 const NUMN = { type: "NUMBER", nullable: true };
 export const SCHEMA = {
@@ -39,8 +40,16 @@ const SAFE = "Non fare diagnosi e non dare consigli medici, sui farmaci o sugli 
 // Alimenti del database di DietApp che corrispondono alle parole dell'utente (li sceglie l'app): valori di etichette e
 // tabelle ufficiali, così le stime restano coerenti con il resto dell'app.
 const refs = b => b.ref && b.ref.length ? `
-Valori di riferimento dal database di DietApp, che corrispondono a parole dell’utente. Usali quando l’alimento è chiaramente lo stesso, adattandoli alla quantità e alla cottura; ignorali se non c’entrano:
-${b.ref.map(r => "- " + r).join("\n")}` : "";
+Valori di riferimento dal database di DietApp (tabelle ufficiali ed etichette), numerati, scelti perché corrispondono a parole dell’utente. Quando un alimento è proprio uno di questi (stesso alimento, stessa variante e stessa cottura) metti il suo numero in r, copia il suo nome in nm e calcola k, p, c e g da questi valori per la quantità q; se nessuno corrisponde esattamente, r = 0 e stima tu. Ignora quelli che non c’entrano:
+${b.ref.map((r, i) => i + 1 + ". " + r).join("\n")}` : "";
+
+// Regole comuni a testo e foto: gli errori più frequenti sono varianti più leggere del reale e condimenti dimenticati.
+const PREC = `
+Precisione, che è la cosa più importante:
+- Se l’utente non dice la variante, scegli la più comune in Italia, non la più leggera, e scrivi l’ipotesi in note. Esempio: “tonno” in scatola senza altro = tonno sott’olio d’oliva sgocciolato (circa 190 kcal per 100 g); una scatoletta da 80 g contiene circa 55 g di tonno sgocciolato.
+- Grassi di cottura e condimenti: verdure, carne, pesce o uova in padella, trifolati, saltati, fritti, al forno o gratinati di solito hanno olio o burro. Se l’utente non dice “senza olio”, aggiungi l’olio come voce a parte (nm “Olio extravergine d’oliva”, in g): circa 10 g a porzione in padella o al forno e per condire un’insalata, 5 g per le grigliate spennellate. Niente olio per cibi crudi, lessati, al vapore o alla griglia senza condimento, e non aggiungerlo se la voce lo comprende già (es. zucchine trifolate, verdure fritte, piatti pronti).
+- Pasta, riso, cereali e legumi secchi: se l’utente non dice “cotti”, il peso è da crudo.
+- Prima di rispondere controlla ogni voce: k deve essere vicino a 4×p + 4×c + 9×g e le kcal per 100 g devono essere plausibili per quell’alimento. Le stime sbagliano quasi sempre per difetto (olio, salse e porzioni dimenticati): nel dubbio tra due valori plausibili scegli il più alto.`;
 
 export function prompt(mode, b) {
   const L = LN[b.lg] || LN.it;
@@ -51,12 +60,14 @@ export function prompt(mode, b) {
 - date: AAAA-MM-GG del giorno di cui parla il testo (ieri, lunedì…), altrimenti la data di default.
 - closed: true solo se il testo dice che la giornata è finita o chiusa.
 - note: ipotesi e incertezze, brevissime.
+${PREC}
 Scrivi n, nm e note in ${L}. Non dare consigli medici.${refs(b)}`;
   if (mode === "photo") return `Sei l’assistente di DietApp, un diario alimentare. Guardi la foto di un pasto e stimi cosa contiene. Rispondi solo con JSON secondo lo schema.
 - food: false se nella foto non ci sono cibi o bevande; allora items è vuoto e in note spieghi che serve la foto di un pasto.
 - items: un elemento per alimento visibile. n = nome con quantità stimata (es. "Riso basmati, ~150 g"); nm = solo il nome, senza quantità; q e u = la quantità stimata come numero e unità (u = "g" per i cibi, "ml" per le bevande, "pz" per quello che si conta a pezzi come uova, fette o biscotti); k, p e c, g valgono per tutta la quantità q. k = kcal; p, c, g = grammi di proteine, carboidrati e grassi; t vuoto. Stima centrale realistica, contando i condimenti visibili o probabili (olio, burro, salse).
 - Se l’utente ha scritto dei dettagli, hanno la precedenza su quello che vedi.
 - note: le incertezze principali (es. olio non visibile), brevissime.
+${PREC}
 Scrivi n, nm e note in ${L}. Non dare consigli medici.${refs(b)}`;
   if (mode === "chat") return `Sei il coach di DietApp, un diario alimentare per adulti che vogliono dimagrire o mantenere il peso. Rispondi in ${L}, in modo amichevole, concreto e breve (al massimo 120 parole), usando i dati dell’utente qui sotto quando servono. Puoi usare elenchi con "- " e **grassetto**, nient’altro.
 - Calorie consumate e deficit sono stime dell’app: trattali come indicativi.
@@ -85,7 +96,7 @@ export function input(b, today = new Date().toISOString().slice(0, 10)) {
   o.text = str(b.text, 2000).trim();
   if (mode === "parse" && !o.text) return { err: "text" };
   if ((mode === "parse" || mode === "photo") && Array.isArray(b.ref)) {
-    o.ref = b.ref.slice(0, 20).map(r => str(r, 200).replace(/\s+/g, " ").trim()).filter(Boolean);
+    o.ref = b.ref.slice(0, 30).map(r => str(r, 200).replace(/\s+/g, " ").trim()).filter(Boolean);
   }
   if (mode === "photo") {
     // JPEG ridotto dall'app (di solito) o, se il telefono non sa aprire la foto (es. HEIC), il file originale fino a ~4 MB.
@@ -105,18 +116,29 @@ export function input(b, today = new Date().toISOString().slice(0, 10)) {
   return o;
 }
 
-// Ragionamento: più alto dove serve precisione (stima di kcal e macro da testo e foto). I token di ragionamento si
+// Ragionamento: al massimo dove serve precisione (stima di kcal e macro da testo e foto). I token di ragionamento si
 // pagano come risposta e contano in maxOutputTokens, che quindi lascia spazio anche a loro.
-export const THINK = { parse: "medium", photo: "medium", chat: "low", week: "low" };
+export const THINK = { parse: "high", photo: "high", chat: "low", week: "low" };
 const LEVELS = ["minimal", "low", "medium", "high"];
+// Gemini 3 e successivi: livelli di ragionamento e niente temperature (Google consiglia di lasciarla al valore predefinito,
+// dalla 3.6 viene ignorata e in futuro darà errore).
+const NEW = m => /^(models\/)?gemini-([3-9]|\d\d)/.test(m || "");
+export const FOOD_MODEL = "gemini-3.8-flash", CHAT_MODEL = "gemini-3.1-flash-lite";
+export function modelOf(mode) {
+  const e = process.env;
+  if (mode === "photo" && e.AI_MODEL_PHOTO) return e.AI_MODEL_PHOTO;
+  if (mode === "photo" || mode === "parse") return e.AI_MODEL_FOOD || FOOD_MODEL;
+  return e.AI_MODEL || CHAT_MODEL;
+}
 export function thinkLevel(mode, model) {
-  if (!/^(models\/)?gemini-3/.test(model || "")) return null;
+  if (!NEW(model)) return null;
   const e = process.env["AI_THINK_" + mode.toUpperCase()];
   return LEVELS.includes(e) ? e : THINK[mode];
 }
 
-export function request(o, model = "gemini-3.1-flash-lite") {
-  const gen = { temperature: o.mode === "chat" ? 0.5 : 0.2, maxOutputTokens: { parse: 6144, photo: 6144, chat: 3072, week: 3072 }[o.mode] };
+export function request(o, model = modelOf(o.mode)) {
+  const gen = { maxOutputTokens: { parse: 16384, photo: 16384, chat: 3072, week: 3072 }[o.mode] };
+  if (!NEW(model)) gen.temperature = o.mode === "chat" ? 0.5 : 0.2;
   const th = thinkLevel(o.mode, model);
   if (th) gen.thinkingConfig = { thinkingLevel: th };
   if (SCHEMA[o.mode]) { gen.responseMimeType = "application/json"; gen.responseSchema = SCHEMA[o.mode]; }
@@ -144,7 +166,8 @@ const n0 = v => (Number.isFinite(+v) && +v >= 0 ? Math.round(+v * 10) / 10 : 0);
 const nn = v => (v == null || !Number.isFinite(+v) ? null : +v);
 // quantità modificabile in app: nm (nome senza quantità), q e u (g, ml o pz) solo se validi
 const qty = i => { const q = n0(i && i.q), u = i && i.u, nm = str(i && i.nm, 100).trim(); return q > 0 && q <= 10000 && UNITS.includes(u) && nm ? { nm, q: Math.round(q * 100) / 100, u } : {}; };
-const items = a => (Array.isArray(a) ? a : []).slice(0, 30).map(i => ({ t: /^\d\d:\d\d$/.test(i && i.t) ? i.t : "", n: str(i && i.n, 120), ...qty(i), k: Math.round(n0(i && i.k)), p: n0(i && i.p), c: n0(i && i.c), g: n0(i && i.g) })).filter(i => i.n);
+const ref = (i, nr) => { const r = Math.round(+(i && i.r)); return r >= 1 && r <= nr ? { r } : {}; };
+const items = (a, nr = 0) => (Array.isArray(a) ? a : []).slice(0, 30).map(i => ({ t: /^\d\d:\d\d$/.test(i && i.t) ? i.t : "", n: str(i && i.n, 120), ...qty(i), ...ref(i, nr), k: Math.round(n0(i && i.k)), p: n0(i && i.p), c: n0(i && i.c), g: n0(i && i.g) })).filter(i => i.n);
 
 // Toglie dal risultato del modello tutto ciò che non serve all'app.
 export function tidy(mode, text, o) {
@@ -152,9 +175,9 @@ export function tidy(mode, text, o) {
   let d;
   try { d = JSON.parse(text.replace(/^```(?:json)?\s*|\s*```$/g, "")); } catch { throw new Error("json"); }
   if (mode === "week") return { title: str(d.title, 80), points: (Array.isArray(d.points) ? d.points : []).slice(0, 5).map(x => str(x, 300)).filter(Boolean), tip: str(d.tip, 300) };
-  if (mode === "photo") return { date: o.date, closed: false, items: d.food === false ? [] : items(d.items), wo: [], note: str(d.note, 400), food: d.food !== false };
+  if (mode === "photo") return { date: o.date, closed: false, items: d.food === false ? [] : items(d.items, (o.ref || []).length), wo: [], note: str(d.note, 400), food: d.food !== false };
   return {
-    date: isDate(d.date) ? d.date : o.date, closed: d.closed === true, items: items(d.items),
+    date: isDate(d.date) ? d.date : o.date, closed: d.closed === true, items: items(d.items, (o.ref || []).length),
     wo: (Array.isArray(d.wo) ? d.wo : []).slice(0, 10).map(w => ({ s: str(w && w.s, 40), min: nn(w && w.min), km: nn(w && w.km), rpe: nn(w && w.rpe) })).filter(w => w.s),
     steps: nn(d.steps), w: nn(d.w), water: nn(d.water), sleep: nn(d.sleep), note: str(d.note, 400),
   };
@@ -183,7 +206,7 @@ export default async (req) => {
     if (MAXD <= 0) return json({ err: "plan", plan: p.plan, used, max: 0 }, 403);
     if (used >= MAXD) return json({ err: "limit", used, max: MAXD }, 429);
     if (gm.usd >= budget(src.src) || (MAXM && gm.n >= MAXM)) return json({ err: "cap", used, max: MAXD }, 429);
-    const model = (o.mode === "photo" && process.env.AI_MODEL_PHOTO) || process.env.AI_MODEL || "gemini-3.1-flash-lite";
+    const model = modelOf(o.mode);
     // Ogni risposta (anche se poi non va bene) si somma alla spesa del mese.
     const spend = usage => {
       const c = cost(model, usage);
