@@ -1,0 +1,5 @@
+c28504|Pancetta a cubetti (rosolata)|Diced pancetta (fried)|Lardons (cuits)|Panceta en dados (frita)|Speckwürfel (angebraten)|cucchiaio|15|pancetta cotta dadini
+c30797|Mortadella al pistacchio|Mortadella with pistachios|Mortadelle aux pistaches|Mortadela con pistachos|Mortadella mit Pistazien|fetta|20|
+c28502|Pancetta affumicata (tesa, cruda)|Smoked pancetta (raw)|Poitrine fumée (crue)|Panceta ahumada (cruda)|Geräucherter Bauchspeck (roh)|fetta|15|bacon crudo
+c28803|Prosciutto di Praga (cotto affumicato)|Prague ham (smoked cooked ham)|Jambon de Prague (cuit fumé)|Jamón de Praga (cocido ahumado)|Prager Schinken (gekocht, geräuchert)|fetta|25|prosciutto cotto affumicato
+c34500|Cosce di rana (crude)|Frog legs (raw)|Cuisses de grenouille (crues)|Ancas de rana (crudas)|Froschschenkel (roh)|porzione|150|rane

@@ -1,0 +1,11 @@
+c11060|Erbe di Provenza (secche)|Herbes de Provence (dried)|Herbes de Provence (séchées)|Hierbas provenzales (secas)|Kräuter der Provence (getrocknet)|cucchiaino|1|erbe aromatiche miste
+c11029|Menta secca|Dried mint|Menthe séchée|Menta seca|Getrocknete Minze|cucchiaino|1|
+c11002|Cerfoglio fresco|Fresh chervil|Cerfeuil frais|Perifollo fresco|Frischer Kerbel|cucchiaio|3|
+c11019|Pepe bianco in polvere|White pepper (ground)|Poivre blanc moulu|Pimienta blanca molida|Weißer Pfeffer (gemahlen)|cucchiaino|2|
+c11077|Fieno greco (semi)|Fenugreek seeds|Graines de fenugrec|Semillas de fenogreco|Bockshornkleesamen|cucchiaino|4|
+c11064|Carvi (semi)|Caraway seeds|Graines de carvi|Semillas de alcaravea|Kümmel (Samen)|cucchiaino|2|cumino dei prati
+c11021|Senape in grani|Wholegrain mustard|Moutarde à l'ancienne|Mostaza en grano|Körniger Senf|cucchiaino|5|senape antica
+c11097|Cetriolini in agrodolce|Sweet and sour gherkins|Cornichons aigres-doux|Pepinillos agridulces|Süßsaure Gewürzgurken|porzione|30|sottaceti
+c42200|Lecitina di soia|Soy lecithin|Lécithine de soja|Lecitina de soja|Sojalecithin|cucchiaio|8|integratore
+c9643|Crusca di riso|Rice bran|Son de riz|Salvado de arroz|Reiskleie|cucchiaio|8|
+c11179|Pesto alla genovese pronto (in vasetto)|Ready-made pesto (jar)|Pesto prêt à l'emploi (en bocal)|Pesto preparado (en tarro)|Fertiges Pesto (im Glas)|cucchiaio|15|pesto barilla sugo pronto

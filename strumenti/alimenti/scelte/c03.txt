@@ -1,0 +1,7 @@
+c13007|Ribes nero (cassis)|Blackcurrants|Cassis|Grosella negra|Schwarze Johannisbeeren|porzione|100|
+c13027|Susine mirabelle|Mirabelle plums|Mirabelles|Ciruelas mirabel|Mirabellen|frutto|15|prugne gialle
+c13552|Longan|Longan|Longane|Longan|Longan|frutto|10|frutta esotica
+c13077|Rambutan|Rambutan|Ramboutan|Rambután|Rambutan|frutto|15|frutta esotica
+c13529|Durian|Durian|Durian|Durián|Durian|porzione|100|frutta esotica
+c13128|Chayote (zucchina spinosa)|Chayote|Chayote (christophine)|Chayote|Chayote|frutto|200|zucchina centenaria
+c13118|Pesche secche|Dried peaches|Pêches séchées|Melocotones secos|Getrocknete Pfirsiche|porzione|30|frutta essiccata

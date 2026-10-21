@@ -1778,5 +1778,6 @@
 "giornata non completa: non conta": "day not complete: it doesn’t count",
 "In <b>Grafici</b> trovi le medie, il <b>deficit della settimana</b> con i kg persi in teoria e quando raggiungerai l’obiettivo.": "In <b>Charts</b> you’ll find the averages, the <b>weekly deficit</b> with the kg lost in theory, and when you’ll reach your goal.",
 "Surplus del giorno": "Daily surplus",
-"valori del database": "database values"
+"valori del database": "database values",
+"<h3>Piatti e prodotti tipici</h3><p>I piatti della tradizione italiana sono calcolati da ricette standard per una porzione, con i valori degli ingredienti e il peso del piatto finito. Per formaggi e salumi tipici e per gli integratori si usano valori medi pubblicati sulle etichette.</p>": "<h3>Dishes and specialty products</h3><p>Traditional Italian dishes are calculated from standard single-portion recipes, using the ingredients’ values and the weight of the finished dish. Specialty cheeses and cured meats and supplements use average values published on product labels.</p>"
 }

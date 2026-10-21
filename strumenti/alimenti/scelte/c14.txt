@@ -1,0 +1,8 @@
+c10005|Polpa di granchio in scatola|Canned crab meat|Chair de crabe en conserve|Carne de cangrejo en conserva|Krabbenfleisch aus der Dose|porzione|60|granchio sgocciolato
+c26086|Sgombro al pomodoro (in scatola)|Mackerel in tomato sauce (canned)|Maquereau à la tomate (conserve)|Caballa con tomate (en conserva)|Makrele in Tomatensauce (Dose)|scatoletta|125|
+c8082|Crema di tonno spalmabile|Tuna spread|Rillettes de thon|Paté de atún|Thunfischaufstrich|cucchiaio|15|paté di tonno
+c26245|Tonno all'olio di semi (sgocciolato)|Tuna in sunflower oil (drained)|Thon à l'huile de tournesol (égoutté)|Atún en aceite de girasol (escurrido)|Thunfisch in Sonnenblumenöl (abgetropft)|scatoletta|60|tonno in scatola olio di girasole
+c40006|Cervella di vitello (cruda)|Calf brain (raw)|Cervelle de veau (crue)|Sesos de ternera (crudos)|Kalbshirn (roh)|porzione|150|frattaglie
+c40409|Rognone di vitello (crudo)|Veal kidney (raw)|Rognon de veau (cru)|Riñón de ternera (crudo)|Kalbsniere (roh)|porzione|150|frattaglie
+c21504|Spalla d'agnello (cruda)|Lamb shoulder (raw)|Épaule d'agneau (crue)|Paletilla de cordero (cruda)|Lammschulter (roh)|porzione|200|
+c36702|Petto di faraona (crudo)|Guinea fowl breast (raw)|Poitrine de pintade (crue)|Pechuga de pintada (cruda)|Perlhuhnbrust (roh)|petto|150|

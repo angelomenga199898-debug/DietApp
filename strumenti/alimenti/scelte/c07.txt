@@ -1,0 +1,3 @@
+c38401|Cracker ripieni al formaggio|Cheese-filled crackers|Crackers fourrés au fromage|Crackers rellenos de queso|Cracker mit Käsefüllung|pacchetto|30|tuc sandwich ritz farciti
+c9110|Riso rosso (cotto)|Red rice (cooked)|Riz rouge (cuit)|Arroz rojo (cocido)|Roter Reis (gekocht)|porzione|180|riso rosso integrale
+c9903|Spaghetti di soia (cotti)|Glass noodles (cooked)|Vermicelles de soja (cuits)|Fideos de soja (cocidos)|Glasnudeln (gekocht)|porzione|150|vermicelli di soia

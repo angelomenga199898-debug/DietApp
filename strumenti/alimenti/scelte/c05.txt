@@ -1,0 +1,6 @@
+c20125|Funghi champignon in padella (senza olio)|Pan-cooked mushrooms (no oil)|Champignons de Paris poêlés (sans matière grasse)|Champiñones salteados (sin aceite)|Champignons gebraten (ohne Öl)|porzione|150|
+c20290|Broccolo romanesco cotto|Cooked Romanesco broccoli|Chou romanesco cuit|Romanesco cocido|Romanesco gekocht|porzione|200|
+c20275|Peperoni rossi in vasetto (sgocciolati)|Jarred red peppers (drained)|Poivrons rouges en bocal (égouttés)|Pimientos rojos en conserva (escurridos)|Rote Paprika aus dem Glas (abgetropft)|porzione|80|peperoni arrostiti
+c20289|Pomodori al forno (senza olio)|Oven-roasted tomatoes (no oil)|Tomates rôties au four (sans huile)|Tomates asados (sin aceite)|Ofentomaten (ohne Öl)|porzione|150|
+c20211|Funghi shiitake secchi|Dried shiitake mushrooms|Shiitakés séchés|Setas shiitake secas|Getrocknete Shiitake-Pilze|porzione|10|
+c20502|Fagioli cannellini lessati|Boiled cannellini beans|Haricots blancs cuits à l'eau|Alubias blancas cocidas|Weiße Bohnen gekocht|porzione|150|fagioli bianchi cotti

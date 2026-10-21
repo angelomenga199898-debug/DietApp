@@ -1,0 +1,4 @@
+c39246|Budino al caffè|Coffee pudding|Crème dessert au café|Natillas de café|Kaffeepudding|vasetto|115|
+c19673|Budino light|Light pudding|Crème dessert allégée|Natillas light|Pudding light|vasetto|115|budino magro
+c19694|Yogurt di soia bianco senza zucchero|Plain unsweetened soy yogurt|Yaourt au soja nature non sucré|Yogur de soja natural sin azúcar|Sojajoghurt natur ungesüßt|vasetto|125|yogurt vegetale alpro
+c19500|Yogurt da bere 0% (con dolcificanti)|Drinking yogurt 0% (sweetened)|Yaourt à boire 0% (avec édulcorants)|Yogur bebible 0% (con edulcorantes)|Trinkjoghurt 0 % (mit Süßstoff)|bottiglietta|100|actimel 0% yakult light

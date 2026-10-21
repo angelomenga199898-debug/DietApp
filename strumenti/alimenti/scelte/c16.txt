@@ -1,0 +1,10 @@
+c6161|Fettina di manzo in padella|Pan-fried beef slice|Tende de tranche poêlée|Filete de ternera a la plancha|Rinderschnitzel gebraten|fetta|120|fesa di manzo cotta
+c6511|Costoletta di vitello alla griglia|Grilled veal chop|Côte de veau grillée|Chuleta de ternera lechal a la plancha|Gegrilltes Kalbskotelett|costoletta|200|
+c14000|Capriolo o cervo arrosto|Roast venison|Chevreuil ou cerf rôti|Corzo o ciervo asado|Reh- oder Hirschbraten|porzione|150|selvaggina
+c36402|Fagiano arrosto|Roast pheasant|Faisan rôti|Faisán asado|Gebratener Fasan|porzione|150|selvaggina
+c28105|Arista di maiale (cotta)|Roast pork loin (arista)|Carré de porc cuit|Lomo de cerdo asado|Schweinerücken gebraten|fetta|100|carré di maiale arrosto
+c28461|Fettina di maiale in padella|Pan-fried pork escalope|Escalope de porc poêlée|Escalope de cerdo a la plancha|Gebratenes Schweineschnitzel|fetta|100|scaloppina di maiale
+c28007|Lonza di maiale (cotta)|Pork loin (cooked)|Longe de porc cuite|Lomo de cerdo cocido|Schweinelende gegart|fetta|100|
+c28451|Coppa di maiale al forno|Roast pork neck|Échine de porc rôtie|Aguja de cerdo asada|Schweinenacken gebraten|fetta|120|capocollo arrosto
+c36018|Petto di pollo alla griglia|Grilled chicken breast|Filet de poulet grillé|Pechuga de pollo a la plancha|Gegrillte Hähnchenbrust|petto|150|pollo alla piastra in padella
+c22505|Uovo al tegamino (senza olio)|Fried egg (no oil)|Œuf au plat (sans matière grasse)|Huevo a la plancha (sin aceite)|Spiegelei (ohne Fett)|uovo|50|uova al tegamino

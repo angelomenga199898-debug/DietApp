@@ -1,0 +1,7 @@
+c20134|Zucca Hokkaido|Hokkaido squash|Courge hokkaïdo|Calabaza Hokkaido|Hokkaido-Kürbis|porzione|200|zucca delica
+c20087|Peperone rosso|Red pepper|Poivron rouge|Pimiento rojo|Rote Paprika|pezzo|160|peperoni rossi
+c20168|Peperone giallo|Yellow pepper|Poivron jaune|Pimiento amarillo|Gelbe Paprika|pezzo|160|peperoni gialli
+c20085|Peperone verde|Green pepper|Poivron vert|Pimiento verde|Grüne Paprika|pezzo|160|peperoni verdi friggitelli
+c20119|Pomodori verdi|Green tomatoes|Tomates vertes|Tomates verdes|Grüne Tomaten|pomodoro|120|
+c20083|Spinaci surgelati|Frozen spinach|Épinards surgelés|Espinacas congeladas|Tiefkühlspinat|porzione|150|cubetti di spinaci
+c20300|Melanzane al forno (senza olio)|Roasted aubergine (no oil)|Aubergine rôtie au four (sans huile)|Berenjena asada (sin aceite)|Ofen-Aubergine (ohne Öl)|porzione|150|melanzane arrosto

@@ -1,0 +1,13 @@
+c6252|Macinato di manzo 10% grassi (crudo)|Ground beef 10% fat (raw)|Steak haché 10% MG (cru)|Carne picada de ternera 10% grasa (cruda)|Rinderhack 10 % Fett (roh)|porzione|100|carne trita
+c6201|Bistecca di manzo (cruda)|Beef steak (raw)|Bifteck (cru)|Filete de ternera (crudo)|Rindersteak (roh)|bistecca|200|fettina di manzo
+c6530|Filetto di vitello (crudo)|Veal fillet (raw)|Filet de veau (cru)|Solomillo de ternera lechal (crudo)|Kalbsfilet (roh)|porzione|150|
+c6522|Noce di vitello (cruda)|Veal topside (raw)|Noix de veau (crue)|Tapa de ternera lechal (cruda)|Kalbsnuss (roh)|porzione|150|fesa di vitello fettine
+c28460|Fettina di maiale (cruda)|Pork leg escalope (raw)|Escalope de porc (crue)|Escalope de cerdo (crudo)|Schweineschnitzel (roh)|fetta|120|scaloppina di maiale
+c36019|Sovracoscia di pollo senza pelle (cruda)|Chicken thigh, skinless (raw)|Haut de cuisse de poulet sans peau (cru)|Contramuslo de pollo sin piel (crudo)|Hähnchenoberschenkel ohne Haut (roh)|pezzo|100|
+c40107|Fegato di vitello (cotto)|Calf liver (cooked)|Foie de veau (cuit)|Hígado de ternera (cocido)|Kalbsleber (gegart)|porzione|150|fegato alla veneziana
+c36051|Cappone arrosto (con pelle)|Roast capon (with skin)|Chapon rôti (avec peau)|Capón asado (con piel)|Gebratener Kapaun (mit Haut)|porzione|200|
+c21801|Capretto (cotto)|Kid goat (cooked)|Chevreau (cuit)|Cabrito (cocido)|Zicklein (gegart)|porzione|200|
+c6100|Entrecôte di manzo alla griglia|Grilled beef rib-eye|Entrecôte grillée|Entrecot de ternera a la plancha|Gegrilltes Entrecôte|bistecca|250|costata
+c6110|Controfiletto di manzo alla griglia|Grilled beef sirloin|Faux-filet grillé|Lomo bajo de ternera a la plancha|Gegrilltes Roastbeef-Steak|bistecca|250|lombata
+c6310|Coda di bue (cotta)|Oxtail (cooked)|Queue de bœuf (cuite)|Rabo de toro (cocido)|Ochsenschwanz (gegart)|porzione|200|coda alla vaccinara
+c6207|Scamone di manzo alla griglia|Grilled beef rump steak|Rumsteck grillé|Cadera de ternera a la plancha|Gegrilltes Rumpsteak|bistecca|200|tagliata magra

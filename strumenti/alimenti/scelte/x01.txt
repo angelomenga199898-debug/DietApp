@@ -1,0 +1,24 @@
+x001|Montasio|Montasio cheese|Montasio (fromage)|Queso Montasio|Montasio-Käse|fetta|30|formaggio friulano|396|26|0|32
+x002|Castelmagno|Castelmagno cheese|Castelmagno (fromage)|Queso Castelmagno|Castelmagno-Käse|porzione|50|formaggio piemontese erborinato|411|26|1.8|33.3
+x003|Pecorino sardo|Pecorino sardo (Sardinian sheep's cheese)|Pecorino sarde|Pecorino sardo|Pecorino sardo (sardischer Schafskäse)|porzione|50|fiore sardo|380|24|0|32
+x004|Pecorino toscano|Pecorino toscano (Tuscan sheep's cheese)|Pecorino toscan|Pecorino toscano|Pecorino toscano (toskanischer Schafskäse)|porzione|50|marzolino|411|24|0.1|35
+x005|Caciotta|Caciotta cheese|Caciotta (fromage)|Queso caciotta|Caciotta-Käse|fetta|30|formaggio fresco semistagionato|348|23|1.1|28
+x006|Ricotta salata|Salted ricotta|Ricotta salée|Ricotta salada|Gesalzener Ricotta|porzione|30|ricotta stagionata|211|17|2|15
+x007|Bottarga di muggine|Grey mullet bottarga|Poutargue de mulet|Botarga de mújol|Meeräschen-Bottarga|cucchiaio grattugiato|7|bottarga grattugiata|394|41|0|25
+x008|Zampone (cotto)|Zampone (cooked)|Zampone (cuit)|Zampone (cocido)|Zampone (gekocht)|fetta|80|zampone modena capodanno|310|23|0.4|24
+x009|Salame Milano|Milano salami|Salami de Milan|Salami Milano|Mailänder Salami|fetta|10|salame crespone|352|25|0|28
+x010|Cacciatorini (salamini)|Cacciatorini (small salami)|Cacciatorini (petits saucissons)|Cacciatorini (salchichones pequeños)|Cacciatorini (kleine Salami)|pezzo|25|salamini alla cacciatora|346|27.5|0.6|26
+x011|Culatello|Culatello (cured ham)|Culatello (jambon cru)|Culatello (jamón curado)|Culatello (Rohschinken)|fetta|15|culatello di zibello|325|29|0|23
+x012|Agretti (barba di frate)|Agretti (saltwort)|Agretti (soude)|Agretti (barrilla)|Agretti (Mönchsbart)|porzione|150|barba di frate|17|2|2.8|0.3
+x013|Cicerchie secche (crude)|Dried grass peas (raw)|Gesses séchées (crues)|Almortas secas (crudas)|Getrocknete Platterbsen (roh)|porzione|80|cicerchia legumi|334|29|47|1.5
+x101|Proteine whey isolate (polvere)|Whey protein isolate (powder)|Isolat de protéines de lactosérum (poudre)|Proteína whey aislada (polvo)|Whey-Protein-Isolat (Pulver)|misurino|30|isolate isolata proteine del siero|365|86|2.5|1
+x102|Clear whey (polvere)|Clear whey (powder)|Clear whey (poudre)|Clear whey (polvo)|Clear Whey (Pulver)|misurino|25|clear protein proteine trasparenti|350|80|4|0.2
+x103|Caseina micellare (polvere)|Micellar casein (powder)|Caséine micellaire (poudre)|Caseína micelar (polvo)|Mizellares Casein (Pulver)|misurino|30|proteine caseine notte|360|80|5|1.5
+x104|Mass gainer (polvere)|Mass gainer (powder)|Gainer (poudre)|Ganador de peso (polvo)|Weight Gainer (Pulver)|misurino|100|gainer carboidrati proteine|385|25|62|5
+x105|Latte proteico (bevanda)|High-protein milk drink|Boisson lactée protéinée|Bebida láctea proteica|Proteinmilchgetränk|bottiglietta|250|protein drink zymil protein|64|8.7|3.6|1.5
+x106|Preparato per pancake proteici|Protein pancake mix|Préparation pour pancakes protéinés|Preparado para tortitas proteicas|Protein-Pancake-Mischung|porzione|50|pancake proteici|365|32|42|6
+x107|Creatina monoidrato|Creatine monohydrate|Créatine monohydrate|Creatina monohidrato|Kreatin-Monohydrat|misurino|5|integratore creatina|0|0|0|0
+x108|Burro di arachidi in polvere (sgrassato)|Powdered peanut butter (defatted)|Beurre de cacahuète en poudre (dégraissé)|Mantequilla de cacahuete en polvo (desgrasada)|Erdnussbutterpulver (entfettet)|cucchiaio|12|pb2 peanut powder|417|50|33|12.5
+x014|Guanciale|Guanciale (cured pork cheek)|Guanciale (joue de porc séchée)|Guanciale (carrillera de cerdo curada)|Guanciale (luftgetrocknete Schweinebacke)|fetta|10|guanciale stagionato amatriciano|622|13|0.1|63
+x015|Cotechino (cotto)|Cotechino (cooked)|Cotechino (cuit)|Cotechino (cocido)|Cotechino (gekocht)|fetta|80|cotechino modena capodanno|252|27|0|16
+x016|Squacquerone|Squacquerone (soft cheese)|Squacquerone (fromage frais)|Squacquerone (queso fresco)|Squacquerone (Weichkäse)|porzione|50|squacquerone di romagna piadina|231|14|1|19

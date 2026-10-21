@@ -1,0 +1,5 @@
+u172010|Seppie (cotte)|Cuttlefish (cooked)|Seiche (cuite)|Sepia (cocida)|Tintenfisch/Sepia (gegart)|porzione|150|seppia lessata in umido
+u170167|Castagne secche|Dried chestnuts|Châtaignes sèches|Castañas secas|Getrocknete Kastanien|porzione|50|castagne essiccate
+u169270|Fiori di zucca (crudi)|Squash blossoms (raw)|Fleurs de courgette (crues)|Flores de calabaza (crudas)|Zucchiniblüten (roh)|fiore|10|fiori di zucchina
+u169243|Funghi portobello alla griglia|Grilled portobello mushrooms|Champignons portobello grillés|Champiñones portobello a la plancha|Gegrillte Portobello-Pilze|pezzo|80|
+u169992|Catalogna / puntarelle (cicoria)|Catalogna chicory / puntarelle|Chicorée catalane / puntarelle|Achicoria catalana / puntarelle|Catalogna-Zichorie / Puntarelle|porzione|150|cicoria catalogna

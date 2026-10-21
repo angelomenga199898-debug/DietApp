@@ -1,0 +1,14 @@
+c10084|Calamari in padella (con olio)|Pan-fried squid|Calmar poêlé (avec matière grasse)|Calamares a la plancha (con aceite)|Gebratene Tintenfische (mit Öl)|porzione|150|calamari saltati
+c26206|Branzino d'allevamento (crudo)|Farmed sea bass (raw)|Bar d'élevage (cru)|Lubina de piscifactoría (cruda)|Wolfsbarsch aus Zucht (roh)|porzione|200|spigola allevata
+c27011|Luccio (crudo)|Pike (raw)|Brochet (cru)|Lucio (crudo)|Hecht (roh)|porzione|200|pesce di lago
+c27003|Carpa (cruda)|Carp (raw)|Carpe (crue)|Carpa (cruda)|Karpfen (roh)|porzione|200|pesce di lago
+c26055|Platessa (cruda)|Plaice (raw)|Plie (crue)|Solla (cruda)|Scholle (roh)|filetto|120|
+c26113|Sugarello (crudo)|Horse mackerel (raw)|Chinchard (cru)|Jurel (crudo)|Stöcker (roh)|porzione|200|suro
+c26088|Orata d'allevamento (cruda)|Farmed gilthead bream (raw)|Dorade royale d'élevage (crue)|Dorada de piscifactoría (cruda)|Dorade aus Zucht (roh)|porzione|200|
+c27012|Storione (crudo)|Sturgeon (raw)|Esturgeon (cru)|Esturión (crudo)|Stör (roh)|porzione|200|
+c27024|Lucioperca (crudo)|Pike-perch (raw)|Sandre (cru)|Lucioperca (cruda)|Zander (roh)|filetto|150|
+c26161|Salmone selvatico (crudo)|Wild salmon (raw)|Saumon sauvage (cru)|Salmón salvaje (crudo)|Wildlachs (roh)|filetto|150|
+c26064|Tonno pinne gialle (crudo)|Yellowfin tuna (raw)|Thon albacore (cru)|Atún de aleta amarilla (crudo)|Gelbflossenthun (roh)|trancio|150|tonno albacora sushi
+c26069|Tonno rosso (crudo)|Bluefin tuna (raw)|Thon rouge (cru)|Atún rojo (crudo)|Roter Thun (roh)|trancio|150|sashimi tonno
+c26081|Rana pescatrice alla griglia|Grilled monkfish|Lotte grillée|Rape a la plancha|Gegrillter Seeteufel|porzione|150|coda di rospo
+c27005|Pesce persico (cotto)|Perch (cooked)|Perche (cuite)|Perca (cocida)|Barsch (gegart)|filetto|120|

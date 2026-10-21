@@ -1,0 +1,3 @@
+c23881|Krapfen alla marmellata|Jam doughnut|Beignet à la confiture|Berlina de mermelada|Berliner mit Marmelade|pezzo|70|bombolone alla marmellata
+c23885|Krapfen al cioccolato (confezionato)|Chocolate-filled doughnut (packaged)|Beignet fourré au chocolat (préemballé)|Berlina rellena de chocolate (envasada)|Krapfen mit Schokofüllung (verpackt)|pezzo|60|bombolone al cioccolato
+c23497|Crostata al cioccolato|Chocolate tart|Tarte au chocolat|Tarta de chocolate|Schokoladentarte|fetta|90|torta al cioccolato frolla

@@ -1778,5 +1778,6 @@
 "giornata non completa: non conta": "journée incomplète : elle ne compte pas",
 "In <b>Grafici</b> trovi le medie, il <b>deficit della settimana</b> con i kg persi in teoria e quando raggiungerai l’obiettivo.": "Dans <b>Stats</b>, tu trouves les moyennes, le <b>déficit de la semaine</b> avec les kg perdus en théorie et quand tu atteindras ton objectif.",
 "Surplus del giorno": "Surplus du jour",
-"valori del database": "valeurs de la base"
+"valori del database": "valeurs de la base",
+"<h3>Piatti e prodotti tipici</h3><p>I piatti della tradizione italiana sono calcolati da ricette standard per una porzione, con i valori degli ingredienti e il peso del piatto finito. Per formaggi e salumi tipici e per gli integratori si usano valori medi pubblicati sulle etichette.</p>": "<h3>Plats et produits typiques</h3><p>Les plats de la tradition italienne sont calculés à partir de recettes standard pour une portion, avec les valeurs des ingrédients et le poids du plat fini. Pour les fromages et charcuteries typiques et pour les compléments, on utilise des valeurs moyennes publiées sur les étiquettes.</p>"
 }
