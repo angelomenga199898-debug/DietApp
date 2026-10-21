@@ -146,7 +146,16 @@ input.sw:checked{background:#5cc23a}input.sw:checked::after{transform:translateX
 .tic .t1.an{animation:tk 1.1s cubic-bezier(.3,1.25,.4,1) both}@keyframes tk{from{stroke-dashoffset:132}}
 .wo{display:flex;align-items:center;gap:12px;padding:12px 12px 12px 14px;border:1px solid var(--bd);border-radius:22px;background:var(--cd);margin-bottom:8px;cursor:pointer;transition:transform .14s cubic-bezier(.3,1.4,.5,1)}.wo:active{transform:scale(.97)}
 .wo .wot{flex:1;min-width:0}.wo b{display:block;font-weight:700}.wo .mu{display:block;margin-top:1px}
-.wo.new{animation:woin .45s cubic-bezier(.2,1.3,.4,1) both}@keyframes woin{from{opacity:0;transform:translateY(10px) scale(.96)}}
+.wo.new{animation:woin .45s cubic-bezier(.2,1.3,.4,1) both}
+.cpsg{margin:-6px 0 16px}
+.wvf{margin:16px 0 0}.wvf .chip{font-size:13px;padding:8px 12px}
+.wvwh{margin:22px 4px 8px}.wvw:first-of-type .wvwh{margin-top:0}
+.wvwh b{display:block;font:800 17px var(--ff)}.wvwh span{display:block;color:var(--mu);font-size:13px;margin-top:2px}
+.wo .chev{flex:none}.wvpr{font-size:15px}
+.wvr{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--bd)}.wvr:last-child{border-bottom:0}
+.wvr small{display:block;margin-top:2px}.wvr div b{font:700 16px var(--ff);letter-spacing:0}.wvr>b{display:block;white-space:nowrap;font:800 17px var(--ff);letter-spacing:0}.wvrc .lnk{padding:10px 0 2px}
+.wva{text-align:right;margin:-2px 0 2px}.wva .lnk{padding:4px 2px 8px;font-size:14px;font-weight:600}
+.wvd{margin:-6px 0 8px}@keyframes woin{from{opacity:0;transform:translateY(10px) scale(.96)}}
 .spg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .spt{display:flex;flex-direction:column;align-items:center;gap:7px;margin:0;padding:14px 4px 12px;border-radius:22px;background:var(--cd);border:1px solid var(--bd);color:var(--tx);font:600 13px/1.2 var(--ff);text-align:center}
 .spt i{width:50px;height:50px;border-radius:50%;display:grid;place-items:center;font-size:25px;font-style:normal}
@@ -503,7 +512,7 @@ label.tgr span{flex:1}
 <button class="add s" onclick="openAdd()">+ Aggiungi alimento</button></div>
 <h2>💧 Acqua</h2><div class="c wa"><b id="wv" role="button" tabindex="0" onclick="openWater()" onkeydown="if(event.key==='Enter')openWater()">0 L</b><button class="s" onclick="water(-.25)">−0,25</button><button onclick="water(.25)">+0,25</button><button onclick="water(.5)">+0,5</button><button class="s wae" onclick="openWater()" aria-label="Scrivi i litri" title="Scrivi i litri">✏️</button></div>
 <h2>🏃 Attività</h2><div id="act"></div>
-<button class="add s" onclick="openWo()">+ Aggiungi allenamento</button>
+<button class="add s" onclick="openWo('')">+ Aggiungi allenamento</button>
 <h2>📝 Giornata</h2><div class="c"><label for="nt" style="margin-top:0">Note</label><textarea id="nt" rows="2" placeholder="Com’è andata oggi? (facoltativo)"></textarea>
 <label class="k2" for="closed"><span><b>Giornata completa</b><small id="clh"></small></span><input type="checkbox" class="sw" id="closed"></label>
 <button class="lnk" onclick="del()" style="color:var(--bad);margin-top:6px">Elimina giornata</button></div></section>
@@ -684,7 +693,7 @@ function pgHelp(){openPage('help',T('Come funziona'),`<button class="cta w shine
 T(`<h3>Il tuo piano</h3><p>Con un nuovo account hai 7 giorni di prova con l’assistente AI. Poi passi al piano Free, gratis, con tutto il resto dell’app. L’assistente fa parte del piano Pro, che per ora si attiva con un codice regalo: inseriscilo in Impostazioni → Il tuo piano. Ogni giorno hai un numero di richieste all’assistente: quante te ne restano lo vedi nella scheda AI.</p>`):'')+
 T(`<h3>Tipo di dieta</h3><p>Nella configurazione iniziale, in Ricalcola il piano o in Impostazioni → Tipo di dieta scegli come vuoi mangiare: bilanciata, mediterranea, low carb, chetogenica, iperproteica, zona, vegetariana, vegana, paleo, digiuno 16:8 o un pasto al giorno. DietApp adatta gli obiettivi di proteine, carboidrati e grassi, che vedi nella scheda Oggi, e le scorciatoie per l’orario dei pasti. Con la finestra dei pasti (digiuno intermittente) Oggi ti dice se puoi mangiare o se sei a digiuno.</p>`)+
 T(`<h3>Pasti rapidi</h3><p>Per quello che mangi spesso: un tocco nella scheda Oggi e il pasto è aggiunto.</p>`)+T(`<h3>Ricette</h3><p>Per i piatti che cucini tu: tocca “Crea una ricetta” in fondo alla ricerca, oppure vai in Impostazioni → Ricette. Aggiungi gli ingredienti con le quantità di tutta la ricetta e scegli in quante porzioni la dividi: l’app calcola kcal e macro di ogni porzione. Se pesi il piatto finito puoi segnarla anche in grammi. Le ricette compaiono nella ricerca insieme ai tuoi alimenti.</p>`)+
-T(`<h3>Attività e allenamenti</h3><p>Nella scheda Oggi tocca i riquadri per segnare passi e sonno, e “+ Aggiungi allenamento” per scegliere lo sport: ognuno ha i suoi campi (durata, distanza, vasche…). Tutti sono facoltativi tranne la durata. Se il tuo sport non c’è, tocca “Crea il tuo sport”: scegli nome, icona e intensità e lo ritrovi insieme agli altri. In ogni sport puoi aggiungere gli esercizi, con le serie e le note: kg e ripetizioni, solo ripetizioni o tempo. Se un esercizio non è nella lista, crealo. Sport ed esercizi tuoi si modificano in Impostazioni → I miei sport ed esercizi.</p>`)+
+T(`<h3>Attività e allenamenti</h3><p>Nella scheda Oggi tocca i riquadri per segnare passi e sonno, e “+ Aggiungi allenamento” per scegliere lo sport: ognuno ha i suoi campi (durata, distanza, vasche…). Tutti sono facoltativi tranne la durata. Se il tuo sport non c’è, tocca “Crea il tuo sport”: scegli nome, icona e intensità e lo ritrovi insieme agli altri. In ogni sport puoi aggiungere gli esercizi, con le serie e le note: kg e ripetizioni, solo ripetizioni o tempo. Se un esercizio non è nella lista, crealo. Sport ed esercizi tuoi si modificano in Impostazioni → I miei sport ed esercizi.</p>`)+T(`<p>Tutti gli allenamenti li ritrovi nella scheda Corpo → Allenamenti (o con “Tutti i tuoi allenamenti” in Oggi): divisi per settimana con i totali, con il filtro per sport e i record personali di ogni esercizio. Tocca un allenamento per modificarlo o eliminarlo.</p>`)+
 T(`<h3>Corpo</h3><p>Nella scheda Corpo trovi peso, misure e massa grassa. Pesati 2–3 volte a settimana e prendi le misure col metro ogni 2 settimane: con vita e collo (e fianchi per le donne) l’app stima la percentuale di grasso. Se hai una bilancia smart, quando ti pesi apri “Dati della bilancia smart” e scrivi massa grassa, muscoli, acqua e gli altri valori: l’app calcola i kg di massa grassa e magra.</p>`)+
 T(`<h3>Consumo calorico</h3><p>Da passi e allenamenti l’app stima ogni giorno quante calorie consumi e il tuo deficit. Se l’orologio misura le calorie dell’allenamento puoi scriverle e vengono usate al posto della stima. Pesandoti a digiuno nei giorni di pesata, dopo qualche settimana la stima si corregge con i tuoi dati reali.</p>`)+
 T(`<p>In Grafici, nella sezione Settimana, vedi da lunedì a domenica le kcal assunte, quelle consumate, il deficit cumulativo e i kg persi in teoria (deficit diviso {n} kcal per kg). Con le frecce passi alle settimane precedenti.</p>`,{n:f0(S.cfg.kg)})+
@@ -931,6 +940,7 @@ const TABS=[`<button class="tile" onclick="openSteps()"><span class="tic" style=
 `<button class="tile" onclick="openSleep()"><span class="tic" style="background:#efe3ff">🌙</span><b>${x.sleep>0?fv(x.sleep)+' h':'–'}</b><span>${T('sonno')}</span></button>`];
 h+=`<div class="tiles" style="grid-template-columns:repeat(${TABS.length},1fr)">${TABS.join('')}</div>`;
 h+=W.map((w,i)=>`<div class="wo${i===WNEW?' new':''}" onclick="woOpen(${i})"><span class="tic" style="background:${spOf(w)[2]}">${spOf(w)[1]}</span><div class="wot"><b>${E(woName(w))}</b><span class="mu">${E(woSub(w,lw))}</span></div><button class="xb" onclick="event.stopPropagation();woDel(${i})" aria-label="${T('Elimina allenamento')}">✕</button></div>`).join('');
+if(Object.values(S.days).some(y=>y.wo&&y.wo.length))h+=`<div class="wva"><button class="lnk" onclick="woAll()">📋 ${T('Tutti i tuoi allenamenti')} ›</button></div>`;
 $('act').innerHTML=h;WNEW=-1}
 function refresh(){const t=document.querySelector('section.on');if(!t||t.id=='oggi'){render();return}chips();if(t.id=='dash')dash();if(t.id=='log')list();if(t.id=='imp')prof();if(t.id=='corpo')corpo()}
 
@@ -965,7 +975,7 @@ if(!clr&&x.w!==w0&&pm.length&&x.w<Math.min(...pm)){const lost=S.cfg.w0-x.w;setTi
 /* allenamenti */
 let WO=null,WI=-1,RECW=[],EXL=[];
 function recentWo(){const out=[],seen=new Set();for(const d of Object.keys(S.days).sort().reverse())for(const w of [...(S.days[d].wo||[])].reverse()){const k=w.s+'|'+(w.nm||'');if(!seen.has(k)){seen.add(k);out.push(w);if(out.length>=4)return out}}return out}
-function openWo(){WI=-1;WO=null;RECW=recentWo();sheet(`<h3>${T('Che allenamento hai fatto?')}</h3>${RECW.length?`<label>${T('Ripeti un allenamento recente')}</label><div class="chips" style="margin-bottom:6px">${RECW.map((w,i)=>`<button class="chip" onclick="woFrom(${i})">${spOf(w)[1]} ${E(woName(w))}${w.min>0?' · '+w.min+' min':''}</button>`).join('')}</div><label>${T('Oppure scegli lo sport')}</label>`:''}<div class="spg">${SPK.filter(k=>k!='altro').map(spTile).join('')}${S.mysp.map((u,i)=>`<button class="spt" onclick="woNewU(${i})"><i style="background:${spCol(u.n)}">${u.ic}</i>${E(u.n)}</button>`).join('')}${spTile('altro')}<button class="spt spn" onclick="spNew(-1,'wo')"><i aria-hidden="true">＋</i>${T('Crea il tuo sport')}</button></div>`)}
+function openWo(d){if(d!==undefined)WOD=d||null;WI=-1;WO=null;RECW=recentWo();sheet(`<h3>${T('Che allenamento hai fatto?')}</h3>${RECW.length?`<label>${T('Ripeti un allenamento recente')}</label><div class="chips" style="margin-bottom:6px">${RECW.map((w,i)=>`<button class="chip" onclick="woFrom(${i})">${spOf(w)[1]} ${E(woName(w))}${w.min>0?' · '+w.min+' min':''}</button>`).join('')}</div><label>${T('Oppure scegli lo sport')}</label>`:''}<div class="spg">${SPK.filter(k=>k!='altro').map(spTile).join('')}${S.mysp.map((u,i)=>`<button class="spt" onclick="woNewU(${i})"><i style="background:${spCol(u.n)}">${u.ic}</i>${E(u.n)}</button>`).join('')}${spTile('altro')}<button class="spt spn" onclick="spNew(-1,'wo')"><i aria-hidden="true">＋</i>${T('Crea il tuo sport')}</button></div>`)}
 // un 'altro' scritto dall'assistente o incollato che ha il nome di uno sport tuo prende la sua icona e intensità
 function spMine(w){if(w&&w.s=='altro'&&w.nm&&!w.ic){const u=S.mysp.find(u=>norm(u.n)==norm(w.nm));if(u){w.nm=u.n;w.ic=u.ic;w.met=u.met;if(u.km)w.kmf=1}}return w}
 const spTile=k=>`<button class="spt" onclick="woNew('${k}')"><i style="background:${SP[k][2]}">${SP[k][1]}</i>${SP[k][0]}</button>`;
@@ -986,7 +996,7 @@ openPage('mine',T('I miei sport ed esercizi'),`<p class="sub">${T('I miei sport'
 function woNewU(i){const u=S.mysp[i];if(!u)return;WO={s:'altro',nm:u.n,ic:u.ic,met:u.met,...(u.km?{kmf:1}:{})};woEdit()}
 function woNew(k){WO={s:k};if(k=='nuoto')WO.lv=25;woEdit()}
 function woFrom(i){WO=clone(RECW[i]);['p','ai','kw','pr','nt'].forEach(f=>delete WO[f]);(WO.ex||[]).forEach(e=>delete e.nt);woEdit()}
-function woOpen(i){const x=S.days[cur()];if(!x||!x.wo||!x.wo[i])return;WI=i;WO=clone(x.wo[i]);woEdit()}
+function woOpen(i){WOD=null;const x=S.days[cur()];if(!x||!x.wo||!x.wo[i])return;WI=i;WO=clone(x.wo[i]);woEdit()}
 const wv=v=>v!=null&&v!==''?String(v).replace('.',','):'';
 const WF=(k,l,ph)=>`<div><label for="w_${k}">${l}</label><input id="w_${k}" inputmode="decimal" data-w="${k}" value="${wv(WO[k])}" placeholder="${ph||''}"></div>`;
 const WCH=(k,opts)=>`<div class="chips">${opts.map(([v,l])=>`<button class="chip${WO[k]===v?' on':''}" onclick="woSet('${k}',${typeof v=='number'?v:`'${v}'`})">${l}</button>`).join('')}</div>`;
@@ -996,7 +1006,7 @@ function woEdit(){const c=S.cfg,s=spOf(WO),k=s[4],rn=WO.rpe?RPE.map(r=>r[0]).red
 let f=WF('min',T('Durata (min)'),k=='gym'?T('es. {n}',{n:c.gymMin}):T('es. {n}',{n:45}));
 if(['run','walk','hike'].includes(k)||(k=='bike'&&!['cyc','spin'].includes(WO.st))||(k=='other'&&(WO.kmf||WO.km>0)))f+=WF('km',T('Distanza (km)'),T('facoltativa'));
 if(k=='hike')f+=WF('dp',T('Dislivello (m)'),T('facoltativo'));if(k=='swim')f+=WF('lap',T('Vasche'),T('es. {n}',{n:40}));if(k=='hiit')f+=WF('rnd',T('Round'),T('facoltativi'));if(k=='row')f+=WF('m',T('Metri'),T('facoltativi'));
-let h=`<div class="woh"><span class="tic" style="background:${s[2]}">${s[1]}</span><h3>${E(s[0])}</h3></div>`;
+let h=`<div class="woh"><span class="tic" style="background:${s[2]}">${s[1]}</span><h3>${E(s[0])}</h3></div>`+(WOD&&WOD!==TODAY()?`<p class="mu wvd">📅 ${DAYN[new Date(WOD+'T12:00').getDay()]} ${dmS(WOD)}</p>`:'');
 if(k=='other'&&!WO.ic)h+=`<label for="w_nm">${T('Che sport?')}</label><input id="w_nm" data-w="nm" data-wt="1" maxlength="40" value="${E(WO.nm||'')}" placeholder="${T('Es. arrampicata, sci, golf')}">`;
 if(SUB[k])h+=`<label>${SUBL[k]}</label>`+WCH('st',SUB[k]);
 h+=`<div class="g">${f}</div>`;
@@ -1021,13 +1031,15 @@ function woSave(){const c=S.cfg,w=clone(WO),k=spOf(w)[4];
 if(w.ex){w.ex.forEach(e=>{e.sets=e.sets.map(z=>exClean(z,e.m)).filter(z=>z.r>0||z.kg>0||z.t>0);e.nt=String(e.nt||'').trim().slice(0,200);if(!e.nt)delete e.nt;if(!e.m)delete e.m;const my=S.myex.find(x=>x.n===e.n);if(my){if(e.m)my.m=e.m;else delete my.m}});if(!w.ex.length)delete w.ex}
 if(k!='gym'&&!w.min){note(T('Scrivi la durata in minuti'),1);const e=$('w_min');if(e)e.focus();return}
 if(w.min>1440||w.km>500||w.kw>10000){note(T('Controlla durata, distanza e kcal'),1);return}
-delete w.p;delete w.ai;const d=cur(),x=day(d,1);x.wo=x.wo||[];const recs=k=='gym'?prNew(w,d,WI):[];
+delete w.p;delete w.ai;const d=woD(),x=day(d,1);x.wo=x.wo||[];const recs=k=='gym'?prNew(w,d,WI):[];
 if(recs.length){w.pr=[...new Set([...(w.pr||[]),...recs.map(r=>r.n)])];S.recs=(S.recs||0)+recs.length}
-const edit=WI>=0;if(edit)x.wo[WI]=w;else{x.wo.push(w);WNEW=x.wo.length-1}WI=-1;WO=null;persist();closeSheet();render();
+const edit=WI>=0;if(edit)x.wo[WI]=w;else{x.wo.push(w);WNEW=x.wo.length-1}WI=-1;WO=null;persist();closeSheet();woRe();
 const kc=f0(woKcal(w,(D[d]||{}).wu||M.lw,c)*M.fa);
 if(recs.length)setTimeout(()=>alertBox({icon:'🥇',bg:'#fdeea0',title:recs.length>1?T('Nuovi record personali!'):T('Nuovo record personale!'),text:recs.map(r=>T('{e}: {a} kg (prima {b} kg)',{e:r.n,a:fv(r.kg),b:fv(r.old)})).join('\n'),buttons:[{label:T('Grande!')}],vib:[30,40,30]}),250);
 else note((edit?T('✅ Modificato'):T('✅ Allenamento salvato'))+' · ≈ '+kc+' kcal')}
-function woDel(i){const d=cur(),x=S.days[d];if(!x||!x.wo||!x.wo[i])return;const w=x.wo.splice(i,1)[0];persist();render();note(T('Allenamento eliminato'),0,{label:T('Annulla#undo'),fn:()=>{const y=day(d,1);y.wo=y.wo||[];y.wo.splice(i,0,w);persist();render()}})}
+function woDel(i){const d=woD(),x=S.days[d];if(!x||!x.wo||!x.wo[i])return;const w=x.wo.splice(i,1)[0];persist();woRe();note(T('Allenamento eliminato'),0,{label:T('Annulla#undo'),fn:()=>{const y=day(d,1);y.wo=y.wo||[];y.wo.splice(i,0,w);persist();woRe()}})}
+// dopo un salvataggio: Oggi e, se è aperta, la scheda Corpo → Allenamenti
+function woRe(){render();if(!$('oggi').classList.contains('on'))refresh()}
 
 /* sala pesi: esercizi, serie, schede e record */
 const EX={[T('Petto')]:[T('Panca piana con bilanciere'),T('Panca piana con manubri'),T('Panca inclinata con bilanciere'),T('Panca inclinata con manubri'),T('Panca declinata'),T('Chest press'),T('Croci con manubri'),T('Croci ai cavi'),T('Pectoral machine'),T('Piegamenti (push-up)'),T('Dip alle parallele')],
@@ -1037,15 +1049,15 @@ const EX={[T('Petto')]:[T('Panca piana con bilanciere'),T('Panca piana con manub
 [T('Braccia')]:[T('Curl con bilanciere'),T('Curl con manubri'),T('Curl a martello'),T('Curl alla panca Scott'),T('Curl ai cavi'),T('French press'),T('Push down ai cavi'),T('Estensioni sopra la testa'),T('Kickback'),T('Panca presa stretta'),T('Dip alla panca')],
 [T('Addome')]:[T('Crunch'),T('Crunch ai cavi'),T('Plank'),T('Leg raise'),T('Russian twist'),T('Ab wheel'),T('Sit-up')]};
 function allWo(sd,si){const r=[];for(const d of Object.keys(S.days).sort())(S.days[d].wo||[]).forEach((w,i)=>{if(!(d===sd&&i===si))r.push({d,w})});return r}
-function lastEx(n){for(const {w} of allWo(cur(),WI).reverse()){const e=(w.ex||[]).find(e=>e.n===n);if(e)return e}return null}
+function lastEx(n){for(const {w} of allWo(woD(),WI).reverse()){const e=(w.ex||[]).find(e=>e.n===n);if(e)return e}return null}
 function bestEx(n,sd,si){let b=0;for(const {w} of allWo(sd,si))for(const e of w.ex||[])if(e.n===n&&!e.m)for(const z of e.sets)if(z.r>0&&z.kg>b)b=z.kg;return b}
 function recentEx(){const out=[];for(const {w} of allWo().reverse())for(const e of w.ex||[])if(!out.includes(e.n)){out.push(e.n);if(out.length>=8)return out}return out}
 // l'ultimo allenamento dello stesso sport con degli esercizi (per "Come il …")
-const lastSame=()=>allWo(cur(),WI).reverse().find(({w})=>w.s==WO.s&&(WO.s!='altro'||w.nm==WO.nm)&&w.ex&&w.ex.length)||null;
+const lastSame=()=>allWo(woD(),WI).reverse().find(({w})=>w.s==WO.s&&(WO.s!='altro'||w.nm==WO.nm)&&w.ex&&w.ex.length)||null;
 const recF=v=>!v?'–':v<60?v+' s':v%60?Math.floor(v/60)+'′'+(v%60)+'″':v/60+' min';
 function exHTML(){const L=WO.ex||[],lg=lastSame(),TPL=S.wtpl;let h=`<p class="sub">${T('Esercizi')} <small class="mu" style="font-weight:600">${T('facoltativi')}</small></p>`;
 if(!L.length&&(lg||TPL.length))h+=`<div class="chips" style="margin-bottom:10px">${lg?`<button class="chip" onclick="woRepeat()">↺ ${T('Come il {d}',{d:dm(lg.d)})}</button>`:''}${TPL.map((t,i)=>`<button class="chip" onclick="woTpl(${i})">📋 ${E(t.n)}</button>`).join('')}</div>`;
-h+=L.map((e,i)=>{const m=e.m||'',b=m?0:bestEx(e.n,cur(),WI);return`<div class="exc"><div class="exh"><b>${E(e.n)}</b><button class="xb" onclick="exDel(${i})" aria-label="${T('Togli {n}',{n:E(e.n)})}">✕</button></div><div class="exmr"><select class="exmd" data-e="${i}" data-f="m" aria-label="${T('Come si misura {n}',{n:E(e.n)})}">${EXM().map(([v,l])=>`<option value="${v}"${m==v?' selected':''}>${l}</option>`).join('')}</select>${b?`<span class="mu">${T('Record: {n} kg',{n:fv(b)})}</span>`:''}</div>${e.sets.length?setHead(m):''}${e.sets.map((z,j)=>setRow(m,i,z,j)).join('')}<div class="exf"><button class="chip" onclick="setAdd(${i})">+ ${T('Serie')}</button><label>${T('Recupero')} <select data-e="${i}" data-f="rec">${[0,30,45,60,90,120,150,180,240,300].map(v=>`<option value="${v}"${(e.rec||0)==v?' selected':''}>${recF(v)}</option>`).join('')}</select></label></div>${exNote(e,i)}</div>`}).join('');
+h+=L.map((e,i)=>{const m=e.m||'',b=m?0:bestEx(e.n,woD(),WI);return`<div class="exc"><div class="exh"><b>${E(e.n)}</b><button class="xb" onclick="exDel(${i})" aria-label="${T('Togli {n}',{n:E(e.n)})}">✕</button></div><div class="exmr"><select class="exmd" data-e="${i}" data-f="m" aria-label="${T('Come si misura {n}',{n:E(e.n)})}">${EXM().map(([v,l])=>`<option value="${v}"${m==v?' selected':''}>${l}</option>`).join('')}</select>${b?`<span class="mu">${T('Record: {n} kg',{n:fv(b)})}</span>`:''}</div>${e.sets.length?setHead(m):''}${e.sets.map((z,j)=>setRow(m,i,z,j)).join('')}<div class="exf"><button class="chip" onclick="setAdd(${i})">+ ${T('Serie')}</button><label>${T('Recupero')} <select data-e="${i}" data-f="rec">${[0,30,45,60,90,120,150,180,240,300].map(v=>`<option value="${v}"${(e.rec||0)==v?' selected':''}>${recF(v)}</option>`).join('')}</select></label></div>${exNote(e,i)}</div>`}).join('');
 h+=`<button class="s w" style="margin-top:0" onclick="exPick()">+ ${T('Aggiungi esercizio')}</button>`;
 if(L.length)h+=`<details style="margin-top:10px"><summary>📋 ${T('Salva come scheda')}</summary><p class="mu" style="margin-top:0">${T('La ritrovi la prossima volta che registri un allenamento.')}</p><div class="qrow"><input id="tpn" maxlength="30" placeholder="${T('Es. Push, Gambe, Scheda A')}"><button style="margin:0;flex:none" onclick="tplSave()">${T('Salva')}</button></div></details>`;
 return h}
@@ -1063,7 +1075,7 @@ if(m=='r')return`<div class="set m1"><span>${j+1}</span>${R}${x}</div>`;
 if(m=='t')return`<div class="set m1"><span>${j+1}</span><input inputmode="text" aria-label="${T('Tempo serie {n}',{n:j+1})}" placeholder="0:45" data-e="${i}" data-s="${j}" data-f="t" value="${tFmt(z.t)}">${x}</div>`;
 return`<div class="set"><span>${j+1}</span>${R}<span>×</span><input inputmode="decimal" aria-label="${T('Kg serie {n}',{n:j+1})}" data-e="${i}" data-s="${j}" data-f="kg" value="${wv(z.kg)}">${x}</div>`}
 // note del singolo esercizio (ex.nt): se è vuota si vede quella dell'ultima volta
-function prevEx(n){for(const {d,w} of allWo(cur(),WI).reverse()){if(d>cur())continue;const e=(w.ex||[]).find(e=>e.n===n);if(e)return e}return null}
+function prevEx(n){const dd0=woD();for(const {d,w} of allWo(dd0,WI).reverse()){if(d>dd0)continue;const e=(w.ex||[]).find(e=>e.n===n);if(e)return e}return null}
 function exNote(e,i){const pv=e.nt?null:prevEx(e.n);return`<div class="exn"><textarea rows="1" maxlength="200" data-e="${i}" data-f="nt" aria-label="${T('Note su {n}',{n:E(e.n)})}" placeholder="📝 ${T('Note (es. sedile 4, presa larga)')}">${E(e.nt||'')}</textarea>${pv&&pv.nt?`<small class="mu">${T('Ultima volta: {t}',{t:E(pv.nt)})}</small>`:''}</div>`}
 const exGrow=t=>{t.style.height='auto';t.style.height=t.scrollHeight+2+'px'};
 function exPick(){sheet(`<h3>${T('Aggiungi esercizio')}</h3><input id="exq" type="search" placeholder="${T('Cerca o scrivi il nome')}" autocomplete="off" oninput="exList()"><div id="exl"></div><button class="lnk" onclick="woEdit()">‹ ${T('Torna all’allenamento')}</button>`);document.querySelector('#sheet .sh-in').scrollTop=0;exList()}
@@ -1094,6 +1106,38 @@ function prNew(w,d,wi){const out=[];for(const e of w.ex||[]){if(e.m)continue;con
 function tplHTML(){return S.wtpl.length?S.wtpl.map((t,i)=>`<div class="ml"><div><b>${E(t.n)}</b><div class="mu">${E(t.ex.map(e=>e.n).join(', '))}</div></div><button class="xb" onclick="tplDel(${i})" aria-label="${T('Elimina scheda')}">✕</button></div>`).join('')+`<p class="mu">${T('Le schede compaiono quando aggiungi gli esercizi a un allenamento.')}</p>`:`<div class="empty"><div class="bigi">🏋️</div><h3>${T('Nessuna scheda')}</h3><p class="mu">${T('Quando aggiungi gli esercizi a un allenamento, usa “Salva come scheda” per ritrovarli uguali la volta dopo.')}</p></div>`}
 function pgTpl(){openPage('tpl',T('Schede di allenamento'),tplHTML())}
 function tplDel(i){const t=S.wtpl.splice(i,1)[0];persist();pgTpl();refreshSettings();note(T('Scheda eliminata'),0,{label:T('Annulla#undo'),fn:()=>{S.wtpl.splice(i,0,t);persist();pgTpl();refreshSettings()}})}
+
+/* ---------- CORPO → ALLENAMENTI: tutti gli allenamenti per settimana, filtro per sport, record personali ---------- */
+// CPV = vista della scheda Corpo ('c' corpo, 'w' allenamenti); WOD = giorno dell'allenamento aperto dalla lista (null = quello di Oggi)
+let CPV='c',WVF='',WVK=[],WVN=6,WVR=5,WOD=null;
+const woD=()=>WOD||cur(),dmS=d=>new Date(d+'T12:00').toLocaleDateString(LOC,{day:'numeric',month:'short'}).replace(/ /g,'\u00a0'),
+woKey=w=>w.s=='altro'&&w.nm?'altro:'+norm(w.nm):w.s,dLbl=d=>DAYN[new Date(d+'T12:00').getDay()]+' '+dmS(d);
+const cpSeg=()=>`<div class="seg cpsg" role="tablist" aria-label="${T('Corpo')}">${[['c','⚖️ '+T('Corpo')],['w','💪 '+T('Allenamenti')]].map(([v,l])=>`<button role="tab" aria-selected="${CPV==v}" class="${CPV==v?'on':''}" onclick="cpv('${v}')">${l}</button>`).join('')}</div>`;
+function cpv(v){if(CPV===v)return;CPV=v;corpo();countUp($('corpo'),CU.corpo)}
+function woAll(){CPV='w';WVF='';tab('corpo')}
+function woAt(d,i){const x=S.days[d];if(!x||!x.wo||!x.wo[i])return;WOD=d;WI=i;WO=clone(x.wo[i]);woEdit()}
+function woAddT(){openWo(TODAY())}
+function wvF(i){WVF=i<0?'':WVK[i]||'';WVN=6;WVR=5;corpo()}
+// record di ogni esercizio in kg × ripetizioni: il peso più alto (a parità, più ripetizioni), quando, e quanto è salito dalla prima volta
+function woRecs(L){const R={};for(const {d,w} of [...L].reverse())for(const e of w.ex||[]){if(e.m)continue;let kg=0,r=0;for(const z of e.sets||[])if(z.r>0&&z.kg>0&&(z.kg>kg||z.kg==kg&&z.r>r)){kg=z.kg;r=z.r}if(!kg)continue;
+const o=R[e.n];if(!o)R[e.n]={n:e.n,kg,r,d,k0:kg,d0:d,x:1};else{o.x++;if(kg>o.kg||kg==o.kg&&r>o.r){if(kg>o.kg)o.d=d;o.kg=kg;o.r=r}}}
+return Object.values(R).sort((a,b)=>b.d.localeCompare(a.d)||b.kg-a.kg)}
+function woView(){const c=S.cfg,today=TODAY(),m0=wkMon(),A=[];for(const d of Object.keys(S.days).sort().reverse())(S.days[d].wo||[]).forEach((w,i)=>A.push({d,i,w}));
+const lw=d=>(D[d]||{}).wu||M.lw,kc=o=>woKcal(o.w,lw(o.d),c)*M.fa,mn=o=>woMin(o.w,c),sm=(L,f)=>L.reduce((a,o)=>a+f(o),0),nA=n=>n==1?T('1 allenamento'):T('{n} allenamenti',{n});
+const TW=A.filter(o=>o.d>=m0&&o.d<=wkAdd(m0,6)),n=TW.length,g=c.wkT>0?c.wkT:3,mo=A.filter(o=>o.d.slice(0,7)==today.slice(0,7)).length;
+let h=`<div class="hc bh live wvh">${DECO}<div class="bhr"><div><span>${T('Questa settimana')}</span><b>${n} <small>${n==1?T('allenamento#n'):T('allenamenti#n')}</small></b><span>${n>=g?T('obiettivo di {n} a settimana raggiunto ✓',{n:g}):T('obiettivo: {n} a settimana',{n:g})}</span></div><button class="cta shine" onclick="woAddT()">＋ ${T('Aggiungi')}</button></div>
+<div class="hbar"><i style="width:${Math.min(1,n/g)*100}%"></i></div><div class="bht"><span>${T('Minuti')}<b>${f0(sm(TW,mn))}</b></span><span>${T('Kcal bruciate')}<b>${n?'≈ '+f0(sm(TW,kc)):'0'}</b></span><span>${new Date(today+'T12:00').toLocaleDateString(LOC,{month:'long'}).replace(/^./,x=>x.toUpperCase())}<b>${mo}</b></span></div></div>`;
+if(!A.length)return h+`<div class="empty"><div class="bigi">💪</div><h3>${T('Ancora nessun allenamento')}</h3><p class="mu">${T('Registra il primo: qui ritrovi tutti i tuoi allenamenti, i totali di ogni settimana e i tuoi record.')}</p><button class="cta shine" onclick="woAddT()">+ ${T('Aggiungi allenamento')}</button></div>`;
+// filtro per sport (solo se ne hai fatto più di uno)
+const SG={};for(const o of A){const k=woKey(o.w);(SG[k]=SG[k]||{k,w:o.w,n:0}).n++}const SL=Object.values(SG).sort((a,b)=>b.n-a.n);WVK=SL.map(x=>x.k);if(WVF&&!SG[WVF])WVF='';
+if(SL.length>1)h+=`<div class="chips wvf" role="group" aria-label="${T('Sport')}"><button class="chip${WVF?'':' on'}" aria-pressed="${!WVF}" onclick="wvF(-1)">${T('Tutti')} · ${A.length}</button>${SL.map((x,i)=>`<button class="chip${WVF==x.k?' on':''}" aria-pressed="${WVF==x.k}" onclick="wvF(${i})">${spOf(x.w)[1]} ${E(woName(x.w))} · ${x.n}</button>`).join('')}</div>`;
+const F=WVF?A.filter(o=>woKey(o.w)==WVF):A,RC=woRecs(F);
+if(RC.length)h+=`<h2>🏆 ${T('Record personali')}</h2><div class="c wvrc">${RC.slice(0,WVR).map(r=>`<div class="wvr"><div><b>${E(r.n)}</b><small class="mu">${r.kg>r.k0?T('+{n} kg dal {d}',{n:fv(r.kg-r.k0),d:dmS(r.d0)})+' · ':''}${T('record del {d}',{d:dmS(r.d)})}</small></div><b>${fv(r.kg)} kg × ${r.r}</b></div>`).join('')}${RC.length>WVR?`<button class="lnk" onclick="WVR=999;corpo()">${T('Mostra tutti i record ({n})',{n:RC.length})}</button>`:''}</div>`;
+// lista per settimana, dalla più recente
+const WK=[];for(const o of F){const m=wkMon(o.d);let x=WK[WK.length-1];if(!x||x.m!==m)WK.push(x={m,L:[]});x.L.push(o)}
+h+=`<h2>🗓 ${WVF?E(woName(SG[WVF].w)):T('Tutti gli allenamenti')}</h2>`+WK.slice(0,WVN).map(x=>{const lb=x.m==m0?T('Questa settimana'):x.m==wkAdd(m0,-7)?T('Settimana scorsa'):dmS(x.m)+' – '+dmS(wkAdd(x.m,6)),km=sm(x.L,o=>o.w.km>0?o.w.km:0);
+return`<div class="wvw"><div class="wvwh"><b>${lb}</b><span>${[nA(x.L.length),f0(sm(x.L,mn))+' min',km?fv(Math.round(km*10)/10)+' km':'','≈ '+f0(sm(x.L,kc))+' kcal'].filter(Boolean).join(' · ')}</span></div>${x.L.map(o=>{const s=spOf(o.w);return`<div class="wo" role="button" tabindex="0" onclick="woAt('${o.d}',${o.i})" onkeydown="if(event.key==='Enter')this.click()"><span class="tic" style="background:${s[2]}">${s[1]}</span><div class="wot"><b>${E(woName(o.w))}${o.w.pr&&o.w.pr.length?' <span class="wvpr" title="'+T('Record personale')+'">🥇</span>':''}</b><span class="mu">${dLbl(o.d)} · ${E(woSub(o.w,lw(o.d)))}</span></div><span class="chev" aria-hidden="true">›</span></div>`}).join('')}</div>`}).join('')+(WK.length>WVN?`<button class="s w" onclick="WVN+=8;corpo()">${T('Mostra altre settimane')}</button>`:'');
+return h}
 
 /* ---------- SWIPE IN GIÙ PER CHIUDERE (fogli e avvisi) ---------- */
 function swipeClose(el,o){let y0=0,x0=0,t0=0,dy=0,on=false,ok=false;
@@ -1400,10 +1444,10 @@ const nv=b.vita>0?navy({vita:b.vita,col,fia},c):null,bf=b.bf>0?b.bf:nv;if(bf!=nu
 function bfCat(v,sex){const t=sex=='F'?[14,21,25,32]:[6,14,18,25];return v<t[0]?[T('Molto bassa'),'#ffd9d2']:v<t[1]?[T('Atletica'),'#d9f7c2']:v<t[2]?[T('In forma'),'#d9f7c2']:v<t[3]?[T('Nella media'),'#fdeea0']:[T('Alta'),'#ffe3d6']}
 function bseries(k){if(k=='w')return M.ds.filter(d=>S.days[d].w>0).map(d=>({d,v:S.days[d].w}));if(k=='bf')return bfSeries().map(x=>({d:x.d,v:x.bf}));return Object.keys(S.body).sort().filter(d=>S.body[d][k]>0).map(d=>({d,v:S.body[d][k]}))}
 let BCS='w',BCR=90,BHN=10;
-function corpo(){calc();const c=S.cfg,today=TODAY(),ws=M.ds.filter(d=>S.days[d].w>0),last=ws[ws.length-1],lw=last?S.days[last].w:c.w0,
+function corpo(){calc();if(CPV=='w'){$('cp').innerHTML=cpSeg()+woView();return}const c=S.cfg,today=TODAY(),ws=M.ds.filter(d=>S.days[d].w>0),last=ws[ws.length-1],lw=last?S.days[last].w:c.w0,
 a7=last?avg(ws.filter(d=>dd(last,d)<=6).map(d=>S.days[d].w)):null,pw=last?ws.filter(d=>dd(last,d)>=7&&dd(last,d)<=13).map(d=>S.days[d].w):[],tr=pw.length?a7-avg(pw):null,
 lose=c.w0>c.wg,pr=lose?clp((c.w0-lw)/(c.w0-c.wg),0,1):1,nw=nextW(),B=bfSeries(),lb=B[B.length-1],bd=Object.keys(S.body).sort();
-let h=`<div class="hc bh live">${DECO}<div class="bhr"><div><span>${T('Peso attuale')}</span><b>${f1(lw)} <small>kg</small></b><span>${ws.length>1?T('media 7 giorni {n} kg',{n:f1(a7)}):T('pesati 2–3 volte a settimana')}${tr!=null&&Math.abs(tr)>=.05?` · ${tr<0?'▼':'▲'} ${T('{n} kg in una settimana',{n:f1(Math.abs(tr))})}`:''}</span></div><button class="cta shine" onclick="openWeigh()">⚖️ ${T('Pesati')}</button></div>
+let h=cpSeg()+`<div class="hc bh live">${DECO}<div class="bhr"><div><span>${T('Peso attuale')}</span><b>${f1(lw)} <small>kg</small></b><span>${ws.length>1?T('media 7 giorni {n} kg',{n:f1(a7)}):T('pesati 2–3 volte a settimana')}${tr!=null&&Math.abs(tr)>=.05?` · ${tr<0?'▼':'▲'} ${T('{n} kg in una settimana',{n:f1(Math.abs(tr))})}`:''}</span></div><button class="cta shine" onclick="openWeigh()">⚖️ ${T('Pesati')}</button></div>
 <div class="hbar"><i style="width:${pr*100}%"></i></div><p>${lose?(c.w0-lw>0?T('−{n} kg da quando hai iniziato',{n:f1(c.w0-lw)})+' · ':'')+T('obiettivo {n} kg',{n:f1(c.wg)}):T('Obiettivo: mantenere il peso')}</p>
 <div class="bht"><span>${T('Ultima pesata')}<b>${nw.last}</b></span><span>${T('Prossima')}<b>${nw.next}</b></span><span>BMI<b>${f1(lw/((c.h/100)**2))}</b></span></div></div>`;
 const hasM=bd.some(d=>BM.some(([k])=>S.body[d][k]>0)),sm=bd.slice().reverse().find(d=>['mm','acq','vis','oss','bmr','eta'].some(k=>S.body[d][k]>0));
@@ -1977,7 +2021,7 @@ function guidePages(){const ai=AI_ON()&&!HAS_AI,P=[
 {t:T('I pasti'),ts:'🍝',items:[{h:AI_ON()||GUEST()?T('Tocca <b>+ Aggiungi alimento</b>: <b>scatta una foto</b>, descrivi il pasto o cerca il cibo, poi scegli <b>quantità</b> e <b>orario</b>.'):T('Tocca <b>+ Aggiungi alimento</b>, cerca il cibo e scegli <b>quantità</b> e <b>orario</b>: vedi subito quante kcal ti restano.'),s:'🔎'},{h:T('Non lo trovi? <b>Cercalo online</b>, scansiona il <b>codice a barre</b> o scrivi le kcal a mano.'),s:'📷'},{h:T('Quello che mangi spesso salvalo tra i <b>pasti rapidi</b>, i piatti che cucini tu tra le <b>ricette</b>.'),s:'🍲'}],act:[T('Prova ad aggiungere un pasto'),'openAdd']},
 {t:T('Tipo di dieta'),ts:'🥗',items:[{h:T('Scegli il tuo <b>tipo di dieta</b>: mediterranea, low carb, chetogenica, digiuno 16:8 e altre.'),s:'🥑'},{h:T('Gli obiettivi di <b>proteine, carboidrati e grassi</b> si adattano: li vedi nella scheda Oggi.'),s:'📊'},{h:T('Con la <b>finestra dei pasti</b> Oggi ti dice quando puoi mangiare e quando sei a digiuno.'),s:'⏱️'}],act:[T('Scegli la tua dieta'),'pgDiet()']}];
 if(ai)P.push({t:T('Assistente AI'),ts:'✨',items:[{h:SR||IOSKB?T('Nella scheda <b>AI</b> scrivi o <b>detta con 🎤</b> cosa hai mangiato, oppure <b>fotografa il piatto</b>: stima kcal e macro.'):T('Nella scheda <b>AI</b> scrivi cosa hai mangiato o <b>fotografa il piatto</b>: stima kcal e macro.'),s:'📷'},{h:T('Il <b>Coach</b> risponde con i tuoi dati, <b>Settimana</b> commenta gli ultimi 7 giorni.'),s:'💬'},{h:T('Prima di salvare controlli il risultato: tocca un alimento per <b>correggere la quantità</b>.'),s:'✅'}],act:[T('Prova l’assistente'),"tab('ai')"]});
-P.push({t:T('Muoviti'),ts:'🏃',items:[{h:T('Segna l’<b>acqua</b> con i pulsanti +0,25 e +0,5, oppure tocca ✏️ e scrivi i litri.'),s:'💧'},{h:T('Tocca <b>Passi</b> e <b>Sonno</b> per inserirli: servono a stimare quanto consumi.'),s:'👟'},{h:T('Con <b>+ Aggiungi allenamento</b> scegli tra 18 sport o <b>crea il tuo</b>; in ogni sport puoi segnare gli <b>esercizi</b>, anche tuoi, con le note.'),s:'🏋️'}]},
+P.push({t:T('Muoviti'),ts:'🏃',items:[{h:T('Segna l’<b>acqua</b> con i pulsanti +0,25 e +0,5, oppure tocca ✏️ e scrivi i litri.'),s:'💧'},{h:T('Tocca <b>Passi</b> e <b>Sonno</b> per inserirli: servono a stimare quanto consumi.'),s:'👟'},{h:T('Con <b>+ Aggiungi allenamento</b> scegli tra 18 sport o <b>crea il tuo</b>; in ogni sport puoi segnare gli <b>esercizi</b>, anche tuoi, con le note.'),s:'🏋️'},{h:T('In <b>Corpo → Allenamenti</b> ritrovi tutti i tuoi allenamenti, i totali di ogni settimana e i <b>record personali</b>.'),s:'📋'}]},
 {t:T('Corpo'),ts:'⚖️',items:[{h:T('Pesati <b>2–3 volte a settimana</b>, al mattino a digiuno.'),s:'🌅'},{h:T('Con le pesate la stima del consumo si <b>corregge da sola</b> sui tuoi dati.'),s:'🎯'},{h:T('Prendi le <b>misure</b> ogni 2 settimane: con vita e collo l’app stima la <b>massa grassa</b>.'),s:'📏'}]},
 {t:T('Grafici e giorni'),ts:'📈',items:[{h:T('In <b>Grafici</b> trovi le medie, il <b>deficit della settimana</b> con i kg persi in teoria e quando raggiungerai l’obiettivo.'),s:'🏁'},{h:T('In <b>Giorni</b> c’è il calendario del mese e lo storico settimana per settimana.'),s:'🗓️'},{h:T('Una giornata conta nelle medie quando è <b>completa</b>.'),s:'✅'}]});
 if(ai)P.push({t:T('Il tuo piano#abb'),ts:'🎁',items:[{h:T('Con un nuovo account hai <b>7 giorni di prova</b> con l’assistente AI.'),s:'🎉'},{h:T('Poi passi al piano <b>Free</b>, gratis, con tutto il resto dell’app. L’assistente fa parte del <b>Pro</b>.'),s:'⭐'},{h:T('Hai un <b>codice regalo</b>? Inseriscilo in Impostazioni → Il tuo piano.'),s:'🎁'}],act:[T('Vedi il tuo piano'),'pgPlan()']});
@@ -2003,7 +2047,7 @@ return aiWk([{t:T('La tua settimana'),ts:'📊',items:[{h:T('Hai completato <b>{
 {t:T('Movimento'),ts:'👟',items:[as!=null?{h:T('<b>{n} passi</b> al giorno in media.',{n:f0(as)}),s:as>=c.stepT?'🏆':'🚶'}:{h:T('Nessun passo segnato: aggiungili per una stima migliore.'),s:'🚶'},W.length?{h:`<b>${W.length==1?T('1 allenamento'):T('{n} allenamenti',{n:W.length})}</b> ${[...new Set(W.map(w=>spOf(w)[1]))].join(' ')}`,s:'💪'}:{h:T('Nessun allenamento in questi giorni: anche una camminata conta!'),s:'🛋️'},W.length?{h:T('Circa <b>{n} kcal</b> bruciate allenandoti.',{n:f0(wk)}),s:'🔥'}:{h:T('Il tuo obiettivo è <b>{n} allenamenti</b> a settimana.',{n:c.wkT}),s:'🎯'}]},
 {t:T('Il risultato'),ts:'🏁',items:sdf>=0?[{h:T('Deficit totale di circa <b>{n} kcal</b>.',{n:f0(sdf)}),s:'📉'},{h:T('In teoria sono circa <b>{n} kg</b> di grasso in meno.',{n:f1(sdf/c.kg)}),s:'⚖️'},dw!=null?{h:T('Peso medio <b>{n} kg</b> rispetto alla settimana prima.',{n:(dw<=0?'−':'+')+f1(Math.abs(dw))})+(dw>0?' '+T('L’acqua fa oscillare: guarda le prossime settimane.'):''),s:dw<=0?'🥳':'💧'}:{h:T('Pesati 2–3 volte a settimana per vedere la <b>tendenza</b>.'),s:'⚖️'}]
 :[{h:T('Questa settimana sei in <b>surplus</b> di circa {n} kcal.',{n:f0(-sdf)}),s:'📈'},{h:T('Nessun dramma: conta la <b>costanza</b> nelle prossime settimane.'),s:'🧘'},{h:T('Riparti da oggi con un pasto alla volta.'),s:'💪'}],act:[T('Vedi i grafici'),"tab('dash')"]}])}
-const STORIES=[{id:'guida',n:T('Guida'),ic:'🧭',bg:'#d9f7c2',col:'#1f5214',key:()=>'v7',pages:guidePages},
+const STORIES=[{id:'guida',n:T('Guida'),ic:'🧭',bg:'#d9f7c2',col:'#1f5214',key:()=>'v8',pages:guidePages},
 {id:'sett',n:T('Settimana'),ic:'📊',bg:'#fdeea0',col:'#0f3d33',key:()=>wkMon(),pages:weekPages},
 {id:'nov',n:T('Novità'),ic:'✨',bg:'#efe3ff',col:'#3a2a66',key:()=>VERSION,pages:newsPages},
 {id:'cons',n:T('Consigli'),ic:'💡',bg:'#ffe3d6',col:'#16405c',key:()=>'v1',pages:tipPages}];
