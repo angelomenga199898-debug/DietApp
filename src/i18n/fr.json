@@ -1819,5 +1819,14 @@
 "Ritmo calcolato dalle tue pesate delle ultime settimane: le date si aggiornano da sole a ogni pesata.": "Rythme calculé à partir de tes pesées des dernières semaines : les dates se mettent à jour toutes seules à chaque pesée.",
 "Ritmo stimato dal deficit delle giornate complete: con qualche pesata in più diventa più preciso.": "Rythme estimé à partir du déficit des journées complètes : avec quelques pesées de plus, il devient plus précis.",
 "La <b>proiezione del peso</b> ti dice in che giorno arriverai a ogni tappa, al ritmo attuale.": "La <b>projection du poids</b> t’indique le jour où tu atteindras chaque étape, à ton rythme actuel.",
-"<p>Sotto il peso, la proiezione mostra le tappe verso l’obiettivo e il giorno in cui le raggiungerai al ritmo attuale. Il ritmo viene dalle pesate delle ultime settimane (finché sono poche, dal deficit delle giornate complete): più ti pesi, più le date sono affidabili. È la stessa data stimata che trovi in Grafici.</p>": "<p>Sous le poids, la projection montre les étapes vers ton objectif et le jour où tu les atteindras à ton rythme actuel. Le rythme vient de tes pesées des dernières semaines (tant qu’il y en a peu, du déficit des journées complètes) : plus tu te pèses, plus les dates sont fiables. C’est la même date estimée que dans Stats.</p>"
+"<p>Sotto il peso, la proiezione mostra le tappe verso l’obiettivo e il giorno in cui le raggiungerai al ritmo attuale. Il ritmo viene dalle pesate delle ultime settimane (finché sono poche, dal deficit delle giornate complete): più ti pesi, più le date sono affidabili. È la stessa data stimata che trovi in Grafici.</p>": "<p>Sous le poids, la projection montre les étapes vers ton objectif et le jour où tu les atteindras à ton rythme actuel. Le rythme vient de tes pesées des dernières semaines (tant qu’il y en a peu, du déficit des journées complètes) : plus tu te pèses, plus les dates sont fiables. C’est la même date estimée que dans Stats.</p>",
+"Ora della pesata": "Heure de la pesée",
+"Più tardi nella giornata il peso di solito è più alto (cibo e acqua): non preoccuparti se sale, conta l’andamento.": "Plus tard dans la journée, le poids est généralement plus élevé (nourriture et eau) : ne t’inquiète pas s’il monte, c’est la tendance qui compte.",
+"facoltative": "facultatives",
+"Es. dopo cena, dopo l’allenamento, poco sonno": "Ex. après le dîner, après l’entraînement, peu dormi",
+"Mattina": "Matin",
+"Pomeriggio": "Après-midi",
+"Ora pesata": "Heure de la pesée",
+"Note pesata": "Notes sur la pesée",
+"<p>Quando ti pesi puoi indicare anche l’ora e una nota (per esempio “dopo cena”): le ritrovi nello storico di Corpo e toccando il grafico del peso. Se ti pesi più tardi del solito il peso di solito è più alto: conta l’andamento.</p>": "<p>Quand tu te pèses, tu peux aussi indiquer l’heure et une note (par exemple « après le dîner ») : tu les retrouves dans l’historique de Corps et en touchant le graphique du poids. Si tu te pèses plus tard que d’habitude, le poids est généralement plus élevé : c’est la tendance qui compte.</p>"
 }

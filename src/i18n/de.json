@@ -1819,5 +1819,14 @@
 "Ritmo calcolato dalle tue pesate delle ultime settimane: le date si aggiornano da sole a ogni pesata.": "Tempo aus deinen Wiegungen der letzten Wochen berechnet: Die Daten aktualisieren sich bei jeder Wiegung von selbst.",
 "Ritmo stimato dal deficit delle giornate complete: con qualche pesata in più diventa più preciso.": "Tempo aus dem Defizit der vollständigen Tage geschätzt: Mit ein paar Wiegungen mehr wird es genauer.",
 "La <b>proiezione del peso</b> ti dice in che giorno arriverai a ogni tappa, al ritmo attuale.": "Die <b>Gewichtsprognose</b> zeigt dir, an welchem Tag du jede Etappe erreichst, bei deinem aktuellen Tempo.",
-"<p>Sotto il peso, la proiezione mostra le tappe verso l’obiettivo e il giorno in cui le raggiungerai al ritmo attuale. Il ritmo viene dalle pesate delle ultime settimane (finché sono poche, dal deficit delle giornate complete): più ti pesi, più le date sono affidabili. È la stessa data stimata che trovi in Grafici.</p>": "<p>Unter dem Gewicht zeigt die Prognose die Etappen bis zu deinem Ziel und den Tag, an dem du sie bei deinem aktuellen Tempo erreichst. Das Tempo kommt aus deinen Wiegungen der letzten Wochen (solange es wenige sind, aus dem Defizit der vollständigen Tage): Je öfter du dich wiegst, desto verlässlicher sind die Daten. Es ist dasselbe geschätzte Datum wie unter Verlauf.</p>"
+"<p>Sotto il peso, la proiezione mostra le tappe verso l’obiettivo e il giorno in cui le raggiungerai al ritmo attuale. Il ritmo viene dalle pesate delle ultime settimane (finché sono poche, dal deficit delle giornate complete): più ti pesi, più le date sono affidabili. È la stessa data stimata che trovi in Grafici.</p>": "<p>Unter dem Gewicht zeigt die Prognose die Etappen bis zu deinem Ziel und den Tag, an dem du sie bei deinem aktuellen Tempo erreichst. Das Tempo kommt aus deinen Wiegungen der letzten Wochen (solange es wenige sind, aus dem Defizit der vollständigen Tage): Je öfter du dich wiegst, desto verlässlicher sind die Daten. Es ist dasselbe geschätzte Datum wie unter Verlauf.</p>",
+"Ora della pesata": "Uhrzeit der Wiegung",
+"Più tardi nella giornata il peso di solito è più alto (cibo e acqua): non preoccuparti se sale, conta l’andamento.": "Später am Tag ist das Gewicht meist höher (Essen und Wasser): Keine Sorge, wenn es steigt, entscheidend ist der Verlauf.",
+"facoltative": "optional",
+"Es. dopo cena, dopo l’allenamento, poco sonno": "Z. B. nach dem Abendessen, nach dem Training, wenig Schlaf",
+"Mattina": "Morgen",
+"Pomeriggio": "Nachmittag",
+"Ora pesata": "Uhrzeit der Wiegung",
+"Note pesata": "Notizen zur Wiegung",
+"<p>Quando ti pesi puoi indicare anche l’ora e una nota (per esempio “dopo cena”): le ritrovi nello storico di Corpo e toccando il grafico del peso. Se ti pesi più tardi del solito il peso di solito è più alto: conta l’andamento.</p>": "<p>Beim Wiegen kannst du auch die Uhrzeit und eine Notiz angeben (zum Beispiel „nach dem Abendessen“): Du findest sie im Verlauf unter Körper und beim Antippen des Gewichtsdiagramms. Wenn du dich später als sonst wiegst, ist das Gewicht meist höher: Entscheidend ist der Verlauf.</p>"
 }

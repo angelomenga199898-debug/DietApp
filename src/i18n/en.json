@@ -1819,5 +1819,14 @@
 "Ritmo calcolato dalle tue pesate delle ultime settimane: le date si aggiornano da sole a ogni pesata.": "Pace calculated from your weigh-ins over the last few weeks: the dates update by themselves every time you weigh in.",
 "Ritmo stimato dal deficit delle giornate complete: con qualche pesata in più diventa più preciso.": "Pace estimated from the deficit of your complete days: a few more weigh-ins will make it more accurate.",
 "La <b>proiezione del peso</b> ti dice in che giorno arriverai a ogni tappa, al ritmo attuale.": "The <b>weight projection</b> tells you on which day you’ll reach each milestone, at your current pace.",
-"<p>Sotto il peso, la proiezione mostra le tappe verso l’obiettivo e il giorno in cui le raggiungerai al ritmo attuale. Il ritmo viene dalle pesate delle ultime settimane (finché sono poche, dal deficit delle giornate complete): più ti pesi, più le date sono affidabili. È la stessa data stimata che trovi in Grafici.</p>": "<p>Below your weight, the projection shows the milestones towards your goal and the day you’ll reach each one at your current pace. The pace comes from your weigh-ins over the last few weeks (while there are only a few, from the deficit of your complete days): the more you weigh yourself, the more reliable the dates. It’s the same estimated date you see in Charts.</p>"
+"<p>Sotto il peso, la proiezione mostra le tappe verso l’obiettivo e il giorno in cui le raggiungerai al ritmo attuale. Il ritmo viene dalle pesate delle ultime settimane (finché sono poche, dal deficit delle giornate complete): più ti pesi, più le date sono affidabili. È la stessa data stimata che trovi in Grafici.</p>": "<p>Below your weight, the projection shows the milestones towards your goal and the day you’ll reach each one at your current pace. The pace comes from your weigh-ins over the last few weeks (while there are only a few, from the deficit of your complete days): the more you weigh yourself, the more reliable the dates. It’s the same estimated date you see in Charts.</p>",
+"Ora della pesata": "Time of weigh-in",
+"Più tardi nella giornata il peso di solito è più alto (cibo e acqua): non preoccuparti se sale, conta l’andamento.": "Later in the day your weight is usually higher (food and water): don’t worry if it goes up, the trend is what counts.",
+"facoltative": "optional",
+"Es. dopo cena, dopo l’allenamento, poco sonno": "E.g. after dinner, after training, little sleep",
+"Mattina": "Morning",
+"Pomeriggio": "Afternoon",
+"Ora pesata": "Weigh-in time",
+"Note pesata": "Weigh-in notes",
+"<p>Quando ti pesi puoi indicare anche l’ora e una nota (per esempio “dopo cena”): le ritrovi nello storico di Corpo e toccando il grafico del peso. Se ti pesi più tardi del solito il peso di solito è più alto: conta l’andamento.</p>": "<p>When you weigh yourself you can also add the time and a note (for example “after dinner”): you’ll find them in the Body history and by tapping the weight chart. If you weigh yourself later than usual your weight is usually higher: the trend is what counts.</p>"
 }
