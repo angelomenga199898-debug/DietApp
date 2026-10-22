@@ -1804,5 +1804,20 @@
 "Tutti gli allenamenti": "Toutes les séances",
 "Mostra altre settimane": "Afficher plus de semaines",
 "In <b>Corpo → Allenamenti</b> ritrovi tutti i tuoi allenamenti, i totali di ogni settimana e i <b>record personali</b>.": "Dans <b>Corps → Séances</b> tu retrouves toutes tes séances, les totaux de chaque semaine et tes <b>records personnels</b>.",
-"<p>Tutti gli allenamenti li ritrovi nella scheda Corpo → Allenamenti (o con “Tutti i tuoi allenamenti” in Oggi): divisi per settimana con i totali, con il filtro per sport e i record personali di ogni esercizio. Tocca un allenamento per modificarlo o eliminarlo.</p>": "<p>Tu retrouves toutes tes séances dans l’onglet Corps → Séances (ou avec « Toutes tes séances » dans Accueil) : par semaine avec les totaux, avec un filtre par sport et les records personnels de chaque exercice. Touche une séance pour la modifier ou la supprimer.</p>"
+"<p>Tutti gli allenamenti li ritrovi nella scheda Corpo → Allenamenti (o con “Tutti i tuoi allenamenti” in Oggi): divisi per settimana con i totali, con il filtro per sport e i record personali di ogni esercizio. Tocca un allenamento per modificarlo o eliminarlo.</p>": "<p>Tu retrouves toutes tes séances dans l’onglet Corps → Séances (ou avec « Toutes tes séances » dans Accueil) : par semaine avec les totaux, avec un filtre par sport et les records personnels de chaque exercice. Touche une séance pour la modifier ou la supprimer.</p>",
+"tra {n} giorni": "dans {n} jours",
+"tra {n} settimane": "dans {n} semaines",
+"tra {n} mesi": "dans {n} mois",
+"Proiezione del peso": "Projection du poids",
+"La proiezione compare dopo le prime pesate o la prima giornata completa.": "La projection apparaît après tes premières pesées ou ta première journée complète.",
+"Al ritmo attuale il peso non scende, quindi non si può stimare quando arriverai a {w} kg.": "À ton rythme actuel, le poids ne baisse pas : impossible d’estimer quand tu atteindras {w} kg.",
+"In Grafici trovi kcal medie e consumo: con 300–500 kcal al giorno sotto il consumo si perdono circa 0,3–0,5 kg a settimana.": "Dans Stats tu trouves tes kcal moyennes et ta dépense : 300 à 500 kcal par jour sous ta dépense font perdre environ 0,3 à 0,5 kg par semaine.",
+"Al ritmo attuale di −{r} kg a settimana servirebbero più di 2 anni per arrivare a {w} kg.": "À ton rythme actuel de −{r} kg par semaine, il faudrait plus de 2 ans pour atteindre {w} kg.",
+"Al ritmo attuale di <b>−{r} kg a settimana</b> arrivi a <b>{w} kg</b> il <b>{d}</b>.": "À ton rythme actuel de <b>−{r} kg par semaine</b>, tu atteindras <b>{w} kg</b> le <b>{d}</b>.",
+"obiettivo": "objectif",
+"−{n} kg da oggi": "−{n} kg par rapport à aujourd’hui",
+"Ritmo calcolato dalle tue pesate delle ultime settimane: le date si aggiornano da sole a ogni pesata.": "Rythme calculé à partir de tes pesées des dernières semaines : les dates se mettent à jour toutes seules à chaque pesée.",
+"Ritmo stimato dal deficit delle giornate complete: con qualche pesata in più diventa più preciso.": "Rythme estimé à partir du déficit des journées complètes : avec quelques pesées de plus, il devient plus précis.",
+"La <b>proiezione del peso</b> ti dice in che giorno arriverai a ogni tappa, al ritmo attuale.": "La <b>projection du poids</b> t’indique le jour où tu atteindras chaque étape, à ton rythme actuel.",
+"<p>Sotto il peso, la proiezione mostra le tappe verso l’obiettivo e il giorno in cui le raggiungerai al ritmo attuale. Il ritmo viene dalle pesate delle ultime settimane (finché sono poche, dal deficit delle giornate complete): più ti pesi, più le date sono affidabili. È la stessa data stimata che trovi in Grafici.</p>": "<p>Sous le poids, la projection montre les étapes vers ton objectif et le jour où tu les atteindras à ton rythme actuel. Le rythme vient de tes pesées des dernières semaines (tant qu’il y en a peu, du déficit des journées complètes) : plus tu te pèses, plus les dates sont fiables. C’est la même date estimée que dans Stats.</p>"
 }

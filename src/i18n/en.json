@@ -1804,5 +1804,20 @@
 "Tutti gli allenamenti": "All workouts",
 "Mostra altre settimane": "Show more weeks",
 "In <b>Corpo → Allenamenti</b> ritrovi tutti i tuoi allenamenti, i totali di ogni settimana e i <b>record personali</b>.": "In <b>Body → Workouts</b> you’ll find all your workouts, the totals for each week and your <b>personal records</b>.",
-"<p>Tutti gli allenamenti li ritrovi nella scheda Corpo → Allenamenti (o con “Tutti i tuoi allenamenti” in Oggi): divisi per settimana con i totali, con il filtro per sport e i record personali di ogni esercizio. Tocca un allenamento per modificarlo o eliminarlo.</p>": "<p>You’ll find all your workouts in the Body → Workouts tab (or with “All your workouts” in Today): grouped by week with the totals, with a filter by sport and the personal records for each exercise. Tap a workout to edit or delete it.</p>"
+"<p>Tutti gli allenamenti li ritrovi nella scheda Corpo → Allenamenti (o con “Tutti i tuoi allenamenti” in Oggi): divisi per settimana con i totali, con il filtro per sport e i record personali di ogni esercizio. Tocca un allenamento per modificarlo o eliminarlo.</p>": "<p>You’ll find all your workouts in the Body → Workouts tab (or with “All your workouts” in Today): grouped by week with the totals, with a filter by sport and the personal records for each exercise. Tap a workout to edit or delete it.</p>",
+"tra {n} giorni": "in {n} days",
+"tra {n} settimane": "in {n} weeks",
+"tra {n} mesi": "in {n} months",
+"Proiezione del peso": "Weight projection",
+"La proiezione compare dopo le prime pesate o la prima giornata completa.": "The projection appears after your first weigh-ins or your first complete day.",
+"Al ritmo attuale il peso non scende, quindi non si può stimare quando arriverai a {w} kg.": "At your current pace your weight isn’t going down, so it’s not possible to estimate when you’ll reach {w} kg.",
+"In Grafici trovi kcal medie e consumo: con 300–500 kcal al giorno sotto il consumo si perdono circa 0,3–0,5 kg a settimana.": "In Charts you’ll find your average calories and expenditure: eating 300–500 kcal a day below what you burn means losing about 0.3–0.5 kg a week.",
+"Al ritmo attuale di −{r} kg a settimana servirebbero più di 2 anni per arrivare a {w} kg.": "At your current pace of −{r} kg a week it would take more than 2 years to reach {w} kg.",
+"Al ritmo attuale di <b>−{r} kg a settimana</b> arrivi a <b>{w} kg</b> il <b>{d}</b>.": "At your current pace of <b>−{r} kg a week</b> you’ll reach <b>{w} kg</b> on <b>{d}</b>.",
+"obiettivo": "goal",
+"−{n} kg da oggi": "−{n} kg from today",
+"Ritmo calcolato dalle tue pesate delle ultime settimane: le date si aggiornano da sole a ogni pesata.": "Pace calculated from your weigh-ins over the last few weeks: the dates update by themselves every time you weigh in.",
+"Ritmo stimato dal deficit delle giornate complete: con qualche pesata in più diventa più preciso.": "Pace estimated from the deficit of your complete days: a few more weigh-ins will make it more accurate.",
+"La <b>proiezione del peso</b> ti dice in che giorno arriverai a ogni tappa, al ritmo attuale.": "The <b>weight projection</b> tells you on which day you’ll reach each milestone, at your current pace.",
+"<p>Sotto il peso, la proiezione mostra le tappe verso l’obiettivo e il giorno in cui le raggiungerai al ritmo attuale. Il ritmo viene dalle pesate delle ultime settimane (finché sono poche, dal deficit delle giornate complete): più ti pesi, più le date sono affidabili. È la stessa data stimata che trovi in Grafici.</p>": "<p>Below your weight, the projection shows the milestones towards your goal and the day you’ll reach each one at your current pace. The pace comes from your weigh-ins over the last few weeks (while there are only a few, from the deficit of your complete days): the more you weigh yourself, the more reliable the dates. It’s the same estimated date you see in Charts.</p>"
 }
