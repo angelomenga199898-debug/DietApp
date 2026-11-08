@@ -187,6 +187,29 @@ input.sw:checked{background:#5cc23a}input.sw:checked::after{transform:translateX
 .wsm{margin-top:12px}.wsm summary small{font-weight:600}.wsx{margin-top:10px}.wsx .kq b{white-space:nowrap}.wsx .kq span{display:block!important;margin-top:2px;font-size:14px;color:var(--mu)}
 .exn{margin-top:10px}.exn textarea{min-height:44px;max-height:160px;padding:10px 14px;border-radius:14px;font-size:16px;line-height:1.35;resize:none;overflow-y:auto}.exn small{display:block;margin:5px 2px 0;font-size:13px;line-height:1.35}
 .k2{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px 0 0;color:var(--tx);font-size:16px;cursor:pointer}.k2 b{display:block;font:700 16px var(--ff);letter-spacing:0}.k2 small{display:block;color:var(--mu);font-size:13px;font-weight:500;margin-top:2px}
+/* tutorial guidato: buco sull'elemento (ombra enorme che scurisce il resto), freccia che salta e fumetto */
+.tour{position:fixed;inset:0;z-index:70}
+.tour .th{position:fixed;top:50%;left:50%;width:0;height:0;border-radius:18px;box-shadow:0 0 0 200vmax rgba(8,12,6,.74);transition:top .4s cubic-bezier(.3,1.15,.4,1),left .4s cubic-bezier(.3,1.15,.4,1),width .4s cubic-bezier(.3,1.15,.4,1),height .4s cubic-bezier(.3,1.15,.4,1),border-radius .4s;pointer-events:none;animation:fade .3s}
+.tour .th::after{content:"";position:absolute;inset:-6px;border:3px solid var(--li);border-radius:inherit;animation:tpls 1.6s ease-in-out infinite}
+.tour .th.nb::after{display:none}
+@keyframes tpls{0%,100%{opacity:1}50%{opacity:.3}}
+.tour .tbx{position:fixed;left:16px;right:16px;max-width:430px;margin:0 auto;background:var(--cd);color:var(--tx);border-radius:26px;padding:18px 18px 14px;box-shadow:0 16px 44px rgba(0,0,0,.35);transition:top .4s cubic-bezier(.3,1.15,.4,1)}
+.tour .tbx.in{animation:tpop .34s cubic-bezier(.3,1.4,.5,1)}
+@keyframes tpop{from{opacity:0;transform:translateY(12px) scale(.94)}}
+[data-theme=dark] .tour .tbx{box-shadow:inset 0 0 0 1.5px rgba(155,229,100,.35),0 16px 44px rgba(0,0,0,.5)}@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .tour .tbx{box-shadow:inset 0 0 0 1.5px rgba(155,229,100,.35),0 16px 44px rgba(0,0,0,.5)}}
+.tour .tbx h3{margin:0 0 6px;font:800 20px var(--ff);letter-spacing:-.2px;display:flex;align-items:center;gap:10px}
+.tour .tbx h3 i{font-style:normal;width:38px;height:38px;border-radius:50%;background:var(--ch);display:grid;place-items:center;font-size:20px;flex:none}
+.tour .tbx p{margin:0;font-size:15px;line-height:1.45}
+.tour .tft{display:flex;align-items:center;gap:8px;margin-top:16px}
+.tour .tct{flex:1;min-width:0;font:700 13px var(--ff);color:var(--mu)}
+.tour .tft button{margin:0;padding:12px 20px}.tour .tft button.s{padding:12px 16px}
+.tour .tarw{position:fixed;width:36px;height:40px;color:var(--li);filter:drop-shadow(0 2px 4px rgba(0,0,0,.5));animation:tbu .9s ease-in-out infinite;transition:left .4s cubic-bezier(.3,1.15,.4,1),top .4s cubic-bezier(.3,1.15,.4,1)}
+.tour .tarw.dn{animation-name:tbd}.tour .tarw.dn svg{transform:rotate(180deg)}
+.tour .tarw svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:3.6;stroke-linecap:round;stroke-linejoin:round}
+@keyframes tbu{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes tbd{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+.tour .tsk{position:fixed;top:calc(12px + env(safe-area-inset-top));right:14px;margin:0;padding:9px 18px;background:rgba(255,255,255,.2);color:#fff;font-size:14px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+@media (prefers-reduced-motion:reduce){.tour .th,.tour .tbx,.tour .tarw,.tour .th::after{animation:none!important;transition:none!important}}
 .ckt{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:14px;color:var(--mu)}.ckt .lnk{margin:0;flex:none}.ck .ckv{display:inline-block;padding:4px 11px;border-radius:20px;font:800 14px var(--ff);letter-spacing:0;margin:0 8px 0 0;vertical-align:middle}.ck .ckv.ok{background:var(--li);color:#1f3a10}.ck .ckv.mid{background:#fdeea0;color:#4a3b00}.ck .ckv.low{background:#ffe1dc;color:#7a1d10}
 .ckq{padding:12px 0 0;margin-top:12px;border-top:1px solid var(--bd)}.ck .ckq span{color:var(--tx);font-size:15px;font-weight:600;line-height:1.35}
 .ckr{display:flex;gap:8px;align-items:center;margin-bottom:8px}.ckr input{flex:1;min-width:0;margin:0}
@@ -578,7 +601,7 @@ label.tgr span{flex:1}
 <section id="imp"><div id="pf"></div></section>
 </main>
 <input type="file" id="f" accept=".json,application/json" hidden onchange="imp(this)"><div id="pages"></div><div id="auth" class="au" hidden><div class="auc" id="auc"></div></div><div id="story" class="sv" hidden role="dialog" aria-modal="true" aria-label="Storia"><div class="svc" id="svc"><div class="svh"><div class="svp" id="svp"></div><div class="svt"><span class="sva" id="sva"></span><b id="svn"></b><button class="svx" onclick="storyClose()" aria-label="Chiudi la storia">✕</button></div></div><div class="svb" id="svb"></div></div></div>
-<div id="toast" role="status"></div><div id="al" class="al" hidden onclick="if(event.target===this)closeAlert()"><div class="al-c" role="alertdialog" aria-modal="true" aria-labelledby="alt"><div class="al-i" id="ali" aria-hidden="true"></div><h3 id="alt"></h3><p id="alm"></p><div id="alb"></div></div></div>
+<div id="tour" class="tour" hidden role="dialog" aria-modal="true" aria-live="polite"></div><div id="toast" role="status"></div><div id="al" class="al" hidden onclick="if(event.target===this)closeAlert()"><div class="al-c" role="alertdialog" aria-modal="true" aria-labelledby="alt"><div class="al-i" id="ali" aria-hidden="true"></div><h3 id="alt"></h3><p id="alm"></p><div id="alb"></div></div></div>
 <button id="fab" class="fab" onclick="openAdd()" aria-label="Aggiungi alimento" title="Aggiungi alimento"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
 <nav><a class="on" data-t="oggi"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9H4z"/></svg><span data-i18n="Oggi#nav">Oggi</span></a><a data-t="dash"><svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 6"/></svg><span data-i18n="Grafici#nav">Grafici</span></a><a data-t="corpo"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M8.5 10a4.5 4.5 0 0 1 7 0"/><path d="M12 12.5l1.3-2.6"/></svg><span>Corpo</span></a><a data-t="ai"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></svg><span data-i18n="AI#nav">AI</span></a><a data-t="imp"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profilo</span></a></nav>
 <script>
@@ -2801,6 +2824,56 @@ function dropL(f){const i=UI.indexOf(f);if(i<0){f();return}if(i===UI.length-1)ba
 function closeAll(){const n=UI.length;if(!n)return;while(UI.length)UI.pop()();history.go(-n)}
 function after(fn){setTimeout(fn,90)}
 
+/* ---------- TUTORIAL GUIDATO ----------
+Sovrapposto alle schermate vere: scurisce tutto tranne l'elemento del passo (.th), con freccia (.tarw) e fumetto (.tbx).
+Passi in tourSteps(): go = scheda da aprire (tab(...,true), senza livelli), el = elemento, ok = condizione, r = arrotondamento del buco.
+Parte da solo una volta (S.cfg.tourV) quando l'app è libera (tourAuto); Impostazioni → Come funziona e la Guida a storie lo riavviano.
+Il tasto indietro lo chiude (un livello con pushL); alla fine si torna in Oggi. Nei test automatici (navigator.webdriver) non parte da solo. */
+let TOUR=null;
+const tabT=t=>{if(!$(t).classList.contains('on'))tab(t,true)};
+function tourSteps(){const ai=AI_ON()||GUEST(),q=s=>()=>document.querySelector(s);return[
+{go:()=>tabT('oggi'),el:q('#sts'),ok:()=>!!document.querySelector('#sts .st'),ic:'⭕',t:T('Le storie'),x:T('La guida veloce, il riepilogo della tua settimana, le novità e i consigli. I cerchi colorati sono ancora da vedere.')},
+{go:()=>tabT('oggi'),el:q('#oggi .dbar'),ic:'🗓️',t:T('Il giorno'),x:T('Con le frecce o toccando la data cambi giorno: puoi segnare anche i giorni passati.')},
+{go:()=>tabT('oggi'),el:q('#hc'),r:'28px',ic:'🔥',t:T('Le kcal di oggi'),x:T('L’anello si riempie con quello che mangi. Sotto vedi quante kcal ti restano, con proteine, carboidrati e grassi.')},
+{go:()=>tabT('oggi'),el:q('#fab'),r:'50%',ic:'➕',t:T('Aggiungi quello che mangi'),x:ai?T('Tocca + per fotografare il piatto, descriverlo, cercarlo o scansionare il codice a barre.'):T('Tocca + per cercare un alimento, scansionare il codice a barre o scriverlo a mano.')},
+{go:()=>tabT('oggi'),el:q('#oggi .wa'),r:'26px',ic:'💧',t:T('Acqua'),x:T('Segna quanta ne bevi con un tocco, oppure con ✏️ scrivi i litri.')},
+{go:()=>tabT('oggi'),el:q('#act'),r:'26px',ic:'🏃',t:T('Movimento'),x:T('Passi, sonno e allenamenti: servono a stimare quanto consumi.')},
+{go:()=>tabT('oggi'),el:q('#ckb'),ok:chkOn,r:'26px',ic:'✅',t:T('Le tue domande'),x:T('A fine giornata rispondi con un tocco: il voto del giorno è quanti sì. Le domande le scegli tu.')},
+{go:()=>tabT('oggi'),el:q('label[for=closed]'),ic:'📝',t:T('Giornata completa'),x:T('Attivala quando hai segnato tutto: così la giornata conta nelle medie e nei grafici.')},
+{go:()=>tabT('oggi'),el:q('#bell'),r:'50%',ic:'🔔',t:T('Notifiche'),x:T('Promemoria, consigli e traguardi: il numero rosso ti dice quante sono nuove.')},
+{go:()=>tabT('dash'),el:q('nav a[data-t=dash]'),r:'30px',ic:'📈',t:T('Grafici'),x:T('Medie, deficit della settimana e kcal mangiate e consumate giorno per giorno.')},
+{go:()=>tabT('dash'),el:q('#dsg'),r:'26px',ic:'🗓️',t:T('Andamento e Giorni'),x:T('In Giorni trovi il calendario del mese e lo storico settimana per settimana.')},
+{go:()=>{CPV='c';tabT('corpo');corpo()},el:q('nav a[data-t=corpo]'),r:'30px',ic:'⚖️',t:T('Corpo'),x:T('Peso, misure e massa grassa, con la proiezione: il giorno in cui arrivi a ogni tappa.')},
+{go:()=>{CPV='c';tabT('corpo')},el:q('#cp [onclick="openWeigh()"]'),r:'30px',ic:'⚖️',t:T('Pesati'),x:T('Tocca qui per segnare il peso, anche con l’ora e una nota.')},
+{go:()=>{CPV='c';tabT('corpo')},el:q('#cp .cpsg'),r:'26px',ic:'💪',t:T('I tuoi allenamenti'),x:T('In Allenamenti ritrovi tutti i tuoi allenamenti, settimana per settimana, con i tuoi record.')},
+...(ai?[{go:()=>tabT('ai'),el:q('nav a[data-t=ai]'),r:'30px',ic:'✨',t:T('Assistente AI'),x:T('Scrivi o fotografa quello che mangi, fai domande al coach e leggi il commento della tua settimana.')}]:[]),
+{go:()=>tabT('imp'),el:q('nav a[data-t=imp]'),r:'30px',ic:'🏅',t:T('Profilo'),x:T('Traguardi, giorni di fila e i tuoi progressi.')},
+{go:()=>tabT('imp'),el:q('#pf [onclick="openSettings()"]'),r:'50%',ic:'⚙️',t:T('Impostazioni'),x:T('Obiettivi, tipo di dieta, i tuoi pasti, le domande, le notifiche e i tuoi dati. Da qui rivedi questo tour quando vuoi.')},
+{go:()=>tabT('oggi'),el:null,ic:'🎉',t:T('Tutto pronto!'),x:T('Ora tocca a te: inizia segnando il tuo primo pasto di oggi.')}].filter(p=>!p.ok||p.ok())}
+const tourBusy=()=>!$('al').hidden||!$('sheet').hidden||!$('wiz').hidden||!$('auth').hidden||!!SV||!!$('pages').querySelector('.pg')||!!TOUR;
+function tourAuto(n=0){const c=S.cfg;if(c.tourV||!c.ok||n>60)return;let t=0;try{t=localStorage.getItem('dietapp_tourtest')}catch(e){}if(navigator.webdriver&&!t)return;
+if(tourBusy())return setTimeout(()=>tourAuto(n+1),3000);setTimeout(()=>{if(S.cfg.tourV)return;if(tourBusy())return tourAuto(n+1);S.cfg.tourV=1;persist();tourGo()},1200)}
+function tourGo(){if(TOUR)return;closeAlert&&!$('al').hidden&&closeAlert();TOUR={L:tourSteps(),i:0};const o=$('tour');o.hidden=false;
+o.innerHTML=`<div class="th"></div><span class="tarw" hidden aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21V4M5 10.5 12 3.5l7 7"/></svg></span><div class="tbx"></div><button class="tsk" onclick="tourEnd()">${T('Salta')}</button>`;
+pushL(tourX);addEventListener('resize',tourPos);addEventListener('scroll',tourPos,{passive:true});tourShow(0,1)}
+// chiusura (dal tasto indietro, da closeAll o dalla fine): si torna in Oggi
+function tourX(){if(!TOUR)return;TOUR=null;removeEventListener('resize',tourPos);removeEventListener('scroll',tourPos);const o=$('tour');o.hidden=true;o.innerHTML='';tabT('oggi');scrollTo(0,0)}
+function tourEnd(){dropL(tourX)}
+function tourMv(d){if(!TOUR)return;const n=TOUR.i+d;if(n>=TOUR.L.length)return tourEnd();if(n<0)return;tourShow(n,d)}
+const tourVis=e=>!!e&&e.getClientRects().length>0&&getComputedStyle(e).visibility!='hidden'&&!e.closest('[hidden]');
+function tourShow(i,d,k=0){const o=TOUR;if(!o)return;const p=o.L[i];if(!p)return tourEnd();if(p.go)p.go();
+setTimeout(()=>{if(TOUR!==o)return;const e=p.el?p.el():null;if(p.el&&!tourVis(e)&&k<o.L.length)return tourShow(i+d<0?0:i+d,d||1,k+1);
+o.i=i;const last=i==o.L.length-1,b=$('tour').querySelector('.tbx');
+b.innerHTML=`<h3><i aria-hidden="true">${p.ic}</i>${p.t}</h3><p>${p.x}</p><div class="tft"><span class="tct">${i+1} / ${o.L.length}</span>${i?`<button class="s" onclick="tourMv(-1)">${T('Indietro')}</button>`:''}<button class="cta shine" onclick="tourMv(1)">${last?T('Inizia'):T('Avanti')}</button></div>`;
+b.classList.remove('in');void b.offsetWidth;b.classList.add('in');$('tour').querySelector('.tsk').hidden=last;
+if(e&&getComputedStyle(e).position!='fixed'){const rr=e.getBoundingClientRect();if(rr.height>innerHeight*.4)scrollTo(0,scrollY+rr.top-84);else e.scrollIntoView({block:'center'})}tourPos();setTimeout(tourPos,60)},p.go?140:0)}
+function tourPos(){const o=TOUR;if(!o)return;const p=o.L[o.i],e=p.el?p.el():null,ov=$('tour'),h=ov.querySelector('.th'),b=ov.querySelector('.tbx'),a=ov.querySelector('.tarw'),W=innerWidth,H=innerHeight,bh=b.offsetHeight;
+if(!e||!tourVis(e)){h.className='th nb';h.style.cssText=`top:${H/2}px;left:${W/2}px;width:0;height:0`;b.style.top=Math.max(16,(H-bh)/2)+'px';a.hidden=true;return}
+const r=e.getBoundingClientRect(),g=p.r=='50%'?6:8,t=Math.max(-8,r.top-g),l=r.left-g,w=r.width+2*g,hh=Math.min(r.bottom+g,H+8)-t;
+h.className='th';h.style.cssText=`top:${t}px;left:${l}px;width:${w}px;height:${hh}px;border-radius:${p.r||'18px'}`;
+const below=H-(t+hh),dn=below<bh+80&&t>below;let bt=dn?t-bh-54:t+hh+54;bt=Math.max(12,Math.min(H-bh-12,bt));b.style.top=bt+'px';
+a.hidden=false;a.className='tarw'+(dn?' dn':'');a.style.left=Math.max(8,Math.min(W-44,r.left+r.width/2-18))+'px';a.style.top=(dn?t-48:t+hh+8)+'px'}
+
 /* ---------- TEMA ---------- */
 function applyTheme(){const r=document.documentElement,t=S.cfg.theme||'auto';r.dataset.theme=t;r.classList.toggle('rm',!!S.cfg.rm);
 const dark=t=='dark'||(t!='light'&&matchMedia('(prefers-color-scheme: dark)').matches),m=document.querySelector('meta[name=theme-color]');if(m)m.content=dark?'#0e130d':'#ffffff'}
@@ -2857,7 +2930,7 @@ function pgLang(){openPage('lang',T('Lingua'),LANGS.map(([k,n])=>OPT(k==LG,`setL
 function setTheme(v){S.cfg.theme=v;persist();applyTheme();pgTheme();refreshSettings()}
 function pgAdv(){openPage('adv',T('Avanzate'),DOC(T(`<h3>Consumo calorico</h3><p>Da passi e allenamenti l’app stima ogni giorno quante calorie consumi e il tuo deficit. Se l’orologio misura le calorie dell’allenamento puoi scriverle e vengono usate al posto della stima. Pesandoti a digiuno nei giorni di pesata, dopo qualche settimana la stima si corregge con i tuoi dati reali.</p>`)+T(`<h3>Giornate complete</h3><p>I giorni passati con dei pasti contano da soli nelle medie. Togli la spunta “Giornata completa” se hai dimenticato di segnare qualcosa.</p>`))+`<div class="c warn"><b>${T('Solo per esperti')}</b><span>${T('Sono i parametri con cui l’app stima quante calorie consumi. Modificali solo se sai cosa stai facendo: dopo qualche settimana di pesate la stima si corregge comunque da sola.')}</span></div><div class="g">${CFA.map(fin).join('')}</div>`)}
 const DOC=(h)=>`<div class="doc">${h}</div>`;
-function pgHelp(){closeAll();after(()=>{tab('oggi');openStory('guida',document.querySelector('#sts .st'))})}
+function pgHelp(){closeAll();after(()=>{tab('oggi',true);tourGo()})}
 function pgNews(){openPage('news',T('Novità'),CHANGELOG.map(([v,d,it])=>`<div class="c nv"><b>${T('Versione {v}',{v})}</b> <span>${fmtD(d)}</span><ul>${it.map(x=>`<li>${E(x)}</li>`).join('')}</ul></div>`).join(''))}
 const SYNCED=()=>!!(FBCFG&&S.consent&&sMeta().uid);
 const ACC_ON=()=>!!FBCFG&&(!!FBCFG.required||!!sMeta().uid||!$('auth').hidden);
@@ -4236,14 +4309,14 @@ function bmiWarn(wg,h){const h2=(h/100)**2;return`<div class="c warn" style="mar
 function wzDiet(k){const d=dietOf(k);WZ.diet=k;WZ.win=d.win?{s:WZ.win&&WZ.win.h==d.win[1]?WZ.win.s:d.win[0],h:d.win[1]}:null;wiz();const e=$('wzc').querySelector('.dop.on');if(e)setTimeout(()=>e.scrollIntoView({block:'nearest',behavior:'smooth'}),30)}
 function wzWs(id,v){if(WZ.win&&v&&WZ.win.s!==v){WZ.win.s=v;const p=$('zwt');if(p)p.innerHTML=winTxt(WZ.win)}}
 function wzDone(quiet,guest){const z=WZ,r=wzCalc(z),c=S.cfg,today=TODAY();if(!z.again){S.achInit=1;S.sts.nov=VERSION}Object.assign(c,{diet:z.diet||'bil',win:z.win||null,dietSet:1,name:String(z.name||'').trim().slice(0,30)||c.name||'',sex:z.sex,age:z.age,h:z.h,wg:z.wg,target:r.t,pmin:r.pm,waterT:r.wt,tdee0:r.tdee,stepT:Math.max(8000,r.steps),wkT:z.wk||3,floor:z.sex=='F'?1000:1200,why:z.why||[],obst:z.obst||[],ok:true});
-if(!z.again){c.w0=z.w;c.start=today}const x=day(today,1);if(!(x.w>0))x.w=z.w;persist();$('wiz').hidden=true;fabSet((document.querySelector('section.on')||{}).id);if(UI.includes(WZB)){if(quiet)UI.splice(UI.indexOf(WZB),1);else dropL(WZB)}if(guest)guestGo();refreshSettings();if(!z.again)tab('oggi');else{prof();render()}if(z.again)note(T('✅ Nuovo piano salvato'));else if(quiet){try{sessionStorage.setItem('wzNew','1')}catch(e){}}else wzHello()}
+if(!z.again){c.w0=z.w;c.start=today}const x=day(today,1);if(!(x.w>0))x.w=z.w;persist();$('wiz').hidden=true;fabSet((document.querySelector('section.on')||{}).id);if(UI.includes(WZB)){if(quiet)UI.splice(UI.indexOf(WZB),1);else dropL(WZB)}if(guest)guestGo();refreshSettings();if(!z.again){tab('oggi');tourAuto()}else{prof();render()}if(z.again)note(T('✅ Nuovo piano salvato'));else if(quiet){try{sessionStorage.setItem('wzNew','1')}catch(e){}}else wzHello()}
 // saluto dopo la procedura guidata (per chi crea l'account arriva dopo l'accesso, vedi authDone)
-function wzHello(){const c=S.cfg;setTimeout(()=>alertBox({icon:'🎉',bg:'#d9f7c2',title:T('Tutto pronto!'),text:T('Il tuo obiettivo è {k} kcal al giorno con almeno {p} g di proteine. Aggiungi il primo pasto quando vuoi.',{k:f0(c.target),p:c.pmin}),buttons:[{label:T('Aggiungi il primo pasto'),fn:openAdd},{label:T('Guarda come funziona'),fn:()=>openStory('guida',document.querySelector('#sts .st'))},{label:T('Più tardi')}],vib:[30,40,30]}),350)}
+function wzHello(){const c=S.cfg;setTimeout(()=>alertBox({icon:'🎉',bg:'#d9f7c2',title:T('Tutto pronto!'),text:T('Il tuo obiettivo è {k} kcal al giorno con almeno {p} g di proteine. Aggiungi il primo pasto quando vuoi.',{k:f0(c.target),p:c.pmin}),buttons:[{label:T('Aggiungi il primo pasto'),fn:openAdd},{label:T('Guarda come funziona'),fn:()=>{S.cfg.tourV=1;persist();setTimeout(tourGo,350)}},{label:T('Più tardi')}],vib:[30,40,30]}),350)}
 
 /* ---------- STORIE (stile Instagram) ---------- */
 // Guida a storie: le pagine su assistente, piano e notifiche compaiono solo se quelle funzioni sono attive. Se cambia, aumentare la key della storia 'guida' (torna "nuova").
 function guidePages(){const ai=AI_ON()&&!HAS_AI,P=[
-{t:T('Come funziona'),ts:'👋',items:[{h:T('DietApp ti aiuta a mangiare le <b>calorie giuste</b> per il tuo obiettivo.'),s:'🎯'},{h:T('Segni cosa mangi e quanto ti muovi: l’app stima <b>quanto consumi</b> e il tuo <b>deficit</b>.'),s:'🔥'},{h:T('Tocca a <b>destra</b> per andare avanti, a <b>sinistra</b> per tornare indietro. Tieni premuto per fermarti, scorri in giù per chiudere.'),s:'👆'}]},
+{t:T('Come funziona'),ts:'👋',items:[{h:T('DietApp ti aiuta a mangiare le <b>calorie giuste</b> per il tuo obiettivo.'),s:'🎯'},{h:T('Segni cosa mangi e quanto ti muovi: l’app stima <b>quanto consumi</b> e il tuo <b>deficit</b>.'),s:'🔥'},{h:T('Tocca a <b>destra</b> per andare avanti, a <b>sinistra</b> per tornare indietro. Tieni premuto per fermarti, scorri in giù per chiudere.'),s:'👆'}],act:[T('▶ Fai il tour dell’app'),"tab('oggi',true);tourGo()"]},
 {t:T('Oggi'),ts:'☀️',items:[{h:T('L’<b>anello</b> mostra le kcal di oggi rispetto al tuo obiettivo.'),s:'⭕'},{h:T('Sotto trovi <b>proteine</b>, carboidrati, grassi e il <b>consumo stimato</b>.'),s:'🥩'},{h:T('Dalla <b>barra della data</b> cambi giorno: i pallini colorati ti dicono com’è andata.'),s:'🗓️'},...(chkOn()?[{h:T('In fondo rispondi alle <b>tue domande</b> della giornata: il voto è quanti sì. Le cambi in Impostazioni → Le mie domande.'),s:'✅'}]:[])]},
 {t:T('I pasti'),ts:'🍝',items:[{h:AI_ON()||GUEST()?T('Tocca <b>+ Aggiungi alimento</b>: <b>scatta una foto</b>, descrivi il pasto o cerca il cibo, poi scegli <b>quantità</b> e <b>orario</b>.'):T('Tocca <b>+ Aggiungi alimento</b>, cerca il cibo e scegli <b>quantità</b> e <b>orario</b>: vedi subito quante kcal ti restano.'),s:'🔎'},{h:T('Non lo trovi? <b>Cercalo online</b>, scansiona il <b>codice a barre</b> o scrivi le kcal a mano.'),s:'📷'},{h:T('Quello che mangi spesso salvalo tra i <b>pasti rapidi</b>, i piatti che cucini tu tra le <b>ricette</b>: li ritrovi in Impostazioni → I miei pasti.'),s:'🍲'}],act:[T('Prova ad aggiungere un pasto'),'openAdd']},
 {t:T('Tipo di dieta'),ts:'🥗',items:[{h:T('Scegli il tuo <b>tipo di dieta</b>: mediterranea, low carb, chetogenica, digiuno 16:8 e altre.'),s:'🥑'},{h:T('Gli obiettivi di <b>proteine, carboidrati e grassi</b> si adattano: li vedi nella scheda Oggi.'),s:'📊'},{h:T('Con la <b>finestra dei pasti</b> Oggi ti dice quando puoi mangiare e quando sei a digiuno.'),s:'⏱️'}],act:[T('Scegli la tua dieta'),'pgDiet()']}];
@@ -4354,7 +4427,7 @@ syncPush().catch(e=>{SYERR=e.code||'errore'});authDone()}
 function authDone(){const b=$('auth');b.hidden=true;b.dataset.v='';navSet();pushSync();try{if(sessionStorage.getItem('wzNew')){sessionStorage.removeItem('wzNew');if(S.cfg.ok)wzHello()}}catch(e){}pushAsk();if(AI_ON())planFetch().then(()=>refreshSettings());if(!APPSTARTED)appStart();else{if(!$('wiz').hidden&&S.cfg.ok)$('wiz').hidden=true;WZHID=false;if(!S.cfg.ok&&$('wiz').hidden){if(WZ&&!WZ.again){if(!WZ.name&&S.cfg.name)WZ.name=S.cfg.name;$('wiz').hidden=false;wiz()}else openWiz(false)}render();refresh();refreshSettings()}delCheck()}
 // una volta sola, con l'account e le notifiche disponibili: spiega i promemoria prima di chiedere il permesso del telefono
 function pushAsk(n=0){const c=S.cfg;if(c.pushAsk||!c.ok||!FU||!PUSH_CFG()||!PUSH_SUP()||pushIsOn()||Notification.permission==='denied'||n>20)return;
-if(!$('al').hidden||!$('sheet').hidden||!$('wiz').hidden||!$('auth').hidden)return setTimeout(()=>pushAsk(n+1),3000);
+if(!$('al').hidden||!$('sheet').hidden||!$('wiz').hidden||!$('auth').hidden||TOUR)return setTimeout(()=>pushAsk(n+1),3000);
 setTimeout(()=>{if(!$('al').hidden||!$('sheet').hidden)return pushAsk(n+1);c.pushAsk=1;persist();alertBox({icon:'🔔',bg:'#fdeea0',title:T('Vuoi i promemoria sul telefono?'),text:T('Ti ricordiamo la pesata al mattino e di chiudere la giornata la sera, anche ad app chiusa. Puoi cambiarli quando vuoi.'),buttons:[{label:T('Attiva le notifiche'),fn:pushOn},{label:T('Non ora')}]})},n?2500:7000)}
 function delCheck(){if(sessionStorage.getItem('delPending')&&FU){sessionStorage.removeItem('delPending');setTimeout(()=>alertBox({icon:'🗑️',bg:'#ffd9d2',title:T('Eliminare definitivamente?'),text:T('Hai confermato la tua identità. Ora l’account e tutti i dati verranno cancellati per sempre.'),buttons:[{label:T('Elimina definitivamente'),danger:true,fn:accWipe},{label:T('Annulla')}]}),600)}}
 /* --- schermata di accesso --- */
@@ -4447,7 +4520,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')back()});
 // conteggio anonimo per le statistiche di chi usa l'app senza account: una volta al giorno, nessun identificativo
 function statPing(){try{if(!FBCFG||HAS_AI||sMeta().uid||!S.cfg.ok||navigator.onLine===false||!navigator.sendBeacon)return;const d=TODAY(),k=localStorage.getItem('dietapp_stat');if(k===d)return;localStorage.setItem('dietapp_stat',d);navigator.sendBeacon('/api/stat',JSON.stringify(k?{}:{nw:1}))}catch(e){}}
 function appStart(){if(APPSTARTED)return;APPSTARTED=true;setTimeout(statPing,5000);fabSet((document.querySelector('section.on')||{}).id||'oggi');if(GUEST())guestKeep();render();
-if(!S.cfg.ok){S.seenVer=VERSION;openWiz(false)}else{
+if(!S.cfg.ok){S.seenVer=VERSION;openWiz(false)}else{setTimeout(tourAuto,6000);
 const qa=new URLSearchParams(location.search).get('a');if(qa){history.replaceState({l:0},'',location.pathname);if(qa=='add')after(openAdd);else if(ACT[qa])ACT[qa]()}
 if(S.seenVer!==VERSION){const ni=newsItems(S.seenVer);notify('news-'+VERSION,{type:'news',icon:'✨',bg:'#fdeea0',title:T('Novità della versione {v}',{v:VERSION}),text:ni.slice(0,3).join(' · '),act:'news'});
 if(!qa)setTimeout(()=>{if($('al').hidden&&$('sheet').hidden)alertBox({icon:'✨',bg:'#fdeea0',title:T('Novità di DietApp {v}',{v:VERSION}),text:ni.map(x=>'• '+x).join('\n'),buttons:[{label:T('Fantastico!')},{label:T('Tutte le novità'),fn:pgNews}]})},4200);S.seenVer=VERSION;persist()}
