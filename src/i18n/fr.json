@@ -1828,5 +1828,17 @@
 "Pomeriggio": "Après-midi",
 "Ora pesata": "Heure de la pesée",
 "Note pesata": "Notes sur la pesée",
-"<p>Quando ti pesi puoi indicare anche l’ora e una nota (per esempio “dopo cena”): le ritrovi nello storico di Corpo e toccando il grafico del peso. Se ti pesi più tardi del solito il peso di solito è più alto: conta l’andamento.</p>": "<p>Quand tu te pèses, tu peux aussi indiquer l’heure et une note (par exemple « après le dîner ») : tu les retrouves dans l’historique de Corps et en touchant le graphique du poids. Si tu te pèses plus tard que d’habitude, le poids est généralement plus élevé : c’est la tendance qui compte.</p>"
+"<p>Quando ti pesi puoi indicare anche l’ora e una nota (per esempio “dopo cena”): le ritrovi nello storico di Corpo e toccando il grafico del peso. Se ti pesi più tardi del solito il peso di solito è più alto: conta l’andamento.</p>": "<p>Quand tu te pèses, tu peux aussi indiquer l’heure et une note (par exemple « après le dîner ») : tu les retrouves dans l’historique de Corps et en touchant le graphique du poids. Si tu te pèses plus tard que d’habitude, le poids est généralement plus élevé : c’est la tendance qui compte.</p>",
+"🎯 Proiezione del peso: tappe e date ›": "🎯 Projection du poids : étapes et dates ›",
+"Amministrazione": "Administration",
+"I miei pasti": "Mes repas",
+"Rapidi#meals": "Rapides",
+"Alimenti": "Aliments",
+"da perdere": "à perdre",
+"ritmo reale a settimana": "rythme réel par semaine",
+"ritmo teorico a settimana": "rythme théorique par semaine",
+"Solo tu vedi questa pagina.": "Toi seul vois cette page.",
+"Quello che mangi spesso salvalo tra i <b>pasti rapidi</b>, i piatti che cucini tu tra le <b>ricette</b>: li ritrovi in Impostazioni → I miei pasti.": "Enregistre ce que tu manges souvent dans les <b>repas rapides</b> et les plats que tu cuisines dans les <b>recettes</b> : tu les retrouves dans Réglages → Mes repas.",
+"In <b>Grafici</b> trovi le medie e il <b>deficit della settimana</b> con i kg persi in teoria.": "Dans <b>Stats</b> tu trouves les moyennes et le <b>déficit de la semaine</b> avec les kg perdus en théorie.",
+"In <b>Grafici → Giorni</b> c’è il calendario del mese e lo storico settimana per settimana.": "Dans <b>Stats → Jours</b> il y a le calendrier du mois et l’historique semaine par semaine."
 }

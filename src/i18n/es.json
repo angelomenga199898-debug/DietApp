@@ -1828,5 +1828,17 @@
 "Pomeriggio": "Tarde",
 "Ora pesata": "Hora de la pesada",
 "Note pesata": "Notas de la pesada",
-"<p>Quando ti pesi puoi indicare anche l’ora e una nota (per esempio “dopo cena”): le ritrovi nello storico di Corpo e toccando il grafico del peso. Se ti pesi più tardi del solito il peso di solito è più alto: conta l’andamento.</p>": "<p>Cuando te pesas puedes indicar también la hora y una nota (por ejemplo «después de cenar»): las encuentras en el historial de Cuerpo y tocando el gráfico del peso. Si te pesas más tarde de lo habitual el peso suele ser más alto: lo que cuenta es la tendencia.</p>"
+"<p>Quando ti pesi puoi indicare anche l’ora e una nota (per esempio “dopo cena”): le ritrovi nello storico di Corpo e toccando il grafico del peso. Se ti pesi più tardi del solito il peso di solito è più alto: conta l’andamento.</p>": "<p>Cuando te pesas puedes indicar también la hora y una nota (por ejemplo «después de cenar»): las encuentras en el historial de Cuerpo y tocando el gráfico del peso. Si te pesas más tarde de lo habitual el peso suele ser más alto: lo que cuenta es la tendencia.</p>",
+"🎯 Proiezione del peso: tappe e date ›": "🎯 Proyección del peso: etapas y fechas ›",
+"Amministrazione": "Administración",
+"I miei pasti": "Mis comidas",
+"Rapidi#meals": "Rápidas",
+"Alimenti": "Alimentos",
+"da perdere": "por perder",
+"ritmo reale a settimana": "ritmo real por semana",
+"ritmo teorico a settimana": "ritmo teórico por semana",
+"Solo tu vedi questa pagina.": "Solo tú ves esta página.",
+"Quello che mangi spesso salvalo tra i <b>pasti rapidi</b>, i piatti che cucini tu tra le <b>ricette</b>: li ritrovi in Impostazioni → I miei pasti.": "Guarda lo que comes a menudo en las <b>comidas rápidas</b> y los platos que cocinas en las <b>recetas</b>: los encuentras en Ajustes → Mis comidas.",
+"In <b>Grafici</b> trovi le medie e il <b>deficit della settimana</b> con i kg persi in teoria.": "En <b>Gráficos</b> encuentras las medias y el <b>déficit de la semana</b> con los kg perdidos en teoría.",
+"In <b>Grafici → Giorni</b> c’è il calendario del mese e lo storico settimana per settimana.": "En <b>Gráficos → Días</b> está el calendario del mes y el historial semana a semana."
 }

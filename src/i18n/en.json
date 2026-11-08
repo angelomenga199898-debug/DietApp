@@ -1828,5 +1828,17 @@
 "Pomeriggio": "Afternoon",
 "Ora pesata": "Weigh-in time",
 "Note pesata": "Weigh-in notes",
-"<p>Quando ti pesi puoi indicare anche l’ora e una nota (per esempio “dopo cena”): le ritrovi nello storico di Corpo e toccando il grafico del peso. Se ti pesi più tardi del solito il peso di solito è più alto: conta l’andamento.</p>": "<p>When you weigh yourself you can also add the time and a note (for example “after dinner”): you’ll find them in the Body history and by tapping the weight chart. If you weigh yourself later than usual your weight is usually higher: the trend is what counts.</p>"
+"<p>Quando ti pesi puoi indicare anche l’ora e una nota (per esempio “dopo cena”): le ritrovi nello storico di Corpo e toccando il grafico del peso. Se ti pesi più tardi del solito il peso di solito è più alto: conta l’andamento.</p>": "<p>When you weigh yourself you can also add the time and a note (for example “after dinner”): you’ll find them in the Body history and by tapping the weight chart. If you weigh yourself later than usual your weight is usually higher: the trend is what counts.</p>",
+"🎯 Proiezione del peso: tappe e date ›": "🎯 Weight projection: milestones and dates ›",
+"Amministrazione": "Administration",
+"I miei pasti": "My meals",
+"Rapidi#meals": "Quick",
+"Alimenti": "Foods",
+"da perdere": "to lose",
+"ritmo reale a settimana": "actual pace per week",
+"ritmo teorico a settimana": "theoretical pace per week",
+"Solo tu vedi questa pagina.": "Only you can see this page.",
+"Quello che mangi spesso salvalo tra i <b>pasti rapidi</b>, i piatti che cucini tu tra le <b>ricette</b>: li ritrovi in Impostazioni → I miei pasti.": "Save what you eat often as <b>quick meals</b> and the dishes you cook as <b>recipes</b>: you’ll find them in Settings → My meals.",
+"In <b>Grafici</b> trovi le medie e il <b>deficit della settimana</b> con i kg persi in teoria.": "In <b>Charts</b> you’ll find your averages and the <b>weekly deficit</b> with the kg lost in theory.",
+"In <b>Grafici → Giorni</b> c’è il calendario del mese e lo storico settimana per settimana.": "In <b>Charts → Days</b> there’s the monthly calendar and your history week by week."
 }
